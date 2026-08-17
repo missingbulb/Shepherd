@@ -32,7 +32,8 @@
         "owner": "missingbulb",
         "kind": "user",
         "exclude": [
-          "missingbulb/empty"
+          "missingbulb/empty",
+          "missingbulb/Sheepdog"
         ],
         "canonRepo": "missingbulb/Claudinite",
         "staleDays": 14,
