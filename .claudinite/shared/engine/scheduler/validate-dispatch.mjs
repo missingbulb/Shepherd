@@ -1,0 +1,81 @@
+// Executor-side deterministic validation of a dispatch issue, BEFORE any model
+// judgment (per-project-scheduling DESIGN §5.2). Given the issue body, it asserts
+// in code that the first line is a legal task path, the task file exists at HEAD,
+// its pack is declared, and its `task.mjs` sibling parses to a well-formed
+// declaration — then resolves the model and outcome ceiling the executor will
+// enforce. An invalid dispatch is rejected (the executor de-labels it and
+// converges it to needs-human), so a forged or mangled issue never runs.
+//
+// Pure over injected capabilities so it unit-tests without a repo or GitHub. It
+// is NOT a CLI — the executor shell beside it, `resolve-dispatch.mjs`, is what
+// drives it in production: that shell takes the issue body out of the label
+// event's payload on disk and wires `exists`/`isPackDeclared`/`loadTask` to the
+// checkout, so validating a dispatch costs no GitHub call at all.
+
+import { normalizeTaskDeclaration, validateTaskDeclaration } from './task-contract.mjs';
+import { resolveModel } from './model-map.mjs';
+
+// The only shape a dispatch first line may take (DESIGN §5.2). Anchored end to
+// end — no query strings, no trailing junk, exactly one pack and one task
+// segment under a packs/ root. The `.claudinite/(shared|local)/` prefix is
+// OPTIONAL: a consumer's task path carries it (its canon is mounted at
+// `.claudinite/shared/packs/`, its own packs at `.claudinite/local/packs/`),
+// while the CANON repo runs its own tree and dispatches root-relative paths
+// (`packs/<pack>/…` for its canon packs, `.claudinite/local/packs/<pack>/…` for
+// its local packs). All three forms are legal; nothing else is.
+export const DISPATCH_PATH_RE = /^(?:\.claudinite\/(?:shared|local)\/)?packs\/([^/]+)\/tasks\/([^/]+)\/task\.md$/;
+
+// The task path a dispatch body points at — its first line, trimmed.
+export const dispatchFirstLine = (body) => String(body ?? '').split('\n')[0].trim();
+
+const reject = (reason, extra = {}) => ({ ok: false, reason, ...extra });
+
+// Validate a dispatch body. Capabilities (all injected for testability):
+//   exists(path)        -> boolean   — does this repo-relative path exist at HEAD
+//   isPackDeclared(id)  -> boolean   — is this pack active in .claudinite-checks.json
+//   loadTask(mjsPath)   -> decl      — load the task.mjs default export (throws on parse error)
+// Returns { ok:true, pack, task, taskPath, model, resolvedModel, outcome },
+// { ok:false, gone:true, pack, task, reason } — a well-formed dispatch whose task
+// the repo NO LONGER CARRIES (file gone, sibling gone, pack undeclared): the
+// executor CLOSES the issue as obsolete (owner, 2026-08-06) rather than parking
+// it on needs-human, because a task that was removed or deactivated is not an
+// anomaly a human needs to triage — or { ok:false, reason } for a genuinely
+// malformed dispatch (bad path shape, unparseable declaration), which stays a
+// needs-human convergence since it may be forgery or a broken task.
+export function validateDispatchBody(body, { exists, isPackDeclared, loadTask }) {
+  const firstLine = dispatchFirstLine(body);
+  const m = DISPATCH_PATH_RE.exec(firstLine);
+  if (!m) return reject(`first line "${firstLine}" is not a valid task path (${DISPATCH_PATH_RE})`);
+
+  const [, pack, task] = m;
+  const taskPath = firstLine;
+  const mjsPath = taskPath.replace(/task\.md$/, 'task.mjs');
+
+  const gone = (reason) => reject(reason, { gone: true, pack, task });
+  if (!exists(taskPath)) return gone(`task file ${taskPath} does not exist at HEAD — the repo no longer carries this task`);
+  if (!exists(mjsPath)) return gone(`the task.mjs sibling ${mjsPath} is missing — the repo no longer carries this task`);
+  if (!isPackDeclared(pack)) return gone(`pack "${pack}" is not declared in .claudinite-checks.json — this task is not active here`);
+
+  let decl;
+  try {
+    decl = normalizeTaskDeclaration(loadTask(mjsPath));
+  } catch (e) {
+    return reject(`${mjsPath} did not parse: ${e.message}`, { pack, task });
+  }
+  const problems = validateTaskDeclaration(decl);
+  if (problems.length) return reject(`${mjsPath} is not a valid task declaration: ${problems.map((p) => p.what).join('; ')}`, { pack, task });
+
+  return {
+    ok: true,
+    pack,
+    task,
+    taskPath,
+    model: decl.agent_model,
+    resolvedModel: resolveModel(decl.agent_model),
+    outcome: decl.expected_outcome,
+    // The best-effort run bound (task-prework DESIGN §6): the executor
+    // surfaces it into the subagent's brief as "fail after N minutes". Always set
+    // for an agentic task (the contract requires it); null for an agentless one.
+    executionTimeout: decl.agent_execution_timeout ?? null,
+  };
+}
