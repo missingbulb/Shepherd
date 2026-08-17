@@ -1,0 +1,79 @@
+{
+  "packs": [
+    "local/shepherd",
+    "basics",
+    "core",
+    {
+      "id": "barriers",
+      "via": [
+        "core"
+      ]
+    },
+    {
+      "id": "git-github",
+      "via": [
+        "basics"
+      ]
+    },
+    {
+      "id": "claude-code-web-users-support",
+      "answers": {
+        "store": "missingbulb/Shepherd"
+      },
+      "config": {
+        "repo": "missingbulb/Shepherd"
+      }
+    },
+    "grow_with_claudinite",
+    "tidy-repo",
+    {
+      "id": "sheepdog",
+      "config": {
+        "owner": "missingbulb",
+        "kind": "user",
+        "exclude": [
+          "missingbulb/empty"
+        ],
+        "canonRepo": "missingbulb/Claudinite",
+        "staleDays": 14,
+        "packSeeds": [
+          {
+            "id": "claude-code-web-users-support",
+            "config": {
+              "repo": "missingbulb/Shepherd"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "maintenance": {
+    "delivery": "auto-merge"
+  },
+  "taskScheduler": {
+    "endpoints": {
+      "default": {
+        "url": "https://api.anthropic.com/v1/claude_code/routines/trig_01Xc43XQwqjUgTaFQhXvAJdk/fire",
+        "tokenSecret": "CCR_ROUTINE_TOKEN"
+      }
+    },
+    "dailyHour": 4,
+    "weeklyDay": "Sun",
+    "monthlyDay": 1
+  },
+  "claudinite": {
+    "updated": "2026-08-17T12:20:06.731Z",
+    "ref": "599c287a89bef53218a1ff807845449bdba69bfe",
+    "engineVersion": 4,
+    "packVersions": {
+      "basics": 2,
+      "core": 1,
+      "barriers": 1,
+      "git-github": 1,
+      "claude-code-web-users-support": 1,
+      "grow_with_claudinite": 1,
+      "tidy-repo": 1,
+      "sheepdog": 1
+    }
+  }
+}

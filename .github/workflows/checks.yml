@@ -1,0 +1,36 @@
+# The repo's test/CI flow. Today it holds one step: the Claudinite WORLD-SCOPE
+# sweep (bootstrap.md Part 8) — a whole-repo invariant assertion, the same shape as
+# a test suite, so a red sweep fails this flow exactly like a failing test would.
+# The WORK scope is not here: it judges a session's own change and runs at that
+# session's Stop hook.
+#
+# When this repo grows tests of its own, they go in as further steps of this job —
+# not as a second workflow.
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The sweep's default scope compares against origin/main, so the
+          # history it measures from has to be here.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The engine's always-vendored Node CLI, invoked as the standalone command.
+      - name: Claudinite world sweep
+        run: node .claudinite/shared/engine/checks/check_the_world.mjs
