@@ -49,6 +49,13 @@
           }
         ]
       }
+    },
+    {
+      "id": "claudinite-dashboard",
+      "config": {
+        "canonRepo": "missingbulb/Claudinite",
+        "rosterFile": "usage-fleet.GENERATED.json"
+      }
     }
   ],
   "maintenance": {
@@ -77,7 +84,8 @@
       "claude-code-web-users-support": 1,
       "grow_with_claudinite": 1,
       "tidy-repo": 1,
-      "sheepdog": 1
+      "sheepdog": 1,
+      "claudinite-dashboard": 1
     }
   }
 }
