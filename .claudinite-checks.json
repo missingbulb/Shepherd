@@ -7,7 +7,10 @@
       "id": "barriers",
       "via": [
         "core"
-      ]
+      ],
+      "answers": {
+        "goals": "No new barriers."
+      }
     },
     {
       "id": "git-github",
@@ -46,6 +49,13 @@
           }
         ]
       }
+    },
+    {
+      "id": "claudinite-dashboard",
+      "config": {
+        "canonRepo": "missingbulb/Claudinite",
+        "rosterFile": "usage-fleet.GENERATED.json"
+      }
     }
   ],
   "maintenance": {
@@ -74,7 +84,8 @@
       "claude-code-web-users-support": 2,
       "grow_with_claudinite": 2,
       "tidy-repo": 2,
-      "sheepdog": 4
+      "sheepdog": 4,
+      "claudinite-dashboard": 1
     }
   }
 }
