@@ -22,7 +22,7 @@ These are the owner's, verbatim in intent, and they are not negotiable:
   requirements documents, or a project's source to "understand" an item better. The
   candidate's own title, body and discussion are what you have, and they are enough. An
   item you cannot summarize from its own text is an item that ranks below one you can.
-- **Do not widen past the shortlist.** The dispatch issue's Context is binding scope.
+- **Do not widen past the shortlist.** The item's Context is binding scope.
   Never enumerate the fleet, never search for items prework did not hand you, and never
   substitute an item you happen to know about.
 - **Be very succinct.** Hard ceiling of **20 words per item**. Shorter is better. No
@@ -30,8 +30,13 @@ These are the owner's, verbatim in intent, and they are not negotiable:
 
 ## 1. Read the shortlist
 
-The dispatch issue's **`### Delivered by prework`** section names a branch. Read
+The item's **`### Delivered by prework`** section names a branch. Read
 `shortlist.json` from it — over your GitHub tools, at that ref.
+
+**That branch is a required input.** A work item that names none — or names one whose `shortlist.json` is not there — is a failed run: converge to `needs-human` naming what was missing.
+Never fall back to the newest branch, to a shortlist from an earlier run, or to enumerating the
+fleet yourself — the whole point of the shortlist is that prework decided which candidates this
+brief covers.
 
 > **It will not come back inline, and what does come back is not yet JSON.** The shortlist
 > carries every candidate's body text, so it runs tens of KB and overflows the file-read
@@ -140,4 +145,4 @@ before the shortlist reaches you, so a written day is not a decision you are bei
 to make — it is an entry whose work is already done, and its outcome is empty. Write the
 entries that are not, and name the already-written ones when you close the run out. A run
 where every entry is already written is a complete run with an empty result: open
-nothing, and say that on the dispatch issue.
+nothing, and say that on the item.
