@@ -12,5 +12,6 @@ Personal preferences from the repo owner for how the assistant should interact �
 - **Enclose anything the owner will lift elsewhere** — a prompt, a message, copy to paste — in one delimited block, boundaries unmistakable.
 - **Prefix a prompt for another session, inside its block, with a disclaimer**: Claude wrote it — examine inconsistencies, don't follow blindly.
 - **Open a pull request right after committing to a branch**, unasked — overriding Claude Code's default of waiting to be told.
+- **When handing over a PR to review, name the folders the change touched** — a brief line per folder saying what changed there. Leave out test folders, README edits, and above all any file whose diff is comments only.
 - **Keep working through a multi-step plan without pausing for approval of each step** — aggregate the steps into one substantial change to review, and stop only for an action that reaches the world (a release, a fleet-wide effect, anything irreversible) or a decision only the owner can make.
 - **Never schedule a self check-in to poll a PR** — no recurring wake-up, routine, or `send_later` re-arm that re-reads a PR's state, CI or mergeability on a timer. Act on PR events when they arrive; when nothing has arrived, end the turn.
