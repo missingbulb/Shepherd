@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "foldedThrough": "2026-08-17",
-  "runsFoldedThrough": "2026-08-18T03:56:22Z",
+  "foldedThrough": "2026-08-18",
+  "runsFoldedThrough": "2026-08-19T03:58:56Z",
   "fields": {
     "day": ["captures","merges","sessions","userMessages","userCommands"],
     "week": ["days","captures","merges","sessionDays","userMessages","userCommands"],
@@ -11,9 +11,11 @@
     "taskExec": ["success","failed","task-gone","invalid"]
   },
   "days": {
-    "2026-08-17": {"totals":[5,5,3,16,0],"skillLoads":{"merge-to-main":3,"update-config":1},"checks":{"work":[16,4,0,4,0,0,0],"world":[31,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[4,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"rules-line-length":[0,27],"task-phase-discipline":[0,4]}}
+    "2026-08-17": {"totals":[5,5,3,16,0],"skillLoads":{"merge-to-main":3,"update-config":1},"checks":{"work":[16,4,0,4,0,0,0],"world":[31,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[4,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"rules-line-length":[0,27],"task-phase-discipline":[0,4]}},
+    "2026-08-18": {"totals":[1,1,1,4,0],"skillLoads":{"adopt-pack":1,"merge-to-main":1},"checks":{"work":[3,1,0,1,0,0,0],"world":[4,0,0,0,0,0,0]},"checkFindings":{"comment-classification":[1,0]}},
+    "2026-08-19": {"totals":[1,1,1,0,0],"skillLoads":{"extract-from-activity":1,"extract-from-conversations":1},"taskExec":{"grow_with_claudinite/growth-extract":[1,0,0,0]}}
   },
   "weeks": {
-    "2026-W34": {"totals":[1,5,5,3,16,0],"skillLoads":{"merge-to-main":3,"update-config":1},"checks":{"work":[16,4,0,4,0,0,0],"world":[31,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[4,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"rules-line-length":[0,27],"task-phase-discipline":[0,4]}}
+    "2026-W34": {"totals":[2,6,6,4,20,0],"skillLoads":{"adopt-pack":1,"merge-to-main":4,"update-config":1},"checks":{"work":[19,5,0,5,0,0,0],"world":[35,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[5,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"rules-line-length":[0,27],"task-phase-discipline":[0,4]}}
   }
 }
