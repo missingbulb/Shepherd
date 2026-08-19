@@ -1,5 +1,5 @@
-// The fleet-add-missing-packs prework entry point — the script the executor runs
-// as `node worker.mjs …` (cwd = this task dir, bounded by prework_timeout). The
+// The fleet-add-missing-packs code-work entry point — the script the executor runs
+// as `node worker.mjs …` (cwd = this task dir, bounded by code_work_timeout). The
 // WHOLE task: `agent_model: 'none'`, no agent phase on the enforcer side.
 //
 // THE FAN-OUT MODEL (#749). This task used to end in an agent stage that ran
@@ -18,7 +18,7 @@
 // pack corpus, and the firing loop.
 //
 // TWO CALL SITES, NO DEFAULTS (params.mjs has the reasoning):
-//   weekly   task.mjs's prework line — `--scan-for-needed-packs=true --repos=all-covered-members`
+//   weekly   task.mjs's code-work line — `--scan-for-needed-packs=true --repos=all-covered-members`
 //   forced   a hand-created item's Context, inherited through CLAUDINITE_CONTEXT:
 //              create-work-item sheepdog/fleet-add-missing-packs \
 //                --context "SCAN_FOR_NEEDED_PACKS=false" \
@@ -37,8 +37,10 @@
 
 import { appendFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { fleetWorkerFailed } from '../../fleet-api.mjs';
 import { makeGh, paged, DECLARATION, fireScheduler } from '../../fleet-api.mjs';
 import { parseSheepdogConfig } from '../../fleet-config.mjs';
+import { missingFleetTokenError } from '../../fleet-token.mjs';
 import { parseParams } from './params.mjs';
 import { parseParamBag, contextText } from '../../param-bag.mjs';
 import { loadCanonPacks } from './canon-packs.mjs';
@@ -48,7 +50,7 @@ import {
   unknownPacks, unansweredQuestions, qualify,
 } from './force-add-packs.mjs';
 
-// The member-side task every fan-out fires — grow_with_claudinite's, present in
+// The member-side task every fan-out fires — claudinite-growth's, present in
 // every member because that pack is seeded by default. Named once; the member task's
 // directory name is the other half of this coupling, pinned by the protocol test.
 export const MEMBER_TASK = 'adopt-requested-packs';
@@ -63,7 +65,7 @@ const emit = (text) => {
 
 export async function main() {
   // GITHUB_REPOSITORY names the HOME repo — the one whose sheepdog entry carries the
-  // fleet config. Actions sets it; CLAUDINITE_REPO is prework's own name for
+  // fleet config. Actions sets it; CLAUDINITE_REPO is code-work's own name for
   // the same fact, so fall back rather than depending on which is present.
   if (!process.env.GITHUB_REPOSITORY && process.env.CLAUDINITE_REPO) {
     process.env.GITHUB_REPOSITORY = process.env.CLAUDINITE_REPO;
@@ -80,10 +82,8 @@ export async function main() {
   const token = process.env.FLEET_GITHUB_TOKEN;
   const home = process.env.GITHUB_REPOSITORY;
   if (!token) {
-    throw new Error('FLEET_GITHUB_TOKEN is not set. Add a repo secret with a fine-grained PAT '
-      + '(this account, ALL repositories, Metadata read, Contents read, Issues read/write, and Actions '
-      + 'READ AND WRITE — firing a member\'s scheduler is an Actions write) — the default GITHUB_TOKEN '
-      + 'sees only this repo and cannot reach the fleet.');
+    throw missingFleetTokenError('fleet-add-missing-packs',
+      'The default GITHUB_TOKEN sees only this repo and cannot reach the fleet.');
   }
   if (!home || !home.includes('/')) throw new Error('GITHUB_REPOSITORY is not set (owner/repo)');
   const gh = makeGh(token);
@@ -202,9 +202,9 @@ async function run({ gh, home, owner, canonRepo, packs, params }) {
   }
 }
 
-// Run only when invoked directly (prework's `node worker.mjs …`), never on import.
+// Run only when invoked directly (code-work's `node worker.mjs …`), never on import.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().catch((e) => { console.error(`fleet-add-missing-packs failed: ${e.message}`); process.exit(1); });
+  main().catch((e) => fleetWorkerFailed('fleet-add-missing-packs', e));
 }
 
 // Re-exported for the tests and for a hand-run: `qualify` is how a name typed in the

@@ -96,6 +96,7 @@ await writeFile(join(OUT, 'index.html'), `<!doctype html>
 <head>
 <meta charset="utf-8">
 <title>Claudinite tasks</title>
+<link rel="icon" href="./${HOME}/favicon.svg" type="image/svg+xml">
 <meta http-equiv="refresh" content="0; url=./${HOME}/">
 <link rel="canonical" href="./${HOME}/">
 </head>
@@ -145,6 +146,11 @@ const config = {
   exchangeUrl: cfg.exchangeUrl ?? null,
   redirectUri: cfg.redirectUri ?? null,
   canonRepo: cfg.canonRepo ?? null,
+  // Where the fleet's morning briefs are written. Named rather than assumed: the
+  // digest task runs in the enforcer's repo, which is usually not the one publishing
+  // this page.
+  digestsRepo: cfg.digestsRepo ?? null,
+  digestsPath: cfg.digestsPath ?? null,
   rosterUrl,
   repos: [],
   // With a roster the fleet overview is the landing view, so nothing is preselected;
@@ -163,5 +169,6 @@ process.stdout.write(
   `Built ${OUT}\n`
   + `  covers: ${repos.length ? `${repos.length} members (fleet overview is the landing view)` : `this repo${config.defaultRepo ? ` (${config.defaultRepo})` : ''}`}\n`
   + `  canon reference: ${config.canonRepo ?? 'not set — member mount freshness reads unknown'}\n`
+  + `  digests: ${config.digestsRepo ? `${config.digestsRepo}/${config.digestsPath ?? 'digests'}` : 'not set — the morning-brief panel is off'}\n`
   + `  sign-in: ${signIn}\n`,
 );

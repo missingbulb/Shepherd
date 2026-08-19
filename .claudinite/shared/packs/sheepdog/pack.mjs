@@ -3,10 +3,10 @@
 // opt-in (a dedicated sheepdog repo declares it; NOT seeded by --init).
 //
 // The pack is thin: prose (RULES.md), the config schema (the pack entry's config =
-// { owner, kind, exclude, canonRepo, staleDays, packSeeds }), and the
+// { owner, kind, exclude, canonRepo, packSeeds }), and the
 // account-spanning sweeps
 // that ARE the cross-repo reach the pack adds — each with the ordinary agentless
-// scheduled task that runs it (the sweep IS its prework, and its
+// scheduled task that runs it (the sweep IS its code-work, and its
 // required_secrets is what asks the repo for FLEET_GITHUB_TOKEN):
 //
 //   tasks/fleet-roster/check-fleet-roster.mjs          is a repo a MEMBER, and is that
@@ -21,13 +21,11 @@
 //   tasks/fleet-baseline/force-fleet-baseline.mjs      make every member baseline NOW
 //                                                      (frequency: manual — the
 //                                                      operator's lever, forced only)
-//   tasks/fleet-digest/collect-fleet-day.mjs           what did the fleet ACCOMPLISH
-//                                                      yesterday, and what has it let
-//                                                      go quiet?
 //
 // Each sweep lives INSIDE its task's folder — nothing outside that task uses it.
 // The pack root holds only what they all need: fleet-api.mjs (the cross-repo REST
-// primitives) and fleet-config.mjs (the one reader of this pack entry's config).
+// primitives), fleet-config.mjs (the one reader of this pack entry's config) and
+// fleet-token.mjs (the one statement of what FLEET_GITHUB_TOKEN must be granted).
 //
 // ROSTER carries two questions rather than one because they are asked of the same
 // repos from the same walk (#788): coverage, and — because per-project scheduling made
@@ -45,22 +43,9 @@
 // `ADD_PACKS`… — no defaults; the weekly declaration sends its own explicitly, a forced
 // run sends the rest through the scheduler's override bag) and it runs NO agent here: it
 // converges a work-list issue IN each member and fires that member's own scheduler, whose
-// adopt-requested-packs task (grow_with_claudinite) adopts with the repo checked out —
+// adopt-requested-packs task (claudinite-growth) adopts with the repo checked out —
 // the fan-out model (#749): the enforcer dispatches, the member executes, and no agent
 // anywhere needs cross-repo access.
-//
-// DIGEST is the one sweep whose output is addressed to a PERSON rather than to the
-// machinery: a dated plain-text brief of the day's real work, one file a morning, plus a
-// prod about a project that has gone quiet. It is the only sheepdog task with an agent
-// stage, and only for the half that is genuinely judgment — the collector ranks a day BY
-// SIZE, which is arithmetic, and the agent picks the accomplishments out of that
-// shortlist, which is a reading of the text. On a day the fleet merged nothing the
-// prework writes the brief itself and requests no agent: the dated series is what makes a
-// MISSING brief legible as a fault rather than as a slow Tuesday, but "nothing happened"
-// needs no model. It arrived from the enforcer's own local pack in #954; what made it
-// portable is that the task ends at a written file, so it holds no address, no recipient
-// and no transport, and everything the fleet has an opinion about is two defaulted config
-// knobs.
 //
 // USAGE exists for the same shape of reason a rung up: a member folds its own
 // skill-usage numbers and can therefore only say whether a skill loads THERE; whether a
@@ -84,33 +69,32 @@
 // scheduling — is CORE and pack-agnostic; none of it runs, dispatches, or depends on
 // these sweeps.
 //
-// THREE CHECKS. Two are the digest's, and live in its task folder because nothing else
-// reads them: `digest-plain-text` holds the landed briefs to plain text (they are sent
-// verbatim through a renderer that neither parses markdown nor keeps line breaks, so
-// markdown in one reaches the owner as literal characters in a single running paragraph),
-// and `dated-fixture-collision` keeps the digest's own test fixtures out of the year range
-// the fleet writes real briefs in — a fixture sharing that namespace breaks when a brief
-// is deleted and passes for the wrong reason when one happens to exist.
-//
-// The third names no pack (seeds-agree.mjs): the seed sweep writes this
+// ONE CHECK, and it names no pack (seeds-agree.mjs): the seed sweep writes this
 // repo's `packSeeds` into every member without ever consulting what this repo declares
 // for the same pack, so the two can drift apart silently. That is a fact about seeding,
 // not about any pack seeded — which is why it lives here and not in the pack whose
 // config happened to drift.
 import seedsAgree from './seeds-agree.mjs';
-import datedFixtureCollision from './tasks/fleet-digest/dated-fixture-collision.mjs';
-import digestPlainText from './tasks/fleet-digest/digest-plain-text.mjs';
+import { fleetTokenHandoverStep } from './fleet-token.mjs';
 
 export default {
   id: 'sheepdog',
-  // 2: fleet-digest arrives (#954) — a sixth task, two checks and an optional `digest`
-  // config block. Purely additive: nothing in a member is rewritten, so the bump carries
-  // no migration record; it exists to deliver the new files to enforcers already on v1.
-  version: 6,
+  // 11: fleet-digest LEAVES, to the claudinite-dashboard pack — the pack whose page is
+  // the only thing that reads the series it writes. What stays here is an enforcer's
+  // `digest`, `owner` and `exclude` config, which the task still reads off this entry
+  // as its legacy source, so no enforcer declaration has to change.
+  // 12: the FLEET_GITHUB_TOKEN grant is stated once, in fleet-token.mjs, and rendered
+  // into every message about it — additive, no migration, delivered so an enforcer's
+  // next token error names the whole grant instead of that sweep's subset (#1030).
+  // 13: the task contract moved into the claudinite-growth `writing-tasks` skill; the
+  // pointers in this pack's README and its three fleet task docs follow it (#975).
+  // 14: each fleet task's doc is a README.md — every one of them is agentless, and
+  // task.md is the spec an agent session reads (task-md-only-when-agentic, #1055).
+  version: 15,
   minEngineVersion: 1,
   ruleRoutingGuidance: {
-    belongs: 'fleet-enforcer duties for the repo watching every other repo — coverage, freshness, usage, standardized packs, the daily fleet brief',
-    excludes: 'anything a member does to itself — tidying is tidy-repo, lesson capture is grow_with_claudinite',
+    belongs: 'fleet-enforcer duties for the repo watching every other repo — coverage, freshness, usage, standardized packs',
+    excludes: 'anything a member does to itself — tidying is tidy-repo, lessons are claudinite-growth; the fleet brief is claudinite-dashboard',
   },
   badge: 'badge.svg',
   detect: null,
@@ -118,5 +102,12 @@ export default {
   prose: 'RULES.md',
   // Audits the enforcer's config as it stands, whatever this session touched: a seed
   // that drifted in an earlier commit is just as silent as one that drifted in this one.
-  worldRules: [seedsAgree, digestPlainText, datedFixtureCollision],
+  worldRules: [seedsAgree],
+
+  // The token is the whole pack's one credential and only a human can mint it. The step
+  // is RENDERED from fleet-token.mjs rather than written here, because the failure this
+  // exists to prevent is a person granting a subset (#1030): a sweep's own message names
+  // what that sweep needs, and five such messages assemble into a grant missing exactly
+  // the permission no other sweep exercises. What adoption presents is the union.
+  adoptionHandover: [fleetTokenHandoverStep()],
 };

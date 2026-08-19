@@ -25,6 +25,8 @@ import {
 import {
   WORK_PREFIX, BLOCKED, READY, URGENT, EXECUTING, AGENT, NEEDS_HUMAN,
   OUTCOME_DONE, OUTCOME_DELIVERED, OUTCOME_OBSOLETE, STATE_LABELS,
+  TRIAGE_LABELS, NEEDS_HUMAN_ACTION, NEEDS_HUMAN_DECISION, NEEDS_HUMAN_APPROVAL,
+  NEEDS_HUMAN_FAILURE, isBlockingPark,
   CLAIM_MARKER, HANDOFF_MARKER, EPISODE_MARKER,
   parseWorkItemTitle, parseWorkItemBody, hasLabel, labelNames,
 } from '../../engine/scheduler/queue/work-item.mjs';
@@ -96,7 +98,7 @@ export function taskDeclarationPaths(paths, config) {
 // read for.
 // The key must open the line or follow a `{` / `,` — anchoring on the line start
 // alone would miss a declaration written on one line, and anchoring on nothing
-// would let `prework` be found inside `agent_prework`. The value may close on a
+// would let `code_work` be found inside `agent_code_work`. The value may close on a
 // comma, the object's brace, or the line's end, so a last field without a trailing
 // comma still reads.
 const at = (field) => `(?:^|[{,])\\s*${field}:\\s*`;
@@ -123,7 +125,7 @@ export function parseDeclaration(text) {
     agent_model: scalar(src, 'agent_model'),
     expected_outcome: scalar(src, 'expected_outcome'),
     interrupt_policy: scalar(src, 'interrupt_policy'),
-    prework: scalar(src, 'prework'),
+    code_work: scalar(src, 'code_work'),
     agent_execution_timeout: scalar(src, 'agent_execution_timeout'),
     precondition_signals: stringArray(src, 'precondition_signals'),
     // A task may decline to run; whether it CAN is the difference between "did not
@@ -147,6 +149,17 @@ export function stateOf(item) {
   if (worn.length > 1) return 'torn';
   return 'unlabelled';
 }
+
+// The park's sub-label, or null for one wearing none (an older engine's, or an
+// agent that skipped it). An item can only wear one meaningfully; first wins.
+export const triageOf = (item) => TRIAGE_LABELS.find((l) => hasLabel(item, l)) ?? null;
+
+const TRIAGE_TEXT = {
+  [NEEDS_HUMAN_APPROVAL]: 'a PR to approve',
+  [NEEDS_HUMAN_ACTION]: 'something to change outside the code',
+  [NEEDS_HUMAN_DECISION]: 'a decision to make',
+  [NEEDS_HUMAN_FAILURE]: 'a break to diagnose, holding the task\'s lane',
+};
 
 export function outcomeOf(item) {
   for (const o of [OUTCOME_DONE, OUTCOME_DELIVERED, OUTCOME_OBSOLETE]) if (hasLabel(item, o)) return o;
@@ -177,7 +190,16 @@ export function warningsFor(item, now, { periodFor = () => null } = {}) {
   if (state === BLOCKED && idle >= STUCK_BLOCKED_MS) {
     out.push({ level: 'warning', text: 'blocked for over 2 days' });
   }
-  if (state === NEEDS_HUMAN) out.push({ level: 'critical', text: 'parked for a human' });
+  if (state === NEEDS_HUMAN) {
+    // What the park is asking for, and whether it is holding the task's lane —
+    // an approval waiting on a reviewer is not the same alarm as a broken run
+    // that has stopped its task being scheduled at all.
+    const t = triageOf(item);
+    out.push({
+      level: isBlockingPark(item) ? 'critical' : 'warning',
+      text: t ? `parked for a human — ${TRIAGE_TEXT[t]}` : 'parked for a human — unclassified, holding the task\'s lane',
+    });
+  }
   if (state === 'torn') out.push({ level: 'warning', text: 'wearing more than one state label' });
   if (state === 'unlabelled') out.push({ level: 'warning', text: 'open with no state label' });
   return out;

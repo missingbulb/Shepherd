@@ -1,6 +1,6 @@
 // The executor (tasks-dispatch DESIGN §6) — a pull worker over the queue. Each
 // iteration: pick the next ready item, claim it by a verified lease, evaluate the
-// precondition (THE only place it is ever evaluated), then on a go run prework and
+// precondition (THE only place it is ever evaluated), then on a go run code-work and
 // either converge (agentless) or hand off to an agent session; on a no-go roll a
 // scheduled item to its next anchor with the reason on record.
 //
@@ -11,16 +11,16 @@
 // enumerates executors; identity is self-declared in the claim comment.
 //
 // The pure decisions live at the top and test with fixtures; the shell below is
-// the GitHub/prework/invocation I/O around them.
+// the GitHub/code-work/invocation I/O around them.
 
 import { pathToFileURL } from 'node:url';
 import { nextAnchor } from './anchors.mjs';
 import {
   READY, URGENT, EXECUTING, AGENT, BLOCKED, NEEDS_HUMAN, ORIGIN_SCHEDULE,
-  OUTCOME_DONE, OUTCOME_DELIVERED, OUTCOME_OBSOLETE, QUEUE_LABELS,
+  OUTCOME_DONE, OUTCOME_OBSOLETE, QUEUE_LABELS,
+  NEEDS_HUMAN_ACTION, NEEDS_HUMAN_APPROVAL, NEEDS_HUMAN_FAILURE, triageLabelFor,
   CLAIM_MARKER, HANDOFF_MARKER, EPISODE_MARKER,
-  parseWorkItemTitle, parseWorkItemBody, parseContextLines, mergeContext, withNotBefore, withSection, hasLabel,
-} from './work-item.mjs';
+  parseWorkItemTitle, parseWorkItemBody, parseContextLines, mergeContext, withNotBefore, withSection, hasLabel, DELIVERED_HEADING, LEGACY_DELIVERED_HEADINGS } from './work-item.mjs';
 
 // How many items one executor run may take before it stops. Small on purpose: an
 // executor is code iterating a queue, and more capacity is more executors, not a
@@ -135,11 +135,11 @@ export function noGoPlan(item, task, schedule, now, reason) {
 const nowIso = () => new Date().toISOString();
 
 // One executor run. Injected seams keep the loop testable end to end without
-// GitHub, prework subprocesses or an invocation endpoint.
+// GitHub, code-work subprocesses or an invocation endpoint.
 export async function runExecutor({
   gh, repo, root, config, tasks, executorId, runUrl = null,
   maxItems = DEFAULT_MAX_ITEMS, now = () => new Date(),
-  collectSignalsFor, runTaskPrework, invokeAgent, log = console.log,
+  collectSignalsFor, runTaskCodeWork, invokeAgent, log = console.log,
 }) {
   const api = await import('../github.mjs');
   const { listOpenWorkItems } = await import('./read.mjs');
@@ -187,7 +187,7 @@ export async function runExecutor({
 
     const outcome = await executeItem({
       api, gh, repo, root, config, schedule, byId, item: candidate, executorId,
-      claim: winner, now, collectSignalsFor, runTaskPrework, invokeAgent, log,
+      claim: winner, now, collectSignalsFor, runTaskCodeWork, invokeAgent, log,
     });
     done.push({ issue: candidate.number, outcome });
   }
@@ -209,7 +209,7 @@ async function withClaimIds(api, gh, repo, items, selfNumber) {
 // One claimed item, from validation through to a terminal state (or a hand-off).
 async function executeItem({
   api, gh, repo, root, config, schedule, byId, item, executorId, claim,
-  now, collectSignalsFor, runTaskPrework, invokeAgent, log,
+  now, collectSignalsFor, runTaskCodeWork, invokeAgent, log,
 }) {
   const parsed = parseWorkItemTitle(item.title);
   const { taskPath } = parseWorkItemBody(item.body);
@@ -218,7 +218,7 @@ async function executeItem({
 
   // --- validate in code, before anything trusts the issue ------------------
   if (!parsed || !taskPath) {
-    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN, claim,
+    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN_FAILURE, claim,
       'This work item is malformed — its title or first body line does not name a task. Possible forgery; a human should look at it.');
     return 'needs-human';
   }
@@ -228,7 +228,7 @@ async function executeItem({
     return 'obsolete';
   }
   if (task.taskPath !== taskPath) {
-    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN, claim,
+    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN_FAILURE, claim,
       `This item's task path (\`${taskPath}\`) is not where \`${id}\` lives at HEAD (\`${task.taskPath}\`). Not running it.`);
     return 'needs-human';
   }
@@ -258,40 +258,55 @@ async function executeItem({
     return 'rolled';
   }
 
-  // --- prework (unchanged contract), then converge or hand off -------------
+  // --- code-work (unchanged contract), then converge or hand off -------------
   // The item's OWN Context is scope too, not decoration: an operator's parameters
   // (`create-work-item --context "REPOS=Alpha Beta"`) live there and nowhere else,
-  // so prework sees the union of what the item was created with and what this
+  // so code-work sees the union of what the item was created with and what this
   // occurrence's precondition added. Passing only the verdict's half is what made
   // a hand-created item's parameters unreachable (#974).
   const context = mergeContext(parseContextLines(item.body), verdict.context ?? []);
-  if (task.decl.prework) {
-    const result = await runTaskPrework(task, { item, context });
+  if (task.decl.code_work) {
+    const result = await runTaskCodeWork(task, { item, context });
     if (!result.ok) {
-      await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN, claim,
-        `Prework failed: ${result.why}${result.detail ? `\n\n\`\`\`\n${result.detail}\n\`\`\`` : ''}`);
+      // The worker's own verdict routes the park where it left one; a worker that
+      // said nothing about why it failed is a `failure` — the lane that means
+      // "someone reads the trace", which is the only safe default for a run whose
+      // cause is unknown.
+      await converge(api, gh, repo, item.number, EXECUTING, triageLabelFor(result.triage?.kind), claim,
+        `Code-work failed: ${result.why}${result.triage?.detail ? `\n\nThe worker's own verdict: ${result.triage.detail}` : ''}`
+        + `${result.detail ? `\n\n\`\`\`\n${result.detail}\n\`\`\`` : ''}`);
       return 'needs-human';
     }
     if (result.missingSecrets?.length) {
-      await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN, claim,
-        `This task declares repo Actions secrets that are not configured: ${result.missingSecrets.join(', ')}. Set them in repo settings and re-queue this item (remove \`needs-human\`, add \`task:ready\`).`);
+      await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN_ACTION, claim,
+        `This task declares repo Actions secrets that are not configured: ${result.missingSecrets.join(', ')}. Set them in repo settings and re-queue this item (remove the \`needs-human\` labels, add \`task:ready\`).`);
       return 'needs-human';
     }
     if (!result.agentRequested) {
-      const outcome = result.delivered?.length ? OUTCOME_DELIVERED : OUTCOME_DONE;
-      await close(api, gh, repo, item.number, EXECUTING, outcome, 'completed',
+      // A run that deliberately left an UNMERGED PR is not finished, it is waiting
+      // on a person — so the item stays OPEN at `task:needs-human-approval` rather
+      // than closing as delivered. It does not hold the task's lane while it waits
+      // (`isBlockingPark`): the next occurrence is filed on schedule around it, so
+      // an unreviewed PR delays nobody but its reviewer.
+      if (result.openPr) {
+        await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN_APPROVAL, claim,
+          `Code-work did this run's work and opened a PR for you to approve:\n${result.delivered.map((d) => `- ${d}`).join('\n')}`
+          + `\n\nMerge or close #${result.openPr}, then close this item. This task keeps running on schedule meanwhile.`);
+        return 'needs-human';
+      }
+      await close(api, gh, repo, item.number, EXECUTING, OUTCOME_DONE, 'completed',
         result.delivered?.length
-          ? `Prework did this run's work and left a live artifact:\n${result.delivered.map((d) => `- ${d}`).join('\n')}`
-          : 'Prework did this run\'s work; no agent was needed.');
-      return outcome;
+          ? `Code-work did this run's work and left:\n${result.delivered.map((d) => `- ${d}`).join('\n')}`
+          : 'Code-work did this run\'s work; no agent was needed.');
+      return OUTCOME_DONE;
     }
     return handOff({ api, gh, repo, item, task, id, context, result, executorId, claim, invokeAgent, config, log });
   }
 
-  // An agentless task with no prework does nothing (the contract forbids it).
+  // An agentless task with no code-work does nothing (the contract forbids it).
   if (task.decl.agent_model === 'none') {
-    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN, claim,
-      'This task is agentless but declares no prework, so there is nothing to run — a contract-forbidden shape that reached the queue.');
+    await converge(api, gh, repo, item.number, EXECUTING, NEEDS_HUMAN_FAILURE, claim,
+      'This task is agentless but declares no code_work, so there is nothing to run — a contract-forbidden shape that reached the queue.');
     return 'needs-human';
   }
   return handOff({ api, gh, repo, item, task, id, context, result: {}, executorId, claim, invokeAgent, config, log });
@@ -331,7 +346,7 @@ async function handOff({ api, gh, repo, item, task, id, context, result, executo
   const nonce = `${item.number}-${Math.random().toString(36).slice(2, 10)}`;
   let body = item.body;
   if (context.length) body = withSection(body, 'Context', context);
-  if (result.delivered?.length) body = withSection(body, 'Delivered by prework', result.delivered);
+  if (result.delivered?.length) body = withSection(body, DELIVERED_HEADING, result.delivered, LEGACY_DELIVERED_HEADINGS);
   if (result.reason) body = withSection(body, 'Why the agent is here', [result.reason]);
   await gh(`/repos/${repo}/issues/${item.number}`, { method: 'PATCH', body: { body } });
 
@@ -349,8 +364,8 @@ async function handOff({ api, gh, repo, item, task, id, context, result, executo
   if (invocation.answered) {
     // The endpoint refused, so no session exists and none will: a token, a URL or
     // a routine is wrong, and every future pick would be refused the same way.
-    await converge(api, gh, repo, item.number, AGENT, NEEDS_HUMAN, claim,
-      `Could not start an agent session: ${invocation.error}\n\nNo session was started. Fix the invocation endpoint, then re-queue this item (remove \`${NEEDS_HUMAN}\`, add \`${READY}\`).`);
+    await converge(api, gh, repo, item.number, AGENT, NEEDS_HUMAN_ACTION, claim,
+      `Could not start an agent session: ${invocation.error}\n\nNo session was started. Fix the invocation endpoint, then re-queue this item (remove the \`${NEEDS_HUMAN}\` labels, add \`${READY}\`).`);
     return 'needs-human';
   }
   // NOTHING CAME BACK, and this is the case the whole design turns on: the call
@@ -393,10 +408,13 @@ async function strikeClaim(api, gh, repo, claim) {
 // Every exit converges the item exactly once, with one comment saying what
 // happened — the terminal-state discipline the incidents bought. The claim sits
 // before the body so every state argument is grouped ahead of the prose.
-async function converge(api, gh, repo, number, from, to, claim, body) {
+// Park an item for a human. BOTH labels, always: `needs-human` is the state every
+// guard and sweep reads, `triage` is what the human is being asked for.
+async function converge(api, gh, repo, number, from, triage, claim, body) {
   await strikeClaim(api, gh, repo, claim);
   await api.comment(gh, repo, number, body);
-  await api.swapLabel(gh, repo, number, from, to);
+  await api.swapLabel(gh, repo, number, from, NEEDS_HUMAN);
+  await api.addLabel(gh, repo, number, triage);
 }
 
 async function close(api, gh, repo, number, from, outcome, stateReason, body) {
@@ -414,7 +432,7 @@ async function main() {
   const { loadConfig, isDormant } = await import('../../checks/helpers/repo-context.mjs');
   const { ensureLabels } = await import('../github.mjs');
   const { collectSignalsForTask } = await import('./signals.mjs');
-  const { preworkRunner } = await import('./prework-run.mjs');
+  const { codeWorkRunner } = await import('./code-work-run.mjs');
   const { agentInvoker } = await import('./invoke.mjs');
 
   const root = process.cwd();
@@ -443,7 +461,7 @@ async function main() {
     runUrl,
     maxItems: Number(process.env.CLAUDINITE_MAX_ITEMS) || DEFAULT_MAX_ITEMS,
     collectSignalsFor: collectSignalsForTask({ gh, repo, root, config, defaultBranch }),
-    runTaskPrework: preworkRunner({ root, repo, defaultBranch }),
+    runTaskCodeWork: codeWorkRunner({ root, repo, defaultBranch }),
     invokeAgent: agentInvoker({ repo, config }),
   });
 
