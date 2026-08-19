@@ -21,7 +21,7 @@
 //
 // `agent_model: 'none'` — pure code. The whole pass is the dispatch sweep
 // (force-fleet-baseline.mjs, invoked by worker.mjs): enumerate the fleet over the
-// PAT, wake each covered member's own `baselining` item, report
+// PAT, wake each covered member's own `update` item, report
 // the full roster. Nothing agentic happens HERE — each member's own converge may hand
 // off to that member's own agent, which is the fan-out model's point: the enforcer
 // dispatches, the member executes, and no agent anywhere needs cross-repo access.
@@ -32,14 +32,14 @@ export default {
   id: 'fleet-baseline',
   frequency: 'manual',                   // an operator lever — never due on any cadence, runs only when forced
   precondition_signals: [],              // no signal — nothing recurring to predict
-  agent_model: 'none',                   // pure code: enumerate, fire, report (task-prework DESIGN §4)
+  agent_model: 'none',                   // pure code: enumerate, fire, report (task-code-work DESIGN §4)
   expected_outcome: 'none',              // it queues Actions runs in MEMBERS; it writes nothing here or there
-  prework: 'node worker.mjs',
+  code_work: 'node worker.mjs',
   // One enumeration plus a declaration read and one dispatch POST per member, all
   // serial with a secondary rate limit on top — the same order of walk as the other
   // sweeps, minus their content reads. 900s is ~10x the expected time.
-  prework_timeout: 900,
-  required_secrets: ['FLEET_GITHUB_TOKEN'], // the account-spanning PAT, WITH Actions read+write (a dispatch is an Actions write)
+  code_work_timeout: 900,
+  required_secrets: ['FLEET_GITHUB_TOKEN'], // the account-spanning PAT; fleet-token.mjs states the grant
 
   // Never due on its own — `manual` means the tick never instantiates this task,
   // so an item exists ONLY because a human created one, and that IS the request.

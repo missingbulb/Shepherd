@@ -7,7 +7,7 @@
 //                                    → `fleet-drift` issues      (drift-issues.mjs)
 //
 // Run by this pack's `fleet-roster` scheduled task, whose worker calls `main()` below
-// as the task's `prework` — Action-side inside the enforcer repo's scheduler workflow,
+// as the task's `code_work` — Action-side inside the enforcer repo's scheduler workflow,
 // where the FLEET_GITHUB_TOKEN the task declares in `required_secrets` is reachable as
 // ordinary environment. Still runnable by hand (`node check-fleet-roster.mjs`) via the
 // CLI guard at the foot.
@@ -49,6 +49,7 @@ import { appendFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { makeGh, paged, readDeclaration, isDormant, ensureLabel, DECLARATION } from '../../fleet-api.mjs';
 import { parseSheepdogConfig } from '../../fleet-config.mjs';
+import { missingFleetTokenError } from '../../fleet-token.mjs';
 import * as adoption from './adoption-issues.mjs';
 import * as drift from './drift-issues.mjs';
 
@@ -62,9 +63,10 @@ import * as drift from './drift-issues.mjs';
 //
 // Reads per repo: the declaration, once — the read both halves needed and each used to
 // make separately. Plus two more (scheduler workflow, canon compare) for the members
-// the freshness half actually measures.
+// the freshness half actually measures, and canon's version numbers, which the shared
+// `canonVersions` reader fetches once per distinct pack across the whole walk.
 export async function buildRoster(gh, repos, {
-  home, canonRepo, canonBranch, exclude, staleDays, nowMs,
+  home, canonRepo, canonBranch, exclude, canonVersions,
 }) {
   const roster = [];
   for (const r of repos.sort((a, b) => a.name.localeCompare(b.name))) {
@@ -108,8 +110,8 @@ export async function buildRoster(gh, repos, {
     if (entry.dormant || entry.isCanon || entry.excluded) continue;
 
     try {
-      const mount = await drift.probeMount(gh, r.full_name, entry.declaration, { canonRepo, canonBranch });
-      entry.freshness = drift.classifyFreshness({ ...mount, nowMs, staleDays });
+      const mount = await drift.probeMount(gh, r.full_name, entry.declaration, { canonRepo, canonBranch, canon: canonVersions });
+      entry.freshness = drift.classifyFreshness(mount);
     } catch (e) {
       entry.freshnessError = e.message;
     }
@@ -165,9 +167,8 @@ export async function main() {
   const token = process.env.FLEET_GITHUB_TOKEN;
   const home = process.env.GITHUB_REPOSITORY;
   if (!token) {
-    throw new Error('FLEET_GITHUB_TOKEN is not set. Add a repo secret with a fine-grained PAT '
-      + '(this account, ALL repositories, Metadata read, Contents read + Issues read/write) — '
-      + 'the default GITHUB_TOKEN sees only this repo and cannot sweep the fleet.');
+    throw missingFleetTokenError('fleet-roster',
+      'The default GITHUB_TOKEN sees only this repo and cannot sweep the fleet.');
   }
   if (!home || !home.includes('/')) throw new Error('GITHUB_REPOSITORY is not set (owner/repo)');
   const gh = makeGh(token);
@@ -181,7 +182,7 @@ export async function main() {
   try { cfg = JSON.parse(Buffer.from(cfgRes.json.content, 'base64').toString('utf8')); } catch (e) {
     throw new Error(`unparsable ${DECLARATION} on ${home}: ${e.message}`);
   }
-  const { owner, exclude, canonRepo, staleDays } = parseSheepdogConfig(cfg, home);
+  const { owner, exclude, canonRepo } = parseSheepdogConfig(cfg, home);
 
   // Canon's default branch is what "on trunk" means; read it rather than assuming main.
   const canonRes = await gh(`/repos/${canonRepo}`);
@@ -198,7 +199,7 @@ export async function main() {
   }
 
   const roster = await buildRoster(gh, mine, {
-    home, canonRepo, canonBranch, exclude, staleDays, nowMs: Date.now(),
+    home, canonRepo, canonBranch, exclude, canonVersions: drift.canonVersions(gh, canonRepo),
   });
   const coverage = coverageView(roster);
   const freshness = freshnessView(roster);
@@ -216,7 +217,6 @@ export async function main() {
     healthySet: new Set(freshness.fresh.map((f) => f.fullName)),
     goneSet: new Set(freshness.gone),
     dormantSet: new Set(freshness.dormant),
-    staleDays,
   });
 
   // Two sections, one report: the questions are separate and read separately, but a
@@ -224,7 +224,7 @@ export async function main() {
   const summary = [
     adoption.renderCoverageSummary({ owner, home, ...coverage, actions: coverageActions }),
     drift.renderFreshnessSummary({
-      owner, home, canonRepo, canonBranch, staleDays, ...freshness, actions: driftActions,
+      owner, home, canonRepo, canonBranch, ...freshness, actions: driftActions,
     }),
   ].join('\n\n');
 

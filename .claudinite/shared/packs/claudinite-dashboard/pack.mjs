@@ -16,10 +16,23 @@
 // (`.claudinite/shared/packs/<id>/` beside `.claudinite/shared/engine/`), which is
 // why the pack can be read straight out of the mount with nothing rewritten.
 //
-// NO CHECKS, NO PROSE. It enforces nothing and there is no way to write the dashboard
-// wrongly in a consuming repo — it is a page, not a practice. Prose here would cost
-// every session in every declaring repo tokens for something no session acts on, so
-// its README carries the explanation instead and `prose` stays null.
+// NO PROSE. There is no way to write the dashboard wrongly in a consuming repo — it is
+// a page, not a practice — and prose here would cost every session in every declaring
+// repo tokens for something no session acts on. Its README carries the explanation
+// instead and `prose` stays null.
+//
+// TWO CHECKS, AND A TASK, ALL THE DIGEST'S. `tasks/fleet-digest/` writes the fleet's
+// dated morning brief that the fleet page reads (it moved here from the `sheepdog`
+// pack, which enumerated the fleet but never showed anyone the result). Its two checks
+// live in its own folder because nothing else reads them: `digest-plain-text` holds the
+// landed briefs to plain text — they are sent verbatim through a renderer that neither
+// parses markdown nor keeps line breaks — and `dated-fixture-collision` keeps the
+// task's own test fixtures out of the year range the fleet writes real briefs in.
+//
+// THE TASK IS NOT GATED, and that is the cost of declaring this pack: a repo that wants
+// only the page gets the digest task too, and the task needs `FLEET_GITHUB_TOKEN` to
+// read every repo under the owner. Without that secret the executor parks its item
+// asking for one. The README says so where someone deciding to adopt will read it.
 //
 // PUBLISHING IS THE ADOPTION MOMENT. `.github/workflows/` is the one directory the
 // nightly update can never push to (the Action's `GITHUB_TOKEN` is refused there), so
@@ -33,12 +46,27 @@
 // the engine's tick. So the assembly logic keeps converging with the canon while the
 // workflow — the part that cannot converge — stays a one-time seed. Only the file that
 // has to be frozen is frozen.
+import datedFixtureCollision from './tasks/fleet-digest/dated-fixture-collision.mjs';
+import digestPlainText from './tasks/fleet-digest/digest-plain-text.mjs';
+import { fleetTokenHandoverStep } from './tasks/fleet-digest/fleet-token.mjs';
+
 export default {
   id: 'claudinite-dashboard',
-  version: 3,
+  // 7: the fleet-digest task arrives from the sheepdog pack, with its two checks. A
+  // declaring repo gains a daily task; nothing in a member is rewritten, and the task
+  // still reads an enforcer's existing `sheepdog` config as its legacy source, so the
+  // bump carries no migration record.
+  // 8: the FLEET_GITHUB_TOKEN the digest needs is stated once, in its own
+  // fleet-token.mjs, and rendered into the missing-secret message, the adoption step
+  // and a 403's hint — additive, no migration (#1030).
+  // 9: adoption hands over the sign-in decision as well as the Pages setting — prose
+  // and a handover entry, so a member gains a checkbox and nothing else changes.
+  // 10: the page carries a favicon — a file the mount has to deliver, so the version
+  // moves; nothing in a member's tree changes shape and there is no migration.
+  version: 10,
   minEngineVersion: 4,
   ruleRoutingGuidance: {
-    belongs: 'the browser dashboard over Claudinite scheduler state, and the static site that publishes it',
+    belongs: 'the browser dashboard over Claudinite scheduler state, the site that publishes it, and the fleet morning brief it reads',
     excludes: 'how the scheduler behaves — core; workflow practice — github-actions; product sites — static-website',
   },
   badge: 'badge.svg',
@@ -52,7 +80,10 @@ export default {
 
   // A page, not a practice — see the header.
   prose: null,
-  worldRules: [],
+  // Audits the landed briefs and the task's own fixtures as they stand, whatever this
+  // session touched: a markdown brief that landed last week is just as unreadable in the
+  // owner's inbox as one that landed today.
+  worldRules: [digestPlainText, datedFixtureCollision],
   workRules: [],
 
   // Nothing to ask. Every fork this pack has is answered by a default that is right for
@@ -67,6 +98,11 @@ export default {
   //   repos       — an inline roster instead of a URL
   //   clientId    — GitHub App / OAuth App client id, for the sign-in button
   //   exchangeUrl — the code-to-token endpoint that sign-in needs
+  //   digestsRepo — where the fleet's morning briefs are written; unset turns that panel off
+  //   digestsPath — the directory inside it (defaults to `digests`)
+  //   owner       — whose repos the fleet-digest task covers (defaults to this repo's owner)
+  //   exclude     — repos it keeps out (defaults to none)
+  //   digest      — { pick, nudge } — how many items a brief names, and the quiet-project prod
   questions: [],
 
   // The one step adoption CANNOT take, stated where the install flow can print it and
@@ -83,6 +119,30 @@ export default {
       step: 'Enable GitHub Pages on this repo with source "GitHub Actions" (Settings → Pages).',
       breaks: 'the deploy job fails on every run; the build still succeeds, so nothing else is affected',
       done: 'the Pages URL serves the dashboard, and the Claudinite dashboard workflow is green',
+    },
+    // The fleet-digest task's credential, and a person is the only one who can mint it.
+    // RENDERED from the task's own fleet-token.mjs rather than written here, so the
+    // human granting it is handed the complete list: a message stating only what the
+    // read in front of it needed is how a fleet went two days short one permission
+    // (#1030).
+    fleetTokenHandoverStep(),
+    // ONE entry, not the four mechanical steps, because for many deployments the right
+    // answer is "nothing" — a member's own dashboard read with a pasted token is on the
+    // same 5,000/hour as a signed-in one. What every adopter does have to meet is the
+    // DECISION, since until someone makes it their page reads GitHub anonymously; four
+    // unconditional checkboxes that are mostly no-ops teach the reader to skim exactly
+    // the list that exists to stop them skimming. The mechanics live in the README,
+    // where they are read at the moment the answer is yes.
+    {
+      step: 'Decide how this dashboard authenticates its viewers: leave it on the pasted-token box (nothing to do), '
+        + 'or give it a Sign in button — register a GitHub App with read-only Contents, Issues and Actions, install it on '
+        + 'the account holding these repos, deploy the pack\'s oauth-exchange example, and set `clientId` and `exchangeUrl` '
+        + 'on this pack\'s declaration. See "Who has to register the app" in the pack README: one App serves every '
+        + 'deployment you own, and none can be inherited from another owner.',
+      breaks: 'nothing fails, but a viewer who has not pasted a token reads GitHub anonymously at 60 requests/hour per IP — '
+        + 'which one fleet sweep exceeds, so the page serves cached data or empty rows until the hour rolls',
+      done: 'a signed-in viewer sees the rate pill read “…/5000 · user”, or this repo has recorded that the token box is '
+        + 'this deployment\'s answer',
     },
   ],
 

@@ -42,9 +42,9 @@ config schema — is [README.md](README.md). This file is what a session **here*
 
 - **Judging whether a member is behind** — compare `engineVersion` and `packVersions` against
   canon, never the age of its stamped `ref`. The update flows deliberately never rewrite `ref` or
-  `updated`, so on a well-maintained member the stamp is frozen and its age measures nothing.
-  `staleDays` governs only the legacy date measure, and applies to a member still declaring the
-  retired `baselining` mechanism.
+  `updated`, so the stamp is provenance — which commit first vendored the mount — and stays
+  frozen on a member that is perfectly current. Its age measures nothing, and measuring it
+  calls the whole fleet behind on one arbitrary day.
 
 - **Answering why the fleet did not move** — read the member's own artifacts first: its
   declaration, its stamp, the runs on its head sha. This repo dispatches; each member converges
@@ -67,17 +67,6 @@ config schema — is [README.md](README.md). This file is what a session **here*
   run per member and does not wait; each member reports its own outcome in its own repo. A member
   with nothing to do converges to a cheap no-op, so over-using it is wasteful rather than unsafe.
 
-- **Catching the digest up after an outage** — the same lever, with the day count:
-
-  ```
-  node .claudinite/shared/engine/scheduler/queue/create-work-item.mjs sheepdog/fleet-digest \
-    --context "DIGEST_BACKFILL_DAYS=7"
-  ```
-
-  It covers the N most recent complete UTC days, oldest first, skips any day that already has a
-  brief, and is bounded at 30 days a run — so it is safe to re-run and safe to overlap with the
-  daily task.
-
 - **Adding a pack across the fleet** — create a `fleet-add-missing-packs` item with
   `--context "ADD_PACKS=…"` rather than editing anything. No pack is named anywhere in this pack's
   code: every id comes from config or from the item's own Context, which is what keeps the
@@ -86,12 +75,10 @@ config schema — is [README.md](README.md). This file is what a session **here*
 ## Credentials
 
 - **Granting or repairing `FLEET_GITHUB_TOKEN`** — a fine-grained PAT spanning the owner's
-  repositories, with Metadata read, **Contents read and write**, Issues read/write, Pull requests
-  read, and **Actions read and write**. Contents write is the pack-seed sweep writing one
-  declaration into each member; Actions write is the two fan-out tasks dispatching another member's
-  workflow.
+  repositories, granted exactly what [`fleet-token.mjs`](fleet-token.mjs)'s table names — the only
+  place the permissions are written, because a per-sweep subset is always a defensible answer and
+  never the right one. Grant it whole: the token is granted once, for the pack.
 
-- **A fan-out task reporting `no-permission`** — the PAT is missing Actions:
-  read and write, and every member answers `403`. It is a grant to fix once, so widen the token
-  rather than re-running: neither task retries, because a work list nobody will act on is not a
-  green outcome.
+- **A sweep reporting `403` or `no-permission`** — the grant is short a permission, which the
+  error names. It is a grant to fix once, so widen the token rather than re-running: no sweep
+  retries, because a work list nobody will act on is not a green outcome.

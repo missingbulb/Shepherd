@@ -2,12 +2,12 @@
 // The sheepdog pack's fleet-USAGE sweep — the third cross-repo reach the pack adds,
 // alongside the coverage census and the freshness sweep. Run by this pack's
 // `fleet-usage` scheduled task (tasks/fleet-usage/), whose worker calls `main()`
-// below as the task's `prework`, Action-side inside the enforcer repo's
+// below as the task's `code_work`, Action-side inside the enforcer repo's
 // scheduler workflow where FLEET_GITHUB_TOKEN is reachable. Still runnable by hand
 // (`node aggregate-fleet-usage.mjs`) via the CLI guard at the foot.
 //
 // WHY IT EXISTS. Each member folds ITS OWN skill-usage aggregate (the
-// grow_with_claudinite pack's usage-fold task). A member can therefore answer "does
+// claudinite-growth pack's usage-fold task). A member can therefore answer "does
 // this skill ever load HERE" — and cannot answer the question the promotion ladder
 // actually asks, which is whether a skill earns its place ACROSS THE FLEET. A skill
 // that never loads in one repo may simply not be that repo's subject; a skill that
@@ -45,6 +45,7 @@
 import { pathToFileURL } from 'node:url';
 import { makeGh, paged, readDeclaration, isDormant, DECLARATION } from '../../fleet-api.mjs';
 import { parseSheepdogConfig } from '../../fleet-config.mjs';
+import { missingFleetTokenError } from '../../fleet-token.mjs';
 export const MEMBER_USAGE_PATH = '.claudinite/local/usage.GENERATED.json';
 export const FLEET_USAGE_PATH = 'usage-fleet.GENERATED.json';
 export const FLEET_VERSION = 2;
@@ -214,9 +215,8 @@ export async function main({ now = new Date() } = {}) {
   const token = process.env.FLEET_GITHUB_TOKEN;
   const home = process.env.GITHUB_REPOSITORY;
   if (!token) {
-    throw new Error('FLEET_GITHUB_TOKEN is not set. Add a repo secret with a fine-grained PAT '
-      + '(this account, ALL repositories, Metadata read, Contents read) — the default GITHUB_TOKEN '
-      + 'sees only this repo and cannot read the fleet.');
+    throw missingFleetTokenError('fleet-usage',
+      'The default GITHUB_TOKEN sees only this repo and cannot read the fleet.');
   }
   if (!home || !home.includes('/')) throw new Error('GITHUB_REPOSITORY is not set (owner/repo)');
   const gh = makeGh(token);
