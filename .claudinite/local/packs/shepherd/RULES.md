@@ -39,3 +39,35 @@ canon instead, where every repo gets it.
   silently undercount. Cross-check against the full known member roster (fetch each member's
   `.claudinite-checks.json` directly) before scoping the sweep: a Sheepdog-reference sweep found
   only 3 repos via search but 11 by direct check (#24).
+
+- **Renaming, adding, or removing a pack in `.claudinite-checks.json`** — re-run
+  `node .claudinite/shared/engine/scheduler/converge-wiring.mjs missingbulb/Shepherd --badges` in
+  the same change. The README's `<!-- claudinite:packs -->` badge row is a one-time seed the
+  update flow deliberately never re-derives, so it silently goes stale on every declaration
+  change and only resurfaces later as a blocking `reference-integrity` finding — this exact gap
+  hit twice, once for the `core`/`grow_with_claudinite` rename (#67, fixed in #69) and again for
+  the `sheepdog` → `claudinite-fleet-sheepdog` rename (#79, fixed in #80/#81).
+
+- **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 7–15
+  seconds (measured directly across #30, #32, #59, #67). Poll `pull_request_read get_check_runs`
+  in a short loop instead of a fixed or backgrounded `sleep`, and don't call
+  `enable_pr_auto_merge` in the same breath as opening the PR — GitHub refuses it with "unstable
+  status" if the check hasn't started yet, which is a sign to wait and re-poll, not license to
+  merge by hand instead (#59). Before stating a PR's status in a closing callout, read
+  `get_check_runs` rather than asserting "CI running" as an unread guess (#30), and skip grepping
+  `.github/workflows/*.yml` to guess whether a workflow gates the merge — the check runs already
+  say so directly (#60).
+
+- **Firing an `AskUserQuestion`** — check first whether the answer is already decided: by a rule
+  already loaded in context, by fleet or repo state one read away (a sibling's
+  `.claudinite-checks.json`, a pending adoption interview), or by the option marked
+  "(Recommended)" simply being the status quo. Batch every open decision a run will need into one
+  question instead of asking serially. Four sessions lost 17 to 105 minutes of pure
+  human-round-trip idle time to questions whose answer was already available or was the presented
+  default (#2, #22, #28, #32).
+
+- **Leaving multiple PRs open for the owner after a fleet-wide sweep** — call
+  `subscribe_pr_activity` on every one of them, not a sample. #24's sweep subscribed only 2 of 12
+  open PRs, then spent over two hours and ~29 API calls re-polling the other 10 on a self-armed
+  hourly wake-up with zero state change, while the 2 subscribed PRs' merges arrived instantly as
+  activity events the moment the owner acted.
