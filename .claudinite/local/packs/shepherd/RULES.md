@@ -26,6 +26,26 @@ canon instead, where every repo gets it.
   absence of its live producer — audit for the generator explicitly, in the same pass, rather than
   inferring it from the presence of past output.
 
+- **Moving an artifact series between repos** — the same pass owes the *consumers* what the bullet
+  above owes the producer, and the consumers are the harder half: a scheduled routine lives in the
+  account rather than in either repo, so no check, grep or CI run here can see one still reading the
+  old address. Enumerate them from the account (`list_triggers`) rather than from the tree. A reader
+  left behind does not go quiet, which is what makes it expensive — it finds the retired repo's
+  frozen directory, reads it correctly, and reports its last file as a stalled generator, so the
+  failure arrives disguised as an alarm about healthy machinery and gets debugged from the wrong
+  end. The digest reader stayed on Sheepdog for three days after #23 moved the series, and cost a
+  session of generator forensics before anyone read the routine (#99). Budget for one more trap
+  while there: a routine's source repo cannot be changed through the API, so repointing it is a
+  human step in the UI and belongs in its own issue from the start.
+
+- **Scheduling anything to read what another scheduled job writes** — anchor it to when the
+  artifact *lands*, never to when the writer is *due*. A task's anchor only makes its work item
+  ready; the tick that claims it, the agent that writes it and the merge that lands it are all
+  downstream, and GitHub's own cron is late by minutes to an hour besides. The digest reader fired
+  at 05:09Z against a 05:00Z anchor whose brief merged at 05:47Z (#99) — the two were nominally in
+  order and never once in order in practice. Measure the real landing time from recent merges and
+  leave hours of clearance, not minutes.
+
 - **Dropping a folded/aggregate `GENERATED` file because "the next run recomputes it"** — check
   first whether the recompute's own *inputs* retain the same history the current output does. A
   stateless recompute over inputs each fleet member keeps only for a bounded window starts the

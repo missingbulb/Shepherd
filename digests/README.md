@@ -59,10 +59,26 @@ separator that survives the collapse — and carries its URL bare, which the ren
 autolinks. The `digest-plain-text` check holds the landed series to it. This file is
 documentation *about* the series, is read on GitHub, and is markdown on purpose.
 
+Two things the reader has to get right that it cannot check from the inside, because a
+`digests/` directory that is wrong looks exactly like one that is right:
+
+- **Source it from the repo holding the live series** — this one. A reader left pointing
+  at a repo the series has moved away from still finds briefs, still reads them, and
+  reports that repo's *last* file as though the generator had stopped. That is not
+  hypothetical: the series moved here from `missingbulb/Sheepdog` and its reader did not,
+  so the brief arrived every morning as an alarm about a frozen archive (#99).
+- **Fire it after the brief lands, not when it is due.** The anchor an hour past
+  `taskScheduler.dailyHour` only makes the work item *ready*; the next scheduler tick
+  claims it, an agent writes the brief, and the pull request merges — around three
+  quarters of an hour later on an ordinary day. A reader scheduled at the anchor races
+  the generator and loses. Give it two hours of clearance.
+
 ## Configuration
 
-On this repo's `sheepdog` pack entry in `.claudinite-checks.json`, under `digest`. Both
-keys default; an absent block still writes the file.
+On this repo's `claudinite-dashboard` pack entry in `.claudinite-checks.json`, under
+`digest` — the task moved there with the pack, and falls back to a
+`claudinite-fleet-sheepdog` entry's keys where this one carries none. Both keys default;
+an absent block still writes the file.
 
 | key | default | what it does |
 |---|---|---|
