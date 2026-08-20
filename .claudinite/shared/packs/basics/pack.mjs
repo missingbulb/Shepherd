@@ -19,11 +19,12 @@ export default {
   // against the stamped version, and what gets stamped is this manifest's number — so
   // a record declaring a version above it would re-apply every cycle, forever,
   // draining never.
-  version: 9,
+  // 12: the `do-later` skill — deferring a change into work that comes back on its own.
+  version: 12,
   minEngineVersion: 1,
   ruleRoutingGuidance: {
     belongs: 'cross-project working discipline, issue-branch-PR lifecycle, repo hygiene, doc/reference integrity and the baseline engineering, testing and debugging skills',
-    excludes: 'technology-specific content — its own tech pack; GitHub Actions workflow or platform behaviour — github-actions; git procedure — git-github',
+    excludes: 'technology-specific content — its own tech pack; git procedure and GitHub Actions workflow or platform behaviour — git-github',
   },
   badge: 'badge.svg',
   detect: null,
@@ -66,6 +67,7 @@ export default {
     'authoring-agent-docs',
     'bug-investigation',
     'bump-version',
+    'do-later',
     'ci-performance-evaluation',
     'file-placement',
     'repo-text-sweeps',
