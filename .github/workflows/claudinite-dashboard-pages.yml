@@ -65,7 +65,7 @@ jobs:
       # asked for, and a forced republish must not be answered with a cache hit.
       - name: What the page would be built from
         id: sources
-        run: echo "key=dashboard-deployed-${{ hashFiles('.claudinite/shared/packs/claudinite-dashboard/**', '.claudinite/shared/engine/**', '.claudinite-checks.json', 'usage-fleet.GENERATED.json') }}" >> "$GITHUB_OUTPUT"
+        run: echo "key=dashboard-deployed-${{ hashFiles('.claudinite/shared/packs/claudinite-dashboard/**', '.claudinite/shared/engine/**', '.claudinite-checks.json', '**/*.GENERATED.json') }}" >> "$GITHUB_OUTPUT"
 
       - name: Is that already deployed?
         id: deployed
