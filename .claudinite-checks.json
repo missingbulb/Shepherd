@@ -77,15 +77,15 @@
     "ref": "599c287a89bef53218a1ff807845449bdba69bfe",
     "engineVersion": 6,
     "packVersions": {
-      "basics": 13,
-      "claudinite-lifecycle": 14,
+      "basics": 16,
+      "claudinite-lifecycle": 16,
       "barriers": 2,
-      "git-github": 7,
+      "git-github": 8,
       "claude-code-web-users-support": 3,
-      "claudinite-growth": 14,
-      "tidy-repo": 8,
-      "claudinite-fleet-sheepdog": 18,
-      "claudinite-dashboard": 13
+      "claudinite-growth": 16,
+      "tidy-repo": 9,
+      "claudinite-fleet-sheepdog": 19,
+      "claudinite-dashboard": 14
     }
   }
 }
