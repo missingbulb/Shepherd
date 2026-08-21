@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "foldedThrough": "2026-08-19",
-  "runsFoldedThrough": "2026-08-20T03:58:21Z",
+  "foldedThrough": "2026-08-20",
+  "runsFoldedThrough": "2026-08-21T04:51:41Z",
   "fields": {
     "day": ["captures","merges","sessions","userMessages","userCommands"],
     "week": ["days","captures","merges","sessionDays","userMessages","userCommands"],
@@ -14,9 +14,10 @@
     "2026-08-17": {"totals":[5,5,3,16,0],"skillLoads":{"merge-to-main":3,"update-config":1},"checks":{"work":[16,4,0,4,0,0,0],"world":[31,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[4,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"rules-line-length":[0,27],"task-phase-discipline":[0,4]}},
     "2026-08-18": {"totals":[1,1,1,4,0],"skillLoads":{"adopt-pack":1,"merge-to-main":1},"checks":{"work":[3,1,0,1,0,0,0],"world":[4,0,0,0,0,0,0]},"checkFindings":{"comment-classification":[1,0]}},
     "2026-08-19": {"totals":[7,7,6,4,0],"skillLoads":{"extract-from-activity":1,"extract-from-conversations":1,"merge-to-main":2,"single-issue-triage":1},"checks":{"work":[3,1,0,3,0,0,0],"world":[4,0,0,0,0,0,0]},"checkFindings":{"comment-classification":[1,0],"reference-integrity":[2,0]},"taskExec":{"core/update":[1,0,0,0],"grow_with_claudinite/growth-extract":[1,0,0,0],"sheepdog/fleet-digest":[1,0,0,0],"tidy-repo/tidy-issues":[1,0,0,0]}},
-    "2026-08-20": {"totals":[1,1,1,0,0],"skillLoads":{"extract-from-activity":1,"extract-from-conversations":1,"prose-to-checks":1},"checks":{"work":[9,9,0,14,0,0,0],"world":[13,0,0,0,488,0,0]},"checkFindings":{"comment-classification":[10,0],"file-placement":[0,1],"reference-integrity":[7,0],"rules-line-length":[0,3]},"taskExec":{"claudinite-growth/growth-extract":[1,0,0,0],"grow_with_claudinite/growth-extract":[1,0,0,0],"sheepdog/fleet-digest":[1,0,0,0],"tidy-repo/tidy-issues":[1,0,0,0]}}
+    "2026-08-20": {"totals":[8,8,8,5,0],"skillLoads":{"extract-from-activity":1,"extract-from-conversations":1,"github-actions-scheduling":1,"merge-to-main":2,"prose-to-checks":1,"single-issue-triage":11},"checks":{"work":[15,9,0,14,0,0,0],"world":[24,1,0,1,617,0,0]},"checkFindings":{"comment-classification":[10,0],"file-placement":[0,46],"reference-integrity":[7,0],"rules-line-length":[0,21],"task-phase-discipline":[0,1]},"taskExec":{"claudinite-dashboard/fleet-digest":[1,0,0,0],"claudinite-growth/growth-extract":[1,0,0,0],"claudinite-lifecycle/update":[2,0,0,0],"grow_with_claudinite/growth-extract":[1,0,0,0],"sheepdog/fleet-digest":[1,0,0,0],"tidy-repo/tidy-issues":[3,0,0,0]}},
+    "2026-08-21": {"totals":[1,1,1,0,0],"skillLoads":{"extract-from-activity":1,"extract-from-conversations":2},"checks":{"work":[1,1,0,2,0,0,0],"world":[5,0,0,0,2,0,0]},"checkFindings":{"comment-classification":[1,0],"reference-integrity":[1,0],"rules-line-length":[0,2]},"taskExec":{"claudinite-dashboard/fleet-digest":[1,0,0,0],"claudinite-lifecycle/update":[1,0,0,0],"tidy-repo/tidy-issues":[2,0,0,0]}}
   },
   "weeks": {
-    "2026-W34": {"totals":[3,13,13,10,24,0],"skillLoads":{"adopt-pack":1,"extract-from-activity":1,"extract-from-conversations":1,"merge-to-main":6,"single-issue-triage":1,"update-config":1},"checks":{"work":[22,6,0,8,0,0,0],"world":[39,0,0,0,612,0,0]},"checkFindings":{"comment-classification":[6,0],"file-placement":[0,43],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"reference-integrity":[2,0],"rules-line-length":[0,27],"task-phase-discipline":[0,4]},"taskExec":{"core/update":[1,0,0,0],"grow_with_claudinite/growth-extract":[1,0,0,0],"sheepdog/fleet-digest":[1,0,0,0],"tidy-repo/tidy-issues":[1,0,0,0]}}
+    "2026-W34": {"totals":[4,21,21,18,29,0],"skillLoads":{"adopt-pack":1,"extract-from-activity":2,"extract-from-conversations":2,"github-actions-scheduling":1,"merge-to-main":8,"prose-to-checks":1,"single-issue-triage":12,"update-config":1},"checks":{"work":[37,15,0,22,0,0,0],"world":[63,1,0,1,1229,0,0]},"checkFindings":{"comment-classification":[16,0],"file-placement":[0,89],"generated-merge-driver":[0,1],"preferences-store-configured":[0,1],"reference-integrity":[9,0],"rules-line-length":[0,48],"task-phase-discipline":[0,5]},"taskExec":{"claudinite-dashboard/fleet-digest":[1,0,0,0],"claudinite-growth/growth-extract":[1,0,0,0],"claudinite-lifecycle/update":[2,0,0,0],"core/update":[1,0,0,0],"grow_with_claudinite/growth-extract":[2,0,0,0],"sheepdog/fleet-digest":[2,0,0,0],"tidy-repo/tidy-issues":[4,0,0,0]}}
   }
 }
