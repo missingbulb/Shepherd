@@ -71,3 +71,36 @@ canon instead, where every repo gets it.
   open PRs, then spent over two hours and ~29 API calls re-polling the other 10 on a self-armed
   hourly wake-up with zero state change, while the 2 subscribed PRs' merges arrived instantly as
   activity events the moment the owner acted.
+
+- **Triaging a `fleet-drift` issue that names another repo** — don't spend a call on
+  `mcp__github__get_file_contents` (or any other repo-scoped MCP read) against that repo: this
+  session's GitHub access is scoped to `missingbulb/Shepherd` only, and every cross-repo call is
+  denied outright. Five separate triage subagents each independently spent a call rediscovering
+  that denial before falling back to the only place the answer actually lives — the issue body's
+  own self-description of how the item converges (#104).
+
+- **Hunting for this repo's own standing tracker issue by its exact title** —
+  `mcp__github__search_issues` with a quoted title and `in:title` does not reliably filter; it can
+  return the same broad, unfiltered issue list regardless of the query text, burying the real
+  tracker in a couple dozen unrelated hits (and once, overflowing the token cap entirely). Scan the
+  returned list for the exact title yourself, or narrow with `minimal_output: true` plus a
+  label/state filter, rather than trusting the query to do the narrowing (#104, #88).
+
+- **Pushing a change that touches `.github/workflows/`, `.claudinite-checks.json`, or pack
+  config** — run `node .claudinite/shared/engine/checks/check_the_world.mjs` locally first. It's
+  the exact script the PR's `checks` CI job runs, and finding a `[BLOCKING]` finding live on the PR
+  costs a full push-PR-CI-diagnose-fix-re-push round trip that one ~4-second local run skips
+  (#106).
+
+- **Dispatching concurrent subagents that each `git show` a file into the shared scratchpad** (the
+  conversation-extract fan-out, or any similar parallel mining pattern) — give every dispatch a
+  unique output filename. A shared generic name (`log.jsonl`) collides across concurrent downloads
+  and silently hands one agent another agent's bytes; this exact contamination hit a prior
+  growth-extract run in six or more of its own subagents (#73) and recurred in this run's own
+  fan-out before being caught and re-fetched to a uniquely-named path.
+
+- **Branching off this checkout's local `main`** — it does not track the live default branch, and
+  has been observed pinned at the repo's very first commit. A plain `git checkout -b <name> main`
+  silently branches from that frozen history and the next script that expects current content
+  (e.g. a `.claudinite/` path) fails confusingly. Always `git fetch origin main` and branch from
+  `origin/main` explicitly (#73).
