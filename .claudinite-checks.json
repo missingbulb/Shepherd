@@ -77,15 +77,15 @@
     "ref": "599c287a89bef53218a1ff807845449bdba69bfe",
     "engineVersion": "60820.1",
     "packVersions": {
-      "basics": "60820.2",
-      "claudinite-lifecycle": "60820.1",
+      "basics": "60820.5",
+      "claudinite-lifecycle": "60820.3",
       "barriers": "60820.1",
-      "git-github": "60820.1",
+      "git-github": "60820.2",
       "claude-code-web-users-support": "60820.1",
-      "claudinite-growth": "60820.1",
+      "claudinite-growth": "60820.2",
       "tidy-repo": "60820.1",
       "claudinite-fleet-sheepdog": "60820.1",
-      "claudinite-dashboard": "60820.1"
+      "claudinite-dashboard": "60820.2"
     }
   }
 }
