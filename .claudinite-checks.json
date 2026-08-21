@@ -54,7 +54,10 @@
       "id": "claudinite-dashboard",
       "config": {
         "canonRepo": "missingbulb/Claudinite",
-        "rosterFile": "usage-fleet.GENERATED.json"
+        "owner": "missingbulb",
+        "exclude": [
+          "missingbulb/empty"
+        ]
       }
     }
   ],
