@@ -85,14 +85,14 @@
     "engineVersion": "60820.1",
     "packVersions": {
       "basics": "60821.4",
-      "claudinite-lifecycle": "60821.3",
+      "claudinite-lifecycle": "60822.1",
       "barriers": "60820.1",
-      "git-github": "60821.1",
+      "git-github": "60822.1",
       "claude-code-web-users-support": "60821.2",
       "claudinite-growth": "60821.2",
       "tidy-repo": "60820.1",
-      "claudinite-fleet-sheepdog": "60821.2",
-      "claudinite-dashboard": "60821.4"
+      "claudinite-fleet-sheepdog": "60822.1",
+      "claudinite-dashboard": "60822.1"
     }
   }
 }
