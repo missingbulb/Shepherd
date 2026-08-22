@@ -104,3 +104,15 @@ canon instead, where every repo gets it.
   silently branches from that frozen history and the next script that expects current content
   (e.g. a `.claudinite/` path) fails confusingly. Always `git fetch origin main` and branch from
   `origin/main` explicitly (#73).
+
+- **Reaching step 6 of a work-item run** (`node .../scheduler/queue/converge-item.mjs`) — it will
+  fail here: the script's read/write path (`signals/gh.mjs`) is documented in its own header as
+  Action-side only ("everything session-side stays MCP-only"), and this session's `GITHUB_TOKEN` is
+  a proxy placeholder the REST API rejects outright ("GitHub access is not enabled for this
+  session"), confirmed across attempts with `GITHUB_REPOSITORY` set, with `NODE_USE_ENV_PROXY=1`,
+  and via raw `curl`. Don't re-diagnose it — go straight to replicating the transition by hand
+  over the GitHub MCP tools: the execution-record comment in `run-record.mjs`'s exact format
+  (`claudinite-task-exec v1 <pack>/<task> [#<n>] <status>`), the `task:agent`→outcome label swap,
+  the close with the matching `state_reason`, and (what `readyDependents` would have released) a
+  check for any open item naming `Blocked-by: #<n>`. Four independent sessions in one day each lost
+  2–5 minutes rediscovering this same dead end (#126, #130, #133, #166).
