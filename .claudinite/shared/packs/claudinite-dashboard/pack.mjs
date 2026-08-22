@@ -52,37 +52,7 @@ import { fleetTokenHandoverStep } from './tasks/fleet-digest/fleet-token.mjs';
 
 export default {
   id: 'claudinite-dashboard',
-  // 7: the fleet-digest task arrives from the claudinite-fleet-sheepdog pack, with its two checks. A
-  // declaring repo gains a daily task; nothing in a member is rewritten, and the task
-  // still reads an enforcer's existing `claudinite-fleet-sheepdog` config as its legacy source, so the
-  // bump carries no migration record.
-  // 8: the FLEET_GITHUB_TOKEN the digest needs is stated once, in its own
-  // fleet-token.mjs, and rendered into the missing-secret message, the adoption step
-  // and a 403's hint — additive, no migration (#1030).
-  // 9: adoption hands over the sign-in decision as well as the Pages setting — prose
-  // and a handover entry, so a member gains a checkbox and nothing else changes.
-  // 10: the page carries a favicon — a file the mount has to deliver, so the version
-  // moves; nothing in a member's tree changes shape and there is no migration.
-  // 11: mount freshness judged on stamped versions against the canon's live ones
-  // (never ref/updated), and the scheduler panels re-derived for the standing-item
-  // model — next asks, roll records, triage-split parks. Page-only; no migration.
-  // 12: the workflow-practice neighbour is git-github now that github-actions
-  // collapsed into it (#1079).
-  // 60820.1: versions become date-anchored (#1100) — the counter this list is written
-  // in retires here, and every pack in the canon restarts from the same day.
-  // 60820.2: fleet-digest's machine-issue filter learns the schedule board's
-  // `[claudinite-schedule]` title (#1115).
-  // 60821.1: item state, triage and parked counts are decoded from the label
-  // vocabulary rather than matched literally, so a member's items read the same
-  // whichever engine filed them (#1119).
-  // 60821.2: both pages are rebuilt around the repos' own usage folds (#1158). The
-  // repo page gains at-a-glance tiles, one work table with three views in place of the
-  // roster and queue tables, an hourly runs graph and a month of what the corpus is
-  // doing; the fleet page reads each member's usage file and enumerates its roster from
-  // an `owner` as the viewer rather than from a stored list. Which dashboard a
-  // deployment builds is decided by that config's shape, so nothing is asked at
-  // adoption. Page-only: a member gains panels and nothing in its tree changes shape.
-  version: '60821.2',
+  version: '60821.4',
   minEngineVersion: 4,
   ruleRoutingGuidance: {
     belongs: 'the browser dashboard over Claudinite scheduler state, the site that publishes it, and the fleet morning brief it reads',
@@ -105,13 +75,16 @@ export default {
   worldRules: [digestPlainText, datedFixtureCollision],
   workRules: [],
 
-  // Nothing to ask. Every fork this pack has is answered by a default that is right for
-  // nearly every project: a member's dashboard shows that member, signs in with a
-  // pasted token, and compares against no canon. The fleet deployment — one repo, not
-  // twelve — says so in its declaration's `config`, which is read as optional
-  // throughout: an unset key is the default, never a misconfiguration.
+  // ONE question, and it is the one thing this pack cannot pick for a repo: which
+  // dashboard the deployment is. Everything else has a default that is right for nearly
+  // every project — a pasted token, no canon reference, no digests panel — and is read
+  // as optional throughout, an unset key meaning the default rather than a
+  // misconfiguration. The mode is not like that: both answers are ordinary, neither is
+  // rarer, and guessing it wrong publishes a plausible-looking site covering the wrong
+  // thing. So it is asked, and the build refuses to publish without it.
   //
-  // config keys, all optional:
+  // config keys — `mode` is REQUIRED, the rest optional:
+  //   mode        — "repo" (this repo's own page) or "fleet" (the overview); no default
   //   canonRepo   — the reference member mounts are compared against (fleet view)
   //   rosterUrl   — a roster artifact; more than one member makes the fleet the landing view
   //   repos       — an inline roster instead of a URL
@@ -122,7 +95,13 @@ export default {
   //   owner       — whose repos the fleet-digest task covers (defaults to this repo's owner)
   //   exclude     — repos it keeps out (defaults to none)
   //   digest      — { pick, nudge } — how many items a brief names, and the quiet-project prod
-  questions: [],
+  questions: [
+    {
+      id: 'mode',
+      prompt: 'Is this deployment this repo\'s OWN dashboard, or the fleet overview across many repos? A fleet deployment also needs to name where its members come from — an "owner" whose repos are enumerated in the browser as the viewer (the one to prefer), or an explicit "repos" list or roster artifact.',
+      distill: 'set config.mode to "repo" or "fleet" — there is no default and the build refuses to publish without it; a "fleet" answer must come with a roster source (owner/repos/rosterUrl), and a "repo" answer with none',
+    },
+  ],
 
   // The one step adoption CANNOT take, stated where the install flow can print it and
   // the adopting session can file it. Enabling Pages is a repository setting, and
