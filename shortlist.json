@@ -1,0 +1,115 @@
+{
+  "pick": 4,
+  "generatedAt": "2026-08-22T05:40:41.274Z",
+  "days": [
+    {
+      "date": "2026-08-21",
+      "members": [
+        "missingbulb/Claudinite",
+        "missingbulb/ClaudiniteCanary",
+        "missingbulb/ClaudiniteWebsite",
+        "missingbulb/CrosswordChat",
+        "missingbulb/EdFringeNow",
+        "missingbulb/GoogleCalendarEventCreator",
+        "missingbulb/hitbut",
+        "missingbulb/LaughCounter",
+        "missingbulb/MissingBulbWebsite",
+        "missingbulb/Shepherd",
+        "missingbulb/ShoutsAndWhispers",
+        "missingbulb/TLDR",
+        "missingbulb/VascularColoring",
+        "missingbulb/WIP"
+      ],
+      "considered": 51,
+      "maintenance": 271,
+      "capped": 0,
+      "shortlist": [
+        {
+          "kind": "pr",
+          "repo": "missingbulb/hitbut",
+          "number": 2,
+          "title": "Adopt Claudinite",
+          "url": "https://github.com/missingbulb/hitbut/pull/2",
+          "at": "2026-08-21T12:07:58Z",
+          "weight": 28753,
+          "additions": 28753,
+          "deletions": 0,
+          "files": 264,
+          "comments": 0,
+          "body": "Closes #1.\n\nAdopts the shared Claudinite guidelines per [bootstrap.md](https://github.com/missingbulb/Claudinite/blob/main/bootstrap.md). Canon vendored at ref `fea853eb` under `.claudinite/shared/` — the one network moment; every session from here runs offline from the committed snapshot.\n\n## Packs declared\n\n| Pack | Why |\n|---|---|\n| `product-wiki` | requested — agent-maintained market/user/competitor research, walled off from the code |\n| `spec-driven-product` | the project class chosen in the interview: hitbut ships an end-user product from an executable spec |\n| `web-scraping` | the back end acquires statements from sites we don't own |\n| `node` | Cloudflare Workers and Pages are a JS/TS toolchain |\n| `git-github`, `headless-browser` | git/workflow procedure; Playwright driver mechanics for the UI goldens |\n\nPlus the closure the baseline pulls in: `basics`, `claudinite-lifecycle`, `claudinite-growth`, `tidy-repo`, `barriers`, `executable-requirements`, `claude-code-web-users-support`, and this repo's own seeded local pack.\n\n## Interview\n\nAll seven pending questions were asked in two batched passes and recorded verbatim on their pack entries. Two answers distilled into config:\n\n- `claude-code-web-users-support` → `config.repo: \"missingbulb/Shepherd\"`.\n- `barriers` → the deploy boundary: `src/backend` and `src/frontend` may not reference each other, sharing `src/shared` and nothing else. They ship as two independent Cloudflare artifacts, so a direct reference would couple \n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/hitbut",
+          "number": 29,
+          "title": "Build hitbut v1: executable spec, corpus, acquisition, analysis, API and site",
+          "url": "https://github.com/missingbulb/hitbut/pull/29",
+          "at": "2026-08-21T18:23:21Z",
+          "weight": 10079,
+          "additions": 10072,
+          "deletions": 7,
+          "files": 126,
+          "comments": 0,
+          "body": "Implements phases 1–8 of #25. The product runs end to end locally: a corpus with citable identifiers, acquisition that treats a source's failure as a failure, analysis behind one model interface, a read-only HTTP API on the real Worker, and the RTL-first site — with all 44 requirement leaves claimed by a passing case.\n\n## What was built, and what it costs to check\n\n**The spec is the backbone.** [`dev/requirements/requirements.md`](https://github.com/missingbulb/hitbut/blob/claude/hitbut-product-setup-gre12m/dev/requirements/requirements.md) carries 44 numbered leaves. The coverage gate fails on a leaf with no case, a case claiming a leaf that does not exist, two cases claiming one leaf, a misnamed file, a kind folder no runner runs, an image in a coded kind, or a stray golden. It went red first — 43 unclaimed leaves — before a single case existed.\n\n**Every leaf is proven by the kind that can see it.**\n\n| Lane | Cases | What it runs |\n|---|---|---|\n| logic | 11 | the shipped code, called directly |\n| behavior | 14 | the shipped code over recording fakes |\n| server | 11 | the shipped Worker on `workerd`, from the committed `wrangler.toml` |\n| screen | 8 | the built site in a pinned Chromium, byte-exact against committed screenshots |\n\n`npm test` is 35 tests in about a second; the server and screen lanes are their own lanes. Every one is green, and the screen goldens are byte-identical on a second render.\n\n**Three bugs were found by running the real thing rather than a model of \n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/ClaudiniteCanary",
+          "number": 154,
+          "title": "Adopt claudinite-dashboard",
+          "url": "https://github.com/missingbulb/ClaudiniteCanary/pull/154",
+          "at": "2026-08-21T15:14:50Z",
+          "weight": 8433,
+          "additions": 8430,
+          "deletions": 3,
+          "files": 41,
+          "comments": 0,
+          "body": "Turns on `claudinite-dashboard` here, in **repo mode**.\n\nWhich dashboard a deployment builds follows from its config's shape: a declaration naming a roster source (`owner`, or the legacy `rosterFile`) builds the fleet page, anything else builds this repo's own. This declaration names none, so there is nothing to configure — the mode is the shape.\n\nVendored through `updates/install.mjs`, not by hand, so the stamp lands at `60821.2` without burning the migration records in between. It also:\n\n- seeds `.github/workflows/claudinite-dashboard-pages.yml`,\n- wires `FLEET_GITHUB_TOKEN` into the executor's secret block, for the `fleet-digest` task the pack brings with it,\n- adds the pack's badge to the README row.\n\n`check_the_world.mjs` is green on this branch. Verified it is actually running rather than silently passing, by declaring a bogus pack id and watching it go blocking, then restoring.\n\nThe install runner printed three `adoptionHandover` steps only a human can do — Pages, the `FLEET_GITHUB_TOKEN` secret, and the viewer-auth decision. They are filed with their `breaks`/`done` conditions in #153, not left as notes here.\n\nOne thing worth knowing before merge: the install ended `needs-human` on two **pre-existing** unanswered interview questions — `barriers/goals` and `claude-code-web-users-support/store` — neither of which belongs to this adoption. They were already unanswered on this declaration before today; the vendoring, stamping and seeding all completed. Left alone rather t\n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/WIP",
+          "number": 22,
+          "title": "Phase A: executable spec, coverage gate, app scaffold, and the stage screen",
+          "url": "https://github.com/missingbulb/WIP/pull/22",
+          "at": "2026-08-21T11:58:37Z",
+          "weight": 3550,
+          "additions": 3548,
+          "deletions": 2,
+          "files": 105,
+          "comments": 0,
+          "body": "The Phase 1 work from #6 that can be done without a real iPad: the executable spec, the coverage gate, the product core, the iPad app shell, and the stage screen with its states claimed as goldens and its story as a saga.\n\n**43 of 53 leaves are claimed and green. 10 are tracked gaps**, each with the reason it cannot run yet, in `dev/requirements/gate/pending.json` and marked `⚠ TBD` in the spec. That list only shrinks.\n\n## The spec\n\n`dev/requirements/requirements.md` is built to the shape EdFringeNow's `product/requirements.md` and ShoutsAndWhispers' `dev/requirements/requirements.md` use: a spine of one-line claims, the visible copy quoted verbatim at the leaf, everything else folded into Notes, and the picture that proves each leaf embedded under it. A fixture-world paragraph names the one moment every render draws.\n\n**The picture is the smallest surface that proves its leaf.** A leaf about the countdown is proved by a 207×34 crop of the clocks; a leaf about the highlighted setup is proved by the joke body alone. Every crop is taken out of a full render of the composed screen — never by laying an element out on its own, which would prove it in a context the product never shows. Three leaves keep the whole screen, and each says why at the case: two claim something about the screen itself, and one (\"its body text the largest text on the screen\") compares the panel against everything around it, which no crop of the panel could do.\n\nThe gate requires that choice to be explicit:\n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/Claudinite",
+          "number": 1138,
+          "title": "Label scheme PRs 1–2: decode every spelling, and the marked issue becomes the item",
+          "url": "https://github.com/missingbulb/Claudinite/pull/1138",
+          "at": "2026-08-21T09:58:00Z",
+          "weight": 2288,
+          "additions": 1637,
+          "deletions": 651,
+          "files": 51,
+          "comments": 0,
+          "body": "#1119's review pass, **stages 1 and 2**, as two separate commits on one branch — this session may only push to its designated branch, so the plan's stacked-PR shape collapsed into one PR. Say the word and I will split stage 2 onto its own branch based on this one.\n\n**PR 3 (the write-side flip) is deliberately not here**: the plan gates its merge on the fleet force that happens *after* 1–2 merge, so landing it beside them would jump that gate.\n\n## Stage 1 — the read side + the stubs (commit `eef03a4`)\n\nAdditive on every member, in any order: **nothing writes a canonical status yet**.\n\n- **One decode pass.** `work-item.mjs` gains the canonical vocabulary (`STATUS_*`, `ORIGIN_*`) and `statusOf` / `statusesOn` / `isParked` / `parkKindOf` / `originOf`. Every legacy spelling in DESIGN §4's table maps straight to today's, in one pass; a park whose kind cannot be decoded — an older engine's bare `needs-human`, a word a newer engine invents — reads as `failure`, the lane that holds the task's lane. No reader compares a label literally any more.\n- **Transitions leave a status, not a label.** New `apply-status.mjs`: leaving a status clears *every* spelling of it, so an item filed as `task:ready` and picked up by an engine writing the canonical spelling cannot end up wearing two live statuses. The flip is then six constants changing. Side effect worth naming: a hand wake now clears the park's sub-label too, which it previously left standing.\n- **The ensure-list carries the canonical labe\n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/Claudinite",
+          "number": 1151,
+          "title": "The version bump belongs to the change, not to the release flow",
+          "url": "https://github.com/missingbulb/Claudinite/pull/1151",
+          "at": "2026-08-21T11:38:01Z",
+          "weight": 1649,
+          "additions": 1193,
+          "deletions": 456,
+          "files": 32,
+          "comments": 0,
+          "body": "Closes #1150.\n\n## The problem\n\nBoth release standards wrote the version themselves — the extension's daily run patch-bumped and\npushed to `main` before packaging, the site's publish reusable computed `<major>.<ymmdd>.<n>` and\npushed it before tagging. So the version a reviewer saw on a PR was never the version that shipped,\nand the one push a pipeline made to `main` unattended was the one that could fail non-fast-forward\nand strand a release. Claudinite holds the opposite line on itself — `pack-version-bumped`,\n`engine-release-record`. These two packs now hold it too.\n\n## What lands\n\n**A work-scope check per pack**, gated on the repo shipping the pipeline and scoped by the repo's\nown declaration of what ships:\n\n| check | fires when |\n|---|---|\n| `cer/version-bumped` | the change touches something under `ship_paths` and the manifest version did not rise |\n| `sw/version-bumped` | the change touches the publish set and `version_files` did not rise |\n\nBoth are silent on a change that ships nothing (a README, a test, a workflow), and both defer to the\nneighbouring check (`cer/version-sync`, `sw/version-scheme`) on an off-scheme version rather than\nreporting it twice.\n\n**The pipelines stop writing versions.** Each now asks the release list whether the version on `main`\nhas been released yet, rather than diffing files against a tag — idempotent by construction, so a\nfailed run retries with nothing to undo and a push carrying an already-released version is a clean\nno-op. The extensio\n…[truncated]"
+        }
+      ],
+      "nudge": null
+    }
+  ]
+}
