@@ -1,4 +1,4 @@
-import { finding } from '../../../../engine/checks/helpers/findings.mjs';
+import { finding } from '../../../engine/checks/helpers/findings.mjs';
 
 // The brief is DELIVERED, not read on GitHub. An ad-hoc session reads `digests/<date>.md`
 // and sends it as a notification verbatim (digests/README.md, "Getting it read"), and the
@@ -39,7 +39,7 @@ const rule = {
   id: 'digest-plain-text',
   severity: 'blocking',
   description: 'every dated brief under digests/ is plain text — no markdown syntax the notification renderer would show raw',
-  doc: 'packs/claudinite-dashboard/tasks/fleet-digest/digest-plain-text.mjs',
+  doc: 'packs/claudinite-dashboard/worldRules/digest-plain-text.mjs',
   why: 'the brief is sent verbatim through a renderer that neither parses markdown nor keeps line breaks, so any markdown in it reaches the owner as literal characters in one running paragraph',
 
   run(ctx) {
