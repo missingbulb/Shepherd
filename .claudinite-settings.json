@@ -46,7 +46,7 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "60823.1",
+      "version": "60823.2",
       "config": {
         "owner": "missingbulb",
         "kind": "user",
