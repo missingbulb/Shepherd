@@ -82,9 +82,15 @@ canon instead, where every repo gets it.
 - **Hunting for this repo's own standing tracker issue by its exact title** —
   `mcp__github__search_issues` with a quoted title and `in:title` does not reliably filter; it can
   return the same broad, unfiltered issue list regardless of the query text, burying the real
-  tracker in a couple dozen unrelated hits (and once, overflowing the token cap entirely). Scan the
-  returned list for the exact title yourself, or narrow with `minimal_output: true` plus a
-  label/state filter, rather than trusting the query to do the narrowing (#104, #88).
+  tracker in a couple dozen unrelated hits (and once, overflowing the token cap entirely). The same
+  unreliability hits `mcp__github__list_issues`'s `query` param too — one run got back an entirely
+  unrelated issue for a quoted-title query even with `minimal_output: true` set (#210). And
+  `minimal_output: true` alone doesn't bound the response either: another run overflowed the token
+  cap with `minimal_output: true` set and no filter, on a real result set of just 3 issues
+  (#209) — the label/state filter is the load-bearing part, not `minimal_output`. Scan the
+  returned list for the exact title yourself, or narrow with `minimal_output: true` **plus** a
+  label/state filter, rather than trusting the query text on either tool to do the narrowing
+  (#104, #88, #209, #210).
 
 - **Pushing a change that touches `.github/workflows/`, `.claudinite-checks.json`, or pack
   config** — run `node .claudinite/shared/engine/checks/check_the_world.mjs` locally first. It's
@@ -115,4 +121,42 @@ canon instead, where every repo gets it.
   (`claudinite-task-exec v1 <pack>/<task> [#<n>] <status>`), the `task:agent`→outcome label swap,
   the close with the matching `state_reason`, and (what `readyDependents` would have released) a
   check for any open item naming `Blocked-by: #<n>`. Four independent sessions in one day each lost
-  2–5 minutes rediscovering this same dead end (#126, #130, #133, #166).
+  2–5 minutes rediscovering this same dead end (#126, #130, #133, #166); a fifth still ran the
+  script itself twice — once without `GITHUB_REPOSITORY` set, once with — before switching to
+  the manual path, costing ~77s despite this very rule already being loaded in context (#202):
+  don't just skip re-diagnosing a failure, skip attempting the script at all. The manual replication
+  above is written for the `done` outcome only — on `approval`, the real script's
+  `OUTCOMES.approval.record` is `null` (post no `claudinite-task-exec` line), the item stays
+  **open** rather than closing, and the labels are `needs-human` + `task:needs-human-approval`
+  rather than an outcome-label swap; post that shape directly rather than posting the `done` shape
+  and then a correction comment (#212).
+
+- **Comparing against `origin/main` in a fresh checkout** — an explicit `git fetch origin main` is
+  not always enough by itself: this container's checkout can be shallow, and fetching a named
+  branch does not force-update an already-existing stale remote-tracking ref. `origin/main` showed
+  frozen at the initial commit even right after fetching it by name, producing a bogus wall-to-wall
+  diff. Check `git rev-parse --is-shallow-repository` first, and `git fetch origin main --unshallow`
+  before trusting any `git diff`/`git log` against `origin/main` (#197).
+
+- **Looking up a PR by its head branch** — `mcp__github__list_pull_requests` with a bare branch
+  name in `head` (no `owner:` prefix) does not filter; it can silently hand back an unrelated PR
+  as if it matched, for every branch queried, with no error to flag the miss. Qualify `head` as
+  `owner:branch-name`, or skip the lookup and go straight to the git-based `merge-base`/
+  `diff --stat` check the `single-branch-status` skill already uses as its fallback (#213).
+
+- **Writing a PR or issue body that cross-references an object you're about to create** — don't
+  guess its number. Issue/PR numbers share one counter per repo, and the object you're creating
+  consumes one too; a PR body written before its companion issue exists can end up citing the wrong
+  number once the issue actually lands. Create the referenced object first, or leave a placeholder
+  and patch the body once the number is known (#24).
+
+- **Waiting on background subagents or tasks with nothing left to do between notifications** —
+  don't manufacture a no-op Bash call (`sleep 1; echo waiting`, `true`) just to occupy a turn; say
+  so in plain text with no tool call instead. A bare no-op tool call can come back with no
+  visible text at all, which the harness then has to interrupt to ask for a real response — pure
+  waste next to just writing the status line (#214).
+
+- **Parsing an overflowed `search_issues`/`search_code` result from its saved `tool-results/*.txt`
+  file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
+  envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
+  list shape across several failed attempts (#212).
