@@ -1,4 +1,4 @@
-import { finding } from '../../../../engine/checks/helpers/findings.mjs';
+import { finding } from '../../../engine/checks/helpers/findings.mjs';
 
 // Learned in the enforcer repo (#130 there), which `reference-integrity` surfaced only by
 // accident. `worker.test.mjs`
@@ -40,7 +40,7 @@ const rule = {
   id: 'dated-fixture-collision',
   severity: 'blocking',
   description: 'no test fixture builds a digests/ path in the year range the fleet writes real briefs in',
-  doc: 'packs/claudinite-dashboard/tasks/fleet-digest/dated-fixture-collision.mjs',
+  doc: 'packs/claudinite-dashboard/worldRules/dated-fixture-collision.mjs',
   why: 'a fixture sharing a namespace with real dated artifacts has started depending on repo state — it breaks when a brief is deleted, and passes for the wrong reason when one happens to exist',
 
   run(ctx) {

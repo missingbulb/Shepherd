@@ -1,10 +1,17 @@
 {
   "packs": [
     "local/shepherd",
-    "basics",
-    "claudinite-lifecycle",
+    {
+      "id": "basics",
+      "version": "60823.1"
+    },
+    {
+      "id": "claudinite-lifecycle",
+      "version": "60823.1"
+    },
     {
       "id": "barriers",
+      "version": "60823.1",
       "via": [
         "core"
       ],
@@ -14,12 +21,14 @@
     },
     {
       "id": "git-github",
+      "version": "60822.2",
       "via": [
         "basics"
       ]
     },
     {
       "id": "claude-code-web-users-support",
+      "version": "60823.1",
       "answers": {
         "store": "missingbulb/Shepherd"
       },
@@ -27,10 +36,17 @@
         "repo": "missingbulb/Shepherd"
       }
     },
-    "claudinite-growth",
-    "tidy-repo",
+    {
+      "id": "claudinite-growth",
+      "version": "60823.2"
+    },
+    {
+      "id": "tidy-repo",
+      "version": "60823.1"
+    },
     {
       "id": "claudinite-fleet-sheepdog",
+      "version": "60823.1",
       "config": {
         "owner": "missingbulb",
         "kind": "user",
@@ -52,6 +68,7 @@
     },
     {
       "id": "claudinite-dashboard",
+      "version": "60823.1",
       "answers": {
         "mode": "fleet — this deployment is the overview across every repo under missingbulb, enumerated in the browser as the viewer"
       },
@@ -65,11 +82,8 @@
       }
     }
   ],
-  "maintenance": {
-    "delivery": "auto-merge"
-  },
   "taskScheduler": {
-    "endpoints": {
+    "agenticTaskInvocationEndpoints": {
       "default": {
         "url": "https://api.anthropic.com/v1/claude_code/routines/trig_01Xc43XQwqjUgTaFQhXvAJdk/fire",
         "tokenSecret": "CCR_ROUTINE_TOKEN"
@@ -79,20 +93,5 @@
     "weeklyDay": "Sun",
     "monthlyDay": 1
   },
-  "claudinite": {
-    "updated": "2026-08-17T12:20:06.731Z",
-    "ref": "599c287a89bef53218a1ff807845449bdba69bfe",
-    "engineVersion": "60820.1",
-    "packVersions": {
-      "basics": "60821.4",
-      "claudinite-lifecycle": "60822.1",
-      "barriers": "60820.1",
-      "git-github": "60822.1",
-      "claude-code-web-users-support": "60821.2",
-      "claudinite-growth": "60821.2",
-      "tidy-repo": "60820.1",
-      "claudinite-fleet-sheepdog": "60822.1",
-      "claudinite-dashboard": "60822.1"
-    }
-  }
+  "engineVersion": "60823.1"
 }
