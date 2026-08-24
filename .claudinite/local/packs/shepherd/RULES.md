@@ -160,3 +160,29 @@ canon instead, where every repo gets it.
   file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
   envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
   list shape across several failed attempts (#212).
+
+- **Delivering a re-staged file from `.claudinite/pending-workflows/` during the
+  `claudinite-lifecycle/update` task** — go straight to `cp -f <src> <dst> && rm <src>` (or
+  `git mv -f`), never a plain `git mv`: this delivery step only fires when the destination workflow
+  file already exists (a first-time vendor commits directly instead), so a plain `git mv` always
+  fails with `destination exists`. Hit identically in two independent sessions (#233, #248).
+
+- **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
+  grep `.claudinite-settings.json` directly for `dailyClaudiniteUpdatesRequirePrReview`
+  (documented in `.claudinite/shared/engine/checks/helpers/repo-context.mjs`); its absence means
+  auto-merge. Don't guess `"maintenance"` or `"delivery"` as the key name — the task's own
+  instructions still name that retired key, which no longer exists in the schema, and two
+  independent sessions burned tool calls chasing it (#242, #248).
+
+- **Confirming whether a file landed in a PR from Claude Code Web** — verify with
+  `git ls-files`/`git diff --stat` against the branch, never a rendered PR-diff view: the web diff
+  view has been observed to silently drop new root-level file/directory additions from its
+  rendering while the file was genuinely present in the commit, costing a round-trip and a false
+  self-correction before the git-based check settled it (#2).
+
+- **Dispatching background subagents that each fully own one source** (a parallel
+  research/extraction fan-out) — once a source is delegated, don't also read or grep it yourself
+  while waiting; either wait with no tool call or spend the interim on work no subagent already
+  owns. A prior growth-extract run's orchestrator kept re-reading the exact same log files its 14
+  dispatched subagents were already assigned to mine, across a ~5.5-minute window, producing zero
+  findings beyond what the subagents independently reported (#201).
