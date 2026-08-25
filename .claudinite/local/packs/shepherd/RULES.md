@@ -186,3 +186,13 @@ canon instead, where every repo gets it.
   owns. A prior growth-extract run's orchestrator kept re-reading the exact same log files its 14
   dispatched subagents were already assigned to mine, across a ~5.5-minute window, producing zero
   findings beyond what the subagents independently reported (#201).
+
+- **Catching a flawed prompt right after dispatching a background subagent** — send a follow-up
+  message to that same agent to resume it, never a brand-new `Agent` dispatch over the identical
+  source(s): a redispatch runs a full second pass in parallel with the first, at full cost, even
+  when the original turns out to handle things fine on its own. Also prefer pointing a subagent at
+  a growing reference file's *path* to read itself, over pasting its content inline in the prompt
+  — cheaper, and immune to the class of bug where the paste is left as an unfilled placeholder. A
+  flawed `<existing-rules>` placeholder, caught 8 seconds after dispatch, was "fixed" with a second
+  full dispatch instead of a resume — ~172s and ~95K tokens of pure duplicate compute the original
+  agent's own correct result made unnecessary (#246).
