@@ -111,8 +111,9 @@ canon instead, where every repo gets it.
   (e.g. a `.claudinite/` path) fails confusingly. Always `git fetch origin main` and branch from
   `origin/main` explicitly (#73).
 
-- **Reaching step 6 of a work-item run** (`node .../scheduler/queue/converge-item.mjs`) — it will
-  fail here: the script's read/write path (`signals/gh.mjs`) is documented in its own header as
+- **Reaching step 6 of a work-item run** (`node .claudinite/shared/packs/claudinite-tasks/queue/
+  converge-item.mjs`) — it will fail here: the script's read/write path
+  (`.claudinite/shared/packs/claudinite-tasks/signals/gh.mjs`) is documented in its own header as
   Action-side only ("everything session-side stays MCP-only"), and this session's `GITHUB_TOKEN` is
   a proxy placeholder the REST API rejects outright ("GitHub access is not enabled for this
   session"), confirmed across attempts with `GITHUB_REPOSITORY` set, with `NODE_USE_ENV_PROXY=1`,
@@ -129,7 +130,11 @@ canon instead, where every repo gets it.
   `OUTCOMES.approval.record` is `null` (post no `claudinite-task-exec` line), the item stays
   **open** rather than closing, and the labels are `needs-human` + `task:needs-human-approval`
   rather than an outcome-label swap; post that shape directly rather than posting the `done` shape
-  and then a correction comment (#212).
+  and then a correction comment (#212). Both files live under
+  `.claudinite/shared/packs/claudinite-tasks/` — there is no
+  `.claudinite/shared/engine/scheduler/` directory in this repo's vendored engine; a session
+  re-confirming this rule against `main` found none there and burned two dead-end `find`s before
+  locating the real paths (#277).
 
 - **Comparing against `origin/main` in a fresh checkout** — an explicit `git fetch origin main` is
   not always enough by itself: this container's checkout can be shallow, and fetching a named
