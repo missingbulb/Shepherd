@@ -1,0 +1,80 @@
+{
+  "pick": 4,
+  "generatedAt": "2026-08-29T11:01:53.451Z",
+  "days": [
+    {
+      "date": "2026-08-28",
+      "members": [
+        "missingbulb/Claudinite",
+        "missingbulb/ClaudiniteCanary",
+        "missingbulb/ClaudiniteWebsite",
+        "missingbulb/CrosswordChat",
+        "missingbulb/EdFringeNow",
+        "missingbulb/GoogleCalendarEventCreator",
+        "missingbulb/hitbut",
+        "missingbulb/LaughCounter",
+        "missingbulb/MissingBulbWebsite",
+        "missingbulb/Shepherd",
+        "missingbulb/ShoutsAndWhispers",
+        "missingbulb/TLDR",
+        "missingbulb/VascularColoring",
+        "missingbulb/WIP"
+      ],
+      "considered": 3,
+      "maintenance": 49,
+      "capped": 0,
+      "shortlist": [
+        {
+          "kind": "issue",
+          "repo": "missingbulb/Claudinite",
+          "number": 1149,
+          "title": "converge-item.mjs cannot run from an MCP-only agent session",
+          "url": "https://github.com/missingbulb/Claudinite/issues/1149",
+          "at": "2026-08-28T01:42:24Z",
+          "weight": 132,
+          "comments": 6,
+          "body": "`engine/scheduler/queue/instructions.md` step 6 tells the session executing a work item to run:\n\n```\nnode <engine>/scheduler/queue/converge-item.mjs --issue <n> --outcome ... --summary ...\n```\n\ndirectly as a subprocess. That script (via `engine/scheduler/signals/gh.mjs`'s `makeGh`) talks to `api.github.com` straight over `fetch`, authorized with `process.env.GITHUB_TOKEN` — the Action-side credential, per the DESIGN comment atop `gh.mjs`: \"engine/scheduler/ is the one place that legitimately uses the Action's GITHUB_TOKEN — everything session-side stays MCP-only.\"\n\nBut `queue/instructions.md` step 6 *is* session-side — it is the procedure every agent session follows to converge the one work item it was fired for (a Claude Code session, not an Actions job). This session's own system prompt states plainly it has no `gh` CLI and no direct GitHub API access, and must use the GitHub MCP server tools for all GitHub interactions. Confirmed live on this run (#1097):\n\n- `GITHUB_REPOSITORY` is unset by default in this session (`converge-item: GITHUB_REPOSITORY is not set`).\n- Setting it and calling the script directly returns a 403 straight from the GitHub REST API: `{\"message\":\"GitHub access is not enabled for this session. An org admin must connect the Claude GitHub App for this organization.\"}` — a policy boundary, not a fixable env-var wrinkle.\n\nThis is the same class of break as #1133: a script written for the Actions-job execution context (`gh.mjs`'s `makeGh`) silently fails once\n…[truncated]"
+        },
+        {
+          "kind": "issue",
+          "repo": "missingbulb/Claudinite",
+          "number": 1133,
+          "title": "converge-item.mjs needs a real GITHUB_TOKEN the queue's own sessions don't have",
+          "url": "https://github.com/missingbulb/Claudinite/issues/1133",
+          "at": "2026-08-28T01:43:24Z",
+          "weight": 109,
+          "comments": 4,
+          "body": "`engine/scheduler/queue/instructions.md` step 6 tells every work-item session to converge by running:\n\n```bash\nnode <engine>/scheduler/queue/converge-item.mjs --issue <n> --outcome ... --summary '...'\n```\n\n`converge-item.mjs` reads and writes the issue over a direct `api.github.com` fetch, authenticated with `process.env.GITHUB_TOKEN` (`engine/scheduler/signals/gh.mjs`). That's fine for the retired executor mechanism, which ran as the Action's own job step with `GITHUB_TOKEN: ${{ github.token }}` set in its shell (`.github/workflows/claudinite-executor.yml`). But the sessions the *current* queue dispatches to are Claude Code cloud/web sessions (`claude.ai/code/session_...`, per the hand-off comment on each work item) — and that session type's platform policy is MCP-only GitHub access: no `gh` CLI, no direct API calls. The `GITHUB_TOKEN` such a session does see in its shell env is not a GitHub credential at all (14 chars, `prox...` prefix — a proxy artifact), so the script's very first call (`readIssue`) fails with a 401 before it ever reaches its own judgment logic.\n\nHit this converging #1129 (implementing #1124): `GITHUB_REPOSITORY=missingbulb/Claudinite node engine/scheduler/queue/converge-item.mjs --issue 1129 --outcome done --summary '...'` exited 1 with `converge-item: #1129 could not be read`. Worked around it by replicating the script's side effects (comment with the same `claudinite-task-exec` record line, `task:agent`→`task:done` swap, close as completed) directly ov\n…[truncated]"
+        },
+        {
+          "kind": "pr",
+          "repo": "missingbulb/Shepherd",
+          "number": 311,
+          "title": "Add fleet digest for 2026-08-27",
+          "url": "https://github.com/missingbulb/Shepherd/pull/311",
+          "at": "2026-08-28T16:37:43Z",
+          "weight": 17,
+          "additions": 17,
+          "deletions": 0,
+          "files": 1,
+          "comments": 0,
+          "body": "Refs #306\n\nRead the 6-candidate shortlist for 2026-08-27 from `claudinite/fleet-digest-shortlist` and picked the 4 strongest, ranked by significance: two first-working-versions of new capabilities (Claudinite's improve-comments task, ClaudiniteWebsite's site-stats task), the label-scheme write-side flip, and the convergence fix that unblocked 14 stranded items. Nudge points at `missingbulb/LaughCounter`, quiet since 2026-08-17.\n\n`digests/2026-08-27.md` added, nothing else touched.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_019HxcUw4njFyHovWhcKSQot)_"
+        }
+      ],
+      "nudge": {
+        "repo": "missingbulb/ShoutsAndWhispers",
+        "quietSince": "2026-08-17T16:16:47.000Z",
+        "last": {
+          "title": "Point the preferences store at Shepherd, not the retiring Sheepdog repo",
+          "number": 168,
+          "url": "https://github.com/missingbulb/ShoutsAndWhispers/pull/168",
+          "at": "2026-08-17T16:16:47.000Z"
+        },
+        "alsoQuiet": [
+          "missingbulb/LaughCounter",
+          "missingbulb/TLDR"
+        ]
+      }
+    }
+  ]
+}
