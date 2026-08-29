@@ -201,3 +201,9 @@ canon instead, where every repo gets it.
   flawed `<existing-rules>` placeholder, caught 8 seconds after dispatch, was "fixed" with a second
   full dispatch instead of a resume — ~172s and ~95K tokens of pure duplicate compute the original
   agent's own correct result made unnecessary (#246).
+
+- **Declaring this repo as the store for a role a retiring predecessor already filled** (a
+  preferences store, or any other adopted-role declaration) — copy the predecessor's actual
+  content in the same change, since the session's own hook diagnostic reporting the gap ("no
+  preferences file for this user") sat unactioned in this session's own tool output for over 20
+  minutes before the owner had to point out the missing directory (#2).
