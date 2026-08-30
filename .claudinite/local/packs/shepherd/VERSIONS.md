@@ -6,6 +6,7 @@ writes no row — this is a log of what happened to the pack, never a log of run
 
 | Date | Task | What landed |
 |---|---|---|
+| 2026-08-30 | rule-revalidation | Corrected the tracker-hunt bullet: `mcp__github__list_issues` no longer carries a free-text `query` param at all (structural filters only — `labels`/`state`/`field_filters`/`since`), and neither it nor `search_issues` exposes `minimal_output`; response size is now controlled by the `fields` param. `search_issues` itself is now documented as natural-language semantic matching rather than raw qualifier search, and still doesn't reliably narrow to an exact quoted title (re-probed live). |
 | 2026-08-29 | growth-extract | Added: declaring this repo as the store for a role a retiring predecessor already filled means copying the predecessor's actual content in the same change, not just the declaration — the session's own hook diagnostic already reported the gap and sat unactioned for 20+ minutes (#2). |
 | 2026-08-26 | growth-extract | Corrected: the "Reaching step 6 of a work-item run" bullet's `converge-item.mjs`/`gh.mjs` paths — no `.claudinite/shared/engine/scheduler/` directory exists; both files live under `.claudinite/shared/packs/claudinite-tasks/` (#277). |
 | 2026-08-25 | growth-extract | Added: correcting a flawed just-dispatched background subagent means resuming it with a follow-up message, never a brand-new redispatch over the same source(s) — and prefer pointing a subagent at a reference file's path over pasting its content inline (#246). |

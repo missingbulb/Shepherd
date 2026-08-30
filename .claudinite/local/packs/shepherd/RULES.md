@@ -80,17 +80,15 @@ canon instead, where every repo gets it.
   own self-description of how the item converges (#104).
 
 - **Hunting for this repo's own standing tracker issue by its exact title** —
-  `mcp__github__search_issues` with a quoted title and `in:title` does not reliably filter; it can
-  return the same broad, unfiltered issue list regardless of the query text, burying the real
-  tracker in a couple dozen unrelated hits (and once, overflowing the token cap entirely). The same
-  unreliability hits `mcp__github__list_issues`'s `query` param too — one run got back an entirely
-  unrelated issue for a quoted-title query even with `minimal_output: true` set (#210). And
-  `minimal_output: true` alone doesn't bound the response either: another run overflowed the token
-  cap with `minimal_output: true` set and no filter, on a real result set of just 3 issues
-  (#209) — the label/state filter is the load-bearing part, not `minimal_output`. Scan the
-  returned list for the exact title yourself, or narrow with `minimal_output: true` **plus** a
-  label/state filter, rather than trusting the query text on either tool to do the narrowing
-  (#104, #88, #209, #210).
+  `mcp__github__search_issues` doesn't reliably narrow to an exact title even quoted: it runs
+  natural-language matching over the whole issue corpus, so a quoted title can come back as one hit
+  buried among dozens of unrelated ones (confirmed live: a quoted exact title returned 30 of 180
+  issues, nearly all unrelated, with the real match merely first by relevance).
+  `mcp__github__list_issues` carries no free-text query parameter at all — it filters only
+  structurally, by `labels`/`state`/`field_filters`/`since` — so hunting a title through it means
+  filtering by label/state first and scanning the returned titles yourself, never passing the title
+  as a query string. Neither tool takes a `minimal_output` flag; shrink the response with the
+  `fields` param instead, listing only the fields you need (#104, #88, #209, #210).
 
 - **Pushing a change that touches `.github/workflows/`, `.claudinite-checks.json`, or pack
   config** — run `node .claudinite/shared/engine/checks/check_the_world.mjs` locally first. It's
