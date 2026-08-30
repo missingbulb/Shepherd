@@ -8,6 +8,7 @@ here forward adds its own row.
 
 | Version | Date | What changed |
 |---|---|---|
+| 60827.1 | 2026-08-27 | Drops the pointers to the fleet digest that moved to `claudinite-dashboard`, now that the digest is retired outright (#1392). Comments and README only; nothing a member runs changes. |
 | 60824.2 | 2026-08-24 | `fleet-usage` and `usage-fleet.GENERATED.json` retired — the dashboard's fleet page now reads each member's own usage file directly, as the viewer, and derives coverage live; the destructive tail of #1158 (#1166). |
 | 60824.1 | 2026-08-24 | Task workers reach delivery, GitHub and work-item helpers through the `claudinite-tasks` pack's `shared-code/` (#1317). |
 | 60823.2 | 2026-08-23 | `fleet-baseline` reports OUTCOMES, not dispatches: after firing it follows each member until its declaration stamps canon's published engine and pack versions, reports converged / already-current / did-not-converge / never-started / unknown, and fails the run when a dispatched member never got there (#1293, reversing #649's give-up-the-follow for a bounded poll on a real terminal condition). |
@@ -22,3 +23,4 @@ here forward adds its own row.
 | 60821.2 | 2026-08-21 | This pack's inline version-history comments moved out of `pack.mjs` into this file. |
 | 60822.1 | 2026-08-22 | The canon-clone dispose goes through the shared `removeTree`, whose retry survives git's own housekeeping still writing into the tree (#1219). |
 | 60822.2 | 2026-08-22 | The manifest stops restating its own tree (#1246): `id`, `prose`, `badge`, `skills`, `worldRules` and `workRules` are resolved from the pack directory and an absent `detect`/`marker` means no fingerprint. Coded rules move into `worldRules/`/`workRules/` and tests into `test/`, which no vendor set ships. `minEngineVersion` rises to the engine release that reads all of it. |
+| 60830.1 | 2026-08-30 | The pack and task READMEs say a failed sweep parks, rather than naming the retired bare `needs-human` label (#1395). |
