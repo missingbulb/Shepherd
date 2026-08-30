@@ -40,14 +40,6 @@ canon instead, where every repo gets it.
   `.claudinite-checks.json` directly) before scoping the sweep: a Sheepdog-reference sweep found
   only 3 repos via search but 11 by direct check (#24).
 
-- **Renaming, adding, or removing a pack in `.claudinite-checks.json`** — re-run
-  `node .claudinite/shared/engine/scheduler/converge-wiring.mjs missingbulb/Shepherd --badges` in
-  the same change. The README's `<!-- claudinite:packs -->` badge row is a one-time seed the
-  update flow deliberately never re-derives, so it silently goes stale on every declaration
-  change and only resurfaces later as a blocking `reference-integrity` finding — this exact gap
-  hit twice, once for the `core`/`grow_with_claudinite` rename (#67, fixed in #69) and again for
-  the `sheepdog` → `claudinite-fleet-sheepdog` rename (#79, fixed in #80/#81).
-
 - **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 7–15
   seconds (measured directly across #30, #32, #59, #67). Poll `pull_request_read get_check_runs`
   in a short loop instead of a fixed or backgrounded `sleep`, and don't call
