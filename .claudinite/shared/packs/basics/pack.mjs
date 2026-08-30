@@ -35,7 +35,6 @@ export default {
   // commits, the diff, the conversation. task-lifecycle and squash-merge-history
   // are declared checks carrying scope: "work", discovered structurally beside
   // these.
-  // `task-janitor` and `ci-performance` are this pack's scheduled tasks,
-  // discovered by the scheduler's filesystem scan (packs/claudinite-tasks/discover.mjs)
-  // rather than declared here.
+  // `ci-performance` is this pack's scheduled task, discovered by the scheduler's
+  // filesystem scan (packs/claudinite-tasks/discover.mjs) rather than declared here.
 };
