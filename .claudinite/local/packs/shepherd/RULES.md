@@ -74,10 +74,13 @@ canon instead, where every repo gets it.
 
 - **Triaging a `fleet-drift` issue that names another repo** — don't spend a call on
   `mcp__github__get_file_contents` (or any other repo-scoped MCP read) against that repo: this
-  session's GitHub access is scoped to `missingbulb/Shepherd` only, and every cross-repo call is
-  denied outright. Five separate triage subagents each independently spent a call rediscovering
-  that denial before falling back to the only place the answer actually lives — the issue body's
-  own self-description of how the item converges (#104).
+  session's GitHub access is scoped to `missingbulb/Shepherd` only, and every such repo-scoped
+  call is denied outright. A tool that takes no repo argument — `search_code`, `search_issues` —
+  is not scoped the same way and can still return results from other repos, so it isn't a safe
+  substitute either; only the repo-scoped reads are guaranteed to refuse. Five separate triage
+  subagents each independently spent a call rediscovering the repo-scoped denial before falling
+  back to the only place the answer actually lives — the issue body's own self-description of how
+  the item converges (#104).
 
 - **Hunting for this repo's own standing tracker issue by its exact title** —
   `mcp__github__search_issues` with a quoted title and `in:title` does not reliably filter; it can
