@@ -58,11 +58,6 @@ instead — a `declarePacks` op applied by each member's own update run, in the 
 commit that vendors the pack's code. The sweep is the **standing** half: a migration record is dated
 and retires, while the sweep keeps converging every member the fleet acquires after it is gone.
 
-The **fleet digest** — the dated morning brief of what the fleet actually did — used to be the
-sixth sweep here. It moved out, to sit with the page that reads the series it writes; an enforcer's
-existing `owner`, `exclude` and `digest` config on *this* entry is still what it reads, so nothing
-in a declaration had to change.
-
 The fit sweep fingerprints against a scratch clone of `canonRepo`, never against this repo's own
 mount — the mount carries only the packs the enforcer declares, and sweeping against it would report
 every member as fitted while testing almost nothing. Its report names the corpus it measured against,
@@ -78,8 +73,7 @@ from the moment they land.
 
 **No agent anywhere here reaches another repo**, and that is the trust model rather than an
 implementation detail ([#749](https://github.com/missingbulb/Claudinite/issues/749)). The first
-missing-packs design ended in an enforcer-side agent stage, and its very first production run stopped
-at `needs-human` because the enforcer's executor is — correctly — scoped to the enforcer repo alone.
+missing-packs design ended in an enforcer-side agent stage, and its very first production run parked because the enforcer's executor is — correctly — scoped to the enforcer repo alone.
 What crosses a repo boundary is an issue and a `workflow_dispatch`, both over `FLEET_GITHUB_TOKEN`;
 the deprecated task-level `session_scope` ([the writing-tasks skill](../claudinite-growth/skills/writing-tasks/SKILL.md)) has no
 place here.
@@ -117,7 +111,7 @@ stands; a member the fit scan cannot read is `unknown`, never fitted; a member w
 refused a fan-out dispatch is named and fails the run, because a work list nobody will act on is not
 a green outcome; and a member the pack-seed sweep cannot reach opens no issue, closes none on its
 behalf, and exits non-zero. A non-zero preprocessing subprocess fails the task, and the scheduler
-converges one open `needs-human` issue for it.
+parks one open issue for it.
 
 **The two operator levers ride the work-item queue, not a workflow.** `fleet-baseline` is the first
 `manual`-frequency task: never instantiated on any cadence, it runs only from an item the owner
