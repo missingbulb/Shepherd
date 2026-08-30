@@ -1,6 +1,8 @@
 // shepherd — this repo's own rules: the ones that are true here and portable nowhere.
 // Seeded empty at adoption; everything in it is this repo's to write. A lesson that
 // would hold in another repo belongs in a canon pack instead — propose it upstream.
+// worldRules is discovered structurally from worldRules/*.mjs — leave it unspoken
+// here so a coded rule module is picked up without also touching this manifest.
 export default {
   id: 'shepherd',
   version: 1,
@@ -11,5 +13,4 @@ export default {
   detect: null,
   marker: null,
   prose: 'RULES.md',
-  worldRules: [],
 };
