@@ -123,7 +123,13 @@ canon instead, where every repo gets it.
   `OUTCOMES.approval.record` is `null` (post no `claudinite-task-exec` line), the item stays
   **open** rather than closing, and the labels are `needs-human` + `task:needs-human-approval`
   rather than an outcome-label swap; post that shape directly rather than posting the `done` shape
-  and then a correction comment (#212). Both files live under
+  and then a correction comment (#212). A marked/ad-hoc issue the script rejects with `#<n> is not a
+  Claudinite work item` (its body carries no `<!-- claudinite-item -->` machine block, so the
+  structural check the script needs to compute a plan has nothing to read) has no
+  `claudinite-task-exec` line to post at all — its computed `recordLine` is null, since that line
+  only fires for a title matching `[claudinite-work] pack/task`, which a marked issue never has —
+  so post the status comment and swap the label by hand rather than inventing one to match the
+  `done` shape and then walking it back (#360). Both files live under
   `.claudinite/shared/packs/claudinite-tasks/` — there is no
   `.claudinite/shared/engine/scheduler/` directory in this repo's vendored engine; a session
   re-confirming this rule against `main` found none there and burned two dead-end `find`s before
