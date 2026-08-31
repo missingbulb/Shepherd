@@ -3,11 +3,11 @@
     "local/shepherd",
     {
       "id": "basics",
-      "version": "60831.4"
+      "version": "60831.5"
     },
     {
       "id": "claudinite-lifecycle",
-      "version": "60831.1"
+      "version": "60831.2"
     },
     {
       "id": "barriers",
@@ -68,7 +68,7 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "60827.2",
+      "version": "60830.1",
       "answers": {
         "mode": "fleet — this deployment is the overview across every repo under missingbulb, enumerated in the browser as the viewer"
       },
@@ -83,7 +83,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60831.6"
+      "version": "60831.7"
     }
   ],
   "taskScheduler": {
