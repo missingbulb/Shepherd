@@ -88,6 +88,57 @@ Other cuts worth trying when the data suggests them: age of the park, whether an
 attached (a park holding a finished PR is a different problem from a park holding nothing), which
 task dominates, and which repos are contributing disproportionately.
 
+### A worked cause taxonomy — one fleet's letter codes, not a fixed set
+
+A prior multi-day run against this same fleet built out a fuller cause taxonomy in passes, coding
+each cause tersely for reporting (`R5×16`, `R1: 53`). Reuse the codes, extend them, or renumber
+them — they're a convenient shorthand for a report, nothing more. Treat the *mechanism* behind
+each one as the reusable part, not the label it happens to produce today: the label already
+changed once mid-investigation (a dead-agent park read `decision` for months, then was fixed to
+read `failure`), and it will drift again. Re-derive which label a mechanism produces from canon
+per §4, every run.
+
+- **R1 — convergence orphaned.** An agent did the work and could not perform the deterministic
+  closing steps itself (no direct GitHub API from an MCP-only session; the script that would do it
+  is Action-side only). The tell is a substantive result comment followed by nothing, then a
+  leash-timeout comment. Whatever kind it lands on is usually non-blocking, so it **mints a fresh
+  occurrence every cycle** until the underlying gap — not the individual item — is fixed.
+- **R2 — blown claim awaiting sweep.** Same root cause as R1, just caught before the janitor's next
+  pass swept it. Self-heals; don't report it as backlog distinct from R1.
+- **R3 — blocking failure, task still live.** A genuine crash park on a pack/task that still
+  exists. Needs a human — but check whether the *crash cause* is already fixed upstream and only
+  the park is stale residue; that's a one-line clear-and-resweep, not a real investigation.
+- **R4 — dead pointer.** The item's title or body path names a pack/task id that no longer exists
+  at HEAD (a rename, a retirement, a pre-migration directory). Should self-close under a retirement
+  rule — but **verify the rule actually matches this exact item**, not just that a retirement rule
+  exists. A task's identity is often stored in two places (a canonicalized id in the title, a raw
+  path in the body); a rule that checks only one silently misses items where the two have
+  diverged — that gap sat unnoticed until items were tested individually against it.
+- **R5 — a genuine outstanding question.** Real content someone owes a judgement on. Usually the
+  largest bucket, and *not itself a problem* — except that a mislabelled R1/R2 lands here too, so
+  don't take the raw count at face value. Two cheap cross-checks pull the wheat from the chaff:
+  open-PR cross-reference and duplicate-question grouping, both in §4.
+- **R6 — torn label swap.** The item carries two labels a clean state machine treats as mutually
+  exclusive (an in-flight claim label *and* a parked label at once), from a swap that died
+  mid-write. **Invisible to any rule keyed on a single clean label** — including a rule meant to
+  catch "no status label at all," since a torn item usually carries *two* labels, not zero. Only a
+  human edit clears it; confirm by checking whether it survived a fleet-wide sweep untouched while
+  everything around it moved.
+- **R7 — active claim, within its leash.** Running normally. Exclude from every stuck-count; report
+  it only as a sanity total.
+- **R8 — blocked on a dependency.** An explicit blocked-by reference. Self-heals when the blocker
+  closes — but verify the blocker is *actually* still open before crediting this bucket; a stale
+  pointer at a closed issue is really an R1/R2/R6 in disguise.
+- **R9 — bare legacy park, no decodable kind.** Read what the current decode path falls back to for
+  an unkinded park before assuming "no kind" means "harmless" — the fallback has been a blocking
+  kind before.
+- **Mechanically stuck — the class worth hunting for last, because it's the worst one.** An item
+  whose documented recovery mechanism (a leash, a reclaim, a scheduled sweep) carries a stated SLA
+  and simply hasn't fired within it. This is not "the rule doesn't match" (that's R4/R9); **the
+  rule never ran at all.** Finding it means checking elapsed time against the mechanism's own
+  documented window, not just the item's current label — it will look identical to an ordinary
+  blocking park until you do.
+
 ## 4. Attribute cause
 
 **Derive the writers from canon rather than trusting any table — including this one.** The park
@@ -125,6 +176,35 @@ kind dominating your data is one, and say so plainly if it is.
   failed run, and it should never be reported as the same thing as a session that genuinely died.
 - **A repeated park across repos in one window** is usually **one** condition, not N — check
   whether the threads name the same blocker before reporting a count.
+
+### Cross-checks that separate real backlog from artifact
+
+- **Open-PR cross-reference.** Per repo, count open PRs (`list_pull_requests`) against that repo's
+  count of "genuine question" parks. An item sitting in that bucket whose own last comment names an
+  open PR it's waiting on should really be an approval park — the same convergence failure that
+  left it unclosed is what left it mislabelled. In one run this cross-check moved ~40% of the
+  bucket.
+- **Duplicate-question grouping.** Group the "genuine question" bucket by `(repo, pack/task)`. The
+  distinct-lane count, not the raw item count, is the real backlog; the gap is redundant re-filings
+  of a lane that never actually closed. In one run this was 45% of the bucket — 128 items, 70
+  distinct questions.
+- **Task concentration.** Rank by `(pack/task)` across the *whole* fleet, not per repo. A handful of
+  tasks can carry most of the backlog — one run found four tasks in one pack were 64% of every
+  parked item fleet-wide. That's a statement about the task, not about many repos independently
+  having bad luck, and it points the fix at one place instead of fourteen.
+- **Recurring-cause grouping over time.** A non-blocking park whose worker message names a
+  concrete, fixable gap (a missing repo secret, an absent credential) re-files **every cycle**
+  against the same unfixed cause. Group by `(repo, task, cause text)` across multiple occurrences
+  rather than counting each day's occurrence as independent backlog — the fix is one action (add
+  the secret), not N relabels, and reporting it as N items overstates the problem and understates
+  how cheap the fix is.
+- **A rule's existence is not evidence it applies.** Twice in one investigation a structural rule
+  that read as complete — a retirement matcher, a supersession rule — missed real items once tested
+  against them individually, for two different reasons: a task's identity stored in two places that
+  had quietly diverged, and a park kind excluded from supersession *by design* that a different
+  rule was also hardcoding for an unrelated reason nobody had connected to it. Test a rule against
+  a concrete item it's supposed to cover, not just its presence in canon — this is the same
+  discipline as the sampling rule at the top of this skill, applied one level deeper.
 
 ### Reading comments without blowing the cap
 
