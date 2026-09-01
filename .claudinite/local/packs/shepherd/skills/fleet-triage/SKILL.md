@@ -75,7 +75,9 @@ grouping the list does not name.
   generator kept re-filing behind a park that never held it. Report distinct lanes alongside the
   raw count; the gap is the redundancy.
 - **Non-park queue states** — `blocked`, `waiting-for-executor`, bare `needs-human` with no kind,
-  and items with no status label at all (a torn label swap).
+  items with no status label at all (a torn label swap, rule D's), and an open item wearing a
+  **terminal** status (`done` / `rejected` — rule H's: the close that never happened, the one
+  state every other rule reads as finished).
 - **Cross-repo duplicates** — the same defect filed independently in many repos is a signal about
   the *fleet*, not the repos. Seven separate issues for one converge-item dead end said more than
   any of them did alone.
@@ -87,6 +89,57 @@ grouping the list does not name.
 Other cuts worth trying when the data suggests them: age of the park, whether an open PR is
 attached (a park holding a finished PR is a different problem from a park holding nothing), which
 task dominates, and which repos are contributing disproportionately.
+
+### More axes, each answering a different question
+
+None of these is mandatory; each one is listed because it turns a count into a decision. Pick
+the ones the data makes cheap.
+
+- **Expected recoverer.** For every open queue item, name the janitor rule whose *premise* it
+  matches — A stale ready, B dead agent, C stuck blocked, D stateless, E superseded park, F
+  orphaned park, G ended park, H unclosed terminal (all in `queue/janitor-rules.mjs`) — and then
+  check whether that rule's own comment is on the thread. Three buckets fall out: rule fired
+  (healthy), rule matched but never fired (the *mechanically stuck* class above, now found by
+  construction rather than by luck), and **no rule matches at all** — a gap in the janitor, which
+  is a canon finding rather than a fleet one, and the bucket most worth reporting when it is
+  non-empty.
+- **Lane cost, in missed runs.** A park kind that holds a task's lane (`isBlockingPark`) stops
+  every later occurrence of that task. Convert each such park's age into periods of the task's
+  declared `frequency` at HEAD: a `failure` park eleven days old on a daily task is eleven runs
+  that never happened. Rank by missed runs rather than by item count — one blocking park can
+  outweigh fifty non-blocking ones that cost nothing but a relabel.
+- **Fungible vs ad-hoc.** A scheduled occurrence is fungible — a later clean run answers it, and
+  rule E may close it. A marked or ad-hoc item (`task:origin:ad-hoc`, a request someone filed by
+  hand) is by design excluded from supersession and stays until a human reads it. Split the
+  parked population on this axis before quoting a "self-heals" share: the ad-hoc fraction is the
+  part that will not.
+- **Approval parks by end condition.** Group `approval` parks by their `Ends-when` target's state:
+  open (genuinely waiting), merged or closed (rule G should have fired — check the recoverer
+  axis), and **no `Ends-when` at all** — a park nothing can ever end mechanically, permanent by
+  construction, which is usually an older filer that predates the field.
+- **Wait vs sleep on `blocked`.** A blocked item with a future `Not-before` and closed blockers is
+  sleeping — the mechanism working, never stuck. One whose `Blocked-by` targets are all closed and
+  is still blocked missed its release (the `readyDependents` hand-off that only an Action-side run
+  performs). Chain length matters too: `do-later` deferrals chain each behind the last, so one
+  dead link parks every item after it — report the chain, not each link.
+- **Waiting-for-executor age against the task's period.** An item ready past ~2 of its own
+  periods is rule A's, and if no such comment appears the member's executor is not picking at
+  all. Cross this with the `workflow-failure` and frozen-scheduler reads in the plain-issue list:
+  a repo that is not running tasks has counts that are all stale, in every other axis.
+- **Member liveness from timestamps.** Bucket each repo by whether *any* of its queue items moved
+  in the last sweep window. A member where nothing moved while the rest of the fleet did has a
+  janitor that did not run, and every count reported for it describes a snapshot no rule has
+  looked at since — say so beside its numbers.
+- **Who wrote the park.** From the thread: a janitor rule (its verbatim comment), the executor (a
+  code-work failure log), an agent that converged by hand (an execution record), or a human
+  relabel (no comment at all). The same kind means different things per writer — a `failure` the
+  executor wrote is a crash; one the janitor wrote on a dead agent is an orphaned run.
+- **Plain issues by filer.** Machine-filed (`isDispatchTitle` from `dispatch.mjs`, tidy trackers,
+  `workflow-failure`, fleet-drift, `verify-in-production` probes, `do-later` deferrals) against
+  human-filed. RULES.md already warns that the machine wins every activity ranking; the same
+  filter belongs on the open-issue picture, or the human backlog disappears under bookkeeping.
+  Within the human-filed half, cut by last activity — an unlabelled issue untouched for months is
+  a different report line from one filed this week.
 
 ### A worked cause taxonomy — one fleet's letter codes, not a fixed set
 
@@ -120,10 +173,14 @@ per §4, every run.
   open-PR cross-reference and duplicate-question grouping, both in §4.
 - **R6 — torn label swap.** The item carries two labels a clean state machine treats as mutually
   exclusive (an in-flight claim label *and* a parked label at once), from a swap that died
-  mid-write. **Invisible to any rule keyed on a single clean label** — including a rule meant to
-  catch "no status label at all," since a torn item usually carries *two* labels, not zero. Only a
-  human edit clears it; confirm by checking whether it survived a fleet-wide sweep untouched while
-  everything around it moved.
+  mid-write. A torn swap has **two shapes**, and the decode treats them differently: zero status
+  labels (the remove landed, the add did not) is rule D's stateless item and self-repairs to a
+  park; two status labels decodes as whichever park label is worn (`statusOf` prefers a park over
+  any other status), so the item is *not* invisible — it reads as an ordinary park to rules E, F
+  and G, which can still clear it, and only the leash (rule B) stops seeing it. What nothing
+  clears is the stray claim label itself, so confirm the shape by reading the labels, not by
+  assuming; a two-label item that survived a fleet-wide sweep untouched while everything around
+  it moved is one no clearing rule matched.
 - **R7 — active claim, within its leash.** Running normally. Exclude from every stuck-count; report
   it only as a sanity total.
 - **R8 — blocked on a dependency.** An explicit blocked-by reference. Self-heals when the blocker
