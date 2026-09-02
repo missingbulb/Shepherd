@@ -30,9 +30,5 @@ export default {
   code_work_timeout: 600,
   required_secrets: ['FLEET_GITHUB_TOKEN'], // the account-spanning PAT; fleet-token.mjs states the grant
 
-  // `none` — the empty precondition, whose trigger is the calendar. Every input
-  // lives outside this repo (another repo's issue list, which no per-repo collector
-  // can see), so there is no signal here that could gate it. Cheap to no-op: an
-  // unchanged fleet renders the same file and delivers nothing.
   preconditions: ['none'],
 };
