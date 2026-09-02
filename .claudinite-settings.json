@@ -3,11 +3,11 @@
     "local/shepherd",
     {
       "id": "basics",
-      "version": "60901.1"
+      "version": "60901.5"
     },
     {
       "id": "claudinite-lifecycle",
-      "version": "60831.3"
+      "version": "60901.2"
     },
     {
       "id": "barriers",
@@ -21,7 +21,7 @@
     },
     {
       "id": "git-github",
-      "version": "60822.2",
+      "version": "60901.1",
       "via": [
         "basics"
       ]
@@ -38,7 +38,7 @@
     },
     {
       "id": "claudinite-growth",
-      "version": "60831.1"
+      "version": "60901.3"
     },
     {
       "id": "tidy-repo",
@@ -83,7 +83,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60831.9"
+      "version": "60901.2"
     }
   ],
   "taskScheduler": {
