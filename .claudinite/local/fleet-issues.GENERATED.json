@@ -1,0 +1,3555 @@
+{
+  "generated": "2026-09-02T11:56:15.335Z",
+  "owner": "missingbulb",
+  "total": 349,
+  "repos": [
+    {
+      "repo": "missingbulb/Claudinite",
+      "openIssues": 91,
+      "issues": [
+        {
+          "number": 1596,
+          "title": "No gha/* check has ever scanned a workflow stub, so a seeded workflow's defects ship fleet-wide unseen",
+          "labels": [],
+          "created_at": "2026-09-02T11:52:48Z",
+          "updated_at": "2026-09-02T11:52:48Z",
+          "comments": 0
+        },
+        {
+          "number": 1595,
+          "title": "claudinite-dashboard: the Pages stub pipes without a bash default, so its cache key can fail green",
+          "labels": [],
+          "created_at": "2026-09-02T11:38:21Z",
+          "updated_at": "2026-09-02T11:38:21Z",
+          "comments": 0
+        },
+        {
+          "number": 1594,
+          "title": "claudinite-dashboard: the Cloudflare token step leaves three form fields unanswered, and overstates how narrow the template is",
+          "labels": [],
+          "created_at": "2026-09-02T11:29:28Z",
+          "updated_at": "2026-09-02T11:29:28Z",
+          "comments": 0
+        },
+        {
+          "number": 1592,
+          "title": "writing-handover-issues: pair each value-producing step with the step that pastes it",
+          "labels": [],
+          "created_at": "2026-09-02T11:22:38Z",
+          "updated_at": "2026-09-02T11:22:38Z",
+          "comments": 0
+        },
+        {
+          "number": 1590,
+          "title": "claudinite-dashboard: the sign-in checklist names a field the App form no longer has, omits the step it refuses without, and asks for a secret GitHub will not create",
+          "labels": [],
+          "created_at": "2026-09-02T11:10:39Z",
+          "updated_at": "2026-09-02T11:21:01Z",
+          "comments": 0
+        },
+        {
+          "number": 1589,
+          "title": "A second push to an agent-opened PR gets no CI, and nothing says so",
+          "labels": [],
+          "created_at": "2026-09-02T10:53:57Z",
+          "updated_at": "2026-09-02T10:53:57Z",
+          "comments": 0
+        },
+        {
+          "number": 1584,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-02T09:53:37Z",
+          "updated_at": "2026-09-02T10:27:31Z",
+          "comments": 4
+        },
+        {
+          "number": 1581,
+          "title": "Fleet dashboard: show what the corpus does across the fleet, from the members' usage folds",
+          "labels": [],
+          "created_at": "2026-09-01T20:53:41Z",
+          "updated_at": "2026-09-01T20:53:41Z",
+          "comments": 0
+        },
+        {
+          "number": 1580,
+          "title": "Retrospective: the declarative preconditions in production",
+          "labels": [],
+          "created_at": "2026-09-01T17:40:47Z",
+          "updated_at": "2026-09-01T17:40:47Z",
+          "comments": 0
+        },
+        {
+          "number": 1579,
+          "title": "Validate the preconditions system live",
+          "labels": [],
+          "created_at": "2026-09-01T17:40:33Z",
+          "updated_at": "2026-09-01T17:40:57Z",
+          "comments": 0
+        },
+        {
+          "number": 1572,
+          "title": "Declarative task preconditions + the repo-active silence gate",
+          "labels": [],
+          "created_at": "2026-09-01T16:15:54Z",
+          "updated_at": "2026-09-02T11:53:38Z",
+          "comments": 5
+        },
+        {
+          "number": 1570,
+          "title": "[claudinite-work] claudinite-canon-curation/upstream-watch",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-09-01T16:12:11Z",
+          "updated_at": "2026-09-01T16:16:37Z",
+          "comments": 4
+        },
+        {
+          "number": 1556,
+          "title": "A member owing a withheld delivery reads as \"behind\", so a fleet baseline reports it as failed",
+          "labels": [
+            "bug",
+            "blocked"
+          ],
+          "created_at": "2026-09-01T10:26:57Z",
+          "updated_at": "2026-09-01T10:34:43Z",
+          "comments": 1
+        },
+        {
+          "number": 1555,
+          "title": "The staging sweep deletes on \"I didn't write it this pass\", which is not the same as \"it was delivered\"",
+          "labels": [
+            "bug"
+          ],
+          "created_at": "2026-09-01T10:26:40Z",
+          "updated_at": "2026-09-01T10:26:40Z",
+          "comments": 0
+        },
+        {
+          "number": 1550,
+          "title": "Self-test gate passes a `--root` flag `selftest.mjs` never parses",
+          "labels": [
+            "bug",
+            "quick-win"
+          ],
+          "created_at": "2026-09-01T10:11:41Z",
+          "updated_at": "2026-09-01T10:34:39Z",
+          "comments": 1
+        },
+        {
+          "number": 1547,
+          "title": "Reconsider the update flow from requirements, not from the existing structure",
+          "labels": [],
+          "created_at": "2026-09-01T09:24:12Z",
+          "updated_at": "2026-09-02T11:06:06Z",
+          "comments": 5
+        },
+        {
+          "number": 1542,
+          "title": "VERSIONS.md rows have no ordering standard — sort them newest-first and enforce it",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-08-31T22:01:18Z",
+          "updated_at": "2026-08-31T22:21:30Z",
+          "comments": 5
+        },
+        {
+          "number": 1538,
+          "title": "The four park kinds conflate two independent questions, and `decision` absorbs the overflow",
+          "labels": [],
+          "created_at": "2026-08-31T14:16:09Z",
+          "updated_at": "2026-08-31T14:16:09Z",
+          "comments": 0
+        },
+        {
+          "number": 1519,
+          "title": "Retrospective: the production-retrospective lane",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:blocked"
+          ],
+          "created_at": "2026-08-31T11:33:35Z",
+          "updated_at": "2026-08-31T11:49:30Z",
+          "comments": 1
+        },
+        {
+          "number": 1517,
+          "title": "Verify in production: the re-opened withhold lane converges members without regression",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-08-31T11:26:53Z",
+          "updated_at": "2026-09-01T10:30:48Z",
+          "comments": 5
+        },
+        {
+          "number": 1495,
+          "title": "Verify in production: an agentic session converges its own item instead of parking",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-08-31T09:30:12Z",
+          "updated_at": "2026-09-01T10:31:37Z",
+          "comments": 5
+        },
+        {
+          "number": 1485,
+          "title": "task-declaration-shape passes an unresolvable `automerge` policy, and the task then silently stops being scheduled",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-30T22:19:19Z",
+          "updated_at": "2026-08-31T11:09:54Z",
+          "comments": 1
+        },
+        {
+          "number": 1478,
+          "title": "Re-shelve claudinite-tasks by stage: src/ for the code, queue/ frozen as workflow ABI",
+          "labels": [],
+          "created_at": "2026-08-30T21:48:41Z",
+          "updated_at": "2026-08-30T21:48:41Z",
+          "comments": 0
+        },
+        {
+          "number": 1469,
+          "title": "Verify in production: rename-stranded parks close, and their task starts running again",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-08-30T20:50:15Z",
+          "updated_at": "2026-08-31T11:08:18Z",
+          "comments": 5
+        },
+        {
+          "number": 1458,
+          "title": "Verify in production: a retry re-arms Not-before to a future instant",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-decision"
+          ],
+          "created_at": "2026-08-30T15:21:26Z",
+          "updated_at": "2026-09-02T09:53:43Z",
+          "comments": 7
+        },
+        {
+          "number": 1455,
+          "title": "Verify in production: a member's executor still starts on the single ready trigger",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-decision"
+          ],
+          "created_at": "2026-08-30T14:32:18Z",
+          "updated_at": "2026-09-01T20:08:59Z",
+          "comments": 7
+        },
+        {
+          "number": 1428,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-08-30T10:41:08Z",
+          "updated_at": "2026-08-30T10:58:10Z",
+          "comments": 4
+        },
+        {
+          "number": 1399,
+          "title": "The update flow labels its PR with the retired bare `needs-human`",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-27T12:59:53Z",
+          "updated_at": "2026-08-28T01:45:17Z",
+          "comments": 1
+        },
+        {
+          "number": 1388,
+          "title": "Verify in production: fleet-usage task retired reaches Shepherd",
+          "labels": [],
+          "created_at": "2026-08-27T11:00:19Z",
+          "updated_at": "2026-08-27T11:00:19Z",
+          "comments": 0
+        },
+        {
+          "number": 1382,
+          "title": "Retire the deleted slot scheduler's leftovers — its labels, its session-side resolver, its janitor rules",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-27T09:42:56Z",
+          "updated_at": "2026-08-28T01:45:21Z",
+          "comments": 2
+        },
+        {
+          "number": 1362,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-25T06:03:19Z",
+          "updated_at": "2026-09-01T16:38:46Z",
+          "comments": 5
+        },
+        {
+          "number": 1353,
+          "title": "Delete the updates/ shims, once no member's vendored worker names them",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-08-24T19:59:06Z",
+          "updated_at": "2026-08-31T11:02:31Z",
+          "comments": 5
+        },
+        {
+          "number": 1347,
+          "title": "Merge the dispatch simulator into the scheduler codebase — the sim becomes a test harness",
+          "labels": [],
+          "created_at": "2026-08-24T19:02:36Z",
+          "updated_at": "2026-08-24T19:02:36Z",
+          "comments": 0
+        },
+        {
+          "number": 1346,
+          "title": "Move taskScheduler from a top-level settings key into the claudinite-tasks pack's own config",
+          "labels": [
+            "blocked",
+            "task:blocked",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-24T19:02:32Z",
+          "updated_at": "2026-09-02T09:54:44Z",
+          "comments": 13
+        },
+        {
+          "number": 1341,
+          "title": "Eliminate the task-janitor: fold its recovery into the scheduler run, its visibility into the dashboard",
+          "labels": [],
+          "created_at": "2026-08-24T13:33:15Z",
+          "updated_at": "2026-08-24T13:33:15Z",
+          "comments": 0
+        },
+        {
+          "number": 1333,
+          "title": "claudinite-canary-repo: the withhold lane it probes no longer exists",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-24T11:22:03Z",
+          "updated_at": "2026-08-31T11:08:58Z",
+          "comments": 1
+        },
+        {
+          "number": 1332,
+          "title": "claudinite-tasks L3: observe one full queue cycle fleet-wide from the pack paths",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T11:21:35Z",
+          "updated_at": "2026-08-25T06:13:31Z",
+          "comments": 1
+        },
+        {
+          "number": 1331,
+          "title": "claudinite-tasks L2: repoint every member's workflow run: lines and routine prompts",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T11:21:27Z",
+          "updated_at": "2026-08-25T06:13:28Z",
+          "comments": 2
+        },
+        {
+          "number": 1330,
+          "title": "claudinite-tasks L1: force fleet-baseline, and read the pack version off every stamp",
+          "labels": [],
+          "created_at": "2026-08-24T11:21:18Z",
+          "updated_at": "2026-08-24T12:48:08Z",
+          "comments": 3
+        },
+        {
+          "number": 1328,
+          "title": "claudinite-tasks extraction: delete the legacy shims (gated tail)",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T11:20:49Z",
+          "updated_at": "2026-08-25T06:13:36Z",
+          "comments": 1
+        },
+        {
+          "number": 1324,
+          "title": "L4: merge the gated tail — delete the engine/scheduler skew shims",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T09:45:50Z",
+          "updated_at": "2026-08-25T06:13:40Z",
+          "comments": 1
+        },
+        {
+          "number": 1323,
+          "title": "L3: observe one full queue cycle fleet-wide on the pack paths",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T09:45:41Z",
+          "updated_at": "2026-08-25T06:12:20Z",
+          "comments": 1
+        },
+        {
+          "number": 1322,
+          "title": "L2: manual fleet pass — repoint member workflows and routine prompts to the pack paths",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-24T09:45:35Z",
+          "updated_at": "2026-08-25T06:12:22Z",
+          "comments": 1
+        },
+        {
+          "number": 1321,
+          "title": "L1: fleet-baseline follow — every member's mount carries claudinite-tasks",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-24T09:45:26Z",
+          "updated_at": "2026-08-30T10:56:07Z",
+          "comments": 2
+        },
+        {
+          "number": 1317,
+          "title": "Extract the task execution/scheduling surface into a claudinite-tasks pack",
+          "labels": [],
+          "created_at": "2026-08-24T08:55:10Z",
+          "updated_at": "2026-08-24T11:44:36Z",
+          "comments": 4
+        },
+        {
+          "number": 1313,
+          "title": "Gate packs/* against .claudinite/local in the barriers config",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-24T07:55:56Z",
+          "updated_at": "2026-08-25T06:12:34Z",
+          "comments": 1
+        },
+        {
+          "number": 1295,
+          "title": "A member whose Actions jobs cannot start has no escalation path — report-failure dies with everything else",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-23T15:43:27Z",
+          "updated_at": "2026-08-31T11:09:02Z",
+          "comments": 1
+        },
+        {
+          "number": 1275,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-23T06:02:09Z",
+          "updated_at": "2026-08-23T06:28:41Z",
+          "comments": 4
+        },
+        {
+          "number": 1274,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-23T06:02:09Z",
+          "updated_at": "2026-08-23T06:34:39Z",
+          "comments": 4
+        },
+        {
+          "number": 1271,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T06:02:08Z",
+          "updated_at": "2026-09-01T16:38:43Z",
+          "comments": 7
+        },
+        {
+          "number": 1264,
+          "title": "Delete the two-name settings-file tolerance once no member carries .claudinite-checks.json",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-23T01:02:10Z",
+          "updated_at": "2026-08-31T11:09:06Z",
+          "comments": 1
+        },
+        {
+          "number": 1237,
+          "title": "Chain 3/3: retire the twice-daily-cron migration tolerances",
+          "labels": [
+            "blocked",
+            "task:blocked",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-22T15:11:49Z",
+          "updated_at": "2026-09-02T09:54:44Z",
+          "comments": 16
+        },
+        {
+          "number": 1236,
+          "title": "Chain 2/3: verify the twice-daily cron in production — 2 scheduler runs a day, not 24",
+          "labels": [
+            "blocked",
+            "task:origin:ad-hoc",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-08-22T15:11:30Z",
+          "updated_at": "2026-08-31T11:12:39Z",
+          "comments": 14
+        },
+        {
+          "number": 1224,
+          "title": "Eliminate avoidable GitHub-platform assumptions from packs",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-22T11:21:03Z",
+          "updated_at": "2026-08-23T17:59:53Z",
+          "comments": 2
+        },
+        {
+          "number": 1214,
+          "title": "Engine: executor drains until empty; scheduler drain job dispatches only when work is pickable",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-22T09:32:54Z",
+          "updated_at": "2026-08-25T06:13:12Z",
+          "comments": 2
+        },
+        {
+          "number": 1174,
+          "title": "fleet-baseline can only force `update` — there is no lever for any other task fleet-wide",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-21T15:19:37Z",
+          "updated_at": "2026-08-23T18:00:17Z",
+          "comments": 1
+        },
+        {
+          "number": 1169,
+          "title": "Dissolve docs/skill-usage-metrics/DESIGN.md into the packs that own its subjects",
+          "labels": [
+            "blocked",
+            "task:origin:ad-hoc",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-08-21T12:59:43Z",
+          "updated_at": "2026-08-31T11:13:06Z",
+          "comments": 9
+        },
+        {
+          "number": 1160,
+          "title": "Verify in production: an extension repo still ships to the store now the pipeline never bumps",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T11:39:52Z",
+          "updated_at": "2026-08-31T18:32:18Z",
+          "comments": 13
+        },
+        {
+          "number": 1146,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T04:23:53Z",
+          "updated_at": "2026-09-01T16:38:40Z",
+          "comments": 5
+        },
+        {
+          "number": 1137,
+          "title": "Verify in production: the next real adoption is fast, measured from its captured bootstrap log",
+          "labels": [
+            "needs-decision",
+            "claude-queued"
+          ],
+          "created_at": "2026-08-21T00:23:52Z",
+          "updated_at": "2026-09-01T10:35:55Z",
+          "comments": 3
+        },
+        {
+          "number": 1130,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-20T21:54:39Z",
+          "updated_at": "2026-09-02T09:53:44Z",
+          "comments": 0
+        },
+        {
+          "number": 1113,
+          "title": "Verify in production: members re-stamp with date-anchored versions",
+          "labels": [
+            "needs-decision",
+            "claude-queued"
+          ],
+          "created_at": "2026-08-20T14:03:32Z",
+          "updated_at": "2026-09-01T10:36:04Z",
+          "comments": 3
+        },
+        {
+          "number": 1112,
+          "title": "Verify in production: a member's un-converged workflow still starts a scheduler run through the `tick.mjs` shim",
+          "labels": [
+            "needs-decision",
+            "claude-queued"
+          ],
+          "created_at": "2026-08-20T13:45:15Z",
+          "updated_at": "2026-09-01T10:36:00Z",
+          "comments": 3
+        },
+        {
+          "number": 1106,
+          "title": "Remove the legacy single-integer version tolerance",
+          "labels": [
+            "claude-queued"
+          ],
+          "created_at": "2026-08-20T12:53:32Z",
+          "updated_at": "2026-08-20T13:33:26Z",
+          "comments": 1
+        },
+        {
+          "number": 1096,
+          "title": "Every executor run logs `could not reconcile label \"claude-automerge\": 404`",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-20T12:22:00Z",
+          "updated_at": "2026-08-28T01:43:30Z",
+          "comments": 2
+        },
+        {
+          "number": 1078,
+          "title": "Human-only: trace the request mode refusing an unauthorized mark, live",
+          "labels": [],
+          "created_at": "2026-08-19T23:20:27Z",
+          "updated_at": "2026-08-19T23:20:27Z",
+          "comments": 0
+        },
+        {
+          "number": 1073,
+          "title": "Move the Chrome Web Store release pipeline into Claudinite tasks",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-19T22:58:11Z",
+          "updated_at": "2026-08-20T09:32:59Z",
+          "comments": 8
+        },
+        {
+          "number": 1072,
+          "title": "Production code must not reference its tests — land it as a check",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-19T22:27:17Z",
+          "updated_at": "2026-08-20T05:19:19Z",
+          "comments": 1
+        },
+        {
+          "number": 1050,
+          "title": "Collapse the `needs-human` pair into one label — by 2026-08-26",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-19T15:55:27Z",
+          "updated_at": "2026-08-28T01:43:35Z",
+          "comments": 4
+        },
+        {
+          "number": 1010,
+          "title": "Ad-hoc tasks: let the owner mark an issue for Claude to implement",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-18T15:19:44Z",
+          "updated_at": "2026-08-20T05:19:12Z",
+          "comments": 7
+        },
+        {
+          "number": 1003,
+          "title": "Manual: register this fleet owner's GitHub App and deploy its token exchange",
+          "labels": [],
+          "created_at": "2026-08-18T14:14:11Z",
+          "updated_at": "2026-08-18T15:02:49Z",
+          "comments": 0
+        },
+        {
+          "number": 996,
+          "title": "dashboard: sign-in is the only route to a usable rate limit — wire it for the fleet deployment",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-18T14:01:16Z",
+          "updated_at": "2026-08-19T05:17:01Z",
+          "comments": 2
+        },
+        {
+          "number": 991,
+          "title": "Promote conformance-work-scope to blocking once the fleet carries the step",
+          "labels": [],
+          "created_at": "2026-08-18T08:46:55Z",
+          "updated_at": "2026-08-18T08:46:55Z",
+          "comments": 0
+        },
+        {
+          "number": 952,
+          "title": "bootstrap.md Part 9 names a vendored path that cannot exist",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-17T13:16:58Z",
+          "updated_at": "2026-08-18T04:27:16Z",
+          "comments": 2
+        },
+        {
+          "number": 926,
+          "title": "The declarative vocabulary has never reached a member's local pack — fleet census, and the one key that is missing",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-16T11:48:13Z",
+          "updated_at": "2026-09-01T10:35:56Z",
+          "comments": 1
+        },
+        {
+          "number": 923,
+          "title": "Fold the last comment-stripper twin into `stripComments` with a `preserveOffsets` option",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-16T11:38:08Z",
+          "updated_at": "2026-08-17T05:24:34Z",
+          "comments": 1
+        },
+        {
+          "number": 920,
+          "title": "sharedMount's path regex is mount-only, so the signal is dead in the canon home",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-16T10:53:07Z",
+          "updated_at": "2026-08-17T05:24:36Z",
+          "comments": 1
+        },
+        {
+          "number": 841,
+          "title": "pack.json migration plan: engine reader + canon conversion, then a versioned fleet migration",
+          "labels": [],
+          "created_at": "2026-08-14T18:44:22Z",
+          "updated_at": "2026-08-14T18:44:22Z",
+          "comments": 0
+        },
+        {
+          "number": 840,
+          "title": "Engine-driven format changes to consumer-held files need a first-class migration class",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-14T18:43:43Z",
+          "updated_at": "2026-08-19T05:18:51Z",
+          "comments": 2
+        },
+        {
+          "number": 766,
+          "title": "Wrap the remaining 17 RULES.md files to the 100-byte line limit",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-12T11:18:09Z",
+          "updated_at": "2026-08-18T04:27:37Z",
+          "comments": 3
+        },
+        {
+          "number": 748,
+          "title": "conformance-backlog: committed-build-artifact check (promote cannot land a check — fixtures sit outside its write surface)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-11T05:11:51Z",
+          "updated_at": "2026-08-20T05:23:08Z",
+          "comments": 2
+        },
+        {
+          "number": 722,
+          "title": "Align the website repos' release flows on one github-pages-serving standard",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-09T10:16:02Z",
+          "updated_at": "2026-08-20T05:23:05Z",
+          "comments": 3
+        },
+        {
+          "number": 590,
+          "title": "Adoption never sets the two repo settings baselining depends on — add them to bootstrap (both are scriptable)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-30T21:42:38Z",
+          "updated_at": "2026-08-19T05:18:54Z",
+          "comments": 4
+        },
+        {
+          "number": 498,
+          "title": "scheduler-workflow-shape should validate the scopes a repo's tasks actually need, not a fixed two",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-27T18:57:40Z",
+          "updated_at": "2026-07-28T07:33:37Z",
+          "comments": 1
+        },
+        {
+          "number": 409,
+          "title": "Tracking-issue freshness: keep the plan issue in sync after every merge",
+          "labels": [
+            "plan-tracking"
+          ],
+          "created_at": "2026-07-23T09:56:23Z",
+          "updated_at": "2026-07-30T04:45:55Z",
+          "comments": 1
+        },
+        {
+          "number": 334,
+          "title": "DESIGN.md trade-offs: delivery mode is now a security knob; name the vendored mount's supply-chain improvement",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-18T19:49:54Z",
+          "updated_at": "2026-08-19T05:18:55Z",
+          "comments": 5
+        },
+        {
+          "number": 276,
+          "title": "Move chrome-extension-release plumbing out of core `.github/` into the pack (vendored into consumers)",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-07-13T14:28:14Z",
+          "updated_at": "2026-08-28T01:43:26Z",
+          "comments": 6
+        },
+        {
+          "number": 239,
+          "title": "Follow-up: wire existing legacy tolerances to the migration resolver",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-12T07:21:19Z",
+          "updated_at": "2026-08-15T22:42:04Z",
+          "comments": 3
+        },
+        {
+          "number": 230,
+          "title": "Workflows pin Node 20, now deprecated on Actions runners (forced to Node 24)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-11T19:24:13Z",
+          "updated_at": "2026-08-28T01:43:25Z",
+          "comments": 8
+        },
+        {
+          "number": 223,
+          "title": "Conformance-backlog: check for chrome-extension:// in API Gateway v2 CORS AllowOrigins",
+          "labels": [
+            "conformance-backlog",
+            "quick-win"
+          ],
+          "created_at": "2026-07-11T00:35:58Z",
+          "updated_at": "2026-08-17T05:25:57Z",
+          "comments": 1
+        },
+        {
+          "number": 170,
+          "title": "Revisit: Workflow tool's interactive opt-in blocks unattended routines (waiting on Anthropic)",
+          "labels": [
+            "waiting-on-upstream",
+            "needs-decision"
+          ],
+          "created_at": "2026-07-08T08:42:41Z",
+          "updated_at": "2026-08-24T18:05:40Z",
+          "comments": 3
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/ClaudiniteCanary",
+      "openIssues": 16,
+      "issues": [
+        {
+          "number": 283,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:35Z",
+          "updated_at": "2026-08-30T09:32:57Z",
+          "comments": 4
+        },
+        {
+          "number": 247,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-24T12:41:57Z",
+          "updated_at": "2026-08-24T12:54:13Z",
+          "comments": 4
+        },
+        {
+          "number": 239,
+          "title": "converge-item.mjs has no MCP-compatible agent-lane path — a session cannot perform queue instructions.md step 6",
+          "labels": [],
+          "created_at": "2026-08-23T12:08:21Z",
+          "updated_at": "2026-08-23T12:08:21Z",
+          "comments": 0
+        },
+        {
+          "number": 235,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-23T11:54:11Z",
+          "updated_at": "2026-08-24T11:57:35Z",
+          "comments": 5
+        },
+        {
+          "number": 231,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T04:50:51Z",
+          "updated_at": "2026-09-01T16:37:47Z",
+          "comments": 5
+        },
+        {
+          "number": 181,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-22T04:45:54Z",
+          "updated_at": "2026-09-01T16:37:43Z",
+          "comments": 5
+        },
+        {
+          "number": 153,
+          "title": "claudinite-dashboard adoption: the setup steps only a human can do",
+          "labels": [],
+          "created_at": "2026-08-21T15:10:39Z",
+          "updated_at": "2026-08-21T15:11:01Z",
+          "comments": 1
+        },
+        {
+          "number": 148,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T04:50:50Z",
+          "updated_at": "2026-09-02T08:45:27Z",
+          "comments": 0
+        },
+        {
+          "number": 133,
+          "title": "[claudinite-work] claudinite-lifecycle/adopt-requested-packs",
+          "labels": [
+            "needs-human",
+            "task:agent",
+            "origin:schedule",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-19T18:11:23Z",
+          "updated_at": "2026-08-19T18:17:43Z",
+          "comments": 4
+        },
+        {
+          "number": 129,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "origin:schedule",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-19T16:43:32Z",
+          "updated_at": "2026-08-23T05:03:11Z",
+          "comments": 4
+        },
+        {
+          "number": 128,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "origin:schedule",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-19T16:43:32Z",
+          "updated_at": "2026-09-01T16:37:42Z",
+          "comments": 5
+        },
+        {
+          "number": 126,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "origin:schedule",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-19T16:43:31Z",
+          "updated_at": "2026-09-01T16:37:41Z",
+          "comments": 6
+        },
+        {
+          "number": 95,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-08-16T14:40:44Z",
+          "updated_at": "2026-08-22T04:50:50Z",
+          "comments": 4
+        },
+        {
+          "number": 47,
+          "title": "Claudinite tracker: Growth Extract",
+          "labels": [],
+          "created_at": "2026-08-10T04:56:16Z",
+          "updated_at": "2026-08-10T04:56:16Z",
+          "comments": 0
+        },
+        {
+          "number": 41,
+          "title": "Claudinite tracker: Prose to Checks",
+          "labels": [],
+          "created_at": "2026-08-09T04:40:55Z",
+          "updated_at": "2026-08-23T04:58:26Z",
+          "comments": 3
+        },
+        {
+          "number": 39,
+          "title": "Claudinite tracker: Tidy PRs",
+          "labels": [],
+          "created_at": "2026-08-09T04:37:07Z",
+          "updated_at": "2026-08-30T09:27:56Z",
+          "comments": 3
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/ClaudiniteWebsite",
+      "openIssues": 33,
+      "issues": [
+        {
+          "number": 376,
+          "title": "The site's release pipeline is a hand-rolled copy of the static-website standard, on its retired version scheme",
+          "labels": [],
+          "created_at": "2026-08-30T21:43:30Z",
+          "updated_at": "2026-08-30T21:43:30Z",
+          "comments": 0
+        },
+        {
+          "number": 366,
+          "title": "Canon patch (blocked on push scope): dedup-prune-integrity false-positives on VERSIONS.md growth",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-30T09:18:03Z",
+          "updated_at": "2026-08-30T09:18:03Z",
+          "comments": 0
+        },
+        {
+          "number": 356,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:02:09Z",
+          "updated_at": "2026-08-30T16:00:16Z",
+          "comments": 5
+        },
+        {
+          "number": 351,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:02:07Z",
+          "updated_at": "2026-08-30T09:10:33Z",
+          "comments": 4
+        },
+        {
+          "number": 348,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:02:06Z",
+          "updated_at": "2026-08-30T09:18:13Z",
+          "comments": 6
+        },
+        {
+          "number": 325,
+          "title": "Verify https://claudinite.com/ serves the live site, not a GitHub Pages error",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-27T09:04:30Z",
+          "updated_at": "2026-08-31T12:12:21Z",
+          "comments": 6
+        },
+        {
+          "number": 316,
+          "title": "Canon patch (blocked on push scope): dedup-prune-integrity flags the VERSIONS.md row growth-dedup's own task doc mandates",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-25T05:16:19Z",
+          "updated_at": "2026-08-25T05:16:19Z",
+          "comments": 0
+        },
+        {
+          "number": 308,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-25T05:01:00Z",
+          "updated_at": "2026-08-26T05:02:48Z",
+          "comments": 5
+        },
+        {
+          "number": 288,
+          "title": "Verify in production: the desk-scene hero",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-23T16:10:57Z",
+          "updated_at": "2026-08-26T05:02:39Z",
+          "comments": 6
+        },
+        {
+          "number": 285,
+          "title": "Verify in production: the redesigned site with the compounding chart",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-23T15:00:34Z",
+          "updated_at": "2026-08-26T05:02:35Z",
+          "comments": 6
+        },
+        {
+          "number": 282,
+          "title": "site/README.md links a renamed file: .claudinite-checks.json → .claudinite-settings.json",
+          "labels": [],
+          "created_at": "2026-08-23T14:50:09Z",
+          "updated_at": "2026-08-23T14:50:09Z",
+          "comments": 0
+        },
+        {
+          "number": 277,
+          "title": "converge-item.mjs can't run from a routine-fired Claude Code Web session (MCP-only GitHub access)",
+          "labels": [],
+          "created_at": "2026-08-23T13:05:29Z",
+          "updated_at": "2026-08-23T13:05:29Z",
+          "comments": 0
+        },
+        {
+          "number": 274,
+          "title": "Canon defect: converge-item.mjs cannot run session-side — this session type has no direct GitHub API access",
+          "labels": [],
+          "created_at": "2026-08-23T13:01:30Z",
+          "updated_at": "2026-08-23T13:01:30Z",
+          "comments": 0
+        },
+        {
+          "number": 270,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-23T12:59:50Z",
+          "updated_at": "2026-08-23T12:59:56Z",
+          "comments": 1
+        },
+        {
+          "number": 262,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T12:51:08Z",
+          "updated_at": "2026-09-01T16:37:59Z",
+          "comments": 5
+        },
+        {
+          "number": 260,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T12:51:07Z",
+          "updated_at": "2026-09-01T16:37:58Z",
+          "comments": 5
+        },
+        {
+          "number": 255,
+          "title": "Verify in production: reframed site live at claudinite.com",
+          "labels": [
+            "needs-human",
+            "needs-decision",
+            "task:needs-human-decision",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-23T12:44:42Z",
+          "updated_at": "2026-08-26T05:02:32Z",
+          "comments": 8
+        },
+        {
+          "number": 247,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:04:22Z",
+          "updated_at": "2026-09-02T08:52:26Z",
+          "comments": 0
+        },
+        {
+          "number": 244,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:04:21Z",
+          "updated_at": "2026-08-24T22:09:05Z",
+          "comments": 6
+        },
+        {
+          "number": 241,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:04:20Z",
+          "updated_at": "2026-09-01T16:37:57Z",
+          "comments": 5
+        },
+        {
+          "number": 239,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:04:19Z",
+          "updated_at": "2026-09-01T16:37:55Z",
+          "comments": 5
+        },
+        {
+          "number": 204,
+          "title": "Claudinite scheduler run failed",
+          "labels": [
+            "workflow-failure",
+            "needs-decision"
+          ],
+          "created_at": "2026-08-18T03:10:07Z",
+          "updated_at": "2026-08-23T13:04:17Z",
+          "comments": 2
+        },
+        {
+          "number": 192,
+          "title": "Vendored queue engine: invoke.mjs points at a missing instructions.md (and prose-to-checks skill's DESIGN.md link is also dead)",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-16T14:56:27Z",
+          "updated_at": "2026-08-18T04:08:46Z",
+          "comments": 3
+        },
+        {
+          "number": 185,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "quick-win",
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:56:59Z",
+          "updated_at": "2026-08-16T15:47:05Z",
+          "comments": 1
+        },
+        {
+          "number": 77,
+          "title": "Claudinite tracker: Tidy Branches",
+          "labels": [],
+          "created_at": "2026-08-02T04:05:56Z",
+          "updated_at": "2026-08-16T14:53:17Z",
+          "comments": 3
+        },
+        {
+          "number": 62,
+          "title": "One-time GitHub settings for the static-site release pipeline",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-01T06:18:55Z",
+          "updated_at": "2026-08-18T04:08:29Z",
+          "comments": 8
+        },
+        {
+          "number": 60,
+          "title": "Adopt the static-website pack — replace the hand-rolled deploy and version bump",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-01T06:18:19Z",
+          "updated_at": "2026-08-18T04:08:32Z",
+          "comments": 8
+        },
+        {
+          "number": 59,
+          "title": "Canon patch (blocked on push scope): executor-routine fixes for #53–#57",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-01T06:06:00Z",
+          "updated_at": "2026-08-18T04:08:35Z",
+          "comments": 9
+        },
+        {
+          "number": 57,
+          "title": "comment-classification fires on routine triggers, which are not owner comments",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-01T06:00:41Z",
+          "updated_at": "2026-08-18T04:08:38Z",
+          "comments": 9
+        },
+        {
+          "number": 55,
+          "title": "task-lifecycle's remedy tells the agent to amend an already-pushed commit",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-01T06:00:26Z",
+          "updated_at": "2026-08-18T04:08:39Z",
+          "comments": 9
+        },
+        {
+          "number": 54,
+          "title": "resolve-dispatch exit 13 renders as a failed command when it is the normal handshake",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-01T06:00:21Z",
+          "updated_at": "2026-08-23T13:04:12Z",
+          "comments": 10
+        },
+        {
+          "number": 53,
+          "title": "task-lifecycle fires on the scheduler's maintenance branch, which can never satisfy it",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-01T06:00:13Z",
+          "updated_at": "2026-08-18T04:08:44Z",
+          "comments": 9
+        },
+        {
+          "number": 44,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-07-31T07:02:29Z",
+          "updated_at": "2026-08-16T14:50:26Z",
+          "comments": 4
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/CrosswordChat",
+      "openIssues": 13,
+      "issues": [
+        {
+          "number": 352,
+          "title": "Chrome Web Store release pipeline is a generation behind the chrome-extension pack",
+          "labels": [],
+          "created_at": "2026-08-30T21:23:30Z",
+          "updated_at": "2026-08-30T21:23:30Z",
+          "comments": 0
+        },
+        {
+          "number": 307,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-24T05:03:18Z",
+          "updated_at": "2026-09-01T16:38:20Z",
+          "comments": 5
+        },
+        {
+          "number": 304,
+          "title": "Connect the Claude GitHub App: converge-item.mjs can't reach the GitHub API from a dispatched session",
+          "labels": [],
+          "created_at": "2026-08-23T14:44:54Z",
+          "updated_at": "2026-08-23T14:44:54Z",
+          "comments": 0
+        },
+        {
+          "number": 303,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T11:54:00Z",
+          "updated_at": "2026-09-01T16:38:19Z",
+          "comments": 5
+        },
+        {
+          "number": 260,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:02:49Z",
+          "updated_at": "2026-09-02T08:48:15Z",
+          "comments": 0
+        },
+        {
+          "number": 257,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:02:48Z",
+          "updated_at": "2026-09-01T16:38:17Z",
+          "comments": 5
+        },
+        {
+          "number": 256,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:02:47Z",
+          "updated_at": "2026-08-23T05:02:00Z",
+          "comments": 4
+        },
+        {
+          "number": 252,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:02:46Z",
+          "updated_at": "2026-09-01T16:38:16Z",
+          "comments": 6
+        },
+        {
+          "number": 211,
+          "title": "Recurring vitest cold-start timeout in visual-snapshots.test.js (help-page)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-17T03:27:27Z",
+          "updated_at": "2026-08-17T05:06:42Z",
+          "comments": 1
+        },
+        {
+          "number": 63,
+          "title": "Manual check: mic indicator clears on bfcache/back-forward teardown (verifies PR #62 pagehide path)",
+          "labels": [],
+          "created_at": "2026-07-19T19:36:35Z",
+          "updated_at": "2026-07-19T19:36:35Z",
+          "comments": 0
+        },
+        {
+          "number": 11,
+          "title": "Live check: mic never goes deaf after clicks; barge-in reliability (MT-13, MT-27)",
+          "labels": [],
+          "created_at": "2026-07-05T14:07:34Z",
+          "updated_at": "2026-07-05T14:07:34Z",
+          "comments": 0
+        },
+        {
+          "number": 9,
+          "title": "Live check: grid-full \"next\" moves on; \"seven across\" jumps to the clue (MT-09)",
+          "labels": [],
+          "created_at": "2026-07-05T14:07:01Z",
+          "updated_at": "2026-07-09T11:31:42Z",
+          "comments": 4
+        },
+        {
+          "number": 6,
+          "title": "Live check: penciling on forced answers works on the real page (MT-29, MT-07)",
+          "labels": [],
+          "created_at": "2026-07-05T14:06:19Z",
+          "updated_at": "2026-07-09T11:31:51Z",
+          "comments": 5
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/EdFringeNow",
+      "openIssues": 23,
+      "issues": [
+        {
+          "number": 575,
+          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-01T15:17:54Z",
+          "updated_at": "2026-09-02T09:09:59Z",
+          "comments": 5
+        },
+        {
+          "number": 535,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:07Z",
+          "updated_at": "2026-08-30T09:37:04Z",
+          "comments": 4
+        },
+        {
+          "number": 532,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:05Z",
+          "updated_at": "2026-08-30T16:00:22Z",
+          "comments": 5
+        },
+        {
+          "number": 491,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-24T12:41:59Z",
+          "updated_at": "2026-08-24T22:17:38Z",
+          "comments": 5
+        },
+        {
+          "number": 482,
+          "title": "converge-item.mjs can't run from a routine-fired session — direct api.github.com calls are blocked there",
+          "labels": [],
+          "created_at": "2026-08-23T05:27:39Z",
+          "updated_at": "2026-08-23T05:27:39Z",
+          "comments": 0
+        },
+        {
+          "number": 478,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T05:17:05Z",
+          "updated_at": "2026-09-01T16:38:29Z",
+          "comments": 6
+        },
+        {
+          "number": 443,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:15:03Z",
+          "updated_at": "2026-09-02T09:07:19Z",
+          "comments": 0
+        },
+        {
+          "number": 440,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:15:02Z",
+          "updated_at": "2026-08-24T11:57:14Z",
+          "comments": 5
+        },
+        {
+          "number": 439,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:15:01Z",
+          "updated_at": "2026-09-01T16:38:27Z",
+          "comments": 5
+        },
+        {
+          "number": 401,
+          "title": "Claudinite scheduler run failed",
+          "labels": [
+            "workflow-failure"
+          ],
+          "created_at": "2026-08-18T03:09:55Z",
+          "updated_at": "2026-08-18T03:09:55Z",
+          "comments": 0
+        },
+        {
+          "number": 382,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:57:02Z",
+          "updated_at": "2026-08-16T06:57:02Z",
+          "comments": 0
+        },
+        {
+          "number": 314,
+          "title": "Replace per-file cache TTLs with a published manifest",
+          "labels": [],
+          "created_at": "2026-08-09T13:25:38Z",
+          "updated_at": "2026-08-09T13:25:38Z",
+          "comments": 0
+        },
+        {
+          "number": 295,
+          "title": "The site lists shows edfringe has withdrawn — nothing removes them from the master",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-09T00:43:07Z",
+          "updated_at": "2026-08-09T04:57:01Z",
+          "comments": 2
+        },
+        {
+          "number": 294,
+          "title": "Prices exclude the booking fee edfringe advertises — and the recorded `fee` is wrong",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-09T00:42:46Z",
+          "updated_at": "2026-08-09T04:57:05Z",
+          "comments": 1
+        },
+        {
+          "number": 237,
+          "title": "Upstream: baselining's deliver() leaves the scheduler checkout on its maintenance branch",
+          "labels": [],
+          "created_at": "2026-08-06T16:29:04Z",
+          "updated_at": "2026-08-17T03:52:36Z",
+          "comments": 1
+        },
+        {
+          "number": 223,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-02T08:05:20Z",
+          "updated_at": "2026-08-16T15:10:15Z",
+          "comments": 3
+        },
+        {
+          "number": 164,
+          "title": "Monetization: join Booking.com + Omio and paste the IDs into shared/affiliates.js",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-29T21:45:14Z",
+          "updated_at": "2026-07-30T04:47:29Z",
+          "comments": 1
+        },
+        {
+          "number": 161,
+          "title": "Monetization: join the 4 affiliate programmes and paste the IDs into js/places.js",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-29T21:21:21Z",
+          "updated_at": "2026-07-30T04:47:26Z",
+          "comments": 2
+        },
+        {
+          "number": 143,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-07-29T04:59:26Z",
+          "updated_at": "2026-08-18T04:29:44Z",
+          "comments": 12
+        },
+        {
+          "number": 133,
+          "title": "Product requirements: two tracks (live surface, planner surface), not one",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-28T22:35:54Z",
+          "updated_at": "2026-07-29T04:59:01Z",
+          "comments": 1
+        },
+        {
+          "number": 70,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-21T10:04:42Z",
+          "updated_at": "2026-07-29T04:59:06Z",
+          "comments": 3
+        },
+        {
+          "number": 17,
+          "title": "Claudinite handoff: 2026-07-01 — fixed-seed sort stabilizes pagination against a paginated API",
+          "labels": [
+            "claudinite-handoff",
+            "quick-win",
+            "needs-decision"
+          ],
+          "created_at": "2026-07-01T01:05:47Z",
+          "updated_at": "2026-07-27T05:40:25Z",
+          "comments": 2
+        },
+        {
+          "number": 6,
+          "title": "[Prod] Real travel times (routing), not straight-line distance — incl. map-provider pricing review",
+          "labels": [
+            "enhancement",
+            "production",
+            "needs-decision"
+          ],
+          "created_at": "2026-06-24T15:57:43Z",
+          "updated_at": "2026-08-18T04:29:02Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/GoogleCalendarEventCreator",
+      "openIssues": 35,
+      "issues": [
+        {
+          "number": 1133,
+          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-01T15:17:59Z",
+          "updated_at": "2026-09-02T08:57:48Z",
+          "comments": 5
+        },
+        {
+          "number": 1129,
+          "title": "[claudinite-work] gcec/create-extractor",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-01T09:31:23Z",
+          "updated_at": "2026-09-01T09:49:10Z",
+          "comments": 4
+        },
+        {
+          "number": 1118,
+          "title": "Event source request - www.tzavta.co.il",
+          "labels": [
+            "extractor-request",
+            "agent-running"
+          ],
+          "created_at": "2026-08-31T11:43:01Z",
+          "updated_at": "2026-09-01T09:48:18Z",
+          "comments": 1
+        },
+        {
+          "number": 1103,
+          "title": "Chrome Web Store release pipeline is a generation behind the chrome-extension pack",
+          "labels": [],
+          "created_at": "2026-08-30T21:18:11Z",
+          "updated_at": "2026-08-30T21:18:11Z",
+          "comments": 0
+        },
+        {
+          "number": 1092,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:50Z",
+          "updated_at": "2026-08-30T16:00:21Z",
+          "comments": 4
+        },
+        {
+          "number": 1089,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:49Z",
+          "updated_at": "2026-08-30T09:29:19Z",
+          "comments": 4
+        },
+        {
+          "number": 1088,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:48Z",
+          "updated_at": "2026-08-30T16:00:19Z",
+          "comments": 4
+        },
+        {
+          "number": 1085,
+          "title": "[claudinite-work] basics/ci-performance",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:47Z",
+          "updated_at": "2026-08-30T16:00:17Z",
+          "comments": 4
+        },
+        {
+          "number": 1076,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-26T05:03:00Z",
+          "updated_at": "2026-09-01T16:38:34Z",
+          "comments": 5
+        },
+        {
+          "number": 1066,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-25T05:02:19Z",
+          "updated_at": "2026-08-26T05:05:35Z",
+          "comments": 5
+        },
+        {
+          "number": 1041,
+          "title": "prose-to-checks conversion backlog: gcec pack",
+          "labels": [],
+          "created_at": "2026-08-23T05:06:36Z",
+          "updated_at": "2026-08-25T05:07:24Z",
+          "comments": 4
+        },
+        {
+          "number": 1038,
+          "title": "[claudinite-work] gcec/generic-extractor-improvements",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T05:00:55Z",
+          "updated_at": "2026-09-01T16:38:32Z",
+          "comments": 5
+        },
+        {
+          "number": 1037,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "needs-human",
+            "task:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T05:00:55Z",
+          "updated_at": "2026-08-23T05:11:01Z",
+          "comments": 4
+        },
+        {
+          "number": 983,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:03:07Z",
+          "updated_at": "2026-09-02T08:54:07Z",
+          "comments": 0
+        },
+        {
+          "number": 980,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:03:05Z",
+          "updated_at": "2026-08-24T22:09:15Z",
+          "comments": 5
+        },
+        {
+          "number": 979,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:03:05Z",
+          "updated_at": "2026-09-01T16:38:31Z",
+          "comments": 5
+        },
+        {
+          "number": 939,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-08-17T05:58:48Z",
+          "updated_at": "2026-08-18T05:03:12Z",
+          "comments": 2
+        },
+        {
+          "number": 829,
+          "title": "Claudinite tracker: Tidy Branches",
+          "labels": [],
+          "created_at": "2026-08-02T04:51:05Z",
+          "updated_at": "2026-08-23T05:14:18Z",
+          "comments": 3
+        },
+        {
+          "number": 826,
+          "title": "Claudinite tracker: Tidy PRs",
+          "labels": [],
+          "created_at": "2026-08-02T04:49:27Z",
+          "updated_at": "2026-08-23T05:06:31Z",
+          "comments": 3
+        },
+        {
+          "number": 749,
+          "title": "product-requirements/README.md cites dev/procedures/technicalGotchas.md, which no longer exists",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-26T04:19:16Z",
+          "updated_at": "2026-08-16T13:51:34Z",
+          "comments": 14
+        },
+        {
+          "number": 748,
+          "title": "Scheduler appears to be firing multiple concurrent executor sessions against the same dispatch issues",
+          "labels": [
+            "needs-human"
+          ],
+          "created_at": "2026-07-26T04:15:47Z",
+          "updated_at": "2026-08-15T04:57:08Z",
+          "comments": 4
+        },
+        {
+          "number": 744,
+          "title": "Untracked .claude/worktrees/ dirs trip the Stop hook's untracked-files check",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-26T04:11:36Z",
+          "updated_at": "2026-08-16T13:51:34Z",
+          "comments": 15
+        },
+        {
+          "number": 727,
+          "title": ".gitignore misses the Agent tool's isolated-worktree scratch dir",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-24T06:51:48Z",
+          "updated_at": "2026-08-17T05:57:28Z",
+          "comments": 15
+        },
+        {
+          "number": 724,
+          "title": "Untracked .claude/worktrees/ noise from worktree-isolated background agents",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-24T06:50:27Z",
+          "updated_at": "2026-08-17T05:57:31Z",
+          "comments": 15
+        },
+        {
+          "number": 699,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-21T10:04:45Z",
+          "updated_at": "2026-08-18T05:01:44Z",
+          "comments": 16
+        },
+        {
+          "number": 692,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-07-19T01:26:59Z",
+          "updated_at": "2026-08-16T13:23:50Z",
+          "comments": 7
+        },
+        {
+          "number": 679,
+          "title": "Proof of concept: move local capture into Claudinite local packs (.claudinite/local_packs/)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-15T08:38:01Z",
+          "updated_at": "2026-08-16T13:51:52Z",
+          "comments": 17
+        },
+        {
+          "number": 648,
+          "title": "Add a Claudinite conformance-checks job to CI (backstop for the Stop hook)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-07T12:12:24Z",
+          "updated_at": "2026-08-17T05:57:36Z",
+          "comments": 17
+        },
+        {
+          "number": 617,
+          "title": "Generate the project's working-instructions doc per Claudinite's generator prompt",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-04T17:37:05Z",
+          "updated_at": "2026-08-17T05:58:00Z",
+          "comments": 17
+        },
+        {
+          "number": 616,
+          "title": "Generate the project's working-instructions doc (category: Chrome MV3 extension)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-04T17:29:27Z",
+          "updated_at": "2026-08-16T13:51:37Z",
+          "comments": 17
+        },
+        {
+          "number": 592,
+          "title": "Superseded local instructions (optimize-procedures)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-30T14:19:02Z",
+          "updated_at": "2026-08-16T13:51:09Z",
+          "comments": 14
+        },
+        {
+          "number": 438,
+          "title": "Add a periodic \"edge-case review\" routine for the UI requirements",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-20T11:03:51Z",
+          "updated_at": "2026-08-16T13:50:57Z",
+          "comments": 14
+        },
+        {
+          "number": 435,
+          "title": "Faithfully verify the behavioral UI leaves (events-view-actions stubs the boundary)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-20T09:43:28Z",
+          "updated_at": "2026-08-16T13:51:09Z",
+          "comments": 15
+        },
+        {
+          "number": 430,
+          "title": "Add a daily automated UI-test improvement routine (with its own doc + tracking issue)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-19T21:48:59Z",
+          "updated_at": "2026-08-16T13:50:58Z",
+          "comments": 14
+        },
+        {
+          "number": 366,
+          "title": "🤖 Auto-Improvements Tracker - Fallback Extractor Coverage",
+          "labels": [],
+          "created_at": "2026-06-18T13:25:54Z",
+          "updated_at": "2026-08-09T05:00:34Z",
+          "comments": 16
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/gRatio",
+      "openIssues": 1,
+      "issues": [
+        {
+          "number": 45,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-07-29T06:52:10Z",
+          "updated_at": "2026-07-30T06:49:47Z",
+          "comments": 2
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/HelloWorldFlutterApp",
+      "openIssues": 2,
+      "issues": [
+        {
+          "number": 26,
+          "title": "Enable \"Allow auto-merge\" in repository settings (blocks Claudinite auto-merge delivery)",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-23T01:09:05Z",
+          "updated_at": "2026-07-27T05:31:58Z",
+          "comments": 1
+        },
+        {
+          "number": 24,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-07-21T10:04:54Z",
+          "updated_at": "2026-07-26T22:39:47Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/hitbut",
+      "openIssues": 27,
+      "issues": [
+        {
+          "number": 153,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:28Z",
+          "updated_at": "2026-08-30T15:59:53Z",
+          "comments": 4
+        },
+        {
+          "number": 152,
+          "title": "[claudinite-work] tidy-repo/improve-comments",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:28Z",
+          "updated_at": "2026-08-30T09:29:21Z",
+          "comments": 4
+        },
+        {
+          "number": 151,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:27Z",
+          "updated_at": "2026-08-30T15:59:51Z",
+          "comments": 4
+        },
+        {
+          "number": 147,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:26Z",
+          "updated_at": "2026-08-30T15:59:49Z",
+          "comments": 4
+        },
+        {
+          "number": 135,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-26T05:15:32Z",
+          "updated_at": "2026-08-26T05:21:38Z",
+          "comments": 4
+        },
+        {
+          "number": 125,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-25T05:16:11Z",
+          "updated_at": "2026-09-01T16:38:59Z",
+          "comments": 5
+        },
+        {
+          "number": 108,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-24T05:24:12Z",
+          "updated_at": "2026-08-24T22:07:35Z",
+          "comments": 4
+        },
+        {
+          "number": 87,
+          "title": "Verify in production: the operator console is published and reads the live Worker",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-23T12:30:07Z",
+          "updated_at": "2026-08-25T17:20:30Z",
+          "comments": 5
+        },
+        {
+          "number": 86,
+          "title": "Turn on GitHub Pages for the operator console (human-only steps)",
+          "labels": [],
+          "created_at": "2026-08-23T12:24:59Z",
+          "updated_at": "2026-08-23T12:49:28Z",
+          "comments": 0
+        },
+        {
+          "number": 83,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-23T12:06:59Z",
+          "updated_at": "2026-08-23T12:51:09Z",
+          "comments": 2
+        },
+        {
+          "number": 79,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-23T11:54:48Z",
+          "updated_at": "2026-08-23T11:55:59Z",
+          "comments": 3
+        },
+        {
+          "number": 76,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-23T11:54:47Z",
+          "updated_at": "2026-08-23T11:59:09Z",
+          "comments": 3
+        },
+        {
+          "number": 74,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-23T11:54:46Z",
+          "updated_at": "2026-08-23T11:58:22Z",
+          "comments": 3
+        },
+        {
+          "number": 70,
+          "title": "Move the deploy off GitHub Actions and onto Claudinite tasks",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-23T11:48:17Z",
+          "updated_at": "2026-08-25T17:33:08Z",
+          "comments": 5
+        },
+        {
+          "number": 62,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-23T11:02:07Z",
+          "updated_at": "2026-09-02T09:01:18Z",
+          "comments": 0
+        },
+        {
+          "number": 60,
+          "title": "Adopt canon pack: cloudflare-workers",
+          "labels": [],
+          "created_at": "2026-08-23T06:30:54Z",
+          "updated_at": "2026-08-23T06:30:54Z",
+          "comments": 0
+        },
+        {
+          "number": 36,
+          "title": "The deploy has no smoke test and no rollback path",
+          "labels": [],
+          "created_at": "2026-08-22T00:06:06Z",
+          "updated_at": "2026-08-23T03:25:20Z",
+          "comments": 2
+        },
+        {
+          "number": 34,
+          "title": "Implement the utterance/stance architecture: ingestion, embeddings, backfill",
+          "labels": [],
+          "created_at": "2026-08-21T23:13:30Z",
+          "updated_at": "2026-08-22T15:20:27Z",
+          "comments": 1
+        },
+        {
+          "number": 33,
+          "title": "Nothing names an emergent cluster, so every subject chip is empty",
+          "labels": [],
+          "created_at": "2026-08-21T20:17:44Z",
+          "updated_at": "2026-08-23T03:21:03Z",
+          "comments": 1
+        },
+        {
+          "number": 32,
+          "title": "Reconnaissance and the first two sources",
+          "labels": [],
+          "created_at": "2026-08-21T20:17:32Z",
+          "updated_at": "2026-08-21T20:17:32Z",
+          "comments": 0
+        },
+        {
+          "number": 28,
+          "title": "Honest gaps: what green in the requirements harness does not yet prove",
+          "labels": [],
+          "created_at": "2026-08-21T16:37:06Z",
+          "updated_at": "2026-08-23T03:20:28Z",
+          "comments": 1
+        },
+        {
+          "number": 24,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-21T14:55:24Z",
+          "updated_at": "2026-08-21T14:55:29Z",
+          "comments": 1
+        },
+        {
+          "number": 21,
+          "title": "Adoption hand-over: the two settings no session can reach",
+          "labels": [],
+          "created_at": "2026-08-21T12:40:00Z",
+          "updated_at": "2026-08-25T17:25:42Z",
+          "comments": 0
+        },
+        {
+          "number": 20,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-21T12:14:47Z",
+          "updated_at": "2026-08-23T11:06:25Z",
+          "comments": 3
+        },
+        {
+          "number": 17,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-21T12:14:46Z",
+          "updated_at": "2026-08-23T11:07:41Z",
+          "comments": 3
+        },
+        {
+          "number": 13,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-21T12:14:44Z",
+          "updated_at": "2026-08-23T11:04:06Z",
+          "comments": 3
+        },
+        {
+          "number": 6,
+          "title": "Verify in production: the executor hand-off actually dispatches a work item",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-08-21T12:13:51Z",
+          "updated_at": "2026-08-25T17:25:14Z",
+          "comments": 6
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/LaughCounter",
+      "openIssues": 8,
+      "issues": [
+        {
+          "number": 364,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-01T09:37:21Z",
+          "updated_at": "2026-09-01T09:38:16Z",
+          "comments": 3
+        },
+        {
+          "number": 343,
+          "title": "This repo fingerprints the `macos` pack but does not declare it, and its DMG release plumbing is unowned",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-30T21:44:01Z",
+          "updated_at": "2026-08-31T09:51:16Z",
+          "comments": 1
+        },
+        {
+          "number": 331,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:18:41Z",
+          "updated_at": "2026-08-30T09:31:12Z",
+          "comments": 4
+        },
+        {
+          "number": 254,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:14:50Z",
+          "updated_at": "2026-09-02T09:07:11Z",
+          "comments": 0
+        },
+        {
+          "number": 239,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "origin:schedule",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-19T16:03:36Z",
+          "updated_at": "2026-09-01T16:38:50Z",
+          "comments": 5
+        },
+        {
+          "number": 201,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:57:05Z",
+          "updated_at": "2026-08-17T04:28:26Z",
+          "comments": 1
+        },
+        {
+          "number": 174,
+          "title": "Distribute LaughCounter via Homebrew Cask (own tap)",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-13T19:33:58Z",
+          "updated_at": "2026-08-17T04:28:29Z",
+          "comments": 2
+        },
+        {
+          "number": 26,
+          "title": "[needs-human] Enable Developer ID signing + notarization for the DMG",
+          "labels": [
+            "needs-human"
+          ],
+          "created_at": "2026-07-22T14:08:12Z",
+          "updated_at": "2026-08-17T04:28:30Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/MissingBulbWebsite",
+      "openIssues": 25,
+      "issues": [
+        {
+          "number": 298,
+          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-01T15:18:11Z",
+          "updated_at": "2026-09-02T09:02:14Z",
+          "comments": 5
+        },
+        {
+          "number": 276,
+          "title": "The site's release pipeline is a hand-rolled copy of the static-website standard, on its retired version scheme",
+          "labels": [],
+          "created_at": "2026-08-30T21:43:43Z",
+          "updated_at": "2026-08-30T21:43:43Z",
+          "comments": 0
+        },
+        {
+          "number": 266,
+          "title": "[claudinite-work] tidy-repo/improve-comments",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:25Z",
+          "updated_at": "2026-08-30T16:00:19Z",
+          "comments": 4
+        },
+        {
+          "number": 263,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:24Z",
+          "updated_at": "2026-08-30T09:27:11Z",
+          "comments": 4
+        },
+        {
+          "number": 262,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:23Z",
+          "updated_at": "2026-08-30T16:00:17Z",
+          "comments": 4
+        },
+        {
+          "number": 260,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:22Z",
+          "updated_at": "2026-08-30T16:00:15Z",
+          "comments": 5
+        },
+        {
+          "number": 240,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-25T05:09:55Z",
+          "updated_at": "2026-08-26T05:10:14Z",
+          "comments": 6
+        },
+        {
+          "number": 238,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-25T05:09:55Z",
+          "updated_at": "2026-09-01T16:38:13Z",
+          "comments": 5
+        },
+        {
+          "number": 227,
+          "title": "Agent sessions can't converge Claudinite work items — converge-item.mjs needs direct GitHub REST, sessions are MCP-only",
+          "labels": [],
+          "created_at": "2026-08-24T14:14:14Z",
+          "updated_at": "2026-08-25T05:19:16Z",
+          "comments": 2
+        },
+        {
+          "number": 220,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-24T13:57:39Z",
+          "updated_at": "2026-09-01T16:38:10Z",
+          "comments": 6
+        },
+        {
+          "number": 217,
+          "title": "Claudinite scheduler fails at job start on every run — the mount has been frozen since 2026-08-21",
+          "labels": [],
+          "created_at": "2026-08-23T15:43:07Z",
+          "updated_at": "2026-08-23T15:43:07Z",
+          "comments": 0
+        },
+        {
+          "number": 211,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:11:17Z",
+          "updated_at": "2026-09-02T08:59:53Z",
+          "comments": 0
+        },
+        {
+          "number": 208,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:11:16Z",
+          "updated_at": "2026-08-25T05:25:05Z",
+          "comments": 6
+        },
+        {
+          "number": 207,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:11:15Z",
+          "updated_at": "2026-09-01T16:38:05Z",
+          "comments": 7
+        },
+        {
+          "number": 203,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T19:11:14Z",
+          "updated_at": "2026-09-01T16:38:03Z",
+          "comments": 7
+        },
+        {
+          "number": 169,
+          "title": "core pack required by basics but never materialized in .claudinite-checks.json",
+          "labels": [],
+          "created_at": "2026-08-17T02:16:36Z",
+          "updated_at": "2026-08-17T02:16:36Z",
+          "comments": 0
+        },
+        {
+          "number": 164,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:57:07Z",
+          "updated_at": "2026-08-16T06:57:07Z",
+          "comments": 0
+        },
+        {
+          "number": 160,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "origin:schedule"
+          ],
+          "created_at": "2026-08-16T02:09:38Z",
+          "updated_at": "2026-08-17T04:23:43Z",
+          "comments": 10
+        },
+        {
+          "number": 60,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-02T05:10:53Z",
+          "updated_at": "2026-08-16T15:04:24Z",
+          "comments": 3
+        },
+        {
+          "number": 55,
+          "title": "Claudinite tracker: Tidy Branches",
+          "labels": [],
+          "created_at": "2026-08-02T05:06:36Z",
+          "updated_at": "2026-08-16T15:05:08Z",
+          "comments": 3
+        },
+        {
+          "number": 54,
+          "title": "Claudinite tracker: Growth Dedup",
+          "labels": [],
+          "created_at": "2026-08-02T05:05:56Z",
+          "updated_at": "2026-08-16T14:08:53Z",
+          "comments": 3
+        },
+        {
+          "number": 51,
+          "title": "Claudinite tracker: Tidy PRs",
+          "labels": [],
+          "created_at": "2026-08-02T05:04:45Z",
+          "updated_at": "2026-08-09T04:54:18Z",
+          "comments": 2
+        },
+        {
+          "number": 40,
+          "title": "One-time GitHub settings for the static-site release pipeline",
+          "labels": [
+            "blocked"
+          ],
+          "created_at": "2026-08-01T06:17:18Z",
+          "updated_at": "2026-08-15T04:08:58Z",
+          "comments": 5
+        },
+        {
+          "number": 38,
+          "title": "Adopt the static-website pack — replace the hand-rolled deploy and version bump",
+          "labels": [],
+          "created_at": "2026-08-01T06:16:42Z",
+          "updated_at": "2026-08-15T04:08:54Z",
+          "comments": 4
+        },
+        {
+          "number": 28,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-07-31T05:08:54Z",
+          "updated_at": "2026-08-15T04:09:18Z",
+          "comments": 10
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/Shepherd",
+      "openIssues": 22,
+      "issues": [
+        {
+          "number": 415,
+          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-02T11:55:32Z",
+          "updated_at": "2026-09-02T11:56:05Z",
+          "comments": 1
+        },
+        {
+          "number": 411,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-baseline",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-02T10:58:32Z",
+          "updated_at": "2026-09-02T11:19:32Z",
+          "comments": 3
+        },
+        {
+          "number": 396,
+          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-01T15:18:48Z",
+          "updated_at": "2026-09-02T08:47:06Z",
+          "comments": 5
+        },
+        {
+          "number": 395,
+          "title": "Fleet: file ad-hoc tasks to align every member's local packs to the writing-pack-prose convention",
+          "labels": [],
+          "created_at": "2026-09-01T15:17:21Z",
+          "updated_at": "2026-09-01T15:19:12Z",
+          "comments": 0
+        },
+        {
+          "number": 352,
+          "title": "Turn dashboard sign-in on: register the GitHub App, then run deploy-oauth-exchange",
+          "labels": [],
+          "created_at": "2026-08-30T16:12:09Z",
+          "updated_at": "2026-09-02T11:30:36Z",
+          "comments": 0
+        },
+        {
+          "number": 338,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:59Z",
+          "updated_at": "2026-08-30T16:00:02Z",
+          "comments": 4
+        },
+        {
+          "number": 337,
+          "title": "[claudinite-work] tidy-repo/improve-comments",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:59Z",
+          "updated_at": "2026-08-30T09:26:21Z",
+          "comments": 4
+        },
+        {
+          "number": 333,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:57Z",
+          "updated_at": "2026-08-30T09:28:10Z",
+          "comments": 4
+        },
+        {
+          "number": 332,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:57Z",
+          "updated_at": "2026-08-30T09:33:11Z",
+          "comments": 4
+        },
+        {
+          "number": 331,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:56Z",
+          "updated_at": "2026-08-30T15:59:56Z",
+          "comments": 4
+        },
+        {
+          "number": 329,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:15:56Z",
+          "updated_at": "2026-08-30T16:00:00Z",
+          "comments": 5
+        },
+        {
+          "number": 212,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-23T04:52:14Z",
+          "updated_at": "2026-08-23T12:06:25Z",
+          "comments": 6
+        },
+        {
+          "number": 209,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:needs-human-action"
+          ],
+          "created_at": "2026-08-23T04:52:13Z",
+          "updated_at": "2026-08-23T12:06:14Z",
+          "comments": 6
+        },
+        {
+          "number": 205,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-add-missing-packs",
+          "labels": [
+            "needs-human",
+            "task:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T04:52:12Z",
+          "updated_at": "2026-08-23T04:56:09Z",
+          "comments": 2
+        },
+        {
+          "number": 169,
+          "title": "Claudinite mount has fallen behind on missingbulb/vascularcoloring",
+          "labels": [
+            "fleet-drift"
+          ],
+          "created_at": "2026-08-22T04:48:10Z",
+          "updated_at": "2026-09-01T09:22:45Z",
+          "comments": 4
+        },
+        {
+          "number": 137,
+          "title": "The dashboard's morning-brief panel is off, on the repo that writes the briefs",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-21T15:07:48Z",
+          "updated_at": "2026-08-22T04:53:08Z",
+          "comments": 1
+        },
+        {
+          "number": 127,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T04:52:05Z",
+          "updated_at": "2026-09-02T11:55:16Z",
+          "comments": 0
+        },
+        {
+          "number": 117,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-21T03:14:23Z",
+          "updated_at": "2026-09-01T16:38:57Z",
+          "comments": 5
+        },
+        {
+          "number": 94,
+          "title": "Claudinite mount has fallen behind on missingbulb/laughcounter",
+          "labels": [
+            "fleet-drift"
+          ],
+          "created_at": "2026-08-20T05:46:01Z",
+          "updated_at": "2026-09-01T09:22:43Z",
+          "comments": 6
+        },
+        {
+          "number": 91,
+          "title": "Claudinite mount has fallen behind on missingbulb/crosswordchat",
+          "labels": [
+            "fleet-drift"
+          ],
+          "created_at": "2026-08-20T05:46:00Z",
+          "updated_at": "2026-09-01T09:22:42Z",
+          "comments": 6
+        },
+        {
+          "number": 90,
+          "title": "Claudinite mount has fallen behind on missingbulb/claudinitewebsite",
+          "labels": [
+            "fleet-drift"
+          ],
+          "created_at": "2026-08-20T05:45:59Z",
+          "updated_at": "2026-09-01T09:22:41Z",
+          "comments": 6
+        },
+        {
+          "number": 3,
+          "title": "Claudinite adoption: the setup steps only a human can do",
+          "labels": [],
+          "created_at": "2026-08-17T12:37:56Z",
+          "updated_at": "2026-08-19T14:46:21Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/ShoutsAndWhispers",
+      "openIssues": 6,
+      "issues": [
+        {
+          "number": 344,
+          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-01T15:18:18Z",
+          "updated_at": "2026-09-02T09:09:45Z",
+          "comments": 5
+        },
+        {
+          "number": 273,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-23T05:16:12Z",
+          "updated_at": "2026-09-01T16:39:00Z",
+          "comments": 5
+        },
+        {
+          "number": 201,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T03:37:46Z",
+          "updated_at": "2026-09-02T09:06:33Z",
+          "comments": 0
+        },
+        {
+          "number": 158,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:57:08Z",
+          "updated_at": "2026-08-16T06:57:08Z",
+          "comments": 0
+        },
+        {
+          "number": 99,
+          "title": "Get the app running on Appetize.io (browser-based device preview)",
+          "labels": [],
+          "created_at": "2026-08-07T12:59:31Z",
+          "updated_at": "2026-08-07T12:59:31Z",
+          "comments": 0
+        },
+        {
+          "number": 10,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-21T10:05:20Z",
+          "updated_at": "2026-07-30T04:44:41Z",
+          "comments": 2
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/TLDR",
+      "openIssues": 21,
+      "issues": [
+        {
+          "number": 401,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:07Z",
+          "updated_at": "2026-08-30T16:00:04Z",
+          "comments": 4
+        },
+        {
+          "number": 397,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:05Z",
+          "updated_at": "2026-08-30T09:30:39Z",
+          "comments": 4
+        },
+        {
+          "number": 394,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:04Z",
+          "updated_at": "2026-08-30T16:00:02Z",
+          "comments": 5
+        },
+        {
+          "number": 367,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-24T12:42:05Z",
+          "updated_at": "2026-08-24T22:17:46Z",
+          "comments": 5
+        },
+        {
+          "number": 339,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T19:14:03Z",
+          "updated_at": "2026-09-02T09:06:14Z",
+          "comments": 0
+        },
+        {
+          "number": 336,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:needs-human-decision"
+          ],
+          "created_at": "2026-08-21T19:14:02Z",
+          "updated_at": "2026-08-24T11:57:35Z",
+          "comments": 5
+        },
+        {
+          "number": 282,
+          "title": "Adopt the canon packs this repo's stack matches but never declared: `aws-sam` and `google-identity`",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-08-16T14:09:22Z",
+          "updated_at": "2026-08-16T15:02:44Z",
+          "comments": 1
+        },
+        {
+          "number": 280,
+          "title": "Claudinite: queue/instructions.md (and its DESIGN.md) are missing from the vendored mount",
+          "labels": [],
+          "created_at": "2026-08-16T14:04:16Z",
+          "updated_at": "2026-08-16T14:04:16Z",
+          "comments": 0
+        },
+        {
+          "number": 275,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "origin:schedule"
+          ],
+          "created_at": "2026-08-16T02:10:56Z",
+          "updated_at": "2026-08-17T04:26:02Z",
+          "comments": 11
+        },
+        {
+          "number": 245,
+          "title": "chrome-release-vendoring materialize would delete the root-package.json version-align step (PR #241)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-08-12T23:13:21Z",
+          "updated_at": "2026-08-13T05:28:36Z",
+          "comments": 1
+        },
+        {
+          "number": 179,
+          "title": "Claudinite tracker: Tidy PRs",
+          "labels": [],
+          "created_at": "2026-08-02T05:05:08Z",
+          "updated_at": "2026-08-16T15:02:41Z",
+          "comments": 2
+        },
+        {
+          "number": 142,
+          "title": "Claudinite tracker: Tidy Issues",
+          "labels": [],
+          "created_at": "2026-07-29T04:58:28Z",
+          "updated_at": "2026-08-16T15:05:23Z",
+          "comments": 14
+        },
+        {
+          "number": 104,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-21T10:04:47Z",
+          "updated_at": "2026-07-26T21:47:23Z",
+          "comments": 1
+        },
+        {
+          "number": 94,
+          "title": "⚠️ Workflow failing: Release: Daily Auto-Release — 2026-07-13 (run 29229001858)",
+          "labels": [
+            "workflow-failure"
+          ],
+          "created_at": "2026-07-13T06:27:41Z",
+          "updated_at": "2026-08-15T04:16:53Z",
+          "comments": 14
+        },
+        {
+          "number": 93,
+          "title": "⚠️ Workflow failing: Release: Publish to Chrome Web Store — 2026-07-13 (run 29229001858)",
+          "labels": [
+            "workflow-failure"
+          ],
+          "created_at": "2026-07-13T06:27:18Z",
+          "updated_at": "2026-08-15T04:16:55Z",
+          "comments": 14
+        },
+        {
+          "number": 51,
+          "title": "Daily routine: incrementally improve the executable-requirements suite (gap-finder + breakdown + show-the-result auditor)",
+          "labels": [],
+          "created_at": "2026-07-01T12:19:01Z",
+          "updated_at": "2026-07-01T12:22:25Z",
+          "comments": 1
+        },
+        {
+          "number": 50,
+          "title": "Server integration testing via an in-process fake API Gateway (the server's `fake-chrome`)",
+          "labels": [],
+          "created_at": "2026-07-01T12:18:39Z",
+          "updated_at": "2026-07-01T12:22:21Z",
+          "comments": 1
+        },
+        {
+          "number": 42,
+          "title": "Side panel ignores the server's nextToken — only the first 50 comments are reachable",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-06-30T22:42:55Z",
+          "updated_at": "2026-07-26T21:47:38Z",
+          "comments": 1
+        },
+        {
+          "number": 38,
+          "title": "Client-side log shipping to AWS (POST /logs → CloudWatch)",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-30T22:35:47Z",
+          "updated_at": "2026-08-01T05:04:02Z",
+          "comments": 1
+        },
+        {
+          "number": 23,
+          "title": "Consider anonymous or pseudonymous comments",
+          "labels": [
+            "needs-decision"
+          ],
+          "created_at": "2026-06-29T17:20:30Z",
+          "updated_at": "2026-08-01T05:04:00Z",
+          "comments": 2
+        },
+        {
+          "number": 17,
+          "title": "Replace placeholder extension icons with real branding",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-06-29T16:35:35Z",
+          "updated_at": "2026-07-16T00:26:09Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/VascularColoring",
+      "openIssues": 13,
+      "issues": [
+        {
+          "number": 298,
+          "title": "[claudinite-work] tidy-repo/tidy-prs",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:10Z",
+          "updated_at": "2026-08-30T16:00:27Z",
+          "comments": 4
+        },
+        {
+          "number": 294,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:08Z",
+          "updated_at": "2026-08-30T16:00:25Z",
+          "comments": 4
+        },
+        {
+          "number": 258,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:needs-human-approval"
+          ],
+          "created_at": "2026-08-24T11:56:39Z",
+          "updated_at": "2026-08-24T12:07:55Z",
+          "comments": 4
+        },
+        {
+          "number": 254,
+          "title": "[claudinite-work] tidy-repo/tidy-issues",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-24T05:00:01Z",
+          "updated_at": "2026-09-01T16:37:33Z",
+          "comments": 5
+        },
+        {
+          "number": 171,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T04:50:39Z",
+          "updated_at": "2026-09-02T08:45:43Z",
+          "comments": 0
+        },
+        {
+          "number": 159,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-20T03:55:08Z",
+          "updated_at": "2026-09-01T16:37:31Z",
+          "comments": 5
+        },
+        {
+          "number": 158,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-20T03:55:08Z",
+          "updated_at": "2026-09-01T16:37:29Z",
+          "comments": 5
+        },
+        {
+          "number": 156,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-20T03:55:08Z",
+          "updated_at": "2026-09-01T16:37:28Z",
+          "comments": 5
+        },
+        {
+          "number": 154,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "needs-human",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-08-20T03:55:07Z",
+          "updated_at": "2026-09-01T16:37:26Z",
+          "comments": 5
+        },
+        {
+          "number": 125,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs"
+          ],
+          "created_at": "2026-08-16T06:57:10Z",
+          "updated_at": "2026-08-16T06:57:10Z",
+          "comments": 0
+        },
+        {
+          "number": 86,
+          "title": "Claudinite tracker: Tidy Branches",
+          "labels": [],
+          "created_at": "2026-08-09T04:39:28Z",
+          "updated_at": "2026-08-23T04:59:16Z",
+          "comments": 3
+        },
+        {
+          "number": 85,
+          "title": "Claudinite tracker: Tidy PRs",
+          "labels": [],
+          "created_at": "2026-08-09T04:37:27Z",
+          "updated_at": "2026-08-23T04:56:13Z",
+          "comments": 2
+        },
+        {
+          "number": 8,
+          "title": "Re-paste the Claudinite environment Setup script",
+          "labels": [
+            "quick-win"
+          ],
+          "created_at": "2026-07-21T10:05:15Z",
+          "updated_at": "2026-07-26T23:14:30Z",
+          "comments": 1
+        }
+      ]
+    },
+    {
+      "repo": "missingbulb/WIP",
+      "openIssues": 13,
+      "issues": [
+        {
+          "number": 130,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:11Z",
+          "updated_at": "2026-08-30T16:00:28Z",
+          "comments": 4
+        },
+        {
+          "number": 127,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:10Z",
+          "updated_at": "2026-08-30T09:30:04Z",
+          "comments": 4
+        },
+        {
+          "number": 126,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:10Z",
+          "updated_at": "2026-08-30T16:00:21Z",
+          "comments": 4
+        },
+        {
+          "number": 124,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-08-30T09:19:10Z",
+          "updated_at": "2026-08-30T16:00:26Z",
+          "comments": 5
+        },
+        {
+          "number": 72,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-23T11:27:19Z",
+          "updated_at": "2026-08-23T11:27:24Z",
+          "comments": 1
+        },
+        {
+          "number": 62,
+          "title": "converge-item.mjs cannot run from a web session — the exact place invoke.mjs sends work",
+          "labels": [],
+          "created_at": "2026-08-23T11:17:01Z",
+          "updated_at": "2026-08-24T22:18:33Z",
+          "comments": 3
+        },
+        {
+          "number": 54,
+          "title": "Verify in production: the native recorders capture a real set on a real device",
+          "labels": [],
+          "created_at": "2026-08-23T00:56:28Z",
+          "updated_at": "2026-08-23T00:56:28Z",
+          "comments": 0
+        },
+        {
+          "number": 41,
+          "title": "Phase 0 — human-only setup for the Flutter conversion",
+          "labels": [],
+          "created_at": "2026-08-22T11:21:37Z",
+          "updated_at": "2026-08-22T14:41:04Z",
+          "comments": 0
+        },
+        {
+          "number": 40,
+          "title": "Tracking: convert the client to Flutter — cross-platform, offline laugh detection, macOS-runner-free CI",
+          "labels": [],
+          "created_at": "2026-08-22T11:21:22Z",
+          "updated_at": "2026-08-23T00:56:54Z",
+          "comments": 4
+        },
+        {
+          "number": 25,
+          "title": "[claudinite-schedule] the schedule board",
+          "labels": [],
+          "created_at": "2026-08-21T04:20:06Z",
+          "updated_at": "2026-09-02T08:58:59Z",
+          "comments": 0
+        },
+        {
+          "number": 7,
+          "title": "Claudinite tracker: Product Wiki Growth",
+          "labels": [],
+          "created_at": "2026-08-20T19:57:08Z",
+          "updated_at": "2026-08-20T19:57:13Z",
+          "comments": 1
+        },
+        {
+          "number": 6,
+          "title": "Tracking: build Set list — Phase A client MVP to App Store, Phase B Cloudflare pipeline + QR share",
+          "labels": [],
+          "created_at": "2026-08-20T19:56:55Z",
+          "updated_at": "2026-08-24T05:36:02Z",
+          "comments": 3
+        },
+        {
+          "number": 5,
+          "title": "Phase 0 — human-only setup for Set list build (accounts, secrets, domain)",
+          "labels": [],
+          "created_at": "2026-08-20T19:56:28Z",
+          "updated_at": "2026-08-20T19:56:28Z",
+          "comments": 0
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "repo": "missingbulb/EdFringeAllocator",
+      "why": "archived"
+    },
+    {
+      "repo": "missingbulb/Empty",
+      "why": "excluded"
+    },
+    {
+      "repo": "missingbulb/Sheepdog",
+      "why": "archived"
+    }
+  ]
+}
