@@ -17,7 +17,6 @@
 export default {
   id: 'fleet-issues-snapshot',
   frequency: 'daily',                    // the triage's own cadence is "when asked"; daily keeps the file at most a day old, and a force-run refreshes it now
-  precondition_signals: [],              // every input is another repo's issue list — no per-repo collector can see it
   agent_model: 'none',                   // pure code — no agent
   expected_outcome: 'pr',
   // The regenerated snapshot is the whole delivery, scoped to the tree it lands in.
@@ -31,10 +30,5 @@ export default {
   code_work_timeout: 600,
   required_secrets: ['FLEET_GITHUB_TOKEN'], // the account-spanning PAT; fleet-token.mjs states the grant
 
-  // Fire daily unconditionally: the inputs live outside this repo and no signal here
-  // can tell whether any of them moved. Cheap to no-op — an unchanged fleet renders
-  // the same file and delivers nothing.
-  precondition() {
-    return { run: true, reason: 'daily fleet issues snapshot — every open issue in every in-scope repo (delivers nothing when unchanged)' };
-  },
+  preconditions: ['none'],
 };
