@@ -29,28 +29,36 @@ prescribe. One sampled comment thread overturned it. Sample every cohort you int
 
 ## 1. Collect
 
-The roster comes from `mcp__Claude_Code_Remote__list_repos` (query `missingbulb`). Drop archived
-repos and anything in `exclude` on the `claudinite-fleet-sheepdog` config in
-`.claudinite-settings.json` — that key is the fleet's only opt-out.
-
-Then **one `mcp__github__list_issues` per repo**, and shape the call so it survives:
+The fleet's open issues are already on disk: `.claudinite/local/fleet-issues.GENERATED.json`,
+written by this pack's `fleet-issues-snapshot` task ([its README](../../tasks/fleet-issues-snapshot/README.md))
+from an Actions-side walk over the fleet PAT. Read its `generated` stamp first; if it is older
+than the run should tolerate, force the task and wait for its PR to land before classifying:
 
 ```
-state: "OPEN", perPage: 100, fields: ["number","title","labels","updated_at"]
+node .claudinite/shared/packs/claudinite-tasks/queue/create-work-item.mjs shepherd/fleet-issues-snapshot
 ```
 
-Omitting `body` is what keeps a 99-issue repo under the token cap. Cross-check each response's
-`totalCount` against the rows you got, and reconcile the sum before analysing anything.
+Then classify — the script is the collection **and** the standard cuts, reproducible and free to
+re-cut:
 
-Do **not** enumerate with `mcp__github__search_issues` — RULES.md records why its query filtering
-cannot be trusted, on either search tool, and an unfiltered result overflows. `list_issues` per
-repo, with the field subset, is the reliable path. If a repo is not attached, `add_repo` it;
-never report a repo as unreachable without checking `list_repos` first.
+```
+node .claudinite/local/packs/shepherd/skills/fleet-triage/classify.mjs --evidence <scratchpad>/fleet-triage-<date>.md
+```
 
-**Write the rows to a TSV in the scratchpad and classify with a script.** Sixteen repos of labels
-is past what eyeballing gets right, and a script makes every count reproducible and every
-recategorisation free — you will want to re-cut the data two or three times before the interesting
-axis appears.
+It prints the queue/plain split, park kind × label generation, lane duplication, the dominant
+tasks, the `updated_at` minute clusters, cross-repo duplicate titles and the plain-issue buckets,
+and writes the per-repo evidence file the report ships. Cross-check its `TOTAL` against the
+snapshot's own `total` and each repo's `openIssues` before analysing anything.
+
+**Do not collect from the session.** `mcp__github__list_issues` is repo-scoped and this session
+is scoped to Shepherd alone, so a session-side sweep costs one `add_repo` (`access: "push"` —
+the read attach serves git only, never the API) per member before a single read, and the rows
+then have to be transcribed out of tool output by hand; a shell `curl` to `api.github.com` is
+answered `403` by the session proxy whether or not it carries a token, so there is no script-able
+session-side path either. The 2026-09-01 run spent ~32 calls and a 353-row transcription this
+way before its first finding ([#409](https://github.com/missingbulb/Shepherd/issues/409)). The
+snapshot task exists so that never happens again; if it is broken, fix the task rather than
+re-collecting by hand.
 
 ## 2. Split queue items from plain issues
 
