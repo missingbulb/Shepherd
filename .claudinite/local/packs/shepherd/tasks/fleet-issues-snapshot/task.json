@@ -1,6 +1,7 @@
 {
   "$schema": "../../../../../shared/packs/claudinite-tasks/task.schema.json",
   "id": "fleet-issues-snapshot",
+  "description": "Reads every open issue across every in-scope repo in the fleet over the fleet PAT and renders them into one tracked file, so the fleet-triage skill can classify from a single local read instead of attaching to each repo from a session.",
   "frequency": "daily",
   "preconditions": [
     "none"
