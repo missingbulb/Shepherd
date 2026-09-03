@@ -135,17 +135,16 @@ export function parseDeclaration(text) {
     interrupt_policy: scalar(src, 'interrupt_policy'),
     code_work: scalar(src, 'code_work'),
     agent_execution_timeout: scalar(src, 'agent_execution_timeout'),
-    // The conditions a task declares, in whichever of the two forms it carries:
-    // the `preconditions` expression, or the legacy `precondition` function with
-    // its own declared signal union (a member's local task files keep that one).
+    // The conditions a task declares. One form, and only one (#1617): the
+    // `preconditions` expression. A member still stamping the retired
+    // `precondition_signals` reads as no conditions here, which is what it is —
+    // a declaration the current engine does not accept.
     preconditions: stringArray(src, 'preconditions'),
-    precondition_signals: stringArray(src, 'precondition_signals'),
     // A task may decline to run; whether it CAN is the difference between "did not
     // run" being routine and being a fault, so the roster shows it. `['none']` is
     // the EMPTY precondition and answers no here, exactly as a task with no gate at
     // all does — which is what it means.
-    has_precondition: /^\s*(?:async\s+)?precondition\s*\(/m.test(src)
-      || (stringArray(src, 'preconditions') ?? []).some((c) => c !== 'none'),
+    has_precondition: (stringArray(src, 'preconditions') ?? []).some((c) => c !== 'none'),
   };
 }
 
@@ -377,6 +376,53 @@ function nextAskOf(current, anchor, anchorNote) {
   }
   // torn / unlabelled — off the state machine until the janitor repairs it.
   return { kind: 'off-machine' };
+}
+
+// --- what is about to happen ------------------------------------------------------
+
+// The next 24 hours as UTC hour buckets, each carrying the task rows whose next ask
+// lands in it. The strip this draws answers a question no single row can: whether the
+// day's scheduled work is spread out or piled into one hour.
+//
+// FLEET OR REPO, the same reduction: the caller hands in whatever roster rows it has,
+// one member's or every member's, and a row carries the repo it came from where that
+// matters.
+//
+// A `held` next ask is placed at NOW and marked critical rather than left out. A task
+// whose blocking park stops it being scheduled at all has no future anchor, and
+// dropping it would draw the emptiest strip on the worst-off repo — the one case where
+// an empty hour must not read as a quiet one.
+export const WAKE_STRIP_HOURS = 24;
+
+export function wakeStrip(rows, now, { hours = WAKE_STRIP_HOURS } = {}) {
+  const start = new Date(now);
+  start.setUTCMinutes(0, 0, 0);
+  const key = (t) => new Date(t).toISOString().slice(0, 13);
+  const buckets = Array.from({ length: hours }, (_, i) => ({
+    hour: key(start.getTime() + i * 3600e3),
+    tasks: [],
+    held: 0,
+  }));
+  const byHour = new Map(buckets.map((b) => [b.hour, b]));
+
+  for (const row of rows ?? []) {
+    const ask = row?.nextAsk;
+    if (!ask) continue;
+    const held = ask.kind === 'held';
+    // Only the two kinds that name a MOMENT land on a strip of hours: an anchor (the
+    // calendar's next fire) and a wake (a stamped Not-before, which IS the schedule).
+    // `ready`, `running` and `deps` are happening or waiting on something other than
+    // the clock, and belong to the row rather than to a future hour.
+    const at = held ? start.getTime() : (ask.kind === 'anchor' || ask.kind === 'wake' ? ms(ask.at) : null);
+    if (at === null) continue;
+    const bucket = byHour.get(key(at));
+    if (!bucket) continue;                      // past the strip's far end — not this day's business
+    bucket.tasks.push({ key: row.key, repo: row.repo ?? null, held });
+    if (held) bucket.held += 1;
+  }
+
+  const peak = buckets.reduce((n, b) => Math.max(n, b.tasks.length), 0);
+  return { from: buckets[0]?.hour ?? null, hours: buckets, peak };
 }
 
 // Outcome tallies over the closed items the scan actually saw. `scanned` travels

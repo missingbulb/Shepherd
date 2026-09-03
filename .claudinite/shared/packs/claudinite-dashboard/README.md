@@ -17,6 +17,10 @@ inference cannot tell "this repo only" from "the fleet, whose members went missi
 a stated mode can, and the disagreement becomes a failed build instead of a quietly
 wrong site.
 
+The end-state specification of both pages, the fields the fold gains for them and the
+visual identity is [docs/](docs/README.md); this file describes what a reader of the
+pages sees.
+
 **Opt-in.** Nothing fingerprints it and `--init` never seeds it: a repo carries this
 because someone declared it. Adopting it wires the GitHub Pages deploy.
 
@@ -47,6 +51,7 @@ Everything else is optional `config` on the declaration:
 | `clientId`, `exchangeUrl` | — | **Legacy.** Both together turn on **Sign in with GitHub**, but they live as the repository variables `CLAUDINITE_DASHBOARD_CLIENT_ID` and `CLAUDINITE_DASHBOARD_EXCHANGE_URL` now; a declaration still carrying them is read as the fallback and the build says so |
 | `redirectUri` | the page's URL | Override when the callback differs |
 | `defaultRepo` | this repo | Which repo a single-repo deployment shows |
+| `rates` | — | USD per **million** tokens, per model, per counter: `{ "claude-opus-5": { "in": 15, "cacheRead": 1.5, "out": 75 } }`. `cacheWrite` is optional and falls back to `in`. Unset is a supported deployment, not a broken one — every dollar figure then reads *unpriced* and names this key, and the token counts stand; a model the table does not name is an unpriced remainder, counted in tokens and never folded into the sum |
 
 ## Why a pack and not engine code
 
@@ -164,6 +169,7 @@ second. So nothing on it is a total for its own sake.
 |---|---|
 | **Start here** | The one piece of work most worth doing across every member, named with the issue to open and what it costs you — the worst thing true of the fleet, and a link rather than a count |
 | **What Claudinite did this week** | The work the machinery did that nobody had to do — this week against last, including the check findings caught inside sessions and what the corpus costs each of them |
+| **What the corpus is doing across the fleet** | The detail behind the block above, from each member's usage fold: workload this week against last, the two check scopes side by side, which rules actually fire, which skills load and which are mounted everywhere and never do, and one row per member. A member that does not fold is named and counted in nothing |
 | **Fleet activity** | What the fleet *did* per day — work closed by outcome, runs and their pass rate, **how often the checks ran and caught something**, and which members moved at all |
 | **Rollup tiles** | How many *members* need a human — not how many items exist |
 | **Members** | Every member ranked worst-first, in three column groups asked in the order a reader asks them: **Activity** (90 days of commits, as a weekly curve), **Waiting on a person** (an estimate in minutes, what it is made of, then issues and pull requests) and **Claudinite** (packs wearing the mount's verdict, queue, outcomes, scheduler). Stars and CI ride in the member cell — they are how you recognise a row, not findings about it |
@@ -218,6 +224,15 @@ Two figures used to be named as *absent* here, because nothing the page read cou
 them: how often each member's checks actually ran, and how much corpus each session is
 paying for. Both are in each member's usage file, which the sweep now reads at the head
 sha it already has — so both are panels rather than apologies.
+
+The same file carries the detail the benefits block only headlines, and the fleet is the
+one place it can be laid side by side: the `work` scope (the Stop hook, per turn) against
+the `world` scope (the full sweep wired into tests), each with its runs, catches, blocking
+and advisory volume and runner errors; the findings per rule, ranked; and the skill loads
+per skill against where each is mounted — the tree listing the sweep already holds says
+which `SKILL.md`s a member's declared packs mount, so a skill mounted in ten members and
+loaded in none is a fact no single repo's page can state. [`fleet-growth.mjs`](fleet-growth.mjs)
+derives all of it; no read is added.
 
 A member with **no** usage file is named, never averaged in as a repo where nothing
 happens. That census is the same fact a fleet-wide aggregate would carry as
@@ -473,6 +488,7 @@ Three strategies, because the data has three shapes — see
 | Repo content (task declarations, the tree) | keyed by **commit SHA**, never expires | a path at a sha cannot change, so an unmoved `main` costs zero calls |
 | Open items, runs, repo metadata | **ETag** revalidation | a `304` is free — it does not count against the rate limit, so this is fresh data at no cost |
 | Closed-issue history pages | **24h TTL** | settled, but not addressable by a sha |
+| Merged pull requests, 14 days | kept in the projection above | the lead-time series for the days the fold has not reached — they arrive in the issues listing the page already fetches, so the viewer makes no new request, and the body is still dropped once the issue it closes has been read out of it |
 | A member's year of commit activity | **6h TTL**, and skipped entirely below `tight` | the only read here that is decoration; a few hours old is the same answer, and a tight budget goes without it before it goes without a queue |
 
 The **commit curve** is drawn by week, not by day. Ninety daily points across a table
