@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import task from './task.mjs';
+import task from './task.json' with { type: 'json' };
 import { validateTaskDeclaration } from '../../../../../shared/packs/claudinite-tasks/task-contract.mjs';
 
 // Validated against THIS REPO'S OWN vendored contract: discovery skips a
