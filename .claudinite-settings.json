@@ -3,21 +3,14 @@
     "local/shepherd",
     {
       "id": "basics",
-      "version": "60903.5"
+      "version": "60904.3",
+      "via": [
+        "core"
+      ]
     },
     {
       "id": "claudinite-lifecycle",
-      "version": "60903.5"
-    },
-    {
-      "id": "barriers",
-      "version": "60823.1",
-      "via": [
-        "core"
-      ],
-      "answers": {
-        "goals": "No new barriers."
-      }
+      "version": "60904.1"
     },
     {
       "id": "git-github",
@@ -38,7 +31,7 @@
     },
     {
       "id": "claudinite-growth",
-      "version": "60903.5"
+      "version": "60904.4"
     },
     {
       "id": "tidy-repo",
@@ -46,7 +39,7 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "60903.1",
+      "version": "60903.2",
       "config": {
         "owner": "missingbulb",
         "kind": "user",
@@ -83,7 +76,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60903.4"
+      "version": "60904.2"
     }
   ],
   "taskScheduler": {
