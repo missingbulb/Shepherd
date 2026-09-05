@@ -24,7 +24,7 @@ import { FLEET_TOKEN, missingFleetTokenError } from '../../../../../shared/packs
 import { deliverGenerated, baseTip, readAt, remoteUrl } from '../../../../../shared/packs/claudinite-tasks/deliver-generated.mjs';
 import { AUTOMERGE_TRAILER, policyExpression } from '../../../../../shared/packs/claudinite-tasks/merge-policy.mjs';
 import { settingsPath } from '../../../../../shared/engine/settings-file.mjs';
-import task from './task.mjs';
+import task from './task.json' with { type: 'json' };
 import { inScope, skipReason, shapeIssue, renderSnapshot, withoutStamp } from './snapshot.mjs';
 
 export const SNAPSHOT_PATH = '.claudinite/local/fleet-issues.GENERATED.json';
