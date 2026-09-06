@@ -1,6 +1,2 @@
-claudinite-rules.GENERATED.md merge=ours
 usage-fleet.GENERATED.json merge=ours
-usage.GENERATED.json merge=ours
-.claudinite/shared/** linguist-vendored
 fleet-issues.GENERATED.json merge=ours
-claudinite-skills.GENERATED.md merge=ours
