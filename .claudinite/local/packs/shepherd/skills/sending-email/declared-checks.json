@@ -1,0 +1,74 @@
+[
+  {
+    "id": "email-service-single-client",
+    "severity": "blocking",
+    "failureMessage": "a second caller of the send endpoint carries none of the ceilings, the header allowlist or the error routing that make a send survive",
+    "fix": "import sendEmail from .claudinite/local/packs/shepherd/skills/sending-email/send.mjs instead of building the request",
+    "scanFiles": "/^\\.claudinite\\/local\\/.*\\.mjs$/",
+    "excludeFiles": "/^\\.claudinite\\/local\\/packs\\/shepherd\\/skills\\/sending-email\\/send\\.mjs$/",
+    "excludeFileClasses": ["testFiles"],
+    "scanIgnoringComments": true,
+    "matchLines": [
+      {
+        "match": "/email\\/sending\\/send/",
+        "what": "builds a request to the Email Service send endpoint outside the one client: {match}"
+      }
+    ]
+  },
+  {
+    "id": "email-service-rest-field-spellings",
+    "severity": "blocking",
+    "failureMessage": "the REST API and the Workers binding spell the same fields differently, and the REST API rejects the binding's spellings with 10001 invalid_request_schema",
+    "fix": "write the REST spelling: `address` inside a named address object, `reply_to` for the reply address",
+    "scanFiles": "/^\\.claudinite\\/local\\/.*\\.mjs$/",
+    "excludeFileClasses": ["testFiles"],
+    "scanIgnoringComments": true,
+    "matchLines": [
+      {
+        "match": "/\\breplyTo\\s*:/",
+        "what": "uses the Workers binding's `replyTo` in a message the REST API will read: {match}"
+      },
+      {
+        "match": "/\\bemail\\s*:\\s*[`'\"]/",
+        "what": "uses the Workers binding's `email` for an address the REST API spells `address`: {match}"
+      }
+    ]
+  },
+  {
+    "id": "email-service-headers-owned-elsewhere",
+    "severity": "blocking",
+    "failureMessage": "the Email Service rejects the whole message when `headers` carries a platform-controlled header or one that has its own API field — it does not drop the header and send",
+    "fix": "drop a platform-controlled header, or move a first-class one to its own field (from, to, cc, bcc, subject, reply_to)",
+    "scanFiles": "/^\\.claudinite\\/local\\/.*\\.mjs$/",
+    "excludeFiles": "/^\\.claudinite\\/local\\/packs\\/shepherd\\/skills\\/sending-email\\/send\\.mjs$/",
+    "excludeFileClasses": ["testFiles"],
+    "scanIgnoringComments": true,
+    "matchLines": [
+      {
+        "match": "/[`'\"](From|To|Cc|Bcc|Subject|Reply-To)[`'\"]\\s*:/i",
+        "what": "sets a header the Email Service reserves for its own API field: {match}"
+      },
+      {
+        "match": "/[`'\"](Message-ID|DKIM-Signature|Return-Path|MIME-Version|Content-Transfer-Encoding|Feedback-ID|CFBL-Address|CFBL-Feedback-ID|TLS-Required)[`'\"]\\s*:/i",
+        "what": "sets a header the Email Service generates itself: {match}"
+      }
+    ]
+  },
+  {
+    "id": "email-service-list-unsubscribe-post",
+    "severity": "blocking",
+    "failureMessage": "List-Unsubscribe-Post is validated against one exact, case-sensitive value, and any other value rejects the send with E_HEADER_VALUE_INVALID",
+    "fix": "write the value as exactly `List-Unsubscribe=One-Click`, and pair it with a List-Unsubscribe carrying an angle-bracketed https: URI",
+    "scanFiles": "/^\\.claudinite\\/local\\/.*\\.mjs$/",
+    "excludeFiles": "/^\\.claudinite\\/local\\/packs\\/shepherd\\/skills\\/sending-email\\/send\\.mjs$/",
+    "excludeFileClasses": ["testFiles"],
+    "scanIgnoringComments": true,
+    "matchLines": [
+      {
+        "match": "/List-Unsubscribe-Post[`'\"]?\\s*:/",
+        "unlessLineMatches": "/List-Unsubscribe-Post[`'\"]?\\s*:\\s*[`'\"]List-Unsubscribe=One-Click[`'\"]/",
+        "what": "sets List-Unsubscribe-Post to something other than the one accepted value: {match}"
+      }
+    ]
+  }
+]
