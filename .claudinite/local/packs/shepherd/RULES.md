@@ -135,12 +135,13 @@ canon instead, where every repo gets it.
   re-confirming this rule against `main` found none there and burned two dead-end `find`s before
   locating the real paths (#277).
 
-- **Comparing against `origin/main` in a fresh checkout** — an explicit `git fetch origin main` is
-  not always enough by itself: this container's checkout can be shallow, and fetching a named
-  branch does not force-update an already-existing stale remote-tracking ref. `origin/main` showed
-  frozen at the initial commit even right after fetching it by name, producing a bogus wall-to-wall
-  diff. Check `git rev-parse --is-shallow-repository` first, and `git fetch origin main --unshallow`
-  before trusting any `git diff`/`git log` against `origin/main` (#197).
+- **Comparing against `origin/main` in a fresh checkout** — the checkout's `origin/main` is
+  snapshotted at container-build time and goes stale once the remote branch advances, so diffing
+  or logging against it unfetched produces a bogus wall-to-wall diff. A plain `git fetch origin
+  main` is enough to bring it current, even in a shallow checkout
+  (`git rev-parse --is-shallow-repository` → `true`) — re-tested live, a ref six days stale
+  updated correctly with no `--unshallow`. Fetch before trusting any `git diff`/`git log` against
+  `origin/main`; reach for `--unshallow` only if history, not the ref, still comes up short (#470).
 
 - **Looking up a PR by its head branch** — `mcp__github__list_pull_requests` with a bare branch
   name in `head` (no `owner:` prefix) does not filter; it can silently hand back an unrelated PR
