@@ -79,11 +79,12 @@ export function chip(state) {
   return el('span', { className: `chip ${ui.cls}` }, [el('i', { className: 'dot' }), ui.label]);
 }
 
-export const reasonNodes = (reasons) =>
-  reasons.map((r) => el('span', {
-    className: `warn ${r.level}`,
-    textContent: `${LEVEL_GLYPH[r.level] ?? '▲'} ${r.text}`,
-  }));
+// A reason naming an item by number — "blocked on #12, #13" — is drawn on the page of
+// the repo that number belongs to, so it is given one to link against there. The fleet
+// page's reasons count members and name none, and pass no repo.
+export const reasonNodes = (reasons, repo = null) =>
+  reasons.map((r) => el('span', { className: `warn ${r.level}` },
+    refNodes(repo, `${LEVEL_GLYPH[r.level] ?? '▲'} ${r.text}`)));
 
 export const warnNodes = reasonNodes;
 
@@ -124,6 +125,35 @@ export function ciMark(ui, when) {
       'aria-label': `CI ${ui.label}`,
     }),
     el('div', { className: 'sub', textContent: when }),
+  ]);
+}
+
+// What is waiting on a person here, as a bar and one line. THE THIRD FOLD, and the
+// one the grid most needed: the sentences `attentionBreakdown` writes are the only
+// prose in a row of marks, so the column took every pixel the other nine could spare
+// and still wrapped each sentence to one word per line.
+//
+// The bar weighs LEVELS, not kinds. Two serious kinds drawn as two adjacent segments
+// of one colour is a boundary that means nothing, and severity is the one thing the
+// line below cannot show. Its hover names each level in words, because the palette
+// never carries meaning on its own.
+//
+// The kinds survive on that line — "9 actions" is not "9 items needing something
+// changed outside the code", which is why the sentences are on the mark's own hover
+// rather than deleted. A reader who cannot tell what an action is has somewhere to go.
+const ATTENTION_LEVELS = [
+  ['critical', 'var(--critical)'],
+  ['serious', 'var(--serious)'],
+  ['warning', 'var(--warning)'],
+];
+
+export function attentionMark(rows, { width = 92 } = {}) {
+  if (!rows.length) return el('div', {}, [el('span', { className: 'sub', textContent: 'nothing waiting' })]);
+  const weigh = (level) => rows.filter((r) => r.level === level).reduce((n, r) => n + r.count, 0);
+  const sentences = rows.map((r) => r.text).join('\n');
+  return el('div', { className: 'attn', title: sentences, 'aria-label': sentences }, [
+    segmentBar(ATTENTION_LEVELS.map(([level, color]) => [level, weigh(level), color]), { width }),
+    el('div', { className: 'sub', textContent: rows.map((r) => `${r.count} ${r.short}`).join(' \u00b7 ') }),
   ]);
 }
 
@@ -240,8 +270,49 @@ export const head = (table, cols) => {
 export const emptyRow = (span, text) =>
   el('tr', {}, [el('td', { colSpan: span, className: 'empty', textContent: text })]);
 
+// A number on this page is always something to OPEN, so every `#N` the page draws is
+// an anchor to it. GitHub's `/issues/<n>` redirects to the pull request when the
+// number is one, so a single form covers both and a sentence naming an issue and the
+// PR that closes it needs no telling apart.
+export const issueUrl = (repo, n) => `https://github.com/${repo}/issues/${n}`;
+
 export const issueLink = (repo, n) =>
-  el('a', { href: `https://github.com/${repo}/issues/${n}`, target: '_blank', rel: 'noopener', textContent: `#${n}` });
+  el('a', { href: issueUrl(repo, n), target: '_blank', rel: 'noopener', textContent: `#${n}` });
+
+// A sentence broken into its prose and its `#N` runs, in order — the one place the
+// page decides what counts as naming an issue. The board's SVG text splits with it too.
+export const splitRefs = (text) => String(text ?? '').split(/(#\d+)/).filter((part) => part !== '');
+export const isRef = (part) => /^#\d+$/.test(part);
+
+// A sentence that names issues or pull requests by number, as nodes — the prose
+// between the numbers unchanged, each number a link. Callers that would have passed a
+// string to `textContent` pass this as children instead. With no repo to link against
+// — the fleet page, where a number belongs to no one member — it is the sentence.
+export const refNodes = (repo, text) => (repo
+  ? splitRefs(text).map((part) => (isRef(part) ? issueLink(repo, part.slice(1)) : part))
+  : [String(text ?? '')]);
+
+// The whole queue as ONE URL, so the reader can work it where they act on it rather
+// than a slip at a time. GitHub has no syntax for "these issue numbers", but a bare
+// number is a search term an issue's own number matches, which is what narrows the
+// listing to the set. Inside one repo that is the repo's own issues listing; across
+// members it is the cross-repository search, every member named. Null when nothing in
+// the queue carries a number — a repo-level fault has none.
+// A GitHub issue search on one repo, from its terms. One encoder, because the board's
+// cell links and the queue's `see all` are the same URL with different terms in it.
+export const searchUrl = (repo, terms) =>
+  `https://github.com/${repo}/issues?q=${encodeURIComponent(terms.join(' ')).replace(/%20/g, '+')}`;
+
+export const queueUrl = (candidates) => {
+  const numbered = (candidates ?? []).filter((c) => c?.number != null);
+  if (!numbered.length) return null;
+  const numbers = numbered.map((c) => String(c.number));
+  const repos = [...new Set(numbered.map((c) => c.repo))];
+  const q = (terms) => encodeURIComponent(terms.join(' ')).replace(/%20/g, '+');
+  return repos.length === 1
+    ? searchUrl(repos[0], ['is:issue', 'state:open', ...numbers])
+    : `https://github.com/search?type=issues&q=${q(['is:issue', 'state:open', ...repos.map((r) => `repo:${r}`), ...numbers])}`;
+};
 
 export const repoLink = (repo) =>
   el('a', { href: `https://github.com/${repo}`, target: '_blank', rel: 'noopener', textContent: repo });
@@ -425,10 +496,14 @@ export function tiles(node, rows) {
 // than as a wall of columns. `groups` is `[title, [col, …]]`; a group whose title is
 // empty spans its columns unlabelled, which is what the identity column at the left
 // edge wants — it belongs to no question.
+//
+// `group-band`, not `band`: the sheet's own band ([`sheet.mjs`](sheet.mjs)) is a grid
+// component, and a `<tr>` that matched it was laid out as a two-column grid — which
+// drops `colSpan` on the floor and stacks the titles on top of each other.
 export const groupedHead = (table, groups) => {
   table.replaceChildren();
   table.append(el('thead', {}, [
-    el('tr', { className: 'band' }, groups.map(([title, cols]) =>
+    el('tr', { className: 'group-band' }, groups.map(([title, cols]) =>
       el('th', { colSpan: cols.length, className: title ? 'group' : 'group blank', textContent: title }))),
     el('tr', {}, groups.flatMap(([, cols], gi) => cols.map((c, ci) =>
       el('th', { className: ci === 0 && gi > 0 ? 'group-start' : '', textContent: c })))),
