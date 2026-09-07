@@ -12,15 +12,12 @@
 // import graph. Living inside `packs/claudinite-tasks/` makes the queue modules siblings,
 // so the dashboard sits beside the mechanism it renders rather than reaching across
 // the tree at it.
-//
-// `stripComments` is the one remaining cross-tree reach, and it is deliberate:
-// `file-placement` flags it advisory and its own remedy sanctions exactly this case.
-// Shortening it would mean copying a comment-stripper nearer, and a second stripper
-// that drifts from the canonical one is worse than the distance.
 
-import { stripComments } from '../../engine/checks/helpers/code-scanning.mjs';
 import { parseTaskDeclaration, applyTaskDefaults } from '../claudinite-tasks/shared-code/task-declaration.mjs';
-import { mostRecentAnchor, nextAnchor, periodMs } from '../claudinite-tasks/shared-code/anchors.mjs';
+import {
+  mostRecentAnchor, nextAnchor, periodMs, taskPeriodMs, cadenceOf, cadenceTermFor, holdsOnFailure, statesConditions,
+  DUE_TERM, ELAPSED_TERM,
+} from '../claudinite-tasks/shared-code/anchors.mjs';
 import {
   EXECUTING_LEASH_MS, AGENT_LEASH_MS, STALE_READY_PERIODS, STUCK_BLOCKED_MS,
 } from '../claudinite-tasks/shared-code/work-items.mjs';
@@ -75,7 +72,7 @@ export function declaredPackDirs(config) {
   return dirs;
 }
 
-const TASK_PATH_RE = /^(.*)\/tasks\/([^/]+)\/task\.(json|mjs)$/;
+const TASK_PATH_RE = /^(.*)\/tasks\/([^/]+)\/task\.json$/;
 
 // Every declared pack's task declarations, from one recursive tree listing.
 // `paths` is the flat list of blob paths the tree API returned.
@@ -98,85 +95,135 @@ export function taskDeclarationPaths(paths, config) {
 // The page reads a declaration as TEXT: it renders other repos over the API, where
 // there is nothing to import and no Node to import it with. A `task.json` parses
 // whole and takes the contract's defaults for the fields it omits — the same
-// door the engine's loader runs it through. The retired `task.mjs` is a JS
-// object literal, so its scalar fields are lifted by pattern over comment-stripped
-// source — the engine's own `stripComments`, so a `// frequency: 'weekly'` in a
-// task's header prose can never be mistaken for the declaration.
+// door the engine's loader runs it through.
 //
 // A field this cannot read comes back NULL and renders as "unknown". It is never
 // defaulted: a task whose declaration this misreads must look unreadable, because a
-// plausible wrong frequency would silently move a next-anchor the whole roster is
-// read for.
-// The key must open the line or follow a `{` / `,` — anchoring on the line start
-// alone would miss a declaration written on one line, and anchoring on nothing
-// would let `code_work` be found inside `agent_code_work`. The value may close on a
-// comma, the object's brace, or the line's end, so a last field without a trailing
-// comma still reads.
-const at = (field) => `(?:^|[{,])\\s*${field}:\\s*`;
+// plausible wrong cadence would silently move a next-anchor the whole roster is
+// read for. An ABSENT `preconditions` is not an unread one: a declaration that was
+// read and carries no key requires nothing, exactly as its author wrote it, and
+// reads as `[]`. An absent `trigger` is not unread either — it is derived, as the
+// contract's own door derives it.
 
-const scalar = (src, field) => {
-  const m = new RegExp(`${at(field)}(?:'([^']*)'|"([^"]*)"|(\\d+)|(true|false))\\s*(?=[,}\\n]|$)`, 'm').exec(src);
-  if (!m) return null;
-  if (m[3] !== undefined) return Number(m[3]);
-  if (m[4] !== undefined) return m[4] === 'true';
-  return m[1] ?? m[2];
+// THE FREQUENCY DOOR, as the page runs it (#1725). `frequency` is retired: a task's
+// cadence is a term in its own `preconditions`. A declaration still carrying the
+// field — another repo's, read over the API — reads as the cadence term it always
+// meant, first in the list, with the `none` it used to need beside it dropped; the
+// field itself does not survive, and nothing downstream reads it. This is the
+// contract's own rule (`normalizeTaskDeclaration` in `task-contract.mjs`), spelled
+// again through the same `cadenceTermFor` because that module reaches into `node:`
+// builtins the page cannot load; `model.test.mjs` runs both over one vector set so
+// the two cannot drift apart unseen. `manual` meant no schedule and adds no term
+// (`cadenceTermFor` answers null for it), so what stood beside it is the whole
+// expression; nothing here writes the old word.
+const NONE = 'none';
+// THE TRIGGER DOOR, as the page runs it (#1725). `trigger` says whether the
+// scheduler asks a task; a declaration written before the field is read off the
+// shape of its conditions, exactly as the contract's door reads it. The one thing
+// the page cannot do is resolve a task's OWN terms, so a legacy declaration whose
+// condition reads the item itself is read here as scheduled — the engine's own door
+// is handed those terms and is not; no canon declaration is in that state, and one
+// stating its trigger never reaches this branch at all.
+export const TRIGGER_SCHEDULE = 'schedule';
+export const TRIGGER_REQUEST = 'request';
+const withTrigger = (trigger, preconditions) => {
+  if (trigger === TRIGGER_SCHEDULE || trigger === TRIGGER_REQUEST) return trigger;
+  if (!Array.isArray(preconditions)) return null;
+  return statesConditions(preconditions) ? TRIGGER_SCHEDULE : TRIGGER_REQUEST;
 };
-
-const stringArray = (src, field) => {
-  const m = new RegExp(`${at(field)}\\[([^\\]]*)\\]`, 'm').exec(src);
-  if (!m) return null;
-  return [...m[1].matchAll(/'([^']*)'|"([^"]*)"/g)].map((x) => x[1] ?? x[2]);
-};
-
-export function parseDeclaration(text, path = '') {
-  if (path.endsWith('.json') || /^\s*\{/.test(String(text ?? ''))) return parseJsonDeclaration(text);
-  const src = stripComments(String(text ?? ''));
-  return {
-    id: scalar(src, 'id'),
-    frequency: scalar(src, 'frequency'),
-    agent_model: scalar(src, 'agent_model'),
-    expected_outcome: scalar(src, 'expected_outcome'),
-    interrupt_policy: scalar(src, 'interrupt_policy'),
-    code_work: scalar(src, 'code_work'),
-    agent_execution_timeout: scalar(src, 'agent_execution_timeout'),
-    // The conditions a task declares. One form, and only one (#1617): the
-    // `preconditions` expression. A member still stamping the retired
-    // `precondition_signals` reads as no conditions here, which is what it is —
-    // a declaration the current engine does not accept.
-    preconditions: stringArray(src, 'preconditions'),
-    // A task may decline to run; whether it CAN is the difference between "did not
-    // run" being routine and being a fault, so the roster shows it. `['none']` is
-    // the EMPTY precondition and answers no here, exactly as a task with no gate at
-    // all does — which is what it means.
-    has_precondition: (stringArray(src, 'preconditions') ?? []).some((c) => c !== 'none'),
-  };
+function withCadenceTerm(frequency, preconditions) {
+  if (frequency == null) return preconditions;
+  const term = cadenceTermFor(frequency);
+  const stated = (preconditions ?? []).filter((c) => String(c).trim() !== NONE);
+  return term === null || stated.some((c) => String(c).trim() === term) ? stated : [term, ...stated];
 }
 
-// The JSON form. The fields the roster reads, and only those, so a declaration
-// carrying more renders the same as one carrying exactly these. Unparseable text
-// reads as every field unknown, the same face the module form shows.
-function parseJsonDeclaration(text) {
+// A task may decline to run; whether it CAN is the difference between "did not run"
+// being routine and being a fault, so the roster shows it. The cadence terms say WHEN
+// a task runs, not whether, and `none` is the EMPTY precondition — so neither is a
+// gate, and a task carrying only those answers no here, exactly as it should.
+const CADENCE_TERM_NAMES = [DUE_TERM, ELAPSED_TERM];
+const termName = (t) => t.split(':')[0].trim();
+const isGate = (entry) => String(entry ?? '').split('||')
+  .some((t) => termName(t) !== NONE && !CADENCE_TERM_NAMES.includes(termName(t)));
+const hasGate = (preconditions) => (preconditions ?? []).some(isGate);
+
+// The fields the roster reads, and only those, so a declaration carrying more
+// renders the same as one carrying exactly these. Unparseable text reads as every
+// field unknown.
+export function parseDeclaration(text) {
   let decl;
   try {
     decl = parseTaskDeclaration(String(text ?? ''));
-    if (decl !== null && typeof decl === 'object' && !Array.isArray(decl)) applyTaskDefaults(decl);
   } catch {
     decl = null;
   }
-  if (decl === null || typeof decl !== 'object' || Array.isArray(decl)) decl = {};
+  const read = decl !== null && typeof decl === 'object' && !Array.isArray(decl);
+  if (read) applyTaskDefaults(decl); else decl = {};
   const scalarOf = (v) => (['string', 'number', 'boolean'].includes(typeof v) ? v : null);
-  const preconditions = Array.isArray(decl.preconditions) && decl.preconditions.every((c) => typeof c === 'string') ? decl.preconditions : null;
+  // On a declaration that parsed, an absent `preconditions` is the empty expression;
+  // one present but not a list of strings was not read, and neither was anything on
+  // text that did not parse.
+  const stated = !read ? null
+    : decl.preconditions === undefined ? []
+      : Array.isArray(decl.preconditions) && decl.preconditions.every((c) => typeof c === 'string') ? decl.preconditions : null;
+  const preconditions = withCadenceTerm(scalarOf(decl.frequency), stated);
   return {
     id: scalarOf(decl.id),
-    frequency: scalarOf(decl.frequency),
+    trigger: withTrigger(scalarOf(decl.trigger), preconditions),
     agent_model: scalarOf(decl.agent_model),
     expected_outcome: scalarOf(decl.expected_outcome),
     interrupt_policy: scalarOf(decl.interrupt_policy),
     code_work: scalarOf(decl.code_work),
     agent_execution_timeout: scalarOf(decl.agent_execution_timeout),
     preconditions,
-    has_precondition: (preconditions ?? []).some((c) => c !== 'none'),
+    has_precondition: hasGate(preconditions),
   };
+}
+
+// --- a task's cadence ------------------------------------------------------------
+
+// What a declaration says about WHEN its task runs, in the roster's terms: one
+// display word, the period the task keeps, and whether the scheduler asks it at all.
+// Two fields answer that, as they do for the scheduler — `trigger` says whether the
+// task is asked, `cadenceOf` says how often it may then say yes — and four answers
+// stay apart: a cadence; NO cadence term, a task asked at every tick that runs on
+// its other conditions; a REQUEST task, which the scheduler never asks and which
+// runs only from an item somebody creates (a mark, a wake, a chain link); and
+// UNREADABLE, a declaration this could not lift — because a parse failure shown as
+// "on movement" would hide behind a legitimate answer, and a task that reads exactly
+// as its author wrote it must not show as unknown.
+//
+// Only a `due:` cadence is on the calendar, so only it can have a next anchor: an
+// elapsed cadence counts from the task's newest run, and no-cadence and off-schedule
+// have no next instant at all. `scheduled` is null, not false, where nothing was read.
+//
+// `holdsOnFailure` is the same read for the one other thing a declaration says about
+// its own lane: whether a failure park stops the task (`last-run-not-failed`). No
+// park holds a lane by itself, so a failure the declaration does not name is a break
+// to diagnose beside a task still being asked on schedule.
+export function describeCadence(preconditions, trigger) {
+  if (!Array.isArray(preconditions)) {
+    return { frequency: null, cadence: null, periodMs: null, scheduled: null, holdsOnFailure: null, anchorNote: 'cadence unknown' };
+  }
+  const holds = holdsOnFailure(preconditions);
+  // The door once more, so a caller handing over only the conditions — a fixture, a
+  // declaration written before the field — reads exactly as the roster's own entry does.
+  if (withTrigger(trigger, preconditions) !== TRIGGER_SCHEDULE) {
+    return { frequency: 'unscheduled', cadence: null, periodMs: null, scheduled: false, holdsOnFailure: holds, anchorNote: 'not on the schedule — runs only from an item somebody creates' };
+  }
+  const cadence = cadenceOf(preconditions);
+  const period = taskPeriodMs({ preconditions });
+  if (cadence === null) {
+    return { frequency: 'on movement', cadence, periodMs: period, scheduled: true, holdsOnFailure: holds, anchorNote: 'no cadence term — asked at every tick' };
+  }
+  if (cadence.kind === 'elapsed') {
+    return {
+      frequency: `every ${cadence.text}`, cadence, periodMs: period, scheduled: true, holdsOnFailure: holds,
+      anchorNote: `every ${cadence.text} — counted from its newest run, not the calendar`,
+    };
+  }
+  return { frequency: cadence.cadence, cadence, periodMs: period, scheduled: true, holdsOnFailure: holds, anchorNote: null };
 }
 
 // --- work items ----------------------------------------------------------------
@@ -219,7 +266,7 @@ const TRIAGE_TEXT = {
   [NEEDS_HUMAN_APPROVAL]: 'a PR to approve',
   [NEEDS_HUMAN_ACTION]: 'something to change outside the code',
   [NEEDS_HUMAN_DECISION]: 'a decision to make',
-  [NEEDS_HUMAN_FAILURE]: 'a break to diagnose, holding the task\'s lane',
+  [NEEDS_HUMAN_FAILURE]: 'a break to diagnose',
 };
 
 // The outcome as its canonical word ('done' | 'delivered' | 'obsolete' | null) —
@@ -276,13 +323,13 @@ export function warningsFor(item, now, { periodFor = () => null, isOpen = () => 
     }
   }
   if (state === PARKED) {
-    // What the park is asking for, and whether it is holding the task's lane —
-    // an approval waiting on a reviewer is not the same alarm as a broken run
-    // that has stopped its task being scheduled at all.
+    // What the park is asking for — an approval waiting on a reviewer is not the
+    // same alarm as a broken run. Whether the break also holds the task's lane is
+    // the declaration's word, not the park's, and the roster's next ask says it.
     const t = triageOf(item);
     out.push({
       level: isBlockingPark(item) ? 'critical' : 'warning',
-      text: t ? `parked for a human — ${TRIAGE_TEXT[t]}` : 'parked for a human — unclassified, holding the task\'s lane',
+      text: t ? `parked for a human — ${TRIAGE_TEXT[t]}` : 'parked for a human — unclassified',
     });
   }
   if (state === 'torn') out.push({ level: 'warning', text: 'wearing more than one state label' });
@@ -316,6 +363,8 @@ export function describeItem(item, now, opts = {}) {
     notBefore: body.notBefore,
     blockedBy: body.blockedBy,
     taskPath: body.taskPath,
+    // When somebody created or force-woke this item, or null for one the scheduler filed.
+    woken: body.woken ?? null,
     // The roll's record: when the last ask declined, why, and the stamped wake.
     lastVerdict: parseLastVerdict(item.body),
     createdAt: item.created_at,
@@ -328,6 +377,24 @@ export function describeItem(item, now, opts = {}) {
 }
 
 // --- the roster ----------------------------------------------------------------
+
+// The conditions a roster entry's declaration states. A declaration that was read
+// (`parseDeclaration`'s object) carries `preconditions` as the list it states, `[]`
+// for an absent key, or null for a field it could not read; an entry that never got
+// a declaration (null — an orphan, a file the API did not return) is unknown whole.
+// The key absent on a declaration object is the empty expression here too, so a
+// caller building the object by hand reads the same way: only null means "not read".
+const statedPreconditions = (declaration) => {
+  if (declaration === null || typeof declaration !== 'object') return null;
+  return declaration.preconditions === undefined ? [] : declaration.preconditions;
+};
+
+// The trigger the same entry states. A caller building the object by hand may state
+// only the conditions, so the door runs here too and the two reads stay one rule.
+const statedTrigger = (declaration) => {
+  if (declaration === null || typeof declaration !== 'object') return null;
+  return withTrigger(declaration.trigger, statedPreconditions(declaration));
+};
 
 // One row per DECLARED task, whether or not it has ever run — a task that has never
 // produced an item is exactly the interesting case, and an issue-derived list would
@@ -348,19 +415,20 @@ export function buildRoster({ tasks = [], items = [], now, schedule, isOpen }) {
       .sort((a, b) => ms(b.created_at) - ms(a.created_at));
     const open = mine.filter((i) => i.state === 'open');
     const closed = mine.filter((i) => i.state === 'closed');
-    const freq = t.declaration?.frequency ?? null;
+    const read = describeCadence(statedPreconditions(t.declaration), statedTrigger(t.declaration));
 
-    // A frequency this could not read yields no anchor rather than a guessed one,
-    // and `manual` genuinely has none — the two are different and render differently.
+    // The calendar answers only a `due:` cadence, and only where the repo has a
+    // schedule to anchor it on; every other reading carries its own note instead, so
+    // an unreadable declaration yields no anchor rather than a guessed one.
     let next = null;
-    let anchorNote = null;
-    if (freq === 'manual') anchorNote = 'manual — only a hand-created item';
-    else if (!freq) anchorNote = 'frequency unknown';
-    else if (!schedule) anchorNote = 'no schedule configured';
-    else next = nextAnchor(freq, schedule, now);
+    let anchorNote = read.anchorNote;
+    if (read.cadence?.kind === 'due') {
+      if (!schedule) anchorNote = 'no schedule configured';
+      else next = nextAnchor(read.cadence.cadence, schedule, now);
+    }
 
     const current = open.length
-      ? describeItem(open[0], now, { periodFor: () => (freq ? periodMs(freq) : null), isOpen })
+      ? describeItem(open[0], now, { periodFor: () => read.periodMs, isOpen })
       : null;
 
     return {
@@ -369,12 +437,15 @@ export function buildRoster({ tasks = [], items = [], now, schedule, isOpen }) {
       task: t.task,
       path: t.path,
       declaration: t.declaration ?? null,
-      frequency: freq,
+      frequency: read.frequency,
+      cadence: read.cadence,
+      scheduled: read.scheduled,
+      holdsOnFailure: read.holdsOnFailure,
       nextAnchor: next,
       anchorNote,
-      periodMs: freq && freq !== 'manual' ? periodMs(freq) : null,
+      periodMs: read.periodMs,
       current,
-      nextAsk: nextAskOf(current, next, anchorNote),
+      nextAsk: nextAskOf(current, next, anchorNote, read.holdsOnFailure),
       openCount: open.length,
       lastClosed: closed.length ? describeItem(closed[0], now) : null,
       history: closed.map((i) => describeItem(i, now)),
@@ -387,18 +458,20 @@ export function buildRoster({ tasks = [], items = [], now, schedule, isOpen }) {
 // This is where the standing-item model's facts become the roster's advice:
 //   - the stamped Not-before IS the schedule (DESIGN §14, S28), so it wins over the
 //     computed anchor;
-//   - a blocking park stops the task being scheduled at all (§4) — showing an anchor
-//     there would promise a run that will never be filed;
-//   - a non-blocking park consumed its occurrence but leaves the lane open, so the
+//   - a failure park holds the task's lane only where the declaration says so with
+//     `last-run-not-failed` (§5) — showing an anchor there would promise a run the
+//     task itself declines, and showing `held` anywhere else would hide a run the
+//     scheduler files on schedule around the park;
+//   - every other park consumed its occurrence and leaves the lane open, so the
 //     next anchor stands beside it.
-function nextAskOf(current, anchor, anchorNote) {
+function nextAskOf(current, anchor, anchorNote, holdsOnFailure) {
   if (!current) return anchor ? { kind: 'anchor', at: anchor } : { kind: 'note', note: anchorNote };
   if (current.state === READY) return { kind: 'ready', urgent: current.urgent };
   if (current.state === EXECUTING || current.state === AGENT) {
     return { kind: 'running', phase: current.state === AGENT ? 'agent' : 'executor' };
   }
   if (current.state === PARKED) {
-    if (current.blockingPark) return { kind: 'held' };
+    if (current.blockingPark && holdsOnFailure === true) return { kind: 'held' };
     return anchor ? { kind: 'anchor', at: anchor } : { kind: 'note', note: anchorNote };
   }
   if (current.state === BLOCKED) {

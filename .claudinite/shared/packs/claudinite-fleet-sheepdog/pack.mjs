@@ -18,7 +18,7 @@
 //   tasks/fleet-pack-seeds/check-fleet-pack-seeds.mjs  does a member DECLARE what
 //                                                      this fleet standardizes on?
 //   tasks/fleet-baseline/force-fleet-baseline.mjs      make every member baseline NOW
-//                                                      (frequency: manual — the
+//                                                      (no preconditions — the
 //                                                      operator's lever, forced only)
 //
 // Each sweep lives INSIDE its task's folder — nothing outside that task uses it.
@@ -73,11 +73,11 @@
 import { fleetTokenHandoverStep } from './fleet-token.mjs';
 
 export default {
-  version: '60903.2',
+  version: '60906.2',
   minEngineVersion: '60822.1',
   ruleRoutingGuidance: {
     belongs: 'fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs',
-    excludes: 'anything a member does to itself — tidying is tidy-repo, lessons are claudinite-growth; the fleet brief is claudinite-dashboard',
+    excludes: 'anything a member does to itself — its comments are basics, lessons are claudinite-growth; the fleet brief is claudinite-dashboard',
   },
   // Audits the enforcer's config as it stands, whatever this session touched: a seed
   // that drifted in an earlier commit is just as silent as one that drifted in this one.

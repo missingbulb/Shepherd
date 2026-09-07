@@ -17,7 +17,8 @@ import { fleetCorpus } from './fleet-growth.mjs';
 import { fleetCandidates } from './next-work.mjs';
 import {
   $, el, ago, duration, groupedHead, columnCount, groupStarts, emptyRow, leadCard, repoLink, tiles, segmentBar,
-  reasonNodes, stackedColumns, chartLegend, windowFigure, ciMark, commitGraph, packMark,
+  reasonNodes, queueUrl, stackedColumns, chartLegend, windowFigure, ciMark, commitGraph, packMark,
+  attentionMark,
   LEVEL_GLYPH, STATE_ORDER, STATE_COLOR, STATE_UI, OUTCOME_COLOR,
 } from './ui.mjs';
 import { band, slip, machineCell, beats, wakeTicks, figureRow, pulseChart, detailTable, expander } from './sheet.mjs';
@@ -295,7 +296,9 @@ function memberRows(s, onOpen, now) {
 
   // The estimate, and immediately beside it what the estimate is made of. A number
   // with no breakdown is a number nobody can check; a breakdown with no total is a
-  // list nobody can prioritise between rows.
+  // list nobody can prioritise between rows. The breakdown is a mark rather than the
+  // sentences the tiles print — see `attentionMark`, and the width this column used to
+  // take from the other nine.
   const attention = memberAttention(s);
   const minutes = estimateMinutes(attention);
   const est = el('td', { className: 'num nw' }, [
@@ -303,11 +306,7 @@ function memberRows(s, onOpen, now) {
     el('div', { className: 'sub', textContent: minutes ? 'min' : '' }),
   ]);
 
-  const needs = attentionBreakdown(attention);
-  const what = el('td', {}, needs.length
-    ? [el('div', { className: 'needs' }, needs.map((r) =>
-      el('div', { className: `warn ${r.level}`, textContent: `${LEVEL_GLYPH[r.level]} ${r.text}` })))]
-    : [el('span', { className: 'sub', textContent: 'nothing waiting' })]);
+  const what = el('td', {}, [attentionMark(attentionBreakdown(attention))]);
 
   // --- Claudinite: what the machinery is doing here -------------------------------
 
@@ -698,30 +697,35 @@ const pendingRow = (repo) => el('tr', { className: 'pending-row' }, [
 // sentences are the parts a unit test cannot see.
 export function renderSheet({ ledger, machine, candidates, sweeping, progress, strip }) {
   const page = $('fleet-sheet');
-  const top = candidates[0] ?? null;
-  const rest = Math.max(0, candidates.length - 1);
 
   // START HERE — the slip, the one warm object on a cool sheet.
-  const startBody = sweeping && !top
-    ? el('div', { className: 'slip' }, [
-      el('span', { className: 'hl', textContent: 'Reading the fleet…' }),
-      el('span', { className: 'more', textContent: `${progress.done}/${progress.total} members read — nothing waiting on you in those` }),
-    ])
-    : (top
-      ? slip({
-        headline: top.why,
-        where: `${top.repo}${top.number != null ? ` · #${top.number}` : ''}`,
-        href: top.url,
-        chip: parkChip(top),
-        more: [
-          rest ? `${rest} more after this one` : null,
-          ...candidates.slice(1, 3).map((c) => `${c.repo.split('/')[1] ?? c.repo} ${c.why.toLowerCase()}`),
-        ].filter(Boolean).join(' · '),
-      })
-      : el('div', { className: 'slip' }, [
-        el('span', { className: 'hl', textContent: 'Nothing is waiting on you' }),
-        el('span', { className: 'more', textContent: 'nothing read here is parked, failing or behind' }),
-      ]));
+  // Stepped rather than counted, for the reason `view-repo.mjs` states: what the reader
+  // decided about the member in front of them is not something this page can read.
+  const startBody = el('div', { className: 'start' });
+  const paintStart = (index) => {
+    const at = candidates[index] ?? null;
+    startBody.replaceChildren(sweeping && !at
+      ? el('div', { className: 'slip' }, [
+        el('span', { className: 'hl', textContent: 'Reading the fleet…' }),
+        el('span', { className: 'more', textContent: `${progress.done}/${progress.total} members read — nothing waiting on you in those` }),
+      ])
+      : (at
+        ? slip({
+          headline: at.why,
+          where: `${at.repo}${at.number != null ? ` · #${at.number}` : ''}`,
+          href: at.url,
+          chip: parkChip(at),
+          more: candidates.slice(index + 1, index + 3)
+            .map((c) => `${c.repo.split('/')[1] ?? c.repo} ${c.why.toLowerCase()}`).join(' · ') || null,
+          queue: { index, total: candidates.length, onStep: paintStart },
+          seeAll: queueUrl(candidates),
+        })
+        : el('div', { className: 'slip' }, [
+          el('span', { className: 'hl', textContent: 'Nothing is waiting on you' }),
+          el('span', { className: 'more', textContent: 'nothing read here is parked, failing or behind' }),
+        ])));
+  };
+  paintStart(0);
 
   // THE MACHINE — five cells in one row.
   const m = machine;

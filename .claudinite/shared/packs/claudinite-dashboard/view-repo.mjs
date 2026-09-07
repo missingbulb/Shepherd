@@ -15,7 +15,7 @@
 
 import * as gh from './github.mjs';
 import {
-  buildRoster, describeItem, isWorkItem, parseDeclaration, taskDeclarationPaths, periodMs,
+  buildRoster, describeItem, isWorkItem, parseDeclaration, taskDeclarationPaths,
   PARKED,
 } from './model.mjs';
 import {
@@ -28,7 +28,7 @@ import { readUsage, growthSeries, queueSeries, hourSeries } from './usage.mjs';
 import { readContributions, liveSourcesNeeded } from './contributions.mjs';
 import { packCard } from './contrib-view.mjs';
 import {
-  $, el, ago, until, stamp, duration, chip, head, emptyRow, issueLink, segmentBar,
+  $, el, ago, until, stamp, duration, chip, head, emptyRow, issueLink, refNodes, queueUrl, segmentBar,
   warnNodes, stackedColumns, chartLegend, dualAxisChart, flipRows,
   LEVEL_GLYPH, OUTCOME_COLOR,
 } from './ui.mjs';
@@ -73,7 +73,7 @@ const taskCell = (r) => el('td', {}, [
 // What will actually happen to this task next, and — where the standing item rolled —
 // why the last ask declined. The lever each state answers to is one line, because the
 // reader's next question is always "so what do I do".
-function nextAskCell(r, now) {
+function nextAskCell(r, repo, now) {
   const ask = r.nextAsk ?? { kind: 'note', note: r.anchorNote };
   const sub = (text) => el('div', { className: 'sub', textContent: text });
   const declined = r.current?.lastVerdict
@@ -90,10 +90,10 @@ function nextAskCell(r, now) {
     case 'held':
       return el('td', {}, [
         el('div', { className: 'warn critical', textContent: 'schedule held' }),
-        sub('no next run until the park is cleared or re-queued'),
+        sub('this task declares it does not run past its own failure — no next run until the park clears'),
       ]);
     case 'deps':
-      return el('td', {}, [el('div', { textContent: `after ${ask.on.map((n) => `#${n}`).join(', ')}` })]);
+      return el('td', {}, [el('div', {}, refNodes(repo, `after ${ask.on.map((n) => `#${n}`).join(', ')}`))]);
     case 'ready-soon':
       return el('td', {}, [el('div', { textContent: 'due — the next scheduler run readies it' })]);
     case 'off-machine':
@@ -111,13 +111,13 @@ const itemCell = (r, repo) => (r.current
   ])
   : el('td', {}, [el('span', { className: 'sub', textContent: 'no open item' })]));
 
-function waitingCell(r) {
+function waitingCell(r, repo) {
   const i = r.current;
   const waiting = [];
   if (i?.blockedBy?.length) waiting.push(`blocked by ${i.blockedBy.map((n) => `#${n}`).join(', ')}`);
   if (i?.notBefore) waiting.push(`wakes ${stamp(i.notBefore)}`);
   return el('td', { className: 'sub' }, [
-    el('div', { textContent: waiting.join(' · ') || '—' }),
+    el('div', {}, refNodes(repo, waiting.join(' · ') || '—')),
     i?.lastVerdict ? el('div', { className: 'sub', textContent: `declined: ${i.lastVerdict.reason}` }) : null,
   ]);
 }
@@ -131,15 +131,15 @@ function rowCells(r, view, repo, now) {
         : [el('span', { className: 'warn serious', textContent: `${LEVEL_GLYPH.serious} no declared task — nothing will pick this up` })]),
       itemCell(r, repo),
       el('td', { className: 'num', textContent: r.current ? duration(r.current.idleMs) : '—' }),
-      waitingCell(r),
+      waitingCell(r, repo),
     ];
   }
   if (view === 'pending') {
     return [
       taskCell(r),
-      el('td', {}, r.current ? [chip(r.current.state), ...warnNodes(r.current.warnings)] : []),
+      el('td', {}, r.current ? [chip(r.current.state), ...warnNodes(r.current.warnings, repo)] : []),
       itemCell(r, repo),
-      nextAskCell(r, now),
+      nextAskCell(r, repo, now),
       el('td', { className: 'num', textContent: r.current ? duration(r.current.idleMs) : '—' }),
     ];
   }
@@ -153,10 +153,10 @@ function rowCells(r, view, repo, now) {
       el('div', { className: 'sub', textContent: d.agent_model ? `${d.agent_model} · ${d.expected_outcome ?? '—'}` : '—' }),
     ]),
     el('td', {}, r.current
-      ? [chip(r.current.state), ...warnNodes(r.current.warnings),
+      ? [chip(r.current.state), ...warnNodes(r.current.warnings, repo),
         el('div', { className: 'sub' }, [issueLink(repo, r.current.number), ` · ${duration(r.current.idleMs)} idle`])]
       : [el('span', { className: 'sub', textContent: 'no open item' })]),
-    nextAskCell(r, now),
+    nextAskCell(r, repo, now),
     el('td', {}, r.lastClosed
       ? [el('div', { textContent: r.lastClosed.outcome ?? 'none' }),
         el('div', { className: 'sub', textContent: ago(r.lastClosed.closedAt, now) })]
@@ -167,6 +167,16 @@ function rowCells(r, view, repo, now) {
     ]),
   ];
 }
+
+// The header list per view, beside the `rowCells` that fills it: the two are one table
+// and a change to either has to be a change to both. Nothing enforces the pairing, and
+// what happens when they part is what put this comment here — the list was deleted with
+// both of its uses left standing, so every view but the board threw on paint.
+const COLUMNS = {
+  stuck: ['Task', 'What is wrong', 'Item', 'Stuck for', 'Waiting on'],
+  pending: ['Task', 'State', 'Item', 'Next ask', 'Idle'],
+  all: ['Task', 'Cadence', 'Now', 'Next ask', 'Last outcome', 'Outcomes seen'],
+};
 
 const EMPTY = {
   stuck: 'Nothing is stuck — every task is either moving or waiting for its turn.',
@@ -188,21 +198,29 @@ const EMPTY = {
 // Exported so the sheet can be driven against a fixture — the layout and the gap
 // sentences are the parts a unit test cannot see.
 export function renderRepoSheet({ ledger, machine, candidates, strip, repo }) {
-  const top = candidates[0] ?? null;
-  const rest = Math.max(0, candidates.length - 1);
-
-  const startBody = top
-    ? slip({
-      headline: top.why,
-      where: `#${top.number ?? ''}`.replace('#', '') ? `#${top.number}` : repo,
-      href: top.url,
-      chip: parkChipFor(top),
-      more: [rest ? `${rest} more after this one` : null, top.title].filter(Boolean).join(' · '),
-    })
-    : el('div', { className: 'slip' }, [
-      el('span', { className: 'hl', textContent: 'Nothing is waiting on you' }),
-      el('span', { className: 'more', textContent: 'nothing here is parked, failing or off the state machine' }),
-    ]);
+  // The queue behind the prod is STEPPED rather than counted: this page cannot know
+  // the verdict the reader just reached on the candidate in front of them, so the next
+  // one is reachable without acting on this one. The index lives in the closure — the
+  // slip is redrawn from it, and nothing else on the block moves.
+  const startBody = el('div', { className: 'start' });
+  const paintStart = (index) => {
+    const at = candidates[index] ?? null;
+    startBody.replaceChildren(at
+      ? slip({
+        headline: at.why,
+        where: at.number != null ? `#${at.number}` : repo,
+        href: at.url,
+        chip: parkChipFor(at),
+        more: at.title ?? null,
+        queue: { index, total: candidates.length, onStep: paintStart },
+        seeAll: queueUrl(candidates),
+      })
+      : el('div', { className: 'slip' }, [
+        el('span', { className: 'hl', textContent: 'Nothing is waiting on you' }),
+        el('span', { className: 'more', textContent: 'nothing here is parked, failing or off the state machine' }),
+      ]));
+  };
+  paintStart(0);
 
   const m = machine;
   const machineBody = el('div', { className: 'machine repo' }, [
@@ -247,7 +265,7 @@ export function renderRepoSheet({ ledger, machine, candidates, strip, repo }) {
       el('span', { className: 'cap', textContent: name }),
       el('span', { className: 'q', textContent: question }),
     ]),
-    ...figs.map((f, i) => figureRow(f, { format: formats[i] })),
+    ...figs.map((f, i) => figureRow(f, { format: formats[i], repo })),
     // The tail line: one fact that is nowhere else on the block, in the muted step
     // under its column rather than spending a whole row on it.
     el('div', { className: 'tailrow', textContent: tail }),
@@ -332,31 +350,49 @@ function perTaskTable(ledger) {
 // classification drawn in time, so the views cannot disagree about what is stuck.
 function renderWorkBoard(board, { repo, items, prs, rows, now, comments = new Map() }) {
   const node = $('work-board');
-  const explore = $('work-explore');
 
-  const open = (row) => {
-    const number = Number(String(row.gutter).match(/#(\d+)/)?.[1] ?? NaN);
+  // What a mark is worth knowing before it is clicked — `buildPanel`'s answer, which
+  // already differs by what the mark is: a scheduled task reads its last occurrences
+  // and its next anchor, a park reads the ask it is waiting on, a failed task reads
+  // what broke. The panels were written for the block that used to sit under the
+  // board; the reading is the same, it just arrives without a click now.
+  const tipFor = (subject) => {
+    const number = subject?.cell
+      ? (subject.cell.number ?? subject.cell.numbers?.[0] ?? NaN)
+      : Number(String(subject?.gutter).match(/#(\d+)/)?.[1] ?? NaN);
     const item = items.find((i) => i.number === number) ?? null;
     const parsed = item ? rows.find((r) => r.current?.number === number) : null;
     const siblings = parsed ? items.filter((i) => (i.title ?? '').includes(parsed.key)) : [];
-    const panel = buildPanel(row, {
+    return [tipNode(buildPanel(subject, {
       item, repo, items, prs, rows,
-      declaration: parsed?.declaration ?? row.row?.declaration ?? null,
+      declaration: parsed?.declaration ?? subject.row?.declaration ?? null,
       siblings,
       comments: comments.get(number) ?? null,
-      cost: ledgerCostFor(row),
+      cost: ledgerCostFor(subject),
       now,
-    });
-    explore.replaceChildren(el('div', { className: 'explore one' }, [panelNode(panel)]));
+    }), repo)];
   };
 
-  node.replaceChildren(renderBoard(board, { onSelect: open }), quietLine(board.quiet));
-  // One panel is open at rest — the board's own worst finding written out, because a
-  // board whose finding is one click away is a board nobody clicks.
-  const worst = board.groups.flatMap((g) => (g.grid ? [] : g.shown)).find((r) => r.broken || r.parkKind === 'failure')
-    ?? board.groups[0]?.shown?.[0] ?? null;
-  if (worst) open(worst);
-  else explore.replaceChildren();
+  const tip = el('div', { className: 'board-tip', role: 'tooltip', hidden: true });
+  node.replaceChildren(renderBoard(board, { repo, tip, tipFor }), tip, quietLine(board.quiet, { repo }));
+}
+
+// The panel as a hover card: its title and its fields, and the FIRST LINE of its `do`.
+// The rest of a `do` is a command to paste, and a card that vanishes when the pointer
+// leaves it is not somewhere anything can be copied from — so the imperative stays and
+// the block under it does not.
+function tipNode(panel, repo) {
+  // The colon goes with the block it introduced: "converge it:" with nothing under it
+  // reads as a card that failed to finish drawing.
+  const say = String(panel.do ?? '').split('\n')[0].replace(/:$/, '');
+  return el('div', { className: 'panel-x' }, [
+    el('h4', {}, [panel.title]),
+    el('dl', {}, panel.fields.flatMap((f) => [
+      el('dt', { textContent: f.label }),
+      el('dd', { className: f.value === null ? 'gap' : '' }, refNodes(repo, f.value ?? f.note)),
+    ])),
+    say ? el('div', { className: 'do' }, [el('b', { textContent: 'do' }), ...refNodes(repo, say)]) : null,
+  ]);
 }
 
 const ledgerCostFor = () => null;
@@ -374,28 +410,11 @@ export function ciCell(ci, now) {
   };
 }
 
-function panelNode(panel) {
-  return el('div', { className: 'panel-x' }, [
-    el('h4', {}, [panel.title]),
-    el('dl', {}, panel.fields.flatMap((f) => [
-      el('dt', { textContent: f.label }),
-      el('dd', { className: f.value === null ? 'gap' : '', textContent: f.value ?? f.note }),
-    ])),
-    el('div', { className: 'do' }, [
-      el('b', { textContent: 'do' }),
-      ...(panel.do.includes('\n')
-        ? [panel.do.split('\n')[0], el('pre', { textContent: panel.do.split('\n').slice(1).join('\n') })]
-        : [panel.do]),
-    ]),
-  ]);
-}
-
 export function renderWork(all, repo, now, view, board = null, context = null) {
   const counts = viewCounts(all);
   const table = $('work');
   const boardView = view === 'board';
   $('work-board').hidden = !boardView;
-  $('work-explore').hidden = !boardView;
   $('work-table-wrap').hidden = boardView;
   if (boardView) {
     if (board) renderWorkBoard(board, context);
@@ -617,7 +636,7 @@ export async function loadRepo({ repo, token, config = null, onError }) {
   const declPaths = declaration ? taskDeclarationPaths(paths, declaration) : [];
   const tasks = await Promise.all(declPaths.map(async (t) => ({
     ...t,
-    declaration: parseDeclaration(await gh.getTextAtSha(repo, sha, t.path, token), t.path),
+    declaration: parseDeclaration(await gh.getTextAtSha(repo, sha, t.path, token)),
   })));
 
   const items = issuePage.issues.filter(isWorkItem);
@@ -626,10 +645,7 @@ export async function loadRepo({ repo, token, config = null, onError }) {
   const byNumber = new Map(issuePage.issues.map((i) => [i.number, i.state === 'open']));
   const isOpen = (n) => byNumber.get(n) ?? null;
   const rows = buildRoster({ tasks, items, now, schedule, isOpen });
-  const periodFor = (k) => {
-    const f = rows.find((r) => r.key === k)?.frequency;
-    return f && f !== 'manual' ? periodMs(f) : null;
-  };
+  const periodFor = (k) => rows.find((r) => r.key === k)?.periodMs ?? null;
   const open = items.filter((i) => i.state === 'open').map((i) => describeItem(i, now, { periodFor, isOpen }));
 
   // The canon reference for the drift tile. Optional in every direction: with none

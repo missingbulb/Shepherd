@@ -11,7 +11,7 @@
 // [`fleet-ledger.mjs`](fleet-ledger.mjs) and [`fleet.mjs`](fleet.mjs). This file turns
 // those into nodes.
 
-import { el } from './ui.mjs';
+import { el, refNodes } from './ui.mjs';
 
 const NS = 'http://www.w3.org/2000/svg';
 
@@ -43,13 +43,42 @@ export function band(label, question, body, { className = '', aria = null } = {}
 
 // The one object that sits ON the sheet, on warm paper, because it is the one thing
 // addressed to the person. Nothing in it clips: it wraps.
-export function slip({ headline, where, href, chip: chipText, more }) {
+//
+// `queue` is what is behind this one, as something to USE rather than a count to read:
+// the page cannot know the verdict the reader just reached on the candidate in front of
+// them, so the next one has to be reachable without acting on this one. `seeAll` is the
+// same queue as one link out — `queueUrl`'s.
+export function slip({ headline, where, href, chip: chipText, more, queue = null, seeAll = null }) {
+  const nav = queue && queue.total > 1
+    ? el('span', { className: 'nav' }, [
+      stepButton('‹', 'the one before this', queue, queue.index - 1),
+      el('span', { className: 'at', textContent: `${queue.index + 1} / ${queue.total}` }),
+      stepButton('›', 'the next one', queue, queue.index + 1),
+      seeAll ? el('a', {
+        className: 'see-all', href: seeAll, target: '_blank', rel: 'noopener',
+        textContent: `see all ${queue.total}`,
+      }) : null,
+    ])
+    : null;
   return el('div', { className: 'slip' }, [
     el('span', { className: 'hl', textContent: headline }),
     where ? el('a', { className: 'where', href: href ?? '#', target: '_blank', rel: 'noopener', textContent: where }) : null,
     chipText ? el('span', { className: 'chip', textContent: chipText }) : null,
     more ? el('span', { className: 'more', textContent: more }) : null,
+    nav,
   ]);
+}
+
+// One step of the queue. It names the candidate it wants rather than a direction, so
+// the page repaints from an index and holds no cursor of its own.
+function stepButton(glyph, label, queue, to) {
+  const button = el('button', {
+    className: 'step', type: 'button', textContent: glyph, title: label,
+    disabled: to < 0 || to >= queue.total,
+    onclick: () => queue.onStep(to),
+  });
+  button.setAttribute('aria-label', label);
+  return button;
 }
 
 // One of the machine's five cells: a status square, its label in condensed caps, the
@@ -110,7 +139,7 @@ export function wakeTicks(strip, { width = 240, height = 30 } = {}) {
 
 // A ledger row: figure · text · delta · spark, on the fixed tracks that make the three
 // columns line up down the whole sheet. The alignment IS the design.
-export function figureRow(fig, { format = String } = {}) {
+export function figureRow(fig, { format = String, repo = null } = {}) {
   const value = fig.value === null
     ? el('div', { className: 'v gap', textContent: '—' })
     : el('div', { className: 'v', textContent: format(fig.value) });
@@ -125,7 +154,7 @@ export function figureRow(fig, { format = String } = {}) {
       // lining up.
       fig.gap
         ? el('span', { className: 's gap', textContent: fig.gap })
-        : (fig.sub ? el('span', { className: 's', textContent: fig.sub }) : null),
+        : (fig.sub ? el('span', { className: 's' }, refNodes(repo, fig.sub)) : null),
     ]),
     deltaCell(fig, format),
     el('div', { className: 'sp' }, fig.spark ? [sparkline(fig.spark)] : []),
