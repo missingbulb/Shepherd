@@ -4,8 +4,10 @@
 # The WORK scope is not here: it judges a session's own change and runs at that
 # session's Stop hook.
 #
-# When this repo grows tests of its own, they go in as further steps of this job —
-# not as a second workflow.
+# The repo's own unit tests are the second step. They live in the local pack, under
+# `.claudinite/`, which Node's default test discovery skips as a dot-directory — hence
+# the explicit `find`. Further suites go in as further steps of this job, not as a
+# second workflow.
 name: Checks
 
 on:
@@ -34,3 +36,6 @@ jobs:
       # The engine's always-vendored Node CLI, invoked as the standalone command.
       - name: Claudinite world sweep
         run: node .claudinite/shared/engine/checks/check_the_world.mjs
+
+      - name: Unit tests
+        run: node --test $(find .claudinite/local -name '*.test.mjs')
