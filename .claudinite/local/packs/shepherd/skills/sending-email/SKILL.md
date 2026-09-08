@@ -1,10 +1,6 @@
 ---
 name: sending-email
 description: Sending mail from this repo over the Cloudflare Email Service — the one client every sender goes through, the REST field spellings, and what the account must already be set up for. Use when writing or changing code that sends an email, and when a send fails or a park says the Email Service refused one.
-metadata:
-  force-load-on-file-edits-paths:
-    - "**/packs/*/skills/sending-email/**"
-    - "**/tasks/*email*/**"
 ---
 
 # Sending email
