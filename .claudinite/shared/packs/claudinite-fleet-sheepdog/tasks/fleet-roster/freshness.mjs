@@ -1,12 +1,12 @@
-// The FRESHNESS half of the fleet-roster sweep: the `fleet-drift` issue family, the
-// root-cause classification behind it, and the freshness section of the run report.
+// The FRESHNESS half of the fleet-roster sweep: the root-cause classification of a
+// member's mount against canon, and the freshness section of the run report.
 //
 // It holds no enumeration and no membership classification — the roster is built once,
 // for both halves, by its sibling check-fleet-roster.mjs, which hands this module only
-// the members it has already established are covered, awake, in scope and this sweep's
-// to measure. What lives here is everything specific to the freshness QUESTION. Its
-// counterpart is adoption-issues.mjs, which owns the same three things for the coverage
-// question; the two never import each other.
+// the members it has already established are covered, in scope and this sweep's to
+// measure. What lives here is everything specific to the freshness QUESTION. Its
+// counterpart is adoption-issues.mjs, which owns the coverage question; the two never
+// import each other.
 //
 // WHY THE QUESTION EXISTS. Under per-project scheduling every member maintains ITSELF:
 // its own vendored `claudinite-scheduler.yml` fires hourly, and its `baselining` task
@@ -17,13 +17,22 @@
 // coverage half calls it covered, and it files no failure issue because nothing runs
 // there to fail. Self-maintenance cannot detect its own absence.
 //
+// WHERE THE ANSWER GOES: the run report, and nowhere else. This half filed a
+// `fleet-drift` issue per unhealthy member until #1854. The dashboard's Drift tile
+// measures the same fact from the same source — each member's declaration against
+// canon — and recomputes on load, so the issues were a second surface for one
+// question and the staler of the two: only ever as current as the last daily sweep,
+// which is how a member that fell behind hours after a sweep sat unreported while
+// three issues named members that had already caught up. The coverage half still
+// files, because no other surface answers coverage.
+//
 // WHAT `behind` MEASURES: the VERSION GAP, and nothing else. The versioned update
 // flows stamp `engineVersion` and `packVersions` and deliberately never rewrite `ref`
 // or `updated`, so on a well-maintained member the stamped ref is frozen at whatever
 // commit first vendored it and its AGE measures nothing at all. A date measure over
 // that stamp does not decay gracefully either: every member's ref ages at the same
 // rate, so one arbitrary day the whole fleet crosses the window at once and the sweep
-// files a drift issue per repo for a fleet that is, by versions, current (#1025).
+// calls every repo behind for a fleet that is, by versions, current (#1025).
 //
 // So a member is behind when its stamped engine version is below canon's, or any pack
 // it stamps is below that pack's manifest version in canon — read out of CANON over
@@ -31,32 +40,17 @@
 // behind. The stamped ref is still read for what it honestly is, provenance: whether
 // it is a commit on canon's trunk at all, which is the #328 wedge.
 //
-// Read-only toward every member: the only writes are the enforcer repo's own drift
-// issues and their label.
-
-import { labeledIssues, DECLARATION } from '../../fleet-api.mjs';
+// Read-only toward every repo it touches, the enforcer included: this half now writes
+// nothing at all.
+import { DECLARATION } from '../../fleet-api.mjs';
 import { VERSION_SOURCE, versionFromLiteral, isVersion, versionAbove } from '../../../../engine/version.mjs';
 import { installedVersions } from '../../../../engine/installed-versions.mjs';
 
-const LABEL = 'fleet-drift';
-const LABEL_SPEC = { color: 'D93F0B', description: 'Covered member whose Claudinite mount has fallen behind canon' };
 const SCHEDULER = '.github/workflows/claudinite-scheduler.yml';
 
-export { LABEL, LABEL_SPEC, SCHEDULER };
+export { SCHEDULER };
 export const FRESH = 'fresh';
 
-const driftTitle = (fullName) => `Claudinite mount has fallen behind on ${fullName}`;
-const TITLE_RE = /^Claudinite mount has fallen behind on (\S+\/\S+)$/;
-// A machine-readable state marker in the body: it lets a later run notice that the
-// ROOT CAUSE changed (a repo that was `behind` is now `no-scheduler`) and say so,
-// without any cross-run state to keep — the issue carries its own last verdict.
-//
-// The marker still spells `fleet-freshness`, the retired task that first wrote it, and
-// must keep spelling it: every drift issue open in the enforcer right now carries that
-// exact string, and a rename would read every one of them as `unrecorded` and comment a
-// spurious verdict change on the first run after the merge.
-const marker = (state) => `<!-- fleet-freshness: ${state} -->`;
-const MARKER_RE = /<!-- fleet-freshness: ([a-z-]+) -->/;
 
 // --- classification (pure) ----------------------------------------------------
 
@@ -73,7 +67,7 @@ const MARKER_RE = /<!-- fleet-freshness: ([a-z-]+) -->/;
 // The precedence is about ROOT CAUSE, not the order the facts arrive in: a member with
 // no scheduler is ALSO behind, and reporting "behind" would send the reader chasing a
 // symptom of the missing cron.
-export function classifyFreshness({ hasScheduler, installed, canon }) {
+export function classifyFreshness({ hasScheduler, installed, canon, dormant = false }) {
   // Neither number means the mount has never been written by an engine that stamps —
   // which is every engine there has been since the versioned flows landed. A repo
   // whose declaration names packs whose versions it cannot state has not been
@@ -82,7 +76,11 @@ export function classifyFreshness({ hasScheduler, installed, canon }) {
   if (installed.engineVersion === null && packIds.length === 0) {
     return { state: 'no-stamp', detail: `${DECLARATION} carries no engineVersion and no pack versions — the repo declares packs but has never been vendored` };
   }
-  if (!hasScheduler) {
+  // A DORMANT member's scheduler is stopped by its own declaration, so its absence is
+  // obedience rather than drift, and this is the ONE state dormancy suppresses. The
+  // version comparison below still runs: what the declaration bought was quiet about
+  // the scheduler, not exemption from being measured.
+  if (!hasScheduler && !dormant) {
     return { state: 'no-scheduler', detail: `no ${SCHEDULER} — the repo has no cron, so nothing there will ever converge it` };
   }
   // An absent canon number is not a zero: a pack retired from canon has no manifest
@@ -195,128 +193,6 @@ export async function probeMount(gh, fullName, declaration, { canon }) {
   return { hasScheduler, installed, canon: canonAt };
 }
 
-// --- issue bodies -------------------------------------------------------------
-
-const FIXES = {
-  'no-stamp': [
-    'Run the adoption flow against the repo (the `adopt-claudinite` skill) — it vendors the',
-    'mount and writes the first versions. Until then the declaration names packs whose code',
-    'is not present, so nothing Claudinite defines actually runs there.',
-  ],
-  'no-scheduler': [
-    'The repo never cut over to per-project scheduling. Vendor the scheduler',
-    '(`vendoring/apply-vendor-set.mjs` writes it, with this repo\'s hashed cron minute) and',
-    'confirm the workflow is enabled in the Actions tab — a repo with no cron runs no task',
-    'at all, so every other symptom is downstream of this one.',
-  ],
-  behind: [
-    'The scheduler workflow exists but the self-refresh is not landing. Check the repo\'s',
-    'recent `Claudinite scheduler` runs: a disabled workflow (GitHub disables cron on repos',
-    'with no activity for 60 days), a failing update task, or a maintenance PR that never',
-    'merges all look like this.',
-    '',
-    'The gap above is read from the member\'s own `engineVersion` and per-pack versions',
-    'against canon\'s own numbers, so it closes only when an update flow actually re-stamps',
-    'the mount.',
-  ],
-};
-
-function driftBody(fullName, { state, detail }) {
-  return [
-    marker(state),
-    `\`${fullName}\` is covered — it carries a tracked \`${DECLARATION}\` — but it is not keeping up with canon.`,
-    '',
-    `**What the sweep found (${state}):** ${detail}`,
-    '',
-    '**What to do**',
-    '',
-    ...FIXES[state],
-    '',
-    'This issue is converged by the daily fleet-roster task: it closes',
-    'itself `completed` once the repo is fresh again, and `not planned` once the repo leaves the',
-    'fleet (excluded, deleted, archived, or no longer covered). A close without either gets',
-    'reopened while the repo stays behind.',
-  ].join('\n');
-}
-
-// --- convergence --------------------------------------------------------------
-
-// One issue per unhealthy member, keyed by a title that names only the repo — so the
-// root cause can change without orphaning the thread. Deliberately quieter than the
-// coverage half on the way in: an already-open issue gets a comment ONLY when the state
-// actually changed, because a sweep over a fleet that is slow to heal would otherwise
-// turn every thread into a wall of identical notes. That restraint is what lets this
-// half ride the daily cadence rather than the weekly one it used to have.
-export async function convergeDrift(gh, home, { unhealthy, healthySet, goneSet, dormantSet = new Set() }) {
-  const actions = [];
-  const { open: openIssues, closed } = await labeledIssues(gh, home, LABEL);
-  const open = new Map(openIssues.map((i) => [i.title, i]));
-  const wanted = new Map(unhealthy.map((u) => [u.fullName, u]));
-
-  for (const [fullName, verdict] of wanted) {
-    const title = driftTitle(fullName);
-    const existing = open.get(title);
-    if (existing) {
-      const was = MARKER_RE.exec(existing.body ?? '')?.[1];
-      if (was === verdict.state) continue; // same story as yesterday — say nothing
-      await gh(`/repos/${home}/issues/${existing.number}`, {
-        method: 'PATCH', body: { body: driftBody(fullName, verdict) },
-      });
-      await gh(`/repos/${home}/issues/${existing.number}/comments`, {
-        method: 'POST', body: { body: `The sweep's verdict changed: \`${was ?? 'unrecorded'}\` → \`${verdict.state}\`. ${verdict.detail}.` },
-      });
-      actions.push(`updated #${existing.number} (${fullName}: ${was ?? 'unrecorded'} → ${verdict.state})`);
-      continue;
-    }
-    const prior = closed.filter((i) => i.title === title)
-      .sort((a, b) => new Date(b.closed_at) - new Date(a.closed_at))[0];
-    if (prior && prior.state_reason === 'not_planned') continue; // closed as out-of-fleet; re-adding it is the standing fix
-    if (prior) {
-      await gh(`/repos/${home}/issues/${prior.number}`, {
-        method: 'PATCH', body: { state: 'open', body: driftBody(fullName, verdict) },
-      });
-      await gh(`/repos/${home}/issues/${prior.number}/comments`, {
-        method: 'POST', body: { body: `Reopened by the sweep: \`${fullName}\` has fallen behind again (${verdict.state}). ${verdict.detail}.` },
-      });
-      actions.push(`reopened #${prior.number} (${fullName}: ${verdict.state})`);
-    } else {
-      const { status, json } = await gh(`/repos/${home}/issues`, {
-        method: 'POST',
-        body: { title, body: driftBody(fullName, verdict), labels: [LABEL] },
-      });
-      if (status !== 201) throw new Error(`creating drift issue for ${fullName} returned ${status}`);
-      actions.push(`opened #${json.number} (${fullName}: ${verdict.state})`);
-    }
-  }
-
-  for (const [title, issue] of open) {
-    const m = TITLE_RE.exec(title);
-    if (!m) continue;
-    const fullName = m[1].toLowerCase();
-    if (wanted.has(fullName)) continue;
-    let reason = null; let note = null;
-    if (healthySet.has(fullName)) {
-      reason = 'completed'; note = 'is up to date with canon again';
-    } else if (dormantSet.has(fullName)) {
-      // `not planned`, not `completed`: the drift was never fixed, the repo was
-      // taken out of the race. Closing it `completed` would claim a repair nobody
-      // made, and leaving it open would be the nagging dormancy exists to stop.
-      reason = 'not_planned'; note = 'has declared itself dormant — it is out of the recurring work, so the sweep no longer measures it';
-    } else if (goneSet.has(fullName)) {
-      reason = 'not_planned'; note = 'is no longer a covered member of the fleet (excluded, deleted, archived, or uncovered)';
-    }
-    if (!reason) continue; // classified UNKNOWN this run — say nothing rather than guess
-    await gh(`/repos/${home}/issues/${issue.number}/comments`, {
-      method: 'POST', body: { body: `Closed by the sweep: \`${m[1]}\` ${note}.` },
-    });
-    await gh(`/repos/${home}/issues/${issue.number}`, {
-      method: 'PATCH', body: { state: 'closed', state_reason: reason },
-    });
-    actions.push(`closed #${issue.number} (${m[1]}: ${note})`);
-  }
-  return actions;
-}
-
 // --- the freshness section of the report (pure) -------------------------------
 
 // Enumerates the FULL fleet: every repo lands in exactly one list — fresh (with how
@@ -327,7 +203,7 @@ export async function convergeDrift(gh, home, { unhealthy, healthySet, goneSet, 
 // directly. `fresh` is `[{ fullName, detail }]`; `outOfScope` entries carry their
 // reason inline.
 export function renderFreshnessSummary({
-  owner, home, canonRepo, canonBranch, fresh, unhealthy, dormant, outOfScope, unknown, actions,
+  owner, home, canonRepo, canonBranch, fresh, unhealthy, dormant, outOfScope, unknown,
 }) {
   const notMeasured = [`\`${home}\` — the enforcer, swept by its own scheduler`];
   if (canonRepo.toLowerCase() !== home.toLowerCase()) notMeasured.push(`\`${canonRepo}\` — canon, with no vendored mount to be stale`);
@@ -342,15 +218,15 @@ export function renderFreshnessSummary({
       + `${dormant.length} | ${outOfScope.length} | ${unknown.length} |`,
     '',
     unhealthy.length
-      ? `**Behind (drift issue open):**\n${unhealthy.map((u) => `- \`${u.fullName}\` — **${u.state}**: ${u.detail}`).join('\n')}`
+      ? `**Behind:**\n${unhealthy.map((u) => `- \`${u.fullName}\` — **${u.state}**: ${u.detail}`
+        + `${u.dormant ? ' — dormant, so nothing there will converge this on its own' : ''}`).join('\n')}`
       : '**Every covered member is up to date 🎉**',
     fresh.length
       ? `**Fresh:**\n${fresh.map((f) => `- \`${f.fullName}\` — ${f.detail}`).join('\n')}`
       : '**Fresh:** none',
-    dormant.length ? `**Dormant (self-declared, not measured):** ${dormant.join(', ')}` : '',
+    dormant.length ? `**Dormant (scheduler stopped by declaration — measured like any other member, but will not self-heal):** ${dormant.join(', ')}` : '',
     outOfScope.length ? `**Out of scope (not covered members):** ${outOfScope.join(', ')}` : '',
     unknown.length ? `**UNKNOWN (probe errored — fix the token/scope):** ${unknown.join('; ')}` : '',
     `**Not measured:** ${notMeasured.join('; ')}`,
-    actions.length ? `**Issue actions:** ${actions.join('; ')}` : '**Issue actions:** none (converged)',
   ].filter(Boolean).join('\n');
 }
