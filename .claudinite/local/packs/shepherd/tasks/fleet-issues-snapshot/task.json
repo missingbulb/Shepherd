@@ -6,14 +6,14 @@
   "preconditions": [
     "due:daily"
   ],
-  "expected_outcome": "pr",
+  "expected_outcome": "fresh_pr",
   "automerge": [
     "under:.claudinite/local && generated-file-changes"
   ],
   "code_work": "node worker.mjs",
   "code_work_timeout": 600,
   "agent_model": "none",
-  "required_secrets": [
+  "code_work_required_secrets": [
     "FLEET_GITHUB_TOKEN"
   ]
 }

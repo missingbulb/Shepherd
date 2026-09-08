@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../../shared/packs/claudinite-tasks/task.schema.json",
+  "id": "fleet-repo-digest-email",
+  "description": "Emails the owner three fleet repos each night — name, link, open-issue count and the newest open issue titles — taking a different three every day so the whole fleet comes round in rotation rather than only the members that break.",
+  "trigger": "schedule",
+  "preconditions": [
+    "due:daily"
+  ],
+  "schedule_after": [
+    "shepherd/fleet-issues-snapshot"
+  ],
+  "expected_outcome": "no_code_changes",
+  "on_interrupt": "needs-human",
+  "code_work": "node worker.mjs",
+  "code_work_timeout": 120,
+  "code_work_required_secrets": [
+    "CLOUDFLARE_API_TOKEN"
+  ],
+  "agent_model": "none"
+}
