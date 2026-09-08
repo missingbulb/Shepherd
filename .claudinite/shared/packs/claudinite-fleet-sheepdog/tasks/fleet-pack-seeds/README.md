@@ -49,7 +49,7 @@ One PUT to the member's default branch, guarded by the blob sha the read returne
 
 ## A dormant member is not written to
 
-The run covers every member, and a member that declares `"dormant": true` ([the scheduler's gate](../../../claudinite-growth/skills/writing-tasks/SKILL.md)) is one the sweep writes nothing to — it is read, classified `dormant`, and named in the summary under that state. It declared itself out of the recurring work, and a commit landed in it from the outside is exactly the upkeep it opted out of; its frozen mount would leave it un-writable indefinitely anyway.
+The run covers every member, and a member declaring `dormant` on its `claudinite-tasks` entry ([the scheduler's gate](../../../claudinite-growth/skills/writing-tasks/SKILL.md)) is one the sweep writes nothing to — it is read, classified `dormant`, and named in the summary under that state. It declared itself out of the recurring work, and a commit landed in it from the outside is exactly the upkeep it opted out of; its frozen mount would leave it un-writable indefinitely anyway.
 
 ## Not a fleet mechanism
 
@@ -87,7 +87,7 @@ ceremony around a mechanical edit. Hence `expected_outcome: 'no_code_changes'`: 
 OTHER repos, not this one, and the outcome ceiling describes what a task may do to its
 OWN repo — this task opens no PR here at all.
 
-CLASSIFICATION (per-project-scheduling DESIGN §6, the same note the other sweeps
+CLASSIFICATION (the same note the other sweeps
 carry): an ORDINARY PACK TASK, not a fleet mechanism. Its *implementation* reaches
 every repo under the owner over a PAT, but its declaration, scheduling and lifecycle
 are exactly those of any pack task — it is active because this repo declares the
