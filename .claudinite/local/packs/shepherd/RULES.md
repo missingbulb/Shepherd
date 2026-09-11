@@ -133,6 +133,16 @@ canon instead, where every repo gets it.
   updated correctly with no `--unshallow`. Fetch before trusting any `git diff`/`git log` against
   `origin/main`; reach for `--unshallow` only if history, not the ref, still comes up short (#470).
 
+- **Reading the mount under `.claudinite/shared/` to learn what Claudinite currently declares** —
+  a task's `automerge`, a pack's version, any behaviour you are about to report or judge a member
+  against — read the canon repo's own `packs/<id>/` at `main` instead. The mount is a snapshot at
+  *this* repo's declared version, so it answers what this member runs, never what canon says, and
+  the two diverge precisely when something is behind, which is the moment a force-fleet run exists
+  to investigate. A fleet report quoted this checkout's stale `update` task (`automerge:
+  "anything"`, lifecycle 60907.2) as the fleet's policy while all 14 members already ran 60911.1's
+  granular list including `test-changes`; the same `git fetch origin main` that refreshes the ref
+  refreshes the mount with it (#556).
+
 - **Looking up a PR by its head branch** — `mcp__github__list_pull_requests` with a bare branch
   name in `head` (no `owner:` prefix) does not filter; it can silently hand back an unrelated PR
   as if it matched, for every branch queried, with no error to flag the miss. Qualify `head` as
