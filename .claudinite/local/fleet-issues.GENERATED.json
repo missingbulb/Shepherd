@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-11T08:54:30.713Z",
+  "generated": "2026-09-12T08:38:05.350Z",
   "owner": "missingbulb",
-  "total": 403,
+  "total": 407,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -143,8 +143,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:19:05Z",
-          "updated_at": "2026-09-10T10:08:29Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:49Z",
+          "comments": 3
         },
         {
           "number": 1880,
@@ -154,8 +154,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:17:53Z",
-          "updated_at": "2026-09-10T10:08:28Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:48Z",
+          "comments": 3
         },
         {
           "number": 1879,
@@ -165,8 +165,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:17:36Z",
-          "updated_at": "2026-09-10T10:08:28Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:47Z",
+          "comments": 3
         },
         {
           "number": 1878,
@@ -176,8 +176,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:17:18Z",
-          "updated_at": "2026-09-10T10:08:27Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:47Z",
+          "comments": 3
         },
         {
           "number": 1877,
@@ -187,8 +187,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:17:02Z",
-          "updated_at": "2026-09-10T10:08:26Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:46Z",
+          "comments": 3
         },
         {
           "number": 1876,
@@ -198,8 +198,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:16:47Z",
-          "updated_at": "2026-09-10T10:08:26Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:45Z",
+          "comments": 3
         },
         {
           "number": 1875,
@@ -209,8 +209,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:16:11Z",
-          "updated_at": "2026-09-10T10:08:25Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:44Z",
+          "comments": 3
         },
         {
           "number": 1874,
@@ -220,8 +220,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:15:56Z",
-          "updated_at": "2026-09-10T10:08:24Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:44Z",
+          "comments": 3
         },
         {
           "number": 1873,
@@ -231,8 +231,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:15:06Z",
-          "updated_at": "2026-09-10T10:08:24Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:43Z",
+          "comments": 3
         },
         {
           "number": 1872,
@@ -242,8 +242,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:14:57Z",
-          "updated_at": "2026-09-10T10:08:23Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:43Z",
+          "comments": 3
         },
         {
           "number": 1871,
@@ -253,8 +253,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:14:36Z",
-          "updated_at": "2026-09-10T10:08:22Z",
-          "comments": 2
+          "updated_at": "2026-09-11T10:00:42Z",
+          "comments": 3
         },
         {
           "number": 1869,
@@ -505,8 +505,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-09-10T10:08:22Z",
-          "comments": 8
+          "updated_at": "2026-09-11T10:00:41Z",
+          "comments": 9
         },
         {
           "number": 1682,
@@ -884,8 +884,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-08-24T19:02:36Z",
-          "updated_at": "2026-09-10T10:08:21Z",
-          "comments": 4
+          "updated_at": "2026-09-11T10:00:41Z",
+          "comments": 5
         },
         {
           "number": 1346,
@@ -895,8 +895,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-09-10T10:08:20Z",
-          "comments": 24
+          "updated_at": "2026-09-11T10:00:40Z",
+          "comments": 25
         },
         {
           "number": 1341,
@@ -976,8 +976,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-09-10T10:08:20Z",
-          "comments": 27
+          "updated_at": "2026-09-11T10:00:39Z",
+          "comments": 28
         },
         {
           "number": 1236,
@@ -1285,37 +1285,37 @@
       "openIssues": 17,
       "issues": [
         {
-          "number": 394,
+          "number": 404,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
-            "task:status:running-executor",
+            "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:53:36Z",
-          "updated_at": "2026-09-11T08:54:05Z",
-          "comments": 1
+          "created_at": "2026-09-12T08:36:38Z",
+          "updated_at": "2026-09-12T08:36:38Z",
+          "comments": 0
         },
         {
-          "number": 393,
+          "number": 403,
           "title": "[claudinite-work] claudinite-tasks/task-janitor",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:53:35Z",
-          "updated_at": "2026-09-11T08:53:35Z",
+          "created_at": "2026-09-12T08:36:37Z",
+          "updated_at": "2026-09-12T08:36:37Z",
           "comments": 0
         },
         {
-          "number": 392,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "number": 401,
+          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:53:35Z",
-          "updated_at": "2026-09-11T08:53:35Z",
-          "comments": 0
+          "created_at": "2026-09-12T08:36:37Z",
+          "updated_at": "2026-09-12T08:37:20Z",
+          "comments": 1
         },
         {
           "number": 373,
@@ -1456,15 +1456,29 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 36,
+      "openIssues": 37,
       "issues": [
         {
-          "number": 482,
-          "title": "Rebuild claudinite.com from the layer-model framing: new core messaging, buyer questions, new page",
-          "labels": [],
-          "created_at": "2026-09-10T10:02:39Z",
-          "updated_at": "2026-09-10T10:02:39Z",
-          "comments": 0
+          "number": 496,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-11T19:13:31Z",
+          "updated_at": "2026-09-11T19:22:25Z",
+          "comments": 5
+        },
+        {
+          "number": 493,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-11T16:25:44Z",
+          "updated_at": "2026-09-11T16:34:10Z",
+          "comments": 4
         },
         {
           "number": 460,
@@ -1929,8 +1943,27 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 20,
+      "openIssues": 22,
       "issues": [
+        {
+          "number": 677,
+          "title": "sw/version-bumped and improve-comments-scope conflict when a comment fix touches a published file",
+          "labels": [],
+          "created_at": "2026-09-11T19:39:17Z",
+          "updated_at": "2026-09-11T19:39:17Z",
+          "comments": 0
+        },
+        {
+          "number": 669,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-11T16:25:43Z",
+          "updated_at": "2026-09-11T16:39:08Z",
+          "comments": 4
+        },
         {
           "number": 629,
           "title": "[claudinite-work] claudinite-growth/rule-revalidation",
@@ -2993,51 +3026,70 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 22,
+      "openIssues": 23,
       "issues": [
         {
-          "number": 548,
+          "number": 566,
           "title": "[claudinite-work] shepherd/fleet-repo-digest-email",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:52:22Z",
-          "updated_at": "2026-09-11T08:52:22Z",
+          "created_at": "2026-09-12T08:35:49Z",
+          "updated_at": "2026-09-12T08:35:49Z",
           "comments": 0
         },
         {
-          "number": 547,
+          "number": 565,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:52:22Z",
-          "updated_at": "2026-09-11T08:54:17Z",
+          "created_at": "2026-09-12T08:35:48Z",
+          "updated_at": "2026-09-12T08:37:53Z",
           "comments": 1
         },
         {
-          "number": 545,
-          "title": "[claudinite-work] claudinite-tasks/task-janitor",
+          "number": 559,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:52:21Z",
-          "updated_at": "2026-09-11T08:52:21Z",
+          "created_at": "2026-09-12T08:35:46Z",
+          "updated_at": "2026-09-12T08:35:46Z",
           "comments": 0
         },
         {
-          "number": 544,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "number": 558,
+          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:52:21Z",
-          "updated_at": "2026-09-11T08:52:21Z",
+          "created_at": "2026-09-12T08:35:46Z",
+          "updated_at": "2026-09-12T08:35:46Z",
           "comments": 0
+        },
+        {
+          "number": 556,
+          "title": "Force-fleet runs read canon's pack versions, never this repo's own mount",
+          "labels": [],
+          "created_at": "2026-09-11T19:08:12Z",
+          "updated_at": "2026-09-11T19:08:12Z",
+          "comments": 0
+        },
+        {
+          "number": 548,
+          "title": "[claudinite-work] shepherd/fleet-repo-digest-email",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-11T08:52:22Z",
+          "updated_at": "2026-09-11T08:55:54Z",
+          "comments": 2
         },
         {
           "number": 540,
@@ -3098,17 +3150,6 @@
           "created_at": "2026-09-07T12:04:20Z",
           "updated_at": "2026-09-07T12:04:20Z",
           "comments": 0
-        },
-        {
-          "number": 483,
-          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-baseline",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-09-07T06:25:38Z",
-          "updated_at": "2026-09-07T06:46:09Z",
-          "comments": 3
         },
         {
           "number": 480,
@@ -3226,8 +3267,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T19:44:12Z",
-          "updated_at": "2026-09-10T09:15:03Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:07Z",
+          "comments": 4
         },
         {
           "number": 394,
@@ -3237,8 +3278,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:03:23Z",
-          "updated_at": "2026-09-10T09:15:02Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:06Z",
+          "comments": 4
         },
         {
           "number": 393,
@@ -3258,8 +3299,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:02:46Z",
-          "updated_at": "2026-09-10T09:15:02Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:06Z",
+          "comments": 4
         },
         {
           "number": 391,
@@ -3269,8 +3310,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:02:35Z",
-          "updated_at": "2026-09-10T09:15:01Z",
-          "comments": 4
+          "updated_at": "2026-09-11T09:11:05Z",
+          "comments": 5
         },
         {
           "number": 390,
@@ -3280,8 +3321,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:02:17Z",
-          "updated_at": "2026-09-10T09:15:01Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:05Z",
+          "comments": 4
         },
         {
           "number": 389,
@@ -3301,8 +3342,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:01:46Z",
-          "updated_at": "2026-09-10T09:15:00Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:04Z",
+          "comments": 4
         },
         {
           "number": 387,
@@ -3312,8 +3353,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:01:34Z",
-          "updated_at": "2026-09-10T09:14:59Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:04Z",
+          "comments": 4
         },
         {
           "number": 386,
@@ -3323,8 +3364,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:01:21Z",
-          "updated_at": "2026-09-10T09:14:59Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:03Z",
+          "comments": 4
         },
         {
           "number": 385,
@@ -3334,8 +3375,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:01:02Z",
-          "updated_at": "2026-09-10T09:14:58Z",
-          "comments": 5
+          "updated_at": "2026-09-11T09:11:03Z",
+          "comments": 6
         },
         {
           "number": 384,
@@ -3345,8 +3386,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:00:46Z",
-          "updated_at": "2026-09-10T09:14:58Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:02Z",
+          "comments": 4
         },
         {
           "number": 383,
@@ -3356,8 +3397,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-06T14:00:27Z",
-          "updated_at": "2026-09-10T09:14:57Z",
-          "comments": 3
+          "updated_at": "2026-09-11T09:11:02Z",
+          "comments": 4
         },
         {
           "number": 382,
@@ -3582,36 +3623,36 @@
       "openIssues": 15,
       "issues": [
         {
-          "number": 393,
+          "number": 401,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:54:13Z",
-          "updated_at": "2026-09-11T08:54:13Z",
+          "created_at": "2026-09-12T08:37:47Z",
+          "updated_at": "2026-09-12T08:37:47Z",
           "comments": 0
         },
         {
-          "number": 392,
+          "number": 400,
           "title": "[claudinite-work] claudinite-tasks/task-janitor",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:54:13Z",
-          "updated_at": "2026-09-11T08:54:13Z",
+          "created_at": "2026-09-12T08:37:47Z",
+          "updated_at": "2026-09-12T08:37:47Z",
           "comments": 0
         },
         {
-          "number": 391,
+          "number": 399,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-11T08:54:12Z",
-          "updated_at": "2026-09-11T08:54:12Z",
+          "created_at": "2026-09-12T08:37:46Z",
+          "updated_at": "2026-09-12T08:37:46Z",
           "comments": 0
         },
         {
