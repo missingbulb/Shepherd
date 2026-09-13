@@ -1,0 +1,18 @@
+[
+  {
+    "id": "branch-from-local-main",
+    "severity": "blocking",
+    "since": "2026-09-13",
+    "scope": "action",
+    "failureMessage": "this checkout's local main can sit pinned at the repo's very first commit, so branching from it silently starts from frozen history",
+    "guardToolCalls": [
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/git\\s+(?:checkout\\s+-b|branch)\\s+\\S+\\s+main\\b/",
+        "what": "a git branch created from bare \"main\" (\"{match}\")",
+        "fix": "git fetch origin main, then branch from origin/main explicitly"
+      }
+    ]
+  }
+]
