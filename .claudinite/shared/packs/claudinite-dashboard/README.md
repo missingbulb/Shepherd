@@ -122,7 +122,7 @@ wanted it say so, and nothing else on the page is affected.
 | **Work** | One row per piece of work, in three views — **stuck** (what has stopped, and for how long), **pending** (what is moving, and what happens next), **all** (what each task is and what it has done). The page opens on the worst view that has anything in it |
 | **What the queue closed** | Per-day outcomes over a fortnight — today from the live issue page, the days before it from the fold |
 | **What ran** | 48 hours of scheduler runs, executor runs and agent sessions per hour; hovering an hour names the tasks that executed in it |
-| **What Claudinite is doing here** | 30 days of rule tokens against checks executed, on two stated scales — plus tokens spent, lines committed and releases where the fold carries them |
+| **What Claudinite is doing here** | 30 days of checks executed against the runs that caught something, on two stated scales — plus tokens spent, lines committed and releases where the fold carries them |
 | **What the packs report** | One card per declared pack that contributes — see [below](#what-a-pack-contributes). Last, because it is the only region whose contents differ from repo to repo |
 
 ### One table, not two
@@ -348,8 +348,8 @@ closed with nobody in the loop, how many did need a person — this week against
 Two rules keep that block honest, and they are why some obvious figures are missing
 from it. **No vanity total**: every figure is bounded by a window, because a number
 that only grows says nothing about today. **Nothing invented**: no estimated hours
-saved, no score. Checks enforced and rule tokens are not there because no read this
-page makes can count them, and a plausible guess in a tile is worse than a gap.
+saved, no score. Checks enforced are not there because no read this page makes can
+count them, and a plausible guess in a tile is worse than a gap.
 
 Every figure in both panels comes from reads the page already makes — the issue page,
 the runs list, and the head commit whose date arrives with the sha the cache is keyed
@@ -425,14 +425,29 @@ withheld before anything the queue depends on.
 **The viewer, and only the viewer.** There is no backend, no shared credential and
 no service account: the page calls `api.github.com` from the browser as whoever is
 using it, so it can show nobody anything their own GitHub account cannot already
-read. The credential lives in `sessionStorage` and dies with the tab.
+read.
 
-Two ways to get one:
+**The page is gated on a credential**, on a screen of its own that is all a viewer sees
+until they have one. There is no anonymous view to fall back to: every request is made
+as the viewer, so without a credential there is nothing to show and — at 60 requests an
+hour per IP — no budget worth showing it with. A `?repo=owner/name` deep link survives
+the gate; signing in lands on the view it named.
+
+Two ways to get one, offered on that screen:
 
 - **Sign in with GitHub** — a button, no typing. Available when the deployment
   configures `clientId` and `exchangeUrl`.
-- **A pasted token** — the fallback, and the local-development path. Needs
-  read-only **Contents**, **Issues** and **Actions**.
+- **A pasted token** — the fallback, and the local-development path, offered only when
+  sign-in is not configured. Needs read-only **Contents**, **Issues** and **Actions**.
+
+The credential dies with the tab unless the viewer ticks **Remember me**, which keeps it
+in this browser (`localStorage`) until they sign out. Signing out drops the cached data
+with it; clearing the cache does not sign you out.
+
+Everything that belongs to the viewer rather than to the view — who they are, the rate
+budget, **Reload**, **Clear cache**, **Sign out** and the note on how this page reads a
+repo — sits behind the avatar in the topbar, so the fleet and repo screens carry no
+account chrome at all.
 
 ### What each credential is worth
 
