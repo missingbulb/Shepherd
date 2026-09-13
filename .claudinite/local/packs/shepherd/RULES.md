@@ -94,37 +94,6 @@ canon instead, where every repo gets it.
   (e.g. a `.claudinite/` path) fails confusingly. Always `git fetch origin main` and branch from
   `origin/main` explicitly (#73).
 
-- **Reaching step 6 of a work-item run** (`node .claudinite/shared/packs/claudinite-tasks/queue/
-  converge-item.mjs`) — it will fail here: the script's read/write path
-  (`.claudinite/shared/packs/claudinite-tasks/signals/gh.mjs`) is documented in its own header as
-  Action-side only ("everything session-side stays MCP-only"), and this session's `GITHUB_TOKEN` is
-  a proxy placeholder the REST API rejects outright ("GitHub access is not enabled for this
-  session"), confirmed across attempts with `GITHUB_REPOSITORY` set, with `NODE_USE_ENV_PROXY=1`,
-  and via raw `curl`. Don't re-diagnose it — go straight to replicating the transition by hand
-  over the GitHub MCP tools: the execution-record comment in `run-record.mjs`'s exact format
-  (`claudinite-task-exec v1 <pack>/<task> [#<n>] <status>`), the `task:agent`→outcome label swap,
-  the close with the matching `state_reason`, and (what `readyDependents` would have released) a
-  check for any open item naming `Blocked-by: #<n>`. Four independent sessions in one day each lost
-  2–5 minutes rediscovering this same dead end (#126, #130, #133, #166); a fifth still ran the
-  script itself twice — once without `GITHUB_REPOSITORY` set, once with — before switching to
-  the manual path, costing ~77s despite this very rule already being loaded in context (#202):
-  don't just skip re-diagnosing a failure, skip attempting the script at all. The manual replication
-  above is written for the `done` outcome only — on `approval`, the real script's
-  `OUTCOMES.approval.record` is `null` (post no `claudinite-task-exec` line), the item stays
-  **open** rather than closing, and the labels are `needs-human` + `task:needs-human-approval`
-  rather than an outcome-label swap; post that shape directly rather than posting the `done` shape
-  and then a correction comment (#212). A marked/ad-hoc issue the script rejects with `#<n> is not a
-  Claudinite work item` (its body carries no `<!-- claudinite-item -->` machine block, so the
-  structural check the script needs to compute a plan has nothing to read) has no
-  `claudinite-task-exec` line to post at all — its computed `recordLine` is null, since that line
-  only fires for a title matching `[claudinite-work] pack/task`, which a marked issue never has —
-  so post the status comment and swap the label by hand rather than inventing one to match the
-  `done` shape and then walking it back (#360). Both files live under
-  `.claudinite/shared/packs/claudinite-tasks/` — there is no
-  `.claudinite/shared/engine/scheduler/` directory in this repo's vendored engine; a session
-  re-confirming this rule against `main` found none there and burned two dead-end `find`s before
-  locating the real paths (#277).
-
 - **Comparing against `origin/main` in a fresh checkout** — the checkout's `origin/main` is
   snapshotted at container-build time and goes stale once the remote branch advances, so diffing
   or logging against it unfetched produces a bogus wall-to-wall diff. A plain `git fetch origin
