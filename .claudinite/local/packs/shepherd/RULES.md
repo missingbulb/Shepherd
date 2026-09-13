@@ -48,12 +48,6 @@ canon instead, where every repo gets it.
   growth-extract run in six or more of its own subagents (#73) and recurred in this run's own
   fan-out before being caught and re-fetched to a uniquely-named path.
 
-- **Branching off this checkout's local `main`** — it does not track the live default branch, and
-  has been observed pinned at the repo's very first commit. A plain `git checkout -b <name> main`
-  silently branches from that frozen history and the next script that expects current content
-  (e.g. a `.claudinite/` path) fails confusingly. Always `git fetch origin main` and branch from
-  `origin/main` explicitly (#73).
-
 - **Comparing against `origin/main` in a fresh checkout** — the checkout's `origin/main` is
   snapshotted at container-build time and goes stale once the remote branch advances, so diffing
   or logging against it unfetched produces a bogus wall-to-wall diff. A plain `git fetch origin

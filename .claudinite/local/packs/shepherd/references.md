@@ -23,6 +23,13 @@ file's own namespace — a removed entry leaves a gap, and nothing is ever renum
 
 ## Checks
 
+- **(check:branch-from-local-main)** This checkout's `origin/main` and local `main` can diverge:
+  a fresh checkout's local `main` has been observed pinned at the repo's very first commit while
+  `origin/main` carries current history, and a `git checkout -b <name> main` branching from the
+  stale local ref fails confusingly once the branch is used (a script expecting current
+  `.claudinite/` content finds none) (#73). Retire it if this sandbox's checkout ever keeps local
+  `main` synced with `origin/main` by construction.
+
 - **(check:email-service-single-client)** The client encodes ceilings and an allowlist read off
   four documentation pages at once; a second caller with its own `fetch` re-encodes none of them
   and the service answers a violation by refusing the whole message. Retire it if the send ever
