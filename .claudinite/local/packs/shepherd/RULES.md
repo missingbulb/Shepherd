@@ -34,52 +34,12 @@ canon instead, where every repo gets it.
   assumption, then copied over verbatim once the gap was caught (#31). "The generator will refill
   it" is not sufficient on its own; confirm the generator's inputs cover the same span first.
 
-- **Scoping a fleet-wide text/reference sweep from this repo** — don't trust
-  `mcp__github__search_code` alone to enumerate the affected member repos; its index can lag and
-  silently undercount. Cross-check against the full known member roster (fetch each member's
-  `.claudinite-checks.json` directly) before scoping the sweep: a Sheepdog-reference sweep found
-  only 3 repos via search but 11 by direct check (#24).
-
 - **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 7–15
   seconds (measured directly across #30, #32, #59, #67). Poll `pull_request_read get_check_runs`
-  in a short loop instead of a fixed or backgrounded `sleep`, and don't call
-  `enable_pr_auto_merge` in the same breath as opening the PR — GitHub refuses it with "unstable
-  status" if the check hasn't started yet, which is a sign to wait and re-poll, not license to
-  merge by hand instead (#59). Before stating a PR's status in a closing callout, read
-  `get_check_runs` rather than asserting "CI running" as an unread guess (#30), and skip grepping
-  `.github/workflows/*.yml` to guess whether a workflow gates the merge — the check runs already
-  say so directly (#60).
-
-- **Firing an `AskUserQuestion`** — check first whether the answer is already decided: by a rule
-  already loaded in context, by fleet or repo state one read away (a sibling's
-  `.claudinite-checks.json`, a pending adoption interview), or by the option marked
-  "(Recommended)" simply being the status quo. Batch every open decision a run will need into one
-  question instead of asking serially. Four sessions lost 17 to 105 minutes of pure
-  human-round-trip idle time to questions whose answer was already available or was the presented
-  default (#2, #22, #28, #32).
-
-- **Leaving multiple PRs open for the owner after a fleet-wide sweep** — call
-  `subscribe_pr_activity` on every one of them, not a sample. #24's sweep subscribed only 2 of 12
-  open PRs, then spent over two hours and ~29 API calls re-polling the other 10 on a self-armed
-  hourly wake-up with zero state change, while the 2 subscribed PRs' merges arrived instantly as
-  activity events the moment the owner acted.
-
-- **Hunting for this repo's own standing tracker issue by its exact title** —
-  `mcp__github__search_issues` doesn't reliably narrow to an exact title even quoted: it runs
-  natural-language matching over the whole issue corpus, so a quoted title can come back as one hit
-  buried among dozens of unrelated ones (confirmed live: a quoted exact title returned 30 of 180
-  issues, nearly all unrelated, with the real match merely first by relevance).
-  `mcp__github__list_issues` carries no free-text query parameter at all — it filters only
-  structurally, by `labels`/`state`/`field_filters`/`since` — so hunting a title through it means
-  filtering by label/state first and scanning the returned titles yourself, never passing the title
-  as a query string. Neither tool takes a `minimal_output` flag; shrink the response with the
-  `fields` param instead, listing only the fields you need (#104, #88, #209, #210).
-
-- **Pushing a change that touches `.github/workflows/`, `.claudinite-checks.json`, or pack
-  config** — run `node .claudinite/shared/engine/checks/check_the_world.mjs` locally first. It's
-  the exact script the PR's `checks` CI job runs, and finding a `[BLOCKING]` finding live on the PR
-  costs a full push-PR-CI-diagnose-fix-re-push round trip that one ~4-second local run skips
-  (#106).
+  in a short loop instead of a fixed or backgrounded `sleep`. Before stating a PR's status in a
+  closing callout, read `get_check_runs` rather than asserting "CI running" as an unread guess
+  (#30), and skip grepping `.github/workflows/*.yml` to guess whether a workflow gates the merge —
+  the check runs already say so directly (#60).
 
 - **Dispatching concurrent subagents that each `git show` a file into the shared scratchpad** (the
   conversation-extract fan-out, or any similar parallel mining pattern) — give every dispatch a
@@ -143,23 +103,11 @@ canon instead, where every repo gets it.
   granular list including `test-changes`; the same `git fetch origin main` that refreshes the ref
   refreshes the mount with it (#556).
 
-- **Looking up a PR by its head branch** — `mcp__github__list_pull_requests` with a bare branch
-  name in `head` (no `owner:` prefix) does not filter; it can silently hand back an unrelated PR
-  as if it matched, for every branch queried, with no error to flag the miss. Qualify `head` as
-  `owner:branch-name`, or skip the lookup and go straight to the git-based `merge-base`/
-  `diff --stat` check the `single-branch-status` skill already uses as its fallback (#213).
-
 - **Writing a PR or issue body that cross-references an object you're about to create** — don't
   guess its number. Issue/PR numbers share one counter per repo, and the object you're creating
   consumes one too; a PR body written before its companion issue exists can end up citing the wrong
   number once the issue actually lands. Create the referenced object first, or leave a placeholder
   and patch the body once the number is known (#24).
-
-- **Waiting on background subagents or tasks with nothing left to do between notifications** —
-  don't manufacture a no-op Bash call (`sleep 1; echo waiting`, `true`) just to occupy a turn; say
-  so in plain text with no tool call instead. A bare no-op tool call can come back with no
-  visible text at all, which the harness then has to interrupt to ask for a real response — pure
-  waste next to just writing the status line (#214).
 
 - **Parsing an overflowed `search_issues`/`search_code` result from its saved `tool-results/*.txt`
   file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
