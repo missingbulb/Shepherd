@@ -20,7 +20,7 @@ the repo's own.
 Force one now:
 
 ```
-node .claudinite/shared/packs/claudinite-tasks/queue/create-work-item.mjs shepherd/fleet-repo-digest-email
+node .claudinite/shared/packs/claudinite-tasks/public/create-work-item.mjs shepherd/fleet-repo-digest-email
 ```
 
 ## How the three are chosen

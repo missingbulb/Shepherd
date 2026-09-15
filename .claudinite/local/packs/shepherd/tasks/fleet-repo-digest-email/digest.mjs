@@ -2,8 +2,7 @@
 // it says. No I/O, no clock of its own — worker.mjs reads the snapshot and passes the
 // day in, so every branch here is reachable from a test with a fixed date.
 
-import { WORK_PREFIX } from '../../../../../shared/packs/claudinite-tasks/queue/work-item.mjs';
-import { isDispatchTitle } from '../../../../../shared/packs/claudinite-tasks/dispatch.mjs';
+import { WORK_PREFIX, isDispatchTitle } from '../../../../../shared/packs/claudinite-tasks/public/work-items.mjs';
 
 export const REPOS_PER_DIGEST = 3;
 export const ISSUES_PER_REPO = 5;
