@@ -53,6 +53,11 @@ const API_FIELD_HEADERS = ['From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To'];
 // service having a bad minute. `sendEmail` throws with `needsAction` set from this
 // set, and a task worker routes its park by it.
 const NEEDS_ACTION_CODES = new Set([
+  // Cloudflare's own global code, raised by the API gateway before any Email Service
+  // handler runs, and so the one an unscoped token is actually refused with: a send on
+  // a token minted for another product came back `10000 Authentication error` rather
+  // than the 10102 the Email Service would have given.
+  10000, // Authentication error — token missing, invalid, or without the sending scope
   10101, // authentication.unauthorized — missing or invalid token
   10102, // authentication.forbidden — token lacks permission to send
   10103, // authentication.bad_token_type
@@ -154,14 +159,23 @@ function headerProblems(headers) {
   return problems;
 }
 
-// The API's own numeric codes, rendered as the sentence a park is worth reading.
+// The API's own numeric codes, rendered as the sentence a park is worth reading. The
+// codes themselves say nothing about where the fix lives — "Authentication error" reads
+// as a worker bug — so a needs-action refusal carries the three settings that produce
+// one, which is what the reader of a park has to go and check.
+const NEEDS_ACTION_REMEDY = 'a Cloudflare-side setting rather than the message: the token\'s Email '
+  + 'Sending permission, the account\'s entitlement to send, or the zone\'s sending switch';
+
 function apiFailure(status, body) {
   const errors = Array.isArray(body?.errors) ? body.errors : [];
   const needsAction = errors.some((e) => NEEDS_ACTION_CODES.has(e?.code));
   const detail = errors.length
     ? errors.map((e) => `${e.code} ${e.message}`).join('; ')
     : `HTTP ${status}`;
-  return new EmailSendError(`the Email Service refused the send: ${detail}`, { needsAction });
+  return new EmailSendError(
+    `the Email Service refused the send: ${detail}${needsAction ? ` — ${NEEDS_ACTION_REMEDY}` : ''}`,
+    { needsAction },
+  );
 }
 
 // Sends one message and returns the API's recipient-grouped result. `fetchImpl` is a

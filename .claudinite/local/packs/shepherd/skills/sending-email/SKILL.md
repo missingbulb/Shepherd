@@ -39,6 +39,11 @@ the sending path, and the REST endpoint is the one a task's code-work can call d
   that is the difference between a `claudinite-needs-human: action` park and a `failure` one,
   so route the park off the flag rather than off the message text.
 
+- **A park reading `10000 Authentication error`** — that is Cloudflare's *global* code, raised
+  by the API gateway before the Email Service's own `101xx` codes can be, and it is what a token
+  carrying no **Email Sending** permission is refused with. Fix the token's scope; don't go
+  looking for a send-specific cause. (3)
+
 - **A send that reports every recipient in `permanent_bounces`** — the request was accepted and
   delivered to nobody. Until a sending domain is onboarded, the account can send **only** to
   the verified destination addresses in its Email Routing configuration, and only *from* a
