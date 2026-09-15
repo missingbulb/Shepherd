@@ -10,7 +10,7 @@
     },
     {
       "id": "claudinite-lifecycle",
-      "version": "60913.4"
+      "version": "60914.1"
     },
     {
       "id": "git-github",
@@ -31,11 +31,11 @@
     },
     {
       "id": "claudinite-growth",
-      "version": "60913.5"
+      "version": "60914.1"
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "60913.3",
+      "version": "60914.1",
       "config": {
         "owner": "missingbulb",
         "kind": "user",
@@ -57,7 +57,7 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "60913.5",
+      "version": "60914.1",
       "answers": {
         "mode": "fleet — this deployment is the overview across every repo under missingbulb, enumerated in the browser as the viewer"
       },
@@ -72,7 +72,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60913.6"
+      "version": "60915.1"
     }
   ],
   "taskScheduler": {
