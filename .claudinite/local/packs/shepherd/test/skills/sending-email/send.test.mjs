@@ -101,7 +101,10 @@ test('a send posts the message to the account endpoint as bearer-authenticated J
 });
 
 test('a permission, entitlement or sending-disabled refusal is a person\'s to fix', async () => {
-  for (const code of [10101, 10102, 10103, 10105, 10203]) {
+  // 10000 is Cloudflare's GLOBAL authentication code, raised by the API gateway before
+  // the Email Service's own 101xx codes can be: it is what a token with no sending
+  // permission is actually refused with, observed on a real send.
+  for (const code of [10000, 10101, 10102, 10103, 10105, 10203]) {
     const { fetchImpl } = stub(json(403, { success: false, errors: [{ code, message: `code.${code}` }] }));
     await assert.rejects(
       sendEmail({ accountId: 'acc', token: 't', message: ok, fetchImpl }),
@@ -109,6 +112,24 @@ test('a permission, entitlement or sending-disabled refusal is a person\'s to fi
       `code ${code} should route to a needs-action park`,
     );
   }
+});
+
+test('a needs-action refusal says which side the fix is on, not just the code', async () => {
+  const { fetchImpl } = stub(json(403, { success: false, errors: [{ code: 10000, message: 'Authentication error' }] }));
+  await assert.rejects(
+    sendEmail({ accountId: 'acc', token: 't', message: ok, fetchImpl }),
+    // `10000 Authentication error` alone reads as a worker bug. What a park is worth
+    // reading is the sentence naming the settings that produce it.
+    (e) => /10000 Authentication error/.test(e.message) && /Cloudflare-side setting/.test(e.message),
+  );
+});
+
+test('a refusal that is the request\'s own fault claims no Cloudflare-side remedy', async () => {
+  const { fetchImpl } = stub(json(400, { success: false, errors: [{ code: 10001, message: 'invalid_request_schema' }] }));
+  await assert.rejects(
+    sendEmail({ accountId: 'acc', token: 't', message: ok, fetchImpl }),
+    (e) => e.needsAction === false && !/Cloudflare-side setting/.test(e.message),
+  );
 });
 
 test('a schema error, a throttle and an outage are the worker\'s failure, not a setting', async () => {

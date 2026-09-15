@@ -21,6 +21,14 @@ file's own namespace — a removed entry leaves a gap, and nothing is ever renum
   reads as a delivery problem rather than as configuration. Retire the rule once a sending
   domain is onboarded on the account and every address is deliverable.
 
+- **(sending-email-3)** The handover that set the account up predicted an unscoped token would be
+  refused with the Email Service's own `10102
+  email.sending.error.authentication.forbidden` (#503); the first send that actually reached
+  Cloudflare with the account id and addresses in place came back `10000 Authentication error`
+  instead (#600), the generic gateway code, which carries no hint that sending scope is the
+  subject. Retire the rule if Cloudflare ever routes an unscoped Email Service call to a
+  product-specific code.
+
 ## Checks
 
 - **(check:branch-from-local-main)** This checkout's `origin/main` and local `main` can diverge:
