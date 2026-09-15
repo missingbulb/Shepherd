@@ -9,7 +9,7 @@ Daily, over the `FLEET_GITHUB_TOKEN` PAT: read this repo's `claudinite-fleet-she
 Force it when a triage wants a fresher file than the last anchor's:
 
 ```
-node .claudinite/shared/packs/claudinite-tasks/queue/create-work-item.mjs shepherd/fleet-issues-snapshot
+node .claudinite/shared/packs/claudinite-tasks/public/create-work-item.mjs shepherd/fleet-issues-snapshot
 ```
 
 ## Who reads it

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import task from './task.json' with { type: 'json' };
-import { validateTaskDeclaration } from '../../../../../shared/packs/claudinite-tasks/task-contract.mjs';
+import { validateTaskDeclaration } from '../../../../../shared/packs/claudinite-tasks/public/task-contract.mjs';
 
 // Validated against THIS REPO'S OWN vendored contract: discovery skips a
 // declaration that fails it and records an error rather than failing the mount,

@@ -10,7 +10,7 @@
 // deployment can be wired.
 //
 // WHAT IT READS. Only the queue's own vocabulary and the task declarations at HEAD,
-// through the tasks pack's published `shared-code/`, so the page cannot drift from the
+// through the tasks pack's published `public/`, so the page cannot drift from the
 // mechanism it renders. Those relative paths resolve identically in the canon (`packs/<id>/`
 // beside its siblings) and in a member's mount (`.claudinite/shared/packs/<id>/`), which is
 // why the pack can be read straight out of the mount with nothing rewritten.
@@ -40,7 +40,7 @@
 // What adoption cannot do is enable Pages — the handover step below.
 
 export default {
-  version: '60913.5',
+  version: '60915.3',
   minEngineVersion: '60822.1',
   ruleRoutingGuidance: {
     belongs: 'the browser dashboard over Claudinite scheduler state and the site that publishes it',
@@ -53,7 +53,7 @@ export default {
   seededByDefault: false,
 
   // The page renders the queue's state, so it reads the queue's own vocabulary and
-  // anchor math out of the tasks pack's published `shared-code/` — the one sanctioned
+  // anchor math out of the tasks pack's published `public/` — the one sanctioned
   // cross-pack import in the corpus. Declaring the dependency is what puts that pack
   // in a mount that carries this one.
   requires: ['claudinite-tasks'],

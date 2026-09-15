@@ -74,7 +74,7 @@
 import { fleetTokenHandoverStep } from './fleet-token.mjs';
 
 export default {
-  version: '60913.3',
+  version: '60914.1',
   minEngineVersion: '60822.1',
   ruleRoutingGuidance: {
     belongs: 'fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs',
@@ -82,7 +82,7 @@ export default {
   },
   // Every sweep here runs as a task on the enforcer's own queue, and each one asks
   // whether a member's SCHEDULER is dormant — a question the tasks pack owns and
-  // publishes (shared-code/dormancy.mjs). Declared so the vendor set carries the code
+  // publishes (public/dormancy.mjs). Declared so the vendor set carries the code
   // this pack imports: an enforcer that mounted the sweeps without it would fail its
   // own converge on a dangling import.
   requires: ['claudinite-tasks'],
