@@ -1,12 +1,23 @@
 {
-  "generated": "2026-09-16T07:58:44.721Z",
+  "generated": "2026-09-17T09:24:31.377Z",
   "owner": "missingbulb",
-  "total": 361,
+  "total": 372,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 152,
+      "openIssues": 148,
       "issues": [
+        {
+          "number": 2089,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-16T10:16:49Z",
+          "updated_at": "2026-09-16T20:52:08Z",
+          "comments": 4
+        },
         {
           "number": 2085,
           "title": "Test-suite performance: what is left, and what was ruled out",
@@ -49,17 +60,6 @@
           "created_at": "2026-09-15T13:20:37Z",
           "updated_at": "2026-09-15T16:37:56Z",
           "comments": 5
-        },
-        {
-          "number": 2055,
-          "title": "[claudinite-work] claudinite-canon-curation/revalidate-from-source",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-15T11:19:29Z",
-          "updated_at": "2026-09-15T11:27:09Z",
-          "comments": 4
         },
         {
           "number": 2024,
@@ -208,28 +208,6 @@
           "comments": 0
         },
         {
-          "number": 1963,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-13T10:40:29Z",
-          "updated_at": "2026-09-13T11:13:25Z",
-          "comments": 4
-        },
-        {
-          "number": 1962,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-13T10:40:29Z",
-          "updated_at": "2026-09-13T11:10:51Z",
-          "comments": 4
-        },
-        {
           "number": 1957,
           "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
           "labels": [
@@ -349,8 +327,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-10T10:09:41Z",
-          "updated_at": "2026-09-15T08:18:14Z",
-          "comments": 4
+          "updated_at": "2026-09-16T10:19:00Z",
+          "comments": 5
         },
         {
           "number": 1904,
@@ -399,21 +377,11 @@
           "number": 1881,
           "title": "Retrospective: the claudinite-tasks reorganization — roles, harness, principles, rewrites, measurement",
           "labels": [
-            "task:origin:ad-hoc"
+            "task:origin:ad-hoc",
+            "task:status:blocked"
           ],
           "created_at": "2026-09-07T12:19:05Z",
-          "updated_at": "2026-09-15T20:30:28Z",
-          "comments": 10
-        },
-        {
-          "number": 1871,
-          "title": "claudinite-tasks H2: every scenario runs the real code through the fake world; sim.mjs keeps no model",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-07T12:14:36Z",
-          "updated_at": "2026-09-15T12:27:01Z",
+          "updated_at": "2026-09-16T10:16:54Z",
           "comments": 11
         },
         {
@@ -632,8 +600,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-09-15T08:18:08Z",
-          "comments": 13
+          "updated_at": "2026-09-16T10:18:59Z",
+          "comments": 14
         },
         {
           "number": 1682,
@@ -827,17 +795,6 @@
           "comments": 7
         },
         {
-          "number": 1570,
-          "title": "[claudinite-work] claudinite-canon-curation/upstream-watch",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-action"
-          ],
-          "created_at": "2026-09-01T16:12:11Z",
-          "updated_at": "2026-09-01T16:16:37Z",
-          "comments": 4
-        },
-        {
           "number": 1556,
           "title": "A member owing a withheld delivery reads as \"behind\", so a fleet baseline reports it as failed",
           "labels": [
@@ -1000,8 +957,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-09-15T08:18:07Z",
-          "comments": 29
+          "updated_at": "2026-09-16T10:18:58Z",
+          "comments": 30
         },
         {
           "number": 1341,
@@ -1081,8 +1038,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-09-15T08:18:06Z",
-          "comments": 32
+          "updated_at": "2026-09-16T10:18:58Z",
+          "comments": 33
         },
         {
           "number": 1236,
@@ -1379,17 +1336,26 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 5,
+      "openIssues": 6,
       "issues": [
+        {
+          "number": 448,
+          "title": "Repoint the executor routine's stored prompt at public/instructions.md",
+          "labels": [],
+          "created_at": "2026-09-16T09:24:56Z",
+          "updated_at": "2026-09-16T09:24:56Z",
+          "comments": 0
+        },
         {
           "number": 422,
           "title": "[claudinite-work] claudinite-dashboard/publish-pages",
           "labels": [
+            "task:status:needs-human-failure",
             "task:origin:planned"
           ],
           "created_at": "2026-09-15T09:23:09Z",
-          "updated_at": "2026-09-15T15:53:11Z",
-          "comments": 5
+          "updated_at": "2026-09-16T09:18:07Z",
+          "comments": 6
         },
         {
           "number": 416,
@@ -1433,8 +1399,16 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 4,
+      "openIssues": 5,
       "issues": [
+        {
+          "number": 565,
+          "title": "Executor routine's stored prompt still names the pre-#549 path (queue/instructions.md)",
+          "labels": [],
+          "created_at": "2026-09-16T09:29:34Z",
+          "updated_at": "2026-09-16T09:29:34Z",
+          "comments": 0
+        },
         {
           "number": 533,
           "title": "git-github-advanced gap: `git rebase --continue`'s default cleanup silently drops commit-message lines starting with `#`",
@@ -1583,8 +1557,16 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 21,
+      "openIssues": 22,
       "issues": [
+        {
+          "number": 726,
+          "title": "Executor routine's stored prompt still names the pre-rename queue/instructions.md path",
+          "labels": [],
+          "created_at": "2026-09-16T09:46:39Z",
+          "updated_at": "2026-09-16T09:46:39Z",
+          "comments": 0
+        },
         {
           "number": 695,
           "title": "scrape.yml commits generated data with no retry on a rejected push",
@@ -1617,8 +1599,8 @@
           "title": "ui-requirements goldens flap: the same tree fails different cases run to run",
           "labels": [],
           "created_at": "2026-09-04T21:37:29Z",
-          "updated_at": "2026-09-04T21:37:29Z",
-          "comments": 0
+          "updated_at": "2026-09-16T13:04:08Z",
+          "comments": 1
         },
         {
           "number": 610,
@@ -1791,8 +1773,16 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 34,
+      "openIssues": 35,
       "issues": [
+        {
+          "number": 1260,
+          "title": "Executor routine's stored prompt still names the retired queue/instructions.md path",
+          "labels": [],
+          "created_at": "2026-09-16T09:32:26Z",
+          "updated_at": "2026-09-16T09:32:26Z",
+          "comments": 0
+        },
         {
           "number": 1224,
           "title": "[claudinite-work] product-wiki/wiki-growth",
@@ -2554,6 +2544,14 @@
       "openIssues": 6,
       "issues": [
         {
+          "number": 102,
+          "title": "Work-item routine's stored prompt still names the pre-move queue/instructions.md path",
+          "labels": [],
+          "created_at": "2026-09-16T09:41:39Z",
+          "updated_at": "2026-09-16T09:41:39Z",
+          "comments": 0
+        },
+        {
           "number": 40,
           "title": "README badge row references packs that are no longer declared or vendored",
           "labels": [],
@@ -2586,17 +2584,6 @@
           "comments": 0
         },
         {
-          "number": 11,
-          "title": "[claudinite-work] claudinite-growth/growth-extract",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-09-05T08:36:03Z",
-          "updated_at": "2026-09-08T09:07:34Z",
-          "comments": 5
-        },
-        {
           "number": 4,
           "title": "[claudinite-schedule] the schedule board",
           "labels": [],
@@ -2608,8 +2595,118 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 13,
+      "openIssues": 22,
       "issues": [
+        {
+          "number": 643,
+          "title": "[claudinite-work] shepherd/fleet-repo-digest-email",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:46Z",
+          "updated_at": "2026-09-17T09:23:46Z",
+          "comments": 0
+        },
+        {
+          "number": 642,
+          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:46Z",
+          "updated_at": "2026-09-17T09:24:17Z",
+          "comments": 1
+        },
+        {
+          "number": 641,
+          "title": "[claudinite-work] claudinite-tasks/usage-fold",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:45Z",
+          "updated_at": "2026-09-17T09:23:45Z",
+          "comments": 0
+        },
+        {
+          "number": 640,
+          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:44Z",
+          "updated_at": "2026-09-17T09:23:44Z",
+          "comments": 0
+        },
+        {
+          "number": 639,
+          "title": "[claudinite-work] claudinite-tasks/task-janitor",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:44Z",
+          "updated_at": "2026-09-17T09:23:44Z",
+          "comments": 0
+        },
+        {
+          "number": 638,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:44Z",
+          "updated_at": "2026-09-17T09:23:44Z",
+          "comments": 0
+        },
+        {
+          "number": 637,
+          "title": "[claudinite-work] claudinite-growth/logs-prune",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:43Z",
+          "updated_at": "2026-09-17T09:23:43Z",
+          "comments": 0
+        },
+        {
+          "number": 636,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:43Z",
+          "updated_at": "2026-09-17T09:23:43Z",
+          "comments": 0
+        },
+        {
+          "number": 635,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:42Z",
+          "updated_at": "2026-09-17T09:23:42Z",
+          "comments": 0
+        },
+        {
+          "number": 634,
+          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-17T09:23:42Z",
+          "updated_at": "2026-09-17T09:23:42Z",
+          "comments": 0
+        },
         {
           "number": 617,
           "title": "Two tasks in one executor run died on vendored modules that are present at the sha it checked out",
@@ -2617,17 +2714,6 @@
           "created_at": "2026-09-15T10:02:15Z",
           "updated_at": "2026-09-15T11:22:55Z",
           "comments": 1
-        },
-        {
-          "number": 613,
-          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
-          "labels": [
-            "task:status:running-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-15T09:22:09Z",
-          "updated_at": "2026-09-16T07:58:30Z",
-          "comments": 3
         },
         {
           "number": 606,
@@ -2932,8 +3018,16 @@
     },
     {
       "repo": "missingbulb/TLDR",
-      "openIssues": 22,
+      "openIssues": 23,
       "issues": [
+        {
+          "number": 545,
+          "title": "Executor routine's stored prompt points at a path instructions.md no longer lives at",
+          "labels": [],
+          "created_at": "2026-09-16T09:37:56Z",
+          "updated_at": "2026-09-16T09:37:56Z",
+          "comments": 0
+        },
         {
           "number": 509,
           "title": "[claudinite-work] claudinite-growth/rule-revalidation",
@@ -3142,8 +3236,16 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 11,
+      "openIssues": 12,
       "issues": [
+        {
+          "number": 436,
+          "title": "Executor routine's stored prompt still points at queue/instructions.md, which moved to public/ in #422",
+          "labels": [],
+          "created_at": "2026-09-16T09:24:41Z",
+          "updated_at": "2026-09-16T09:24:41Z",
+          "comments": 0
+        },
         {
           "number": 418,
           "title": "[claudinite-work] claudinite-lifecycle/update",
