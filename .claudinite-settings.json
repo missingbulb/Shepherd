@@ -3,7 +3,7 @@
     "local/shepherd",
     {
       "id": "basics",
-      "version": "60915.8",
+      "version": "60917.1",
       "via": [
         "core"
       ]
@@ -35,7 +35,7 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "60915.1",
+      "version": "60918.1",
       "config": {
         "owner": "missingbulb",
         "kind": "user",
@@ -57,7 +57,7 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "60915.7",
+      "version": "60918.1",
       "answers": {
         "mode": "fleet — this deployment is the overview across every repo under missingbulb, enumerated in the browser as the viewer"
       },
@@ -72,7 +72,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60916.1"
+      "version": "60918.1"
     }
   ],
   "taskScheduler": {

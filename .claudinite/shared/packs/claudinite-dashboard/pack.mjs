@@ -40,11 +40,11 @@
 // What adoption cannot do is enable Pages — the handover step below.
 
 export default {
-  version: '60915.7',
+  version: '60918.1',
   minEngineVersion: '60822.1',
   ruleRoutingGuidance: {
     belongs: 'the browser dashboard over Claudinite scheduler state and the site that publishes it',
-    excludes: 'how the scheduler behaves — core; workflow practice — git-github; product sites — static-website',
+    excludes: 'how the scheduler behaves — core; workflow practice — git-github; product sites — public-website',
   },
 
   // Never fingerprinted. Nothing in a repo's shape implies wanting a dashboard, and a
