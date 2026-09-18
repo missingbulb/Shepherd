@@ -1,12 +1,28 @@
 {
-  "generated": "2026-09-17T09:24:31.377Z",
+  "generated": "2026-09-18T08:59:13.428Z",
   "owner": "missingbulb",
   "total": 372,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 148,
+      "openIssues": 150,
       "issues": [
+        {
+          "number": 2115,
+          "title": "Delete the retired claudinite-tasks public/ shims once every member's workflow names the src/ entry points",
+          "labels": [],
+          "created_at": "2026-09-18T06:30:49Z",
+          "updated_at": "2026-09-18T06:30:49Z",
+          "comments": 0
+        },
+        {
+          "number": 2113,
+          "title": "Retire the cloudflare-site/bump-version.mjs shim once no member prose names it",
+          "labels": [],
+          "created_at": "2026-09-17T17:14:46Z",
+          "updated_at": "2026-09-17T17:14:46Z",
+          "comments": 0
+        },
         {
           "number": 2089,
           "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
@@ -15,8 +31,8 @@
             "task:status:needs-human-approval"
           ],
           "created_at": "2026-09-16T10:16:49Z",
-          "updated_at": "2026-09-16T20:52:08Z",
-          "comments": 4
+          "updated_at": "2026-09-17T10:38:54Z",
+          "comments": 5
         },
         {
           "number": 2085,
@@ -327,8 +343,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-10T10:09:41Z",
-          "updated_at": "2026-09-16T10:19:00Z",
-          "comments": 5
+          "updated_at": "2026-09-17T10:25:31Z",
+          "comments": 6
         },
         {
           "number": 1904,
@@ -600,8 +616,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-09-16T10:18:59Z",
-          "comments": 14
+          "updated_at": "2026-09-17T10:25:30Z",
+          "comments": 15
         },
         {
           "number": 1682,
@@ -957,8 +973,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-09-16T10:18:58Z",
-          "comments": 30
+          "updated_at": "2026-09-17T10:25:29Z",
+          "comments": 31
         },
         {
           "number": 1341,
@@ -1038,8 +1054,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-09-16T10:18:58Z",
-          "comments": 33
+          "updated_at": "2026-09-17T10:25:29Z",
+          "comments": 34
         },
         {
           "number": 1236,
@@ -1336,7 +1352,7 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 6,
+      "openIssues": 4,
       "issues": [
         {
           "number": 448,
@@ -1345,28 +1361,6 @@
           "created_at": "2026-09-16T09:24:56Z",
           "updated_at": "2026-09-16T09:24:56Z",
           "comments": 0
-        },
-        {
-          "number": 422,
-          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-15T09:23:09Z",
-          "updated_at": "2026-09-16T09:18:07Z",
-          "comments": 6
-        },
-        {
-          "number": 416,
-          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-14T09:48:52Z",
-          "updated_at": "2026-09-14T20:18:46Z",
-          "comments": 2
         },
         {
           "number": 373,
@@ -1557,8 +1551,19 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 22,
+      "openIssues": 23,
       "issues": [
+        {
+          "number": 750,
+          "title": "Verify in production: the year-offset version reaches visitors",
+          "labels": [
+            "task:status:blocked",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-17T15:43:46Z",
+          "updated_at": "2026-09-17T15:45:19Z",
+          "comments": 2
+        },
         {
           "number": 726,
           "title": "Executor routine's stored prompt still names the pre-rename queue/instructions.md path",
@@ -2598,113 +2603,113 @@
       "openIssues": 22,
       "issues": [
         {
-          "number": 643,
+          "number": 657,
           "title": "[claudinite-work] shepherd/fleet-repo-digest-email",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:46Z",
-          "updated_at": "2026-09-17T09:23:46Z",
+          "created_at": "2026-09-18T08:58:28Z",
+          "updated_at": "2026-09-18T08:58:28Z",
           "comments": 0
         },
         {
-          "number": 642,
+          "number": 656,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:46Z",
-          "updated_at": "2026-09-17T09:24:17Z",
+          "created_at": "2026-09-18T08:58:28Z",
+          "updated_at": "2026-09-18T08:58:58Z",
           "comments": 1
         },
         {
-          "number": 641,
+          "number": 655,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:45Z",
-          "updated_at": "2026-09-17T09:23:45Z",
+          "created_at": "2026-09-18T08:58:27Z",
+          "updated_at": "2026-09-18T08:58:27Z",
           "comments": 0
         },
         {
-          "number": 640,
+          "number": 654,
           "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:44Z",
-          "updated_at": "2026-09-17T09:23:44Z",
+          "created_at": "2026-09-18T08:58:27Z",
+          "updated_at": "2026-09-18T08:58:27Z",
           "comments": 0
         },
         {
-          "number": 639,
+          "number": 653,
           "title": "[claudinite-work] claudinite-tasks/task-janitor",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:44Z",
-          "updated_at": "2026-09-17T09:23:44Z",
+          "created_at": "2026-09-18T08:58:26Z",
+          "updated_at": "2026-09-18T08:58:26Z",
           "comments": 0
         },
         {
-          "number": 638,
+          "number": 652,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:44Z",
-          "updated_at": "2026-09-17T09:23:44Z",
+          "created_at": "2026-09-18T08:58:26Z",
+          "updated_at": "2026-09-18T08:58:26Z",
           "comments": 0
         },
         {
-          "number": 637,
+          "number": 651,
           "title": "[claudinite-work] claudinite-growth/logs-prune",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:43Z",
-          "updated_at": "2026-09-17T09:23:43Z",
+          "created_at": "2026-09-18T08:58:25Z",
+          "updated_at": "2026-09-18T08:58:25Z",
           "comments": 0
         },
         {
-          "number": 636,
+          "number": 650,
           "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:43Z",
-          "updated_at": "2026-09-17T09:23:43Z",
+          "created_at": "2026-09-18T08:58:25Z",
+          "updated_at": "2026-09-18T08:58:25Z",
           "comments": 0
         },
         {
-          "number": 635,
+          "number": 649,
           "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:42Z",
-          "updated_at": "2026-09-17T09:23:42Z",
+          "created_at": "2026-09-18T08:58:24Z",
+          "updated_at": "2026-09-18T08:58:24Z",
           "comments": 0
         },
         {
-          "number": 634,
+          "number": 648,
           "title": "[claudinite-work] claudinite-dashboard/publish-pages",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-17T09:23:42Z",
-          "updated_at": "2026-09-17T09:23:42Z",
+          "created_at": "2026-09-18T08:58:24Z",
+          "updated_at": "2026-09-18T08:58:24Z",
           "comments": 0
         },
         {
@@ -3236,7 +3241,7 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 12,
+      "openIssues": 11,
       "issues": [
         {
           "number": 436,
@@ -3245,17 +3250,6 @@
           "created_at": "2026-09-16T09:24:41Z",
           "updated_at": "2026-09-16T09:24:41Z",
           "comments": 0
-        },
-        {
-          "number": 418,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-15T09:23:48Z",
-          "updated_at": "2026-09-15T09:25:46Z",
-          "comments": 2
         },
         {
           "number": 406,
