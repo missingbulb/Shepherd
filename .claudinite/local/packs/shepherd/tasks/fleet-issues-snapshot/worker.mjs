@@ -22,7 +22,8 @@ import { makeGh, paged, fleetWorkerFailed } from '../../../../../shared/packs/cl
 import { parseSheepdogConfig } from '../../../../../shared/packs/claudinite-fleet-sheepdog/fleet-config.mjs';
 import { FLEET_TOKEN, missingFleetTokenError } from '../../../../../shared/packs/claudinite-fleet-sheepdog/fleet-token.mjs';
 import { deliverGenerated, baseTip, readAt, remoteUrl } from '../../../../../shared/packs/claudinite-tasks/public/delivery.mjs';
-import { AUTOMERGE_TRAILER, policyExpression } from '../../../../../shared/packs/claudinite-tasks/public/merge-policy.mjs';
+import { AUTOMERGE_TRAILER } from '../../../../../shared/packs/claudinite-tasks/public/task-constants.mjs';
+import { policyExpression } from '../../../../../shared/packs/claudinite-tasks/public/task-declaration.mjs';
 import { settingsPath } from '../../../../../shared/engine/settings-file.mjs';
 import task from './task.json' with { type: 'json' };
 import { inScope, skipReason, shapeIssue, renderSnapshot, withoutStamp } from './snapshot.mjs';
