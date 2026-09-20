@@ -48,13 +48,10 @@ canon instead, where every repo gets it.
   growth-extract run in six or more of its own subagents (#73) and recurred in this run's own
   fan-out before being caught and re-fetched to a uniquely-named path.
 
-- **Comparing against `origin/main` in a fresh checkout** — the checkout's `origin/main` is
-  snapshotted at container-build time and goes stale once the remote branch advances, so diffing
-  or logging against it unfetched produces a bogus wall-to-wall diff. A plain `git fetch origin
-  main` is enough to bring it current, even in a shallow checkout
-  (`git rev-parse --is-shallow-repository` → `true`) — re-tested live, a ref six days stale
-  updated correctly with no `--unshallow`. Fetch before trusting any `git diff`/`git log` against
-  `origin/main`; reach for `--unshallow` only if history, not the ref, still comes up short (#470).
+- **Fetching a stale `origin/main` in a fresh checkout** — `git fetch origin main` brings it
+  current even in a shallow checkout (`git rev-parse --is-shallow-repository` → `true`) — re-tested
+  live, a ref six days stale updated correctly with no `--unshallow`. Reach for `--unshallow` only
+  if history, not the ref, still comes up short (#470).
 
 - **Reading the mount under `.claudinite/shared/` to learn what Claudinite currently declares** —
   a task's `automerge`, a pack's version, any behaviour you are about to report or judge a member
@@ -96,22 +93,11 @@ canon instead, where every repo gets it.
   rendering while the file was genuinely present in the commit, costing a round-trip and a false
   self-correction before the git-based check settled it (#2).
 
-- **Dispatching background subagents that each fully own one source** (a parallel
-  research/extraction fan-out) — once a source is delegated, don't also read or grep it yourself
-  while waiting; either wait with no tool call or spend the interim on work no subagent already
-  owns. A prior growth-extract run's orchestrator kept re-reading the exact same log files its 14
-  dispatched subagents were already assigned to mine, across a ~5.5-minute window, producing zero
-  findings beyond what the subagents independently reported (#201).
-
-- **Catching a flawed prompt right after dispatching a background subagent** — send a follow-up
-  message to that same agent to resume it, never a brand-new `Agent` dispatch over the identical
-  source(s): a redispatch runs a full second pass in parallel with the first, at full cost, even
-  when the original turns out to handle things fine on its own. Also prefer pointing a subagent at
-  a growing reference file's *path* to read itself, over pasting its content inline in the prompt
-  — cheaper, and immune to the class of bug where the paste is left as an unfilled placeholder. A
-  flawed `<existing-rules>` placeholder, caught 8 seconds after dispatch, was "fixed" with a second
-  full dispatch instead of a resume — ~172s and ~95K tokens of pure duplicate compute the original
-  agent's own correct result made unnecessary (#246).
+- **Prompting a background subagent that needs a growing reference file's content** — point it at
+  the file's *path* to read itself rather than pasting the content inline: cheaper, and immune to
+  the class of bug where the paste is left as an unfilled placeholder. A flawed `<existing-rules>`
+  placeholder, caught 8 seconds after dispatch, cost ~172s and ~95K tokens of pure duplicate
+  compute once corrected (#246).
 
 - **Declaring this repo as the store for a role a retiring predecessor already filled** (a
   preferences store, or any other adopted-role declaration) — copy the predecessor's actual
