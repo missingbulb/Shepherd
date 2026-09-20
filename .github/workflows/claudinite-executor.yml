@@ -60,7 +60,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DASHBOARD_OAUTH_CLIENT_SECRET: ${{ secrets.DASHBOARD_OAUTH_CLIENT_SECRET }}
           FLEET_GITHUB_TOKEN: ${{ secrets.FLEET_GITHUB_TOKEN }}
-        run: node .claudinite/shared/packs/claudinite-tasks/public/executor.mjs
+        run: node .claudinite/shared/packs/claudinite-tasks/src/execute/loop.mjs
 
   continue-the-chain:
     needs: execute
@@ -79,4 +79,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           CLAUDINITE_CONTINUATION_DEPTH: ${{ inputs.continuation_depth }}
-        run: node .claudinite/shared/packs/claudinite-tasks/public/executor-continuation.mjs
+        run: node .claudinite/shared/packs/claudinite-tasks/src/recover/continuation.mjs

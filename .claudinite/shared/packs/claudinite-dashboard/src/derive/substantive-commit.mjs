@@ -1,14 +1,16 @@
-// Is a default-branch commit GENUINE PROJECT WORK, or the machinery moving? The one
-// test, published because two very different readers ask it: the signal collectors,
-// which gate a precondition on whether the repo moved in a window, and a cross-repo
-// reader (the dashboard) deciding whether a member looks quiet. A second notion of
-// "meaningful" would mark a member sleepy on the very commits its own scheduler counts
-// as movement.
-//
-// Import-light and free of `node:` on purpose, like dormancy.mjs: the dashboard reads
-// this in the browser through the pack's published public/.
+// Is a default-branch commit GENUINE PROJECT WORK, or the machinery moving? THE
+// DASHBOARD'S OWN COPY of the queue's test (`packs/claudinite-tasks/src/signals/
+// substantive-commit.mjs`), which the signal collectors gate a precondition on: packs
+// share no code, so the page carries the test it marks a member sleepy with and reads
+// only the trailer name from the queue's vocabulary. `test/substantive-commit-drift.test.mjs`
+// runs both sides over the same commits and fails the moment they disagree.
 
-import { taskFromMessage } from '../../public/work-item-grammar.mjs';
+import { TASK_TRAILER } from '../../../claudinite-tasks/public/task-constants.mjs';
+
+// `Claudinite-Task: <pack>/<task>` on its own line, anywhere in the message: the commit
+// says itself that a scheduled task wrote it.
+const TASK_TRAILER_RE = new RegExp(`^${TASK_TRAILER}:[ \\t]*(\\S+)[ \\t]*$`, 'm');
+const taskFromMessage = (message) => TASK_TRAILER_RE.exec(message ?? '')?.[1] ?? null;
 
 // Bot/CI housekeeping and Claudinite's own automated writes, by MESSAGE. The queue's
 // own vocabulary (`[claudinite-task]`, `[claudinite-work]`) is excluded here so
