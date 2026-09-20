@@ -14,7 +14,7 @@
     },
     {
       "id": "git-github",
-      "version": "60915.2",
+      "version": "60920.1",
       "via": [
         "basics"
       ]
@@ -31,7 +31,7 @@
     },
     {
       "id": "claudinite-growth",
-      "version": "60915.5"
+      "version": "60920.2"
     },
     {
       "id": "claudinite-fleet-sheepdog",
@@ -57,7 +57,7 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "60920.1",
+      "version": "60920.2",
       "answers": {
         "mode": "fleet — this deployment is the overview across every repo under missingbulb, enumerated in the browser as the viewer"
       },
