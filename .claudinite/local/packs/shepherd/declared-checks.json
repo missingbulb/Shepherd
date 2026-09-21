@@ -25,7 +25,7 @@
       {
         "tool": "Bash",
         "inputField": "command",
-        "match": "/git\\s+checkout\\s+(?!HEAD\\b)\\S+\\s+--\\s+\\.(?:[\\s;]|$)/",
+        "match": "/(?:^|[;&|\\n])\\s*git\\s+checkout\\s+(?!HEAD\\b)\\S+\\s+--\\s+\\.(?:[\\s;]|$)/",
         "what": "a git checkout of another ref's whole tree onto the current branch (\"{match}\")",
         "fix": "git worktree add /tmp/<name> <ref>, compare or read from there, then git worktree remove it — never git checkout <ref> -- . on the branch you're about to push"
       }
