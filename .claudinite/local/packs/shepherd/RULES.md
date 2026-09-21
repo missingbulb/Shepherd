@@ -104,3 +104,11 @@ canon instead, where every repo gets it.
   content in the same change, since the session's own hook diagnostic reporting the gap ("no
   preferences file for this user") sat unactioned in this session's own tool output for over 20
   minutes before the owner had to point out the missing directory (#2).
+
+- **Writing a Claudinite task's own delivered PR** — never give its body a closing keyword for
+  the work-item issue itself: merging it auto-closes the issue before `converge-item.mjs` runs,
+  which then refuses it as already converged (#573).
+
+- **Calling `converge-item.mjs` once this session already merged the PR itself** — omit `--pr`;
+  passing it still writes "Waiting on a person: merge or close" onto the very comment that
+  closes the item (#591, #596).

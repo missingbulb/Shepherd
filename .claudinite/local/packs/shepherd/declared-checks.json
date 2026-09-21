@@ -14,5 +14,21 @@
         "fix": "git fetch origin main, then branch from origin/main explicitly"
       }
     ]
+  },
+  {
+    "id": "checkout-ref-whole-tree",
+    "severity": "blocking",
+    "since": "2026-09-21",
+    "scope": "action",
+    "failureMessage": "pulling another ref's whole tree onto the branch in flight overwrites uncommitted delivery work with that ref's files instead of leaving it to compare from",
+    "guardToolCalls": [
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/git\\s+checkout\\s+(?!HEAD\\b)\\S+\\s+--\\s+\\.(?:[\\s;]|$)/",
+        "what": "a git checkout of another ref's whole tree onto the current branch (\"{match}\")",
+        "fix": "git worktree add /tmp/<name> <ref>, compare or read from there, then git worktree remove it — never git checkout <ref> -- . on the branch you're about to push"
+      }
+    ]
   }
 ]
