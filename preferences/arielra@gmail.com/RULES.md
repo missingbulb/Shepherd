@@ -1,27 +1,40 @@
-# Owner's pack
+# arielra@gmail.com - how this person wants to be worked with
 
-How the repo owner wants to be worked with — tone, summary style, end-of-turn conventions, how results and decisions are surfaced, and the phrases they use to trigger defined commands. These are **not** project conventions (those live in the [packs/](https://github.com/missingbulb/Claudinite/tree/main/packs) corpus, each pack bundling its skills); they travel with the owner into every project. Where a rule triggers a command whose mechanics are a project convention, the mechanics stay in their own doc and the rule here just owns the trigger phrase.
+- **Ending a turn** - close with a blockquote callout, `> ✅ All done` or `> ⚠️ Still open: …`
+  listing what remains, never hedged in prose. (ending-turn-callout)
 
-## Rules
+- **The owner saying "LGTM"** - merge the change at hand into `main` (the `merge-to-main` skill);
+  it approves that change only, never later work. (lgtm-merges)
 
-- **End every turn with a blockquote callout** — `> ✅ All done`, or `> ⚠️ Still open: …` listing what remains — never hedged in prose. (ending-turn-callout)
+- **The owner saying "bump version"** - raise the project's version; the project's own workflow
+  decides how the number changes and which files move. (bump-version)
 
-- **"LGTM"** merges the change at hand into `main` (`merge-to-main` skill); it approves that change only, never later work. (lgtm-merges)
+- **Naming a source-controlled document, an image, an issue or a PR in the conversation** - link
+  every document edited, display every image edited, link every issue and PR number.
+  (linking-what-changed)
 
-- **"bump version"** raises the project's version; the project's own workflow decides how it changes and which files change. (bump-version)
+- **Needing a decision or an approval** - ask through an `AskUserQuestion` popup, never prose, one
+  question per item, each with its case. (decisions-through-popup)
 
-- **In the conversation**: link every source-controlled document you edit, display every image you edit, link every issue/PR number. (linking-what-changed)
+- **Handing the owner something to lift elsewhere** - a prompt, a message, copy to paste - enclose
+  it in one delimited block, boundaries unmistakable. (enclosing-liftable-text)
 
-- **Ask every decision or approval through an `AskUserQuestion` popup, never prose** — one question per item, each with its case. (decisions-through-popup)
+- **Writing a prompt for another session** - prefix it, inside its block, with the disclaimer that
+  Claude wrote it: examine inconsistencies, don't follow blindly. (disclaiming-session-prompts)
 
-- **Enclose anything the owner will lift elsewhere** — a prompt, a message, copy to paste — in one delimited block, boundaries unmistakable. (enclosing-liftable-text)
+- **Committing to a branch** - open the pull request straight after, unasked, overriding Claude
+  Code's own default of waiting to be told. (pr-after-commit)
 
-- **Prefix a prompt for another session, inside its block, with a disclaimer**: Claude wrote it — examine inconsistencies, don't follow blindly. (disclaiming-session-prompts)
+- **Handing over a PR to review** - describe the folders the change touched in the conversation, in
+  a text box, a brief line per folder saying what changed there; non-test folders only, ignoring
+  README files, comment-only changes and history-keeping updates (a version bump, a changelog or
+  `VERSIONS.md` row). (folders-touched-box)
 
-- **Open a pull request right after committing to a branch**, unasked — overriding Claude Code's default of waiting to be told. (pr-after-commit)
+- **Working through a multi-step plan** - keep going without pausing for approval of each step,
+  aggregating them into one substantial change to review; stop only for an action that reaches the
+  world (a release, a fleet-wide effect, anything irreversible) or a decision only the owner can
+  make. (plan-without-step-approval)
 
-- **When handing over a PR to review, describe the folders the change touched in the conversation, in a text box** — a brief line per folder saying what changed there. Show non-test folders only, and ignore README files, comment-only changes, and history-keeping updates (a version bump, a changelog or `VERSIONS.md` row). (folders-touched-box)
-
-- **Keep working through a multi-step plan without pausing for approval of each step** — aggregate the steps into one substantial change to review, and stop only for an action that reaches the world (a release, a fleet-wide effect, anything irreversible) or a decision only the owner can make. (plan-without-step-approval)
-
-- **Never schedule a self check-in to poll a PR** — no recurring wake-up, routine, or `send_later` re-arm that re-reads a PR's state, CI or mergeability on a timer. Act on PR events when they arrive; when nothing has arrived, end the turn. (no-pr-polling)
+- **Wanting to know a PR's state after this turn** - never schedule a self check-in to poll it, no
+  recurring wake-up, routine or `send_later` re-arm that re-reads its state, CI or mergeability on
+  a timer; act on PR events when they arrive, and end the turn when none has. (no-pr-polling)
