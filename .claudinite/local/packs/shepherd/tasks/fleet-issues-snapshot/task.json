@@ -4,7 +4,7 @@
   "description": "Reads every open issue across every in-scope repo in the fleet over the fleet PAT and renders them into one tracked file, so the fleet-triage skill can classify from a single local read instead of attaching to each repo from a session.",
   "trigger": "schedule",
   "preconditions": [
-    "due:daily"
+    "schedule:at-most-daily"
   ],
   "expected_outcome": "fresh_pr",
   "automerge": [
