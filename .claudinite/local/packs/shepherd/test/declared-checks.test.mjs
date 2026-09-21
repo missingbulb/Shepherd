@@ -34,4 +34,10 @@ test("checkout-ref-whole-tree fires on pulling another ref's whole tree onto the
   assert.equal(guardFindings(checkoutRule, call('git checkout origin/main -- path/to/file.js')).length, 0);
   assert.equal(guardFindings(checkoutRule, call('git checkout -b claude/foo origin/main')).length, 0);
   assert.equal(guardFindings(checkoutRule, call('git worktree add /tmp/base origin/main')).length, 0);
+
+  // Mentioning the pattern in prose (e.g. a --summary argument describing this very
+  // check) must not read as an invocation of it.
+  assert.equal(guardFindings(checkoutRule, call(
+    'node converge-item.mjs --summary \'ships a check blocking git checkout <ref> -- . on the branch in flight\''
+  )).length, 0);
 });
