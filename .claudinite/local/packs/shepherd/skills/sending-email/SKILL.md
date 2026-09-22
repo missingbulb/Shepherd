@@ -1,6 +1,8 @@
 ---
 name: sending-email
 description: Sending mail from this repo over the Cloudflare Email Service — the one client every sender goes through, the REST field spellings, and what the account must already be set up for. Use when writing or changing code that sends an email, and when a send fails or a park says the Email Service refused one.
+metadata:
+  body: guidelines
 ---
 
 # Sending email
@@ -22,7 +24,7 @@ the sending path, and the REST endpoint is the one a task's code-work can call d
 - **Building the message object** — it is the **REST** shape, which differs from the Workers
   binding's in exactly the two places every example gets wrong: a named address is
   `{ address, name }` and not `{ email, name }`, and the reply address is `reply_to` and not
-  `replyTo`. Copying a `env.EMAIL.send()` snippet out of the docs brings both. (1)
+  `replyTo`. Copying a `env.EMAIL.send()` snippet out of the docs brings both.
 
 - **Setting a header** — only the Email Service's
   [allowlist](https://developers.cloudflare.com/email-service/reference/headers/) and `X-`
@@ -42,13 +44,13 @@ the sending path, and the REST endpoint is the one a task's code-work can call d
 - **A park reading `10000 Authentication error`** — that is Cloudflare's *global* code, raised
   by the API gateway before the Email Service's own `101xx` codes can be, and it is what a token
   carrying no **Email Sending** permission is refused with. Fix the token's scope; don't go
-  looking for a send-specific cause. (3)
+  looking for a send-specific cause.
 
 - **A send that reports every recipient in `permanent_bounces`** — the request was accepted and
   delivered to nobody. Until a sending domain is onboarded, the account can send **only** to
   the verified destination addresses in its Email Routing configuration, and only *from* a
   routing domain; an ordinary address bounces exactly this way. Check the destination is
-  verified before suspecting the message. (2)
+  verified before suspecting the message.
 
 - **Adding a second sender to this repo** — take the from and to addresses from repo
   *variables* rather than writing them into the tree: an address in a public repo is a spam

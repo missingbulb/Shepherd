@@ -65,6 +65,13 @@ const rule = {
         'move each pack\'s parameters onto that pack\'s own entry in `packs` as `config`, where a version cannot outlive the pack it prices, and delete the top-level map');
     }
 
+    for (const key of Array.isArray(repoContext.RETIRED_SCHEDULE_KEYS) ? repoContext.RETIRED_SCHEDULE_KEYS : []) {
+      if (raw.taskScheduler?.[key] !== undefined) {
+        flag(`taskScheduler.${key} is retired and nothing reads it`,
+          'delete it: a task cadence measures whole UTC periods, and the scheduler workflow\'s own cron hours were written into that file when it was scaffolded, so neither reads this. The nightly update deletes it for you');
+      }
+    }
+
     const endpointsKey = repoContext.LEGACY_ENDPOINTS_KEY;
     if (typeof endpointsKey === 'string' && raw.taskScheduler?.[endpointsKey] !== undefined) {
       flag(`taskScheduler.${endpointsKey} is the retired spelling`,
@@ -107,9 +114,13 @@ const rule = {
         'let the converge restamp it — an integer sorts below every date-anchored version, so this mount prices itself as ancient against all of them');
     }
 
-    if (typeof servedBy.LEGACY_MECHANISM === 'string' && raw.servedBy?.mechanism === servedBy.LEGACY_MECHANISM) {
-      flag(`servedBy.mechanism is the retired alias "${servedBy.LEGACY_MECHANISM}"`,
-        `write "${servedBy.VERSIONED_MECHANISM ?? 'versioned'}" — the same flows serve both spellings today, and only one of them survives the alias's removal`);
+    // A literal, not a read of the engine: `updates` left the vocabulary with #1643,
+    // so there is no constant left to name it — and the member file that still says
+    // it is exactly what this rule exists to find. The value is historical and
+    // cannot move.
+    if (raw.servedBy?.mechanism === 'updates') {
+      flag('servedBy.mechanism is the retired alias "updates"',
+        `write "${servedBy.VERSIONED_MECHANISM ?? 'versioned'}" — the alias left the vocabulary, so this declaration now reads as unrecognised; the update flows still run here, from the default rather than from anything this repo said`);
     }
 
     return out;

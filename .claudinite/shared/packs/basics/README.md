@@ -58,7 +58,7 @@ The baseline pack — the `RULES.md` prose every session loads (injected by the 
 | Documenting a procedure | medium | complexity | prose: <50 words |
 | Writing code that can silently do nothing | high | correctness | prose: <100 words |
 | Persisting anything on a user's machine | medium | correctness | prose: <50 words |
-| Changing what you do with user data | critical | legal | prose: <100 words |
+| Changing what you do with user data | critical | legal | prose: <200 words |
 | Changing a behavior your docs claim | medium | correctness | prose: <100 words |
 | Driving an external runtime repeatedly | low | complexity | prose: <100 words |
 | Automating something that needs live conversation context | medium | complexity | prose: <50 words |
@@ -87,7 +87,6 @@ The working-discipline rules with a deterministic signature. The world rules rea
 | `declared-check-since` | medium | correctness | check: blocking |
 | `declared-check-spec-keys` | medium | correctness | check: advisory |
 | `sub-issue-without-parent` | medium | complexity | check: advisory |
-| `file-placement` | medium | complexity | check: advisory |
 | `shared-constants` | high | correctness | check: blocking |
 | `warning-suppression` | medium | complexity | check: blocking |
 | `no-conflict-markers` | high | correctness | check: blocking |
