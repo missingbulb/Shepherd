@@ -112,3 +112,8 @@ canon instead, where every repo gets it.
 - **Calling `converge-item.mjs` once this session already merged the PR itself** — omit `--pr`;
   passing it still writes "Waiting on a person: merge or close" onto the very comment that
   closes the item (#591, #596).
+
+- **Writing a `guardToolCalls` match pattern for a Bash action check** — anchor it to a
+  command-start boundary (e.g. `(?:^|[;&|\n])\s*`); unanchored, it also fires when the pattern is
+  merely quoted in an argument like a `--summary` string, not only when the command itself
+  invokes it (#714).
