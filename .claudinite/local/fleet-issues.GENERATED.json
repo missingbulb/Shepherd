@@ -1,21 +1,95 @@
 {
-  "generated": "2026-09-21T09:54:49.575Z",
+  "generated": "2026-09-22T09:17:37.068Z",
   "owner": "missingbulb",
-  "total": 391,
+  "total": 387,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 166,
+      "openIssues": 169,
       "issues": [
         {
-          "number": 2194,
+          "number": 2253,
+          "title": "Provenance brief: the carrier follow misses a birth when the old carrier spells the rule differently",
+          "labels": [],
+          "created_at": "2026-09-22T08:39:37Z",
+          "updated_at": "2026-09-22T08:39:37Z",
+          "comments": 0
+        },
+        {
+          "number": 2247,
+          "title": "Merge the sibling sweep tasks inside claudinite-growth, claudinite-canon-curation and claudinite-fleet-sheepdog",
+          "labels": [],
+          "created_at": "2026-09-22T07:18:26Z",
+          "updated_at": "2026-09-22T07:18:26Z",
+          "comments": 0
+        },
+        {
+          "number": 2246,
+          "title": "A usage rule should know whether its subject could have fired at all",
+          "labels": [
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-22T07:10:32Z",
+          "updated_at": "2026-09-22T07:10:32Z",
+          "comments": 0
+        },
+        {
+          "number": 2245,
+          "title": "in-session-github-access scans a directory that does not exist",
+          "labels": [
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-22T07:10:18Z",
+          "updated_at": "2026-09-22T07:10:18Z",
+          "comments": 0
+        },
+        {
+          "number": 2243,
+          "title": "The eight print-then-exit sites that need control flow restructured, not a token swapped",
+          "labels": [],
+          "created_at": "2026-09-22T06:58:31Z",
+          "updated_at": "2026-09-22T06:58:31Z",
+          "comments": 0
+        },
+        {
+          "number": 2240,
+          "title": "Retrospective: the usage review loop",
+          "labels": [
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-22T06:42:10Z",
+          "updated_at": "2026-09-22T06:42:10Z",
+          "comments": 0
+        },
+        {
+          "number": 2239,
+          "title": "Delete docs/usage-review/DESIGN.md once the loop has proven itself",
+          "labels": [
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-22T06:41:19Z",
+          "updated_at": "2026-09-22T06:41:19Z",
+          "comments": 0
+        },
+        {
+          "number": 2238,
+          "title": "Verify in production: the usage review files and closes its own issues",
+          "labels": [
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-22T06:40:45Z",
+          "updated_at": "2026-09-22T06:41:32Z",
+          "comments": 0
+        },
+        {
+          "number": 2228,
           "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
           "labels": [
             "task:origin:planned",
             "task:status:waiting-for-executor"
           ],
-          "created_at": "2026-09-21T08:50:27Z",
-          "updated_at": "2026-09-21T08:50:27Z",
+          "created_at": "2026-09-22T06:28:15Z",
+          "updated_at": "2026-09-22T06:28:15Z",
           "comments": 0
         },
         {
@@ -93,8 +167,8 @@
           "title": "Provenance: a per-element decision log for every pack — tracking issue",
           "labels": [],
           "created_at": "2026-09-20T10:10:07Z",
-          "updated_at": "2026-09-21T08:50:02Z",
-          "comments": 8
+          "updated_at": "2026-09-21T11:23:43Z",
+          "comments": 10
         },
         {
           "number": 2165,
@@ -225,17 +299,6 @@
           "comments": 0
         },
         {
-          "number": 2065,
-          "title": "Sweep the remaining process.exit() calls that can truncate their own output",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-15T13:20:37Z",
-          "updated_at": "2026-09-15T16:37:56Z",
-          "comments": 5
-        },
-        {
           "number": 2024,
           "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
           "labels": [
@@ -267,11 +330,11 @@
           "title": "Verify in production: the scheduler's weekly-window run no longer spends minutes on commit reads",
           "labels": [
             "task:origin:ad-hoc",
-            "task:status:blocked"
+            "task:status:needs-human-decision"
           ],
           "created_at": "2026-09-13T23:10:13Z",
-          "updated_at": "2026-09-20T10:06:23Z",
-          "comments": 5
+          "updated_at": "2026-09-21T21:13:49Z",
+          "comments": 7
         },
         {
           "number": 2014,
@@ -315,14 +378,6 @@
           "labels": [],
           "created_at": "2026-09-13T20:46:22Z",
           "updated_at": "2026-09-13T20:46:22Z",
-          "comments": 0
-        },
-        {
-          "number": 1999,
-          "title": "queue/instructions.md defines no branch for a fire that carries no payload",
-          "labels": [],
-          "created_at": "2026-09-13T20:46:07Z",
-          "updated_at": "2026-09-13T20:46:07Z",
           "comments": 0
         },
         {
@@ -493,8 +548,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-10T10:09:41Z",
-          "updated_at": "2026-09-21T08:58:18Z",
-          "comments": 10
+          "updated_at": "2026-09-22T06:32:42Z",
+          "comments": 11
         },
         {
           "number": 1904,
@@ -637,17 +692,6 @@
           "comments": 0
         },
         {
-          "number": 1789,
-          "title": "Retire the trigger derivation: a task declaration must state its own `trigger`",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-06T11:20:45Z",
-          "updated_at": "2026-09-21T05:34:56Z",
-          "comments": 5
-        },
-        {
           "number": 1783,
           "title": "A pack migration record cannot name the version it lands at now that versions are cut on main",
           "labels": [],
@@ -766,8 +810,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-09-21T08:58:17Z",
-          "comments": 19
+          "updated_at": "2026-09-22T06:32:41Z",
+          "comments": 20
         },
         {
           "number": 1682,
@@ -829,17 +873,6 @@
           "comments": 0
         },
         {
-          "number": 1643,
-          "title": "Retire the remaining scattered legacy residues",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-03T08:51:52Z",
-          "updated_at": "2026-09-10T10:31:33Z",
-          "comments": 5
-        },
-        {
           "number": 1642,
           "title": "Retire the task contract and queue vocabulary legacy tolerances",
           "labels": [
@@ -849,17 +882,6 @@
           "created_at": "2026-09-03T08:51:35Z",
           "updated_at": "2026-09-10T10:42:18Z",
           "comments": 6
-        },
-        {
-          "number": 1641,
-          "title": "Retire the renamed and absorbed pack id tolerances",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:needs-human-approval"
-          ],
-          "created_at": "2026-09-03T08:51:20Z",
-          "updated_at": "2026-09-10T10:27:57Z",
-          "comments": 5
         },
         {
           "number": 1640,
@@ -1123,8 +1145,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-09-21T08:58:17Z",
-          "comments": 35
+          "updated_at": "2026-09-22T06:32:40Z",
+          "comments": 36
         },
         {
           "number": 1341,
@@ -1204,8 +1226,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-09-21T08:58:16Z",
-          "comments": 38
+          "updated_at": "2026-09-22T06:32:40Z",
+          "comments": 39
         },
         {
           "number": 1236,
@@ -1502,39 +1524,50 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 7,
+      "openIssues": 8,
       "issues": [
         {
-          "number": 491,
+          "number": 499,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:52:56Z",
-          "updated_at": "2026-09-21T09:54:25Z",
+          "created_at": "2026-09-22T09:16:33Z",
+          "updated_at": "2026-09-22T09:17:24Z",
           "comments": 1
         },
         {
-          "number": 489,
+          "number": 498,
+          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-22T09:16:33Z",
+          "updated_at": "2026-09-22T09:16:33Z",
+          "comments": 0
+        },
+        {
+          "number": 497,
           "title": "[claudinite-work] claudinite-tasks/task-janitor",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:52:55Z",
-          "updated_at": "2026-09-21T09:52:55Z",
+          "created_at": "2026-09-22T09:16:33Z",
+          "updated_at": "2026-09-22T09:16:33Z",
           "comments": 0
         },
         {
-          "number": 488,
+          "number": 496,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
             "task:status:running-agent",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:52:55Z",
-          "updated_at": "2026-09-21T09:53:41Z",
+          "created_at": "2026-09-22T09:16:32Z",
+          "updated_at": "2026-09-22T09:17:21Z",
           "comments": 3
         },
         {
@@ -1576,8 +1609,19 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 5,
+      "openIssues": 6,
       "issues": [
+        {
+          "number": 625,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-21T10:04:27Z",
+          "updated_at": "2026-09-21T10:10:27Z",
+          "comments": 4
+        },
         {
           "number": 624,
           "title": "site-release's unreleased-commits gate is broader than the site it publishes — 82% of week-1 releases shipped no visible change",
@@ -1742,152 +1786,84 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 19,
+      "openIssues": 10,
       "issues": [
         {
-          "number": 796,
-          "title": "npm test warns MODULE_TYPELESS_PACKAGE_JSON on every import of a site/ ES module",
-          "labels": [],
-          "created_at": "2026-09-20T18:47:14Z",
-          "updated_at": "2026-09-20T18:47:14Z",
-          "comments": 0
+          "number": 821,
+          "title": "Add a single-slug raw price probe to prices.yml, so the booking fee can be settled without waking the full pass",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-21T17:50:18Z",
+          "updated_at": "2026-09-21T20:48:44Z",
+          "comments": 5
         },
         {
-          "number": 794,
-          "title": "Encode the Jerusalem planner's language in the URL",
-          "labels": [],
-          "created_at": "2026-09-20T18:32:10Z",
-          "updated_at": "2026-09-20T18:32:10Z",
-          "comments": 0
-        },
-        {
-          "number": 792,
-          "title": "Shorten the UI golden lane: cases one at a time is 141s of waiting",
-          "labels": [],
-          "created_at": "2026-09-20T11:05:31Z",
-          "updated_at": "2026-09-20T11:05:31Z",
-          "comments": 0
+          "number": 816,
+          "title": "Verify in production: the language URLs, the sitemap and robots.txt are served",
+          "labels": [
+            "task:status:blocked",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-21T11:45:03Z",
+          "updated_at": "2026-09-21T20:41:13Z",
+          "comments": 3
         },
         {
           "number": 791,
           "title": "Verify in production: the UI lane actually skips rendering on an out-of-scope diff",
           "labels": [
-            "task:status:blocked",
+            "task:status:running-executor",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-20T10:46:09Z",
-          "updated_at": "2026-09-20T19:24:29Z",
-          "comments": 5
-        },
-        {
-          "number": 790,
-          "title": "shared-tree-immutable blocks the install runner's own legitimate commits",
-          "labels": [],
-          "created_at": "2026-09-20T09:56:14Z",
-          "updated_at": "2026-09-20T09:58:04Z",
-          "comments": 1
-        },
-        {
-          "number": 726,
-          "title": "Executor routine's stored prompt still names the pre-rename queue/instructions.md path",
-          "labels": [],
-          "created_at": "2026-09-16T09:46:39Z",
-          "updated_at": "2026-09-16T09:46:39Z",
-          "comments": 0
-        },
-        {
-          "number": 695,
-          "title": "scrape.yml commits generated data with no retry on a rejected push",
-          "labels": [],
-          "created_at": "2026-09-13T10:03:10Z",
-          "updated_at": "2026-09-13T10:03:10Z",
-          "comments": 0
-        },
-        {
-          "number": 677,
-          "title": "sw/version-bumped and improve-comments-scope conflict when a comment fix touches a published file",
-          "labels": [],
-          "created_at": "2026-09-11T19:39:17Z",
-          "updated_at": "2026-09-11T19:39:17Z",
-          "comments": 0
-        },
-        {
-          "number": 615,
-          "title": "ui-requirements goldens flap: the same tree fails different cases run to run",
-          "labels": [],
-          "created_at": "2026-09-04T21:37:29Z",
-          "updated_at": "2026-09-16T13:04:08Z",
-          "comments": 1
-        },
-        {
-          "number": 610,
-          "title": "UX research services: what's available, what they cost, and a case for a claudinite pack",
-          "labels": [],
-          "created_at": "2026-09-04T18:59:39Z",
-          "updated_at": "2026-09-04T18:59:39Z",
-          "comments": 0
+          "updated_at": "2026-09-21T20:41:17Z",
+          "comments": 6
         },
         {
           "number": 575,
-          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
+          "title": "Backfill the local pack's empty provenance files",
           "labels": [
-            "task:status:needs-human-action",
+            "task:status:running-executor",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-01T15:17:54Z",
-          "updated_at": "2026-09-02T09:09:59Z",
-          "comments": 5
-        },
-        {
-          "number": 532,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:status:needs-human-decision",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:19:05Z",
-          "updated_at": "2026-08-30T16:00:22Z",
-          "comments": 5
-        },
-        {
-          "number": 382,
-          "title": "Add packs: suspected from this repo’s shape",
-          "labels": [
-            "add-packs",
-            "task:status:needs-human-approval",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-08-16T06:57:02Z",
-          "updated_at": "2026-09-20T09:50:52Z",
-          "comments": 20
+          "updated_at": "2026-09-21T20:41:55Z",
+          "comments": 7
         },
         {
           "number": 314,
           "title": "Replace per-file cache TTLs with a published manifest",
-          "labels": [],
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:ad-hoc"
+          ],
           "created_at": "2026-08-09T13:25:38Z",
-          "updated_at": "2026-08-09T13:25:38Z",
-          "comments": 0
+          "updated_at": "2026-09-21T21:00:10Z",
+          "comments": 5
         },
         {
           "number": 295,
           "title": "The site lists shows edfringe has withdrawn — nothing removes them from the master",
           "labels": [
-            "needs-decision"
+            "task:status:needs-human-approval",
+            "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-09T00:43:07Z",
-          "updated_at": "2026-09-07T09:27:03Z",
-          "comments": 2
+          "updated_at": "2026-09-21T20:59:03Z",
+          "comments": 8
         },
         {
           "number": 294,
-          "title": "Prices exclude the booking fee edfringe advertises — and the recorded `fee` is wrong",
+          "title": "Quote fee-inclusive totals, and fix the recorded `fee` they depend on",
           "labels": [
-            "needs-decision"
+            "task:status:blocked",
+            "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-09T00:42:46Z",
-          "updated_at": "2026-09-07T09:27:02Z",
-          "comments": 1
+          "updated_at": "2026-09-21T20:40:32Z",
+          "comments": 3
         },
         {
           "number": 237,
@@ -1921,8 +1897,19 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 33,
+      "openIssues": 34,
       "issues": [
+        {
+          "number": 1296,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-21T10:06:27Z",
+          "updated_at": "2026-09-21T10:13:17Z",
+          "comments": 4
+        },
         {
           "number": 1260,
           "title": "Executor routine's stored prompt still names the retired queue/instructions.md path",
@@ -2675,8 +2662,16 @@
     },
     {
       "repo": "missingbulb/NoRFinder",
-      "openIssues": 7,
+      "openIssues": 8,
       "issues": [
+        {
+          "number": 148,
+          "title": ".claudinite/temp/ is untracked but not gitignored, tripping skill-loaded-before-editing every session",
+          "labels": [],
+          "created_at": "2026-09-21T20:43:57Z",
+          "updated_at": "2026-09-21T20:43:57Z",
+          "comments": 0
+        },
         {
           "number": 126,
           "title": "Adopt canon pack: numpy-image-processing",
@@ -2737,84 +2732,73 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 20,
+      "openIssues": 19,
       "issues": [
         {
-          "number": 708,
+          "number": 723,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:52:12Z",
-          "updated_at": "2026-09-21T09:54:34Z",
+          "created_at": "2026-09-22T09:15:29Z",
+          "updated_at": "2026-09-22T09:17:22Z",
           "comments": 1
         },
         {
-          "number": 705,
-          "title": "[claudinite-work] claudinite-tasks/task-janitor",
+          "number": 721,
+          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:52:11Z",
-          "updated_at": "2026-09-21T09:52:11Z",
+          "created_at": "2026-09-22T09:15:28Z",
+          "updated_at": "2026-09-22T09:15:28Z",
+          "comments": 0
+        },
+        {
+          "number": 719,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-22T09:15:27Z",
+          "updated_at": "2026-09-22T09:15:27Z",
+          "comments": 0
+        },
+        {
+          "number": 718,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-22T09:15:27Z",
+          "updated_at": "2026-09-22T09:15:27Z",
+          "comments": 0
+        },
+        {
+          "number": 717,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-22T09:15:26Z",
+          "updated_at": "2026-09-22T09:15:26Z",
           "comments": 0
         },
         {
           "number": 704,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-approval",
             "task:origin:planned"
           ],
           "created_at": "2026-09-21T09:52:11Z",
-          "updated_at": "2026-09-21T09:52:11Z",
-          "comments": 0
-        },
-        {
-          "number": 703,
-          "title": "[claudinite-work] claudinite-growth/growth-extract",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-21T09:52:10Z",
-          "updated_at": "2026-09-21T09:52:10Z",
-          "comments": 0
-        },
-        {
-          "number": 702,
-          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-21T09:52:10Z",
-          "updated_at": "2026-09-21T09:52:10Z",
-          "comments": 0
-        },
-        {
-          "number": 700,
-          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-21T09:52:09Z",
-          "updated_at": "2026-09-21T09:52:09Z",
-          "comments": 0
-        },
-        {
-          "number": 699,
-          "title": "[claudinite-work] basics/improve-comments",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-21T09:52:08Z",
-          "updated_at": "2026-09-21T09:52:08Z",
-          "comments": 0
+          "updated_at": "2026-09-21T20:40:33Z",
+          "comments": 5
         },
         {
           "number": 685,
@@ -3138,7 +3122,7 @@
     },
     {
       "repo": "missingbulb/TLDR",
-      "openIssues": 23,
+      "openIssues": 21,
       "issues": [
         {
           "number": 545,
@@ -3147,17 +3131,6 @@
           "created_at": "2026-09-16T09:37:56Z",
           "updated_at": "2026-09-16T09:37:56Z",
           "comments": 0
-        },
-        {
-          "number": 509,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-13T09:47:14Z",
-          "updated_at": "2026-09-13T09:58:24Z",
-          "comments": 4
         },
         {
           "number": 508,
@@ -3169,17 +3142,6 @@
           "created_at": "2026-09-13T09:47:14Z",
           "updated_at": "2026-09-13T09:58:31Z",
           "comments": 4
-        },
-        {
-          "number": 507,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-13T09:47:14Z",
-          "updated_at": "2026-09-13T09:56:07Z",
-          "comments": 5
         },
         {
           "number": 466,
@@ -3356,40 +3318,51 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 16,
+      "openIssues": 17,
       "issues": [
         {
-          "number": 476,
+          "number": 483,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:53:45Z",
-          "updated_at": "2026-09-21T09:53:45Z",
+          "created_at": "2026-09-22T09:17:16Z",
+          "updated_at": "2026-09-22T09:17:16Z",
           "comments": 0
         },
         {
-          "number": 474,
+          "number": 482,
+          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-22T09:17:16Z",
+          "updated_at": "2026-09-22T09:17:16Z",
+          "comments": 0
+        },
+        {
+          "number": 481,
           "title": "[claudinite-work] claudinite-tasks/task-janitor",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:53:44Z",
-          "updated_at": "2026-09-21T09:53:44Z",
+          "created_at": "2026-09-22T09:17:16Z",
+          "updated_at": "2026-09-22T09:17:16Z",
           "comments": 0
         },
         {
-          "number": 473,
+          "number": 480,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
-            "task:status:running-agent",
+            "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-21T09:53:44Z",
-          "updated_at": "2026-09-21T09:54:47Z",
-          "comments": 2
+          "created_at": "2026-09-22T09:17:15Z",
+          "updated_at": "2026-09-22T09:17:15Z",
+          "comments": 0
         },
         {
           "number": 463,
