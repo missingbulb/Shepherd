@@ -21,7 +21,7 @@ import { isSuspended, suspendedNotice } from '../world/hold.mjs';
 import { HEARTBEAT_MS, heartbeatComment, withHeartbeat, realTimers } from '../items/heartbeat.mjs';
 import { renderTaskExec, startRunCost } from '../items/run-record.mjs';
 import { evaluatePrecondition } from '../contract/precondition.mjs';
-import { isScheduledTask } from '../contract/task-contract.mjs';
+import { declaresCodeWork, isScheduledTask } from '../contract/task-contract.mjs';
 import { swapStatus, clearStatus } from '../items/apply-status.mjs';
 import { pickOrder, taskIdOf, titleOf, running } from '../items/pick-order.mjs';
 import { resolveTarget, closeSuperseded } from './target.mjs';
@@ -60,7 +60,7 @@ export const claimComment = ({ executor, runUrl, at }) =>
 //    outrank every future live claimant — the item then livelocks through reclaim
 //    cycles forever. The reclaim / revert / re-queue comment is the boundary.
 //  - THE LABEL SWAP IS NOT THE ARBITER, so a torn swap can never mint a second
-//    owner; it can only leave an item with no state label, which the janitor
+//    owner; it can only leave an item with no state label, which the repair phase
 //    repairs.
 export function claimWinner(comments = []) {
   const sorted = [...comments].sort((a, b) => a.id - b.id);
@@ -95,12 +95,9 @@ export function conflictsWithEarlierClaim(item, myClaimId, others, { taskAfter =
 // reason. The roll — `Not-before` stamped, open-blocked, waiting out the period —
 // is gone, and so is the schedule board: a scheduled task's next occurrence is
 // the scheduler run's ask at its next tick, and the closed item is itself the
-// history the task's cadence term reads (a `due:` period this item started in is
+// history the task's cadence term reads (the period this item started in is
 // consumed by it). `standing` marks whether the close should say so.
-// The `(item, task, schedule, now, reason)` signature is kept — callers and
-// fielded tests pass all five, and the standing/ad-hoc distinction still
-// shapes the close's wording.
-export function noGoPlan(item, task, schedule, now, reason) {
+export function noGoPlan(item, task, now, reason) {
   return {
     kind: 'close',
     outcome: STATUS_REJECTED,
@@ -340,7 +337,7 @@ async function executeItem({
   // THIS OCCURRENCE, its own run history excluding it.
   const fields = itemFacts(item);
   const signals = await collectSignalsFor(task, at, item);
-  const verdict = evaluatePrecondition(task, signals, config.packConfig?.[task.pack] ?? {}, fields, at, schedule);
+  const verdict = evaluatePrecondition(task, signals, config.packConfig?.[task.pack] ?? {}, fields, at);
 
   // A PRECONDITION THAT COULD NOT ANSWER IS A RUN FAILURE, NOT A VERDICT (F27). A
   // decline is a decision about the world; one taken on an API that would not answer
@@ -356,7 +353,7 @@ async function executeItem({
   }
 
   if (verdict.run !== true) {
-    const plan = noGoPlan(item, task, schedule, at, verdict.reason || 'no work');
+    const plan = noGoPlan(item, task, at, verdict.reason || 'no work');
     // A DECLINED REQUEST IS DISARMED IN THE SAME CONVERGENCE (PRINCIPLES.md).
     // Nothing else would: an issue left carrying `claude-queued` after its run was
     // refused is one no later scheduler run adopts and no person is told about, and one
@@ -413,7 +410,7 @@ async function executeItem({
     return STATUS_DONE;
   }
 
-  if (task.decl.code_work) {
+  if (declaresCodeWork(task.decl)) {
     // The work step may legitimately run for hours (PRINCIPLES.md). While it does, the
     // item's only sign of life is this beat — which is also what the scheduler run's leash
     // measures, so a long run is legal rather than reclaimed underneath itself.
@@ -561,7 +558,7 @@ async function handOff({ api, gh, repo, item, task, id, context, result, target 
     // pushes to, the pull request it amends, the ones its converge supersedes.
     if (target) out = withTarget(out, target);
     if (context.length) out = withSection(out, 'Context', context);
-    if (result.delivered?.length) out = withSection(out, DELIVERED_HEADING, result.delivered, LEGACY_DELIVERED_HEADINGS);
+    if (result.delivered?.length) out = withSection(out, DELIVERED_HEADING, result.delivered);
     if (result.reason) out = withSection(out, 'Why the agent is here', [result.reason]);
     return out;
   });
@@ -597,11 +594,11 @@ async function handOff({ api, gh, repo, item, task, id, context, result, target 
   // alive. So the item STAYS with the agent and says the outcome is unknown —
   // whichever way it went is then settled by a rule that already exists: a session
   // that started converges the item, and one that never did leaves the item silent
-  // until the janitor's agent leash sweeps it to triage.
+  // until the repair phase's agent leash sweeps it to triage.
   await api.comment(gh, repo, item.number,
     `The agent invocation got no answer: ${invocation.error}\n\n`
     + 'The session may or may not have started, so nothing here re-tries it — a second call could put two sessions on this item. '
-    + 'If a session did start it will converge this item; if it did not, the janitor\'s agent leash parks it for a human within a few hours.');
+    + 'If a session did start it will converge this item; if it did not, the repair phase\'s agent leash parks it for a human within a few hours.');
   log(`! #${item.number} ${id}: invocation unanswered — left with the agent, leash decides — ${invocation.error}`);
   endHandOff();
   return 'unknown';
@@ -680,7 +677,7 @@ async function converge(cost, api, gh, repo, item, from, park, claim, body, stat
 
 // A close writes only to the item it holds (docs/PRINCIPLES.md; #1373 reversed
 // an earlier attempt): a dependent this close may make due is released solely by the
-// scheduler run's own readiness job, on its next hourly pass, never here.
+// scheduler run's own readiness job, on its next pass, never here.
 async function close(cost, api, gh, repo, item, from, outcome, stateReason, body, status) {
   return timed(cost, 'converge', async () => {
     await api.comment(gh, repo, item.number, body + recordFor(item, status, cost));
@@ -714,7 +711,7 @@ export async function runExecutorJob() {
 
   const root = repoRoot();
   const { repo, defaultBranch } = actionRepoContext();
-  if (!repo) { console.error('GITHUB_REPOSITORY not set — not in an Actions context'); process.exit(1); }
+  if (!repo) { console.error('GITHUB_REPOSITORY not set - not in an Actions context'); process.exitCode = 1; return; }
   const config = loadConfig(root);
 
   console.log('## Claudinite executor\n');
@@ -765,5 +762,5 @@ export async function runExecutorJob() {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  runExecutorJob().catch((e) => { console.error(e); process.exit(1); });
+  runExecutorJob().catch((e) => { console.error(e); process.exitCode = 1; });
 }

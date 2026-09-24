@@ -32,7 +32,6 @@ import { LOCAL_PACKS_SUBDIR, LOCAL_DECL_PREFIX, SHARED_SUBDIR } from './pack_loa
 const MOUNT_ROOT = dirname(SHARED_SUBDIR).split(sep).join('/');
 const SHARED_NAME = SHARED_SUBDIR.split(sep).pop();
 import { settingsPath } from './settings-file.mjs';
-import { ENDPOINTS_KEY, LEGACY_ENDPOINTS_KEY } from './checks/helpers/repo-context.mjs';
 
 // The settings-hook registrations a scheduled repo carries (bootstrap Part 5).
 // Ensured present without clobbering — a set-union keyed on the command string, so
@@ -53,6 +52,20 @@ export const REQUIRED_HOOKS = [
   { event: 'UserPromptSubmit', matcher: null, command: 'node $CLAUDE_PROJECT_DIR/.claudinite/shared/engine/hooks/user-prompt-submit-command.mjs' },
   { event: 'PostToolUse', matcher: '.*', command: 'node $CLAUDE_PROJECT_DIR/.claudinite/shared/engine/hooks/post-tool-use-command.mjs' },
 ];
+
+// The canon runs this same engine out of its own tree, where `.claudinite/shared/`
+// does not exist, so a mount-spelled command resolves to nothing there - and since
+// the command string is the registration's identity below, every run appended a
+// second, permanently broken group rather than recognising the one already wired.
+// Resolve the prefix against the root being converged: the mount wherever it is
+// present, the repo root only where the engine plainly sits there instead, and the
+// mount otherwise - a member whose vendoring has not run yet is still a member.
+const HOOK_MOUNT_PREFIX = `${MOUNT_ROOT}/${SHARED_NAME}/`;
+
+export function hooksFor(root) {
+  if (existsSync(join(root, MOUNT_ROOT, SHARED_NAME)) || !existsSync(join(root, 'engine', 'hooks'))) return REQUIRED_HOOKS;
+  return REQUIRED_HOOKS.map((h) => ({ ...h, command: h.command.replace(HOOK_MOUNT_PREFIX, '') }));
+}
 
 export const SETTINGS_PATH = '.claude/settings.json';
 export const CLAUDE_MD = 'CLAUDE.md';
@@ -78,7 +91,7 @@ export function ensureHooks(root) {
   }
   settings.hooks ??= {};
   const added = [];
-  for (const h of REQUIRED_HOOKS) {
+  for (const h of hooksFor(root)) {
     const list = (settings.hooks[h.event] ??= []);
     const ours = (group) => (group.hooks ?? []).some((entry) => entry?.command === h.command);
     const present = list.some((group) => (h.matcher == null || group.matcher === h.matcher) && ours(group));
@@ -390,7 +403,7 @@ async function main() {
   const argv = process.argv.slice(2);
   const seedLocalPack = argv.includes('--seed-local-pack');
   const fullName = argv.find((a) => !a.startsWith('--')) || process.env.GITHUB_REPOSITORY || process.env.CLAUDINITE_REPO;
-  if (!fullName) { console.error('converge-wiring: need owner/repo (argv or GITHUB_REPOSITORY)'); process.exit(1); }
+  if (!fullName) { console.error('converge-wiring: need owner/repo (argv or GITHUB_REPOSITORY)'); process.exitCode = 1; return; }
   const root = process.env.CLAUDINITE_REPO_ROOT || process.cwd();
   const { changed, error } = await convergeWiring(root, fullName, { seedLocalPack });
   if (error) console.log(`! ${error}`);

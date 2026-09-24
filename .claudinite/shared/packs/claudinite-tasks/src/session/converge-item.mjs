@@ -20,7 +20,7 @@
 // the successful outcome, on stdout, exit 0. That is not a fallback: it is the only
 // path, and it must never read as a failure. A REST executor lived here once and did
 // (#1491) — a session met its `console.error` before it met the path written for it,
-// reported that it could not converge, and left the item to the janitor's 3h leash,
+// reported that it could not converge, and left the item to the repair phase's 3h leash,
 // which parks a finished run as a human decision. Five sampled items across five
 // repos were exactly that.
 //
@@ -172,7 +172,7 @@ export function convergeOps(item, plan) {
   ops.push({ kind: 'addLabel', issue: item.number, name: spec.label });
 
   // THE PARK'S END CONDITION (#1468). The comment above already tells a person to
-  // merge or close the pull request; this says the same thing where the janitor can
+  // merge or close the pull request; this says the same thing where the repair phase can
   // read it, so the item ends when that happens instead of waiting for someone to
   // notice it already did. Every park that names one gets it, not only `approval`.
   if (!spec.closes && plan.pr) {
@@ -282,7 +282,8 @@ async function main() {
   const plan = parseArgs(process.argv.slice(2));
   if (plan.error) {
     console.error(`converge-item: ${plan.error}`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // The repo this item lives in. `--repo` is what instructions.md passes; the two
@@ -290,7 +291,8 @@ async function main() {
   const repo = plan.repo ?? actionsEnv().CLAUDINITE_ITEM_REPO ?? actionsEnv().GITHUB_REPOSITORY ?? null;
   if (!repo) {
     console.error('converge-item: --repo <owner/name> names the repository this item lives in');
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   // THE ITEM IS HANDED IN. This process cannot read it — that is the whole premise
@@ -308,11 +310,12 @@ async function main() {
     console.error('converge-item: --item-file must hold the issue as your GitHub tools returned it'
       + ' (number, title, body, state, labels).\n'
       + `Read it first: \`issue_read\` method \`get\` on ${repo} #${plan.issue}, save the JSON, pass the path.`);
-    process.exit(2);
+    process.exitCode = 2;
+    return;
   }
 
   const no = refusal(item, plan.issue);
-  if (no) { console.error(`converge-item: ${no}`); process.exit(1); }
+  if (no) { console.error(`converge-item: ${no}`); process.exitCode = 1; return; }
 
   // The successful outcome. Everything below is the transition, decided here and
   // performed by the session — so it goes to stdout and the process exits clean.
@@ -322,5 +325,5 @@ async function main() {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().catch((e) => { console.error(e); process.exit(1); });
+  main().catch((e) => { console.error(e); process.exitCode = 1; });
 }

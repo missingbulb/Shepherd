@@ -80,7 +80,7 @@
 //                        MISCONFIGURED ROUTINE (a fleet routine whose prompt lost
 //                        the word `fleet`, most often), not a dispatch to adopt.
 //                        Stop — change nothing, comment nothing — but stop LOUDLY:
-//                        nothing on GitHub records this, the janitor re-arms the
+//                        nothing on GitHub records this, and the next run files the
 //                        dispatch, and it declines forever until a human reads it.
 //   2  usage           — bad invocation (an unknown scope argument, an unreadable
 //                        `--issue-body-file`).
@@ -96,8 +96,8 @@
 // prevent, reached from the other direction: one scheduler run files every due
 // dispatch seconds apart, so every session that cannot name its own trigger builds
 // the SAME work list and races over it. A session that does not know its issue
-// must run nothing — the daily task-janitor re-arms an unrun dispatch,
-// so stopping costs a delay while guessing costs duplicated work.
+// must run nothing - the next scheduler run files the occurrence again if the work
+// is still owed, so stopping costs a delay while guessing costs duplicated work.
 //
 // Usage: `node <engine>/scheduler/resolve-dispatch.mjs [self|fleet]`
 //                `[--issue-json <path> | --issue-body-file <path> --issue-labels <csv>]`
@@ -112,9 +112,9 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { DISPATCH_PATH_RE, dispatchFirstLine, validateDispatchBody } from './validate-dispatch.mjs';
-import { parseDispatchTitle, readyLabelForScope } from './dispatch.mjs';
+import { parseDispatchTitle, readyLabelForScope, EXECUTOR_SCOPES } from './dispatch.mjs';
 import { renderTaskExec } from '../items/run-record.mjs';
-import { SESSION_SCOPES, opensPullRequest } from '../contract/task-contract.mjs';
+import { opensPullRequest } from '../contract/task-contract.mjs';
 import { findTaskDeclaration, loadTaskDeclaration } from '../contract/task-declaration.mjs';
 import { policyExpression } from '../contract/merge-policy.mjs';
 import { SHARED_SUBDIR } from '../../../../engine/pack_loader/pack-registry.mjs';
@@ -132,7 +132,7 @@ export const EXIT = {
 // SCHEDULER files a dispatch under (`readyLabelForScope`), derived from it rather
 // than restated, so the two can never drift. `null` = not a ready label at all.
 export const scopeForLabel = (label) =>
-  SESSION_SCOPES.find((scope) => readyLabelForScope(scope) === label) ?? null;
+  EXECUTOR_SCOPES.find((scope) => readyLabelForScope(scope) === label) ?? null;
 
 // Which checkout do the task paths in a dispatch body resolve against? Answered
 // from where THIS engine copy is mounted, not from cwd — a consumer runs the
@@ -296,14 +296,14 @@ export async function resolveDispatch(argv = process.argv.slice(2), env = action
   const { positional, flags } = parseArgs(argv);
   const scopeGiven = positional.length > 0;
   const scope = positional[0] ?? 'self';
-  if (!SESSION_SCOPES.includes(scope)) {
-    return usage(`unknown scope "${scope}" — usage: node resolve-dispatch.mjs [${SESSION_SCOPES.join('|')}] [--issue-json <path> | --issue-body-file <path> --issue-labels <csv>]`);
+  if (!EXECUTOR_SCOPES.includes(scope)) {
+    return usage(`unknown scope "${scope}" - usage: node resolve-dispatch.mjs [${EXECUTOR_SCOPES.join('|')}] [--issue-json <path> | --issue-body-file <path> --issue-labels <csv>]`);
   }
 
   const { trigger, error: triggerError } = resolveTrigger(env);
   if (triggerError) {
     return done(EXIT.noTrigger, { dispatch: 'no-trigger', scope, reason: triggerError },
-      `${triggerError}. No trigger source names an issue, so this session cannot know which dispatch it was started for. STOP: run nothing, change nothing, comment nothing, end the session. There is NO fallback — never pick an issue by listing ${readyLabelForScope(scope)}; every dispatch in that list already has its own session, and the task-janitor re-arms an unrun one on its next daily run.`);
+      `${triggerError}. No trigger source names an issue, so this session cannot know which dispatch it was started for. STOP: run nothing, change nothing, comment nothing, end the session. There is NO fallback - never pick an issue by listing ${readyLabelForScope(scope)}; every dispatch in that list already has its own session, and the next scheduler run files the occurrence again if the work is still owed.`);
   }
 
   let { label, number, body } = trigger;
@@ -463,6 +463,6 @@ export function emitResult({ code, fields, advice }) {
 // never on import — the exported helpers above are unit-testable without it.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   resolveDispatch()
-    .then((result) => process.exit(emitResult(result)))
-    .catch((e) => { console.error(`resolve-dispatch: ${e.stack || e}`); process.exit(EXIT.internal); });
+    .then((result) => { process.exitCode = emitResult(result); })
+    .catch((e) => { console.error(`resolve-dispatch: ${e.stack || e}`); process.exitCode = EXIT.internal; });
 }

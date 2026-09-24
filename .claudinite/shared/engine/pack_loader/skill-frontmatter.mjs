@@ -1,6 +1,7 @@
 // A skill's own declaration: the YAML frontmatter at the top of its SKILL.md, read
 // for the fields the corpus acts on — `name`, `description` (what the harness
 // matches a session's activity against) and, under `metadata`, the corpus's own
+// keys: `body`, what kind of body follows (below), and
 // `force-load-on-file-edits-paths`: the files a file tool may touch only with this
 // skill loaded (the PreToolUse guard holds the edit until it is). `metadata` is the
 // map the harness reserves for a reader's own keys and never acts on, which is why
@@ -22,7 +23,7 @@ export const FORCE_LOAD_KEY = 'force-load-on-file-edits-paths';
 // quote it in the frontmatter, since a regex carries backslashes:
 //   force-load-on-tool-calls:          - 'mcp__github__create_pull_request'
 //                                      - 'Bash.command /(^|[;&|]\\s*)git\\s+commit\\b/'
-//   force-load-on-prompts-matching:    - '/\\bLGTM\\b/'
+//   force-load-on-prompts-matching:    - '/\\/do-later\\b/'
 //   force-load-on-tool-results-matching: - 'WebFetch /EGRESS_BLOCKED|\\b403\\b/'
 // A tool entry is the tool's exact name — optionally `.field`, the input field
 // the regex reads (`Bash.command`) — or a /regex/ over names, then optionally a
@@ -31,6 +32,35 @@ export const FORCE_LOAD_KEY = 'force-load-on-file-edits-paths';
 export const TOOL_CALL_KEY = 'force-load-on-tool-calls';
 export const PROMPT_KEY = 'force-load-on-prompts-matching';
 export const TOOL_RESULT_KEY = 'force-load-on-tool-results-matching';
+// What kind of body follows the frontmatter, declared under `metadata` too:
+//   body: workflow     a procedure — steps and their gotchas change as one
+//   body: guidelines   rules behind a trigger, each as independent as a RULES.md bullet
+// Declared rather than inferred: the two shapes look alike from outside, and a
+// skill that mixes steps and gotchas is classified by its author, not by a count.
+// The corpus's maintenance tooling reads it; the harness never does. Absent, or a
+// value outside the vocabulary, is undeclared (null) — never a default.
+export const BODY_KEY = 'body';
+export const BODIES = Object.freeze(['workflow', 'guidelines']);
+
+// What usage the skill expects of itself, under `metadata` too - the declaration
+// the usage review compares the record against, since without it zero loads is
+// equally "exactly right" and "broken":
+//   usage:
+//     expect: triggered          # adoption | triggered | judgment
+//
+// Each value names HOW the skill expects to be reached, never how often. A rate
+// an author states is a guess about the future, and a finding computed against
+// one measures the guess rather than the skill; the three below are each a claim
+// about a mechanism, which the record can actually contradict:
+//
+//   adoption   loaded while its pack is being adopted, and not after. Zero inside
+//              that window is a finding; zero after it is the expectation met.
+//   triggered  loaded by its own force-load declarations and nowhere else, so its
+//              loads are judged against the moments those declarations named.
+//   judgment   loaded when the model judges its description fits. Nothing follows
+//              from a count either way, and only the always-loaded rule applies.
+export const USAGE_KEY = 'usage';
+export const EXPECTS = Object.freeze(['adoption', 'triggered', 'judgment']);
 
 const RE_FORM = /^\/(.*)\/([a-z]*)$/s;
 const toRegExp = (s) => { const m = RE_FORM.exec(String(s).trim()); try { return m ? new RegExp(m[1], m[2]) : null; } catch { return null; } };
@@ -74,34 +104,34 @@ export function parseFrontmatter(text) {
   const end = text.indexOf('\n---', 3);
   if (end === -1) return out;
   const lines = text.slice(text.indexOf('\n') + 1, end).split('\n');
-  // The container the next indented line lands in: a list, or a nested map (one
-  // level, with its own lists), keyed by indentation so a dedent closes it.
-  let top = null;   // { key, indent } of the open top-level container
-  let inner = null; // { key, indent } of the open key inside a nested map
+  // The containers open at this line, outermost first: a key with an empty value
+  // opens one, and a line indented no further than the key that opened it closes
+  // it. A container starts as a list and becomes a map the first time a key lands
+  // inside it, which is what lets `metadata` hold both lists and nested maps, to
+  // whatever depth they are written - `metadata.usage.expect` is three.
+  const stack = []; // [{ key, indent, parent }]
   for (const line of lines) {
     if (!line.trim()) continue;
     const indent = line.length - line.trimStart().length;
+    while (stack.length && indent <= stack.at(-1).indent) stack.pop();
+    const open = stack.at(-1) ?? null;
     const item = /^\s+-\s*(.*)$/.exec(line);
-    if (item && indent > 0 && top) {
-      const target = inner && indent > inner.indent ? out[top.key][inner.key] : out[top.key];
+    if (item && open) {
+      const target = open.parent[open.key];
       if (Array.isArray(target)) target.push(unquote(item[1]));
       continue;
     }
     const kv = /^(\s*)([A-Za-z_][\w-]*):\s*(.*)$/.exec(line);
     if (!kv) continue;
     const [, , key, rest] = kv;
-    if (indent > 0 && top) {
-      // A key inside the open top-level container turns it into a map.
-      if (Array.isArray(out[top.key]) && !out[top.key].length) out[top.key] = {};
-      if (typeof out[top.key] !== 'object' || Array.isArray(out[top.key])) continue;
-      out[top.key][key] = rest.trim() === '' ? [] : scalar(rest);
-      inner = { key, indent };
-      continue;
+    let target = out;
+    if (open) {
+      if (Array.isArray(open.parent[open.key]) && !open.parent[open.key].length) open.parent[open.key] = {};
+      target = open.parent[open.key];
+      if (typeof target !== 'object' || Array.isArray(target)) continue;
     }
-    inner = null;
-    if (rest.trim() === '') { out[key] = []; top = { key, indent }; continue; }
-    top = null;
-    out[key] = scalar(rest);
+    target[key] = rest.trim() === '' ? [] : scalar(rest);
+    if (rest.trim() === '') stack.push({ key, indent, parent: target });
   }
   return out;
 }
@@ -114,7 +144,39 @@ export function forceLoadPathsOf(fm) {
   return typeof v === 'string' ? v.split(',').map((s) => s.trim()).filter(Boolean) : [];
 }
 
-// The metadata of the skill at `dir`: { name, description, forceLoadPaths,
+// The declared body: 'workflow', 'guidelines', or null when undeclared.
+export function bodyOf(fm) {
+  const v = fm?.metadata && typeof fm.metadata === 'object' && !Array.isArray(fm.metadata) ? fm.metadata[BODY_KEY] : undefined;
+  return typeof v === 'string' && BODIES.includes(v.trim()) ? v.trim() : null;
+}
+
+// The declared `usage` block: null where there is none - undeclared is a state of
+// its own, which the review lists rather than judges - else
+// { expect, problems }. A mis-declaration keeps its place here with `problems`
+// naming what is wrong, so the authoring-time check and the review read one
+// vocabulary instead of two: the check reports the problems, the review evaluates
+// a block only when there are none.
+//
+// `expect` is the block's only key. A second key is refused rather than ignored:
+// the block exists so a reader can tell what a zero means, and a key nothing reads
+// would be a claim the record never tests.
+export function usageOf(fm) {
+  const md = fm?.metadata;
+  const v = md && typeof md === 'object' && !Array.isArray(md) ? md[USAGE_KEY] : undefined;
+  if (v === undefined) return null;
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return { expect: null, problems: [`${USAGE_KEY} is not a block of keys`] };
+  const problems = [];
+  const expect = typeof v.expect === 'string' ? v.expect.trim() : '';
+  if (!EXPECTS.includes(expect)) {
+    problems.push(expect ? `expect: ${expect} is outside ${EXPECTS.join(' | ')}` : `expect is missing - one of ${EXPECTS.join(' | ')}`);
+  }
+  for (const key of Object.keys(v)) {
+    if (key !== 'expect') problems.push(`${key} is not a key of the usage block, whose only key is expect`);
+  }
+  return { expect: EXPECTS.includes(expect) ? expect : null, problems };
+}
+
+// The metadata of the skill at `dir`: { name, description, body, usage, forceLoadPaths,
 // toolCallTriggers, promptTriggers, toolResultTriggers }.
 // Unreadable is empty metadata, on the harness's own terms.
 export function skillMetadata(dir) {
@@ -123,6 +185,8 @@ export function skillMetadata(dir) {
   return {
     name: typeof fm.name === 'string' ? fm.name : '',
     description: typeof fm.description === 'string' ? fm.description : '',
+    body: bodyOf(fm),
+    usage: usageOf(fm),
     forceLoadPaths: forceLoadPathsOf(fm),
     toolCallTriggers: toolCallTriggersOf(fm),
     promptTriggers: promptTriggersOf(fm),

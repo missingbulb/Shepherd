@@ -1,6 +1,8 @@
 ---
 name: fleet-triage
 description: Survey every open issue across the whole missingbulb fleet, split the queue items from the plain ones, and attribute each parked task to the cause that actually parked it. Use when asked for a triage run, a fleet overview, a stuck-tasks analysis, or "all open issues across the fleet".
+metadata:
+  body: workflow
 ---
 
 # Fleet triage

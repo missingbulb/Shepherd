@@ -2,6 +2,9 @@
 name: searching-for-a-tool
 description: Finding a harness tool by name — the select form for a deferred tool, and what an empty search means. Use before any ToolSearch, and when a search finds nothing.
 metadata:
+  body: guidelines
+  usage:
+    expect: triggered
   force-load-on-tool-calls:
     - 'ToolSearch'
   force-load-on-tool-results-matching:
@@ -15,7 +18,7 @@ metadata:
   step is theirs.
 - **`select:` takes a short name as readily as a qualified one** — `select:get_teams` and
   `select:mcp__github__get_teams` both return the tool, and a comma-separated list loads several at
-  once. Qualify a name two servers could both carry. (1)
+  once. Qualify a name two servers could both carry.
 - **A bare short name is a keyword query, and resolves too** — `get_teams` on its own returns the
   tool, ranked above the looser matches beneath it.
 - **A server whose whole roster the deferred-tools listing already names** is the one exception: one

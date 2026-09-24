@@ -25,9 +25,34 @@ export const localPacksDir = (root) => join(resolve(root), LOCAL_PACKS_SUBDIR);
 // the mount's self-test and blocks the converge that would have fixed it. It comes
 // out when no fielded pack version imports it any more — a question answered off
 // the trunk's own pack history by the lane-shim test that guards this surface, not
-// by what the current tree happens to import.
-// @legacy-tolerance advisory:none retire:#1640
+// by what the current tree happens to import (#1911).
+// @legacy-tolerance advisory:none retire:#1911
 export const LEGACY_LOCAL_PACKS_SUBDIR = join('.claudinite', 'local_packs');
+
+// A pack COPIED INTO THE SESSION rather than tracked: `.claudinite/temp/packs/<name>/`,
+// written at session start by some pack's session-prepare step and gone with the
+// container. It is the root for content that belongs to the PERSON in front of the
+// session rather than to the repository - which no tracked tree can carry, because the
+// repository is shared and the person is not.
+//
+// It is a pack root and not a bespoke channel because everything a pack already gets is
+// what this content needs: prose on the memory channel, skills mounted, checks run, an
+// `env` declaration honoured. The alternative was a second delivery path per capability.
+//
+// ACTIVATION IS PRESENCE. A tracked pack is activated by the repo's declaration, which
+// is how a repository chooses what governs it. Nothing here is the repository's to
+// declare: the step that copied the directory already decided, for this session and this
+// person, and a declaration naming a person would put one session's identity in a file
+// every other person reads.
+export const TEMP_PACKS_SUBDIR = join('.claudinite', 'temp', 'packs');
+export const tempPacksDir = (root) => join(resolve(root), TEMP_PACKS_SUBDIR);
+
+// The one directory under that root whose prose reaches the session through the memory
+// channel: the rules index carries a literal import of it (generate-rules-index.mjs), so
+// the name is fixed rather than discovered - an index written at converge time cannot see
+// a directory a session will copy hours later. One name, one import, one pack: a person
+// brings a pack, not a shelf.
+export const SESSION_USER_PACK = 'current_user';
 
 // Where a consumer materializes the vendored canon (vendoring/DESIGN.md): the
 // corpus mirrored at canon-relative paths under this subdir. Tracked files in
@@ -143,10 +168,13 @@ async function ruleModulesIn(packDir, scope, label, errors) {
   return rules;
 }
 
-async function scanPackDir(dir, { local, subdir }, errors) {
+async function scanPackDir(dir, { local, temp, subdir }, errors) {
   const out = [];
   if (!existsSync(dir)) return out;
   const label = subdir ?? (local ? LOCAL_PACKS_SUBDIR : 'packs');
+  // Both roots outside the canon are the repo's or the session's own namespace: an id
+  // is the directory name there, and neither may be canonicalized or overridden.
+  const ownNamespace = local || temp;
   // A non-directory (or unreadable path) at a scan root is a fault to REPORT, not
   // a crash — the whole point of discovery being fail-soft is a diagnostic instead
   // of a dead runner (the SessionStart hooks fail soft; the runner surfaces it).
@@ -164,7 +192,7 @@ async function scanPackDir(dir, { local, subdir }, errors) {
   }
   for (const name of names) {
     const packDir = join(dir, name);
-    const rel = local ? `${label}/${name}` : `packs/${name}`;
+    const rel = ownNamespace ? `${label}/${name}` : `packs/${name}`;
     const manifest = join(packDir, 'pack.mjs');
     if (!existsSync(manifest)) continue;
     let mod;
@@ -200,10 +228,10 @@ async function scanPackDir(dir, { local, subdir }, errors) {
     // by its exported id, but the fleet planner reads a local pack's daily tasks by
     // directory name (it never imports pack.mjs), so a mismatch would silently
     // diverge — the engine runs the pack while the fleet skips its task.
-    if (local && mod.id !== name) {
+    if (ownNamespace && mod.id !== name) {
       errors.push({
-        what: `the local pack in ${rel} exports id "${mod.id}" but its directory is "${name}"`,
-        fix: `rename the directory to "${mod.id}", or set the pack's id to "${name}" — a local pack's id must match its directory name`,
+        what: `the pack in ${rel} exports id "${mod.id}" but its directory is "${name}"`,
+        fix: `rename the directory to "${mod.id}", or set the pack's id to "${name}" - outside the canon a pack's id must match its directory name`,
         dir: packDir,
       });
       continue;
@@ -250,12 +278,22 @@ async function scanPackDir(dir, { local, subdir }, errors) {
     // survivor that is itself present, and discoverPacks below undoes the map for
     // exactly that case (#1186).
     const pack = { ...normalizeManifest({ ...mod,
-      ...(local ? {} : { id: canonicalPackId(mod.id), rawId: mod.id }),
+      ...(ownNamespace ? {} : { id: canonicalPackId(mod.id), rawId: mod.id }),
       // A declaration judging the session — scope "work" or "action" — rides the
       // work list: both run at Stop, over the change and the transcript.
       worldRules: [...(mod.worldRules ?? scanned.worldRules ?? []), ...declared.filter((r) => r.scope !== 'work' && r.scope !== 'action')],
       workRules: [...(mod.workRules ?? scanned.workRules ?? []), ...declared.filter((r) => r.scope === 'work' || r.scope === 'action')],
-    }), dir: packDir, local };
+    }), dir: packDir, local: Boolean(local), temp: Boolean(temp) };
+    // A task is scheduled work over a repository, picked up by a runner reading the
+    // repo's tracked packs. A copied pack is neither tracked nor there tomorrow, so a
+    // task it declares can never be picked up - report it rather than run half of it.
+    if (temp && existsSync(join(packDir, 'tasks'))) {
+      errors.push({
+        what: `the copied pack in ${rel} ships tasks/, which nothing will ever run`,
+        fix: 'remove tasks/ from the pack - scheduled work belongs to a tracked pack in the repository it runs over',
+        dir: packDir,
+      });
+    }
     pack.skillChecks = await scanSkillChecks(packDir, errors);
     out.push(pack);
   }
@@ -280,12 +318,16 @@ async function scanSkillChecks(packDir, errors) {
     return rules;
   }
   for (const name of names) {
+    // `ownerSkill` is stamped from the directory the check was found in rather than
+    // declared: which skill owns a check is already structural, and the usage review
+    // reads it to ask whether a session that loaded the skill was caught by it anyway.
+    const owned = (found) => (found ?? []).map((rule) => ({ ...rule, ownerSkill: name }));
     const skillDir = join(skillsRoot, name);
-    rules.push(...await declaredChecksIn(skillDir, `the ${name} skill`, errors));
+    rules.push(...owned(await declaredChecksIn(skillDir, `the ${name} skill`, errors)));
     const manifest = join(skillDir, 'checks.mjs');
     if (!existsSync(manifest)) continue;
     try {
-      rules.push(...(await import(pathToFileURL(manifest).href)).default);
+      rules.push(...owned((await import(pathToFileURL(manifest).href)).default));
     } catch (e) {
       errors.push({ what: `local skill check ${name}/checks.mjs failed to load: ${e.message}`, fix: 'fix or remove the skill\'s checks.mjs', dir: skillDir });
     }
@@ -302,7 +344,7 @@ async function scanSkillChecks(packDir, errors) {
 // SessionStart hooks just skip the offending pack. Canon is scanned first, so a
 // local pack may not shadow a canon id — the collision is reported and the local
 // one dropped (a consumer extends the canon, never silently overrides it).
-export async function discoverPacks({ localRoot } = {}) {
+export async function discoverPacks({ localRoot, session = false } = {}) {
   const errors = [];
   const canon = await scanPackDir(packsDir, { local: false }, errors);
   // Re-resolve each canon id now the whole tree is known, so an ABSORBED pack's
@@ -314,14 +356,29 @@ export async function discoverPacks({ localRoot } = {}) {
   const local = localRoot
     ? await scanPackDir(localPacksDir(localRoot), { local: true, subdir: LOCAL_PACKS_SUBDIR }, errors)
     : [];
+  // ASKED FOR, never assumed. A copied pack governs the SESSION - its prose, its skills,
+  // its checks - and says nothing about the repository: a conformance sweep over the
+  // shelf, a vendoring pass, a catalog generator would all read one person's pack as a
+  // pack the repo carries. So the session-time readers opt in and everything else is
+  // answered as if the directory were not there, which in their checkout it usually is not.
+  //
+  // Copied last, so a name already taken by the canon or by the repo's own packs keeps its
+  // tracked owner: what a session copies extends the repository, exactly as a local pack
+  // extends the canon, and may not silently replace either.
+  const temp = session && localRoot
+    ? await scanPackDir(tempPacksDir(localRoot), { temp: true, subdir: TEMP_PACKS_SUBDIR }, errors)
+    : [];
   const byId = new Map();
   const packs = [];
-  for (const pack of [...canon, ...local]) {
+  for (const pack of [...canon, ...local, ...temp]) {
     if (byId.has(pack.id)) {
       const first = byId.get(pack.id);
+      const origin = (p) => (p.temp ? 'a copied pack' : p.local ? 'a local pack' : 'the canon');
       errors.push({
-        what: `pack id "${pack.id}" is declared twice — by ${first.local ? 'a local pack' : 'the canon'} and ${pack.local ? 'a local pack' : 'the canon'}`,
-        fix: `rename the local pack in ${LOCAL_PACKS_SUBDIR}/ — a local pack id must be unique and may not shadow a canon pack`,
+        what: `pack id "${pack.id}" is declared twice - by ${origin(first)} and ${origin(pack)}`,
+        fix: pack.temp
+          ? `rename the copied pack in ${TEMP_PACKS_SUBDIR}/ - it may not shadow a pack this repository tracks`
+          : `rename the local pack in ${LOCAL_PACKS_SUBDIR}/ - a local pack id must be unique and may not shadow a canon pack`,
         dir: pack.dir,
       });
       continue;
@@ -345,21 +402,13 @@ export async function loadPacks(opts) {
 // self-documenting in .claudinite-settings.json (a reader sees at a glance the
 // pack lives in the repo's own tree under .claudinite/local/, and a canon id can
 // never be claimed by accident; the discoverPacks shadow guard stays as the
-// backstop). Both the pre-rename `local_packs/<id>` form and the bare id remain
-// permanently accepted — a declaration is text a member wrote once, and no
-// convergence pass rewrites every one of them — so packEntryId strips whichever
-// prefix is present and every id comparison happens on the bare id. This is the
-// parser for a token, not a tolerance for the retired `.claudinite/local_packs/`
-// DIRECTORY, which discovery no longer scans.
+// backstop). A bare id is still accepted - that is what a declaration written
+// before the namespace existed says - so packEntryId strips the prefix where one is
+// present and every id comparison happens on the bare id. The pre-rename
+// `local_packs/<id>` form was read alongside it until #1640; a member still
+// declaring it now activates nothing.
 export const LOCAL_DECL_PREFIX = 'local/';
-// @legacy-tolerance advisory:legacy-shape-in-use retire:#1640
-export const LEGACY_LOCAL_DECL_PREFIX = 'local_packs/';
-const stripLocalPrefix = (id) => {
-  for (const prefix of [LOCAL_DECL_PREFIX, LEGACY_LOCAL_DECL_PREFIX]) {
-    if (id.startsWith(prefix)) return id.slice(prefix.length);
-  }
-  return id;
-};
+const stripLocalPrefix = (id) => (id.startsWith(LOCAL_DECL_PREFIX) ? id.slice(LOCAL_DECL_PREFIX.length) : id);
 
 // The writer-side inverse: the token a declaration writer records for a pack —
 // namespaced (canonical form) for a local pack, the bare id for a canon one.
@@ -371,12 +420,12 @@ export const declTokenFor = (pack) =>
 // (see engine/checks/README.md). This is the one id-extractor every reader shares, so
 // raw-JSON consumers (the SessionStart hooks, the fleet signal probe) and the
 // engine agree on both shapes — and on both declaration forms: it returns the
-// BARE pack id, stripping a `local_packs/` namespace where one is declared.
+// BARE pack id, stripping a `local/` namespace where one is declared.
 // Returns undefined for a malformed entry.
 // A declaration written before a canon pack was renamed resolves to the pack's
 // CURRENT id here (renamed-packs.mjs), so activation, config lookup and the vendor
 // set all agree on one spelling no matter which one the member wrote. A LOCAL pack
-// is exempt: its namespace belongs to the repo, so `local/core` stays `core`.
+// is exempt: its namespace belongs to the repo, so `local/barriers` stays `barriers`.
 // A local pack declared BARE cannot be told apart from a canon one at this seam and
 // is canonicalized with the rest — which is harmless while the shadow guard in
 // discoverPacks keeps a local id from claiming a canon one.
@@ -391,10 +440,15 @@ export const packEntryId = (entry) => {
   return bare === raw ? canonicalPackId(bare) : bare;
 };
 
-// No pack is active by default. Activation is exactly the project's declaration
+// No TRACKED pack is active by default. Activation is exactly the project's declaration
 // in .claudinite-settings.json (bootstrap's --init seeds the default-on packs).
+//
+// A COPIED pack is active by being there. Its directory was written this session, by a
+// step the repo's declaration already activated, for the person the session belongs to -
+// so the declaration that would govern it has been made, one level up, and repeating it
+// per person in a shared file is the thing that shape exists to avoid.
 export const isActive = (pack, config) =>
-  (config.packs ?? []).some((entry) => packEntryId(entry) === pack.id);
+  pack.temp === true || (config.packs ?? []).some((entry) => packEntryId(entry) === pack.id);
 
 // The MOUNTED SKILL SET: the union of the given packs' bundled skills, as a
 // Map(name -> the skill's directory). A bundled skill is `<pack>/skills/<name>/`

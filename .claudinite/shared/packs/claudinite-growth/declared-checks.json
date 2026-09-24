@@ -26,70 +26,23 @@
     "id": "legacy-check-spellings",
     "severity": "advisory",
     "since": "2026-09-03",
-    "failureMessage": "the merged assertion families accept their pre-merge spelling only until no declaration still uses it, and a spelling the engine stops placing asserts nothing at all",
+    "failureMessage": "the merged assertion families no longer accept their pre-merge spelling, and a spelling the engine cannot place is dropped at load — the assertion is simply not there",
     "scanFiles": "/declared-checks\\.json$/",
     "matchLines": [
       {
         "match": "/\"eachValueInParsedArray\"/",
-        "what": "{match} is the pre-merge spelling of an index-coverage assertion",
-        "fix": "restate it as a named `extractValueSets` entry quantified over by `requireIndexCoverage`'s `eachValueOfSet` — the normalizer that rewrites it today is scheduled for removal (#1643)"
-      }
-    ]
-  },
-  {
-    "id": "references-integrity",
-    "severity": "blocking",
-    "since": "2026-09-01",
-    "failureMessage": "a dangling marker cites a rationale nobody recorded, and an orphaned check entry lets the periodic review reaffirm a check that no longer exists",
-    "extractValueSets": [
-      {
-        "setName": "ruleMarkers",
-        "fromLinesMatching": "/\\((?<value>\\d+(?:\\s*,\\s*\\d+)*)\\)\\s*$/",
-        "inFilesMatching": "/^(?<packDir>(?:.*\\/)?packs\\/[^/]+\\/)RULES\\.md$/",
-        "splitValuesOn": "/\\s*,\\s*/",
-        "whenSetEmpty": "assertNothing"
+        "what": "{match} is the pre-merge spelling of an index-coverage assertion, which the engine no longer places",
+        "fix": "restate it as a named `extractValueSets` entry quantified over by `requireIndexCoverage`'s `eachValueOfSet` — the normalizer that rewrote it retired in #1643"
       },
       {
-        "setName": "skillMarkers",
-        "fromLinesMatching": "/\\((?<value>\\d+(?:\\s*,\\s*\\d+)*)\\)\\s*$/",
-        "inFilesMatching": "/^(?<packDir>(?:.*\\/)?packs\\/[^/]+\\/)skills\\/(?<skill>[^/]+)\\/SKILL\\.md$/",
-        "splitValuesOn": "/\\s*,\\s*/",
-        "whenSetEmpty": "assertNothing"
+        "match": "/\"(listedInFile|coveredByGlobLine)\"/",
+        "what": "{match} is the pre-merge spelling of an index-coverage assertion, which the engine no longer places",
+        "fix": "restate it as a `requireIndexCoverage` entry — `listFile`/`globFile` become `indexFile`, `asText` becomes `coveredByText`, `globLineMatching` becomes `coveredByGlobLinesMatching`, and the defaults the old keys implied (`whenIndexFileAbsent`, `anchorFindingsAt`) are now declared"
       },
       {
-        "setName": "checkEntries",
-        "fromLinesMatching": "/^\\s*-\\s+\\*\\*\\(check:(?<value>[\\w/-]+)\\)\\*\\*/",
-        "inFilesMatching": "/^(?<packDir>(?:.*\\/)?packs\\/[^/]+\\/)references\\.md$/",
-        "whenSetEmpty": "assertNothing"
-      }
-    ],
-    "checkSetValues": [
-      {
-        "setName": "ruleMarkers",
-        "requireSomeFileMatching": {
-          "pathMatching": "/^{packDir}references\\.md$/",
-          "text": "/^\\s*-\\s+\\*\\*\\(RULES-{value}\\)\\*\\*/m"
-        },
-        "what": "cites rationale entry ({value}), which {packDir}references.md does not carry as RULES-{value}",
-        "fix": "add the \"- **(RULES-{value})** <reason>\" entry — creating {packDir}references.md if the pack has none — or drop the marker; entry numbers are stable identifiers, so a removed entry's number is never reused"
-      },
-      {
-        "setName": "skillMarkers",
-        "requireSomeFileMatching": {
-          "pathMatching": "/^{packDir}references\\.md$/",
-          "text": "/^\\s*-\\s+\\*\\*\\({skill}-{value}\\)\\*\\*/m"
-        },
-        "what": "cites rationale entry ({value}), which {packDir}references.md does not carry as {skill}-{value}",
-        "fix": "add the \"- **({skill}-{value})** <reason>\" entry — creating {packDir}references.md if the pack has none — or drop the marker; entry numbers are stable identifiers, so a removed entry's number is never reused"
-      },
-      {
-        "setName": "checkEntries",
-        "requireSomeFileMatching": {
-          "pathMatching": "/^{packDir}.*\\.(mjs|json)$/",
-          "text": "/\\bid['\"]?\\s*:\\s*['\"]{value}['\"]/"
-        },
-        "what": "carries a rationale entry for check:{value}, which the pack does not carry",
-        "fix": "remove the entry with the check it explained, or point it at the check's current id"
+        "match": "/\"(checkParsedFile|forEachParsedEntry|equalParsedValues)\"/",
+        "what": "{match} is the pre-merge spelling of a parsed-document assertion, which the engine no longer places",
+        "fix": "restate it as a `checkParsedFiles` entry — one selector (`file`, or `filesMatching` + `whereFileContains`) carrying `forEachEntryAtField`/`whereEntryFieldEquals` or `requireEqualFields`"
       }
     ]
   },

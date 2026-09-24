@@ -12,7 +12,7 @@
   run. Put the class **alone on the line**, any explanation on the next; a class cannot be taken
   back, and a clean re-declaration further down does not override the first. The line opens that
   reply and is never the whole of it: a work class — `correction`, `feature`, `process-change` —
-  commits the same turn to the work it names. (6)
+  commits the same turn to the work it names.
 
 - **Acting on a correction** — you misunderstood something. Repair the shared understanding, then
   rework what the misread already touched; the artifact changes as much as the correction demands,
@@ -65,26 +65,26 @@
 - **Filing the issues a multi-step plan or migration decomposes into** — take the owner's
   approval of the plan first, in one submission carrying a line per step, the graph of which
   step waits on which, and each link's automerge policy beside the diff it was predicted from.
-  Filed first, the plan is a structure to react to rather than a decision to make. (5)
+  Filed first, the plan is a structure to react to rather than a decision to make.
 
 - **Adding a legacy tolerance** (a dual read, an accepted old spelling, a shim) — it is
   scaffolding, not a feature: ship it with an advisory that fires where the old shape is still in
   use, and with its removal already a link in the migration's chain, due one stated convergence
-  window after that advisory reaches the holders. (2)
+  window after that advisory reaches the holders.
 
 - **Choosing an automerge policy for a PR or a chain link** — write it as a prediction of the
   change's shape, the folders and kinds you expect the diff to touch, and never widen it to fit the
   diff that arrived: a policy that fails is the speed bump that puts a person back on the trail,
-  not an error to route around. (1)
+  not an error to route around.
 
 - **Predicting a change that could delete production data or degrade the experience past what a
   later PR undoes** — its policy is `nothing`, whatever its diff class; irreversibility is the
-  first of the two things review here exists to catch. (1)
+  first of the two things review here exists to catch.
 
 - **Handing over a change whose diff reached more folders or files than its request implied** —
   say so, and name the abstraction that would have kept it in one place: the reviewer reads which
   folders moved to judge whether the change made sense, and a wide diff for a small ask is the
-  growth lesson review is for, not a defect. (1)
+  growth lesson review is for, not a defect.
 
 - **Retiring a system by folding its function into another** — audit that the live generator
   moved, not only its past output: a copied directory of old artifacts hides the generator's
@@ -137,13 +137,11 @@
 - **Calling `Edit` on a path outside the working directory and the session scratchpad** — a `Read`
   or a `Write` in this session is required first, and a shell write does not count; a narrow offset
   window satisfies it. Inside either root nothing is required, so read a file when you need to see
-  it rather than to unlock it — Edit's tracking shows you nothing. (3)
+  it rather than to unlock it — Edit's tracking shows you nothing.
 
 
 - **Polling with an `until` loop** — write a condition that names the state awaited (a file's
-  arrival, a run's status): one already true on its first check is a blind sleep wearing a loop,
-  as a bare `wait` in a later Bash call is — each call is a fresh shell, which is what
-  `bare-wait-in-fresh-shell` refuses.
+  arrival, a run's status); one already true on its first check is a blind sleep wearing a loop.
 
 - **Handing the owner a command block to paste into their terminal** — carry no trailing
   `# comment` on any line: interactive zsh treats `#` as a comment only under
@@ -237,7 +235,7 @@
 
 - **Guarding two copies written in different languages** — pair them by name, applying the known
   casing transform to derive one identifier from the other, rather than by literal value: one
-  value can be a numeric substring of another. (4)
+  value can be a numeric substring of another.
 
 - **Writing file A so it depends on file B** — say what A needs from B, or that it delegates, and
   don't re-spell how B does its job. If you're about to paraphrase B's procedure, point at B
@@ -281,7 +279,9 @@
   new, opening a listener or adding an outbound connection changes the promise rather than adding a
   field: decide it explicitly and rewrite the disclosure before the code. Expect the claim in more
   than one place — grep the whole surface for the standing absolutes it touches ("no tracking",
-  "no cookies", "no external assets") and reconcile every hit.
+  "no cookies", "no external assets") and reconcile every hit. Write the reconciled disclosure to
+  lead with what is now actually done, then the narrower true claims still standing - never a
+  blanket denial the new behavior has already made false.
 
 - **Changing an observable behavior your own docs make a claim about** — not only privacy: when
   a site deploys, a job's cadence, which targets are supported. Grep the doc surface for what the
