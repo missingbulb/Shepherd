@@ -1,6 +1,8 @@
-## 2026-09-24 · born · converted from references.md (check:email-service-list-unsubscribe-post), dated by the conversion
-- **Reason:** Same page: `List-Unsubscribe-Post` "must be exactly `List-Unsubscribe=One-Click`
-  (case-sensitive)", and anything else is `E_HEADER_VALUE_INVALID` — which, per the paragraph
-  above, fails the whole send. The value is a constant from RFC 8058, so the check can compare
-  against it literally.
-- **Mechanism:** a check
+## 2026-09-08 · born · Mail three fleet repos every morning (#504)
+- **Source:** Cloudflare's headers reference; RFC 8058.
+- **Reason:** any value other than `List-Unsubscribe=One-Click` is `E_HEADER_VALUE_INVALID` and
+  fails the whole send; the value is a constant, so a literal comparison holds it.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5, per the commit trailer.
+- **Mechanism:** a declared check in the sending-email skill's `declared-checks.json`.
+- **Landed:** #504 (Refs #502).

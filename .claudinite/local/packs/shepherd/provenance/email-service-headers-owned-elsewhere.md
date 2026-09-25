@@ -1,8 +1,11 @@
-## 2026-09-24 · born · converted from references.md (check:email-service-headers-owned-elsewhere), dated by the conversion
-- **Reason:** The [headers
-  reference](https://developers.cloudflare.com/email-service/reference/headers/) is allowlist-based
-  and says so: "Email Service rejects the entire send request if it contains a disallowed header. It
-  does not remove the header and continue sending the message." A platform-controlled header returns
-  `E_HEADER_NOT_ALLOWED` and a first-class one `E_HEADER_USE_API_FIELD`.
-- **Mechanism:** a check
-- **Retire when:** Retire it if the service ever starts stripping rather than refusing.
+## 2026-09-08 · born · Mail three fleet repos every morning (#504)
+- **Source:** Cloudflare's [headers
+  reference](https://developers.cloudflare.com/email-service/reference/headers/).
+- **Reason:** the service is allowlist-based and rejects the whole send on a disallowed header
+  (`E_HEADER_NOT_ALLOWED`, or `E_HEADER_USE_API_FIELD` for a first-class one) rather than stripping
+  it.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5, per the commit trailer.
+- **Mechanism:** a declared check in the sending-email skill's `declared-checks.json`.
+- **Retire when:** the service starts stripping rather than refusing.
+- **Landed:** #504 (Refs #502).

@@ -1,5 +1,10 @@
-## 2026-09-24 · born · converted from references.md (check:email-service-rest-field-spellings), dated by the conversion
-- **Reason:** The same evidence as `sending-email-1`: the check is the half of that rule a scan can
-  hold, catching the binding's spellings where the rule can only warn about them.
-- **Mechanism:** a check
-- **Retire when:** Retire it with the rule.
+## 2026-09-08 · born · Mail three fleet repos every morning (#504)
+- **Source:** Cloudflare's [recipients
+  example](https://developers.cloudflare.com/email-service/examples/email-sending/recipients/).
+- **Reason:** the half of the sending-email skill's REST-versus-binding step a scan can hold,
+  catching the binding's spellings where the step can only warn.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5, per the commit trailer.
+- **Mechanism:** a declared check in the sending-email skill's `declared-checks.json`.
+- **Retire when:** Cloudflare converges the two spellings, with the step.
+- **Landed:** #504 (Refs #502).
