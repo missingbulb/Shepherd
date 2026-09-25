@@ -4,8 +4,7 @@
 // step: it invokes each ACTIVE pack's own `session-end.mjs`, discovered structurally
 // exactly as tasks, prose and skills are. Core never names the pack whose step it
 // runs, and never learns what one does — a session-end step is pack content, and the
-// engine's whole part is "invoke it, once, when the session ends"
-// (skill-usage-metrics DESIGN §3.3).
+// engine's whole part is "invoke it, once, when the session ends".
 //
 // SessionEnd, not Stop. Stop fires at every turn end (and already runs the
 // conformance checks); a step that writes anything per-session would fire once per
@@ -65,7 +64,7 @@ async function main() {
   try { config = JSON.parse(readFileSync(configPath, 'utf8')); } catch { /* no declaration — no active packs */ }
 
   const { loadPacks, isActive } = await import(join(engineRoot, 'pack_loader', 'pack-registry.mjs'));
-  const steps = (await loadPacks({ localRoot: projectRoot }))
+  const steps = (await loadPacks({ localRoot: projectRoot, session: true }))
     .filter((p) => isActive(p, config))
     .map((p) => ({ pack: p.id, step: join(p.dir, STEP_FILE) }))
     .filter((s) => existsSync(s.step));

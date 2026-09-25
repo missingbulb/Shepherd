@@ -4,14 +4,14 @@
   "description": "The growth lifecycle's pruning stage: reconciles this repository's local packs against the canon it mounts, removing local items the canon now covers and keeping those the canon states too generally.",
   "trigger": "schedule",
   "preconditions": [
-    "due:weekly",
+    "schedule:at-most-weekly",
     "mount-moved || commits-under:.claudinite/local"
   ],
   "expected_outcome": "supersede_existing_pr",
   "automerge": [
     "under:.claudinite/local"
   ],
-  "code_work": "node worker.mjs",
+  "code_worker_mjs": "worker.mjs",
   "code_work_timeout": 600,
   "agent_model": "opus",
   "agent_instructions": "task.md",

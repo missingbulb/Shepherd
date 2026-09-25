@@ -1,6 +1,8 @@
 ---
 name: fleet-triage
 description: Survey every open issue across the whole missingbulb fleet, split the queue items from the plain ones, and attribute each parked task to the cause that actually parked it. Use when asked for a triage run, a fleet overview, a stuck-tasks analysis, or "all open issues across the fleet".
+metadata:
+  body: workflow
 ---
 
 # Fleet triage
@@ -35,7 +37,7 @@ from an Actions-side walk over the fleet PAT. Read its `generated` stamp first; 
 than the run should tolerate, force the task and wait for its PR to land before classifying:
 
 ```
-node .claudinite/shared/packs/claudinite-tasks/public/create-work-item.mjs shepherd/fleet-issues-snapshot
+node .claudinite/shared/packs/claudinite-tasks/src/schedule/create-work-item.mjs shepherd/fleet-issues-snapshot
 ```
 
 Then classify — the script is the collection **and** the standard cuts, reproducible and free to

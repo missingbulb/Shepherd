@@ -1,6 +1,10 @@
 ---
 name: prose-to-checks
 description: Mine pack prose (RULES.md, SKILL.md) for always-testable rules that were never converted to checks, and convert the strongest ones. Use when auditing packs for convertible rules, when the weekly prose-to-checks sweep runs, or as the upgrade pass over prose a growth-extract run just wrote.
+metadata:
+  body: workflow
+  usage:
+    expect: judgment
 ---
 
 # Convert existing prose to checks
@@ -160,7 +164,7 @@ enumerated. Expect a form check to fire on something that breaks the form while 
 that's the rule as written doing its job, not a reason to re-add intent-guessing.
 
 When even a scoped parser can't make detection confident, **leave the prose and log the
-candidate** to a tagged conversion-backlog issue rather than shipping a shaky check.
+candidate** to an issue marked `task:origin:ad-hoc` rather than shipping a shaky check.
 
 ## Coming out: the deletion test
 
@@ -186,6 +190,13 @@ while an `extension-test/` mirror bullet stayed, because the check beside it enf
 
 Whether a check covers a rule is a judgment about meaning, so this test is applied by a
 **reader**, not mechanized.
+
+The verdict is recorded where the next pass reads it: a `converted` entry on the element's
+provenance file, its `Mechanism` the check and why coded or declared, its `Reason` the deletion
+test's outcome (prose deleted, or kept and what it still carries), through `provenance.mjs
+append` in the same change; the new check's file is the same element's where the rule and the
+check are one guideline, or its own where they are not. A rule judged **not checkable** goes on
+the pack's `_declined.md`, dated, so no later pass re-derives the verdict.
 
 ## Bounds
 

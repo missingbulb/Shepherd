@@ -2,10 +2,9 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { MIGRATION_FILE, migrationDirs, migrationActive, recordName, flowOf } from '../checks/helpers/active-migrations.mjs';
 import { RENAMED_PACKS } from '../pack_loader/renamed-packs.mjs';
-import { SETTINGS_FILE, SETTINGS_FILES, LEGACY_SETTINGS_FILE } from '../settings-file.mjs';
-import { installedVersions, withInstalledVersions, LEGACY_STAMP_KEY } from '../installed-versions.mjs';
-import { ENDPOINTS_KEY, LEGACY_ENDPOINTS_KEY } from '../checks/helpers/repo-context.mjs';
+import { SETTINGS_FILE } from '../settings-file.mjs';
 import { LOCAL_PACK_ROOT, taskDirsWithJson, updateTaskSchedulingFields } from './task-declarations-to-json.mjs';
+import { markPack, convertReferences } from '../checks/helpers/provenance.mjs';
 
 // <corpus>/engine/migrations/ — records are addressed corpus-relative, because they
 // no longer share one directory with this module: an engine record sits beside it,
@@ -170,19 +169,12 @@ export async function applyRewrites(migration, { read, write, env = process.env 
 // The declaration a pack-seeding op writes into. Fixed, not a parameter: this op
 // declares PACKS, and a repo's declaration lives in exactly one file. A `file` knob
 // would quietly make it a general JSON editor, which is a much larger thing to own.
-//
-// TWO NAMES WHILE THE RENAME DRAINS (#1252): a record runs on a member whose file may
-// still be `.claudinite-checks.json`, and one that only knew the new name would write
-// a SECOND declaration beside the real one — a settings file nothing reads, with the
-// pack the record meant to seed in it. `declarationFile` asks the member which name
-// it carries; every op below writes back to that same one.
 export const DECLARATION = SETTINGS_FILE;
 
+// Null where the repo has no declaration at all, which is how every op below says
+// "not a member - nothing to write into".
 async function declarationFile(read) {
-  for (const name of SETTINGS_FILES) {
-    if ((await read(name)) != null) return name;
-  }
-  return null;
+  return (await read(SETTINGS_FILE)) != null ? SETTINGS_FILE : null;
 }
 
 // Write side — "every member should now declare this pack": for each declared
@@ -239,16 +231,15 @@ export async function applyPackDeclarations(migration, { read, write }) {
 }
 
 // Write side — "normalize this repo's local-pack declarations": rewrite every
-// declared local pack to the canonical `local/<id>` token, from the bare id or the
-// earlier `local_packs/<id>` form.
+// declared local pack to the canonical `local/<id>` token, from the bare id it was
+// written as before the namespace existed.
 //
 // A NAMED CODEMOD rather than a `rewrite`, because the decision needs the repo's
-// own disk. `local_packs/<id>` → `local/<id>` is a pure pattern, but a BARE id is
-// only a local pack if that repo has one by that name — and a bare id that names a
-// canon pack must not be touched. No regex can tell those apart, so the record
-// declares `normalizeLocalDeclarations: true` and the deterministic code ships with
-// the engine (DESIGN §2.3's "rarely code"). It is one op with one meaning, not a
-// general escape hatch for arbitrary code in a record.
+// own disk: a BARE id is only a local pack if that repo has one by that name, and a
+// bare id that names a canon pack must not be touched. No regex can tell those
+// apart, so the record declares `normalizeLocalDeclarations: true` and the
+// deterministic code ships with the engine (DESIGN §2.3's "rarely code"). It is one
+// op with one meaning, not a general escape hatch for arbitrary code in a record.
 //
 // SEEDS NOTHING AND DROPS NOTHING: entry objects keep their config, answers and
 // order; only the id token changes. Idempotent — a repo already on `local/` is a
@@ -270,16 +261,9 @@ export async function applyLocalDeclarationNormalization(migration, { read, writ
   for (const entry of config.packs) {
     const id = typeof entry === 'string' ? entry : entry?.id;
     if (typeof id !== 'string' || id.startsWith(LOCAL_DECL)) { packs.push(entry); continue; }
-    let bare = id.startsWith(LEGACY_LOCAL_DECL) ? id.slice(LEGACY_LOCAL_DECL.length) : null;
-    if (bare === null) {
-      // A bare id: local only if this repo actually carries that pack. Both mount
-      // shapes are checked, because a repo mid-relocation may hold either.
-      const isLocal = (await exists(`.claudinite/local/packs/${id}/pack.mjs`))
-        || (await exists(`.claudinite/local_packs/${id}/pack.mjs`));
-      if (!isLocal) { packs.push(entry); continue; }
-      bare = id;
-    }
-    const token = `${LOCAL_DECL}${bare}`;
+    // A bare id: local only if this repo actually carries that pack.
+    if (!(await exists(`.claudinite/local/packs/${id}/pack.mjs`))) { packs.push(entry); continue; }
+    const token = `${LOCAL_DECL}${id}`;
     packs.push(typeof entry === 'string' ? token : { ...entry, id: token });
     done.push(`${file}: ${id} -> ${token}`);
   }
@@ -287,12 +271,10 @@ export async function applyLocalDeclarationNormalization(migration, { read, writ
   return done;
 }
 
-// The declaration tokens this op normalizes to and from. Stated here rather than
-// imported from the pack registry: this module is the write side a consumer runs
-// out of its own mount, and the two prefixes are the whole of what it needs.
+// The declaration token this op normalizes to. Stated here rather than imported
+// from the pack registry: this module is the write side a consumer runs out of its
+// own mount, and the prefix is the whole of what it needs.
 const LOCAL_DECL = 'local/';
-// @legacy-tolerance advisory:legacy-shape-in-use retire:#1640
-const LEGACY_LOCAL_DECL = 'local_packs/';
 
 // Write side — "the packs this repo declares have been renamed": rewrite each
 // `packs` entry whose id is a legacy spelling to the id that pack carries today.
@@ -402,7 +384,7 @@ export async function applyPackRenames(migration, { read, write }) {
   const absorbed = new Map((migration.absorbedPackConfig ?? []).map((s) => [s.id, s]));
   const renamed = config.packs.map((raw) => {
     const id = typeof raw === 'string' ? raw : raw?.id;
-    if (typeof id !== 'string' || id.startsWith(LOCAL_DECL) || id.startsWith(LEGACY_LOCAL_DECL)) return raw;
+    if (typeof id !== 'string' || id.startsWith(LOCAL_DECL)) return raw;
     const to = RENAMED_PACKS[id];
     if (to === undefined) return raw;
     const spec = absorbed.get(id);
@@ -495,84 +477,39 @@ export async function applyPackOwnedSettingMoves(migration, { read, write }) {
   return done;
 }
 
-// Write side — "this member's settings file moves to its new name and its new
-// shape" (#1252). The one op that RENAMES the declaration, which is why it is an op
-// rather than four `rewrite`s: a rewrite replaces literal text, and no two members
-// share a literal here; a materialization writes a whole template, which would
-// clobber every project's own declaration.
+// DROP a retired `taskScheduler` key from the member's own declaration. The keys are
+// the per-repo scheduling anchor (#1995): a cadence now measures whole UTC periods and
+// the scheduler workflow's cron hours were written into that file when it was
+// scaffolded, so nothing reads them and what is left is a value that looks live.
 //
-// What it does, in the order that keeps a half-applied run readable:
-//   1. moves `.claudinite-checks.json` to `.claudinite-settings.json` (git sees a
-//      rename, so the file's history follows it);
-//   2. lifts the retired `claudinite` block's `engineVersion` to the top level and
-//      its `packVersions` onto the entry of each pack they price, dropping any key
-//      no entry names — a version for a pack the declaration does not carry prices
-//      nothing, and inventing an entry for it would activate a pack nobody declared;
-//   3. turns `maintenance.delivery: review` into
-//      `dailyClaudiniteUpdatesRequirePrReview: true` and drops the block — including
-//      `mechanism`, whose only rival was deleted in #768 Phase 5, so it had exactly
-//      one possible answer for every member that could still ask;
-//   4. renames `taskScheduler.endpoints` to `agenticTaskInvocationEndpoints`.
+// A DELETE RATHER THAN A MOVE, because there is no new home: the setting is gone, not
+// relocated. It stays safe to run against a member whose vendored engine is a cycle
+// behind, because that engine's own reader already fills an absent key with the
+// documented default, which is what every repo that never moved its anchor was using.
+// `appliesTo` is what holds it back where that is not true.
 //
-// IDEMPOTENT BY CONSTRUCTION: every step is stated as "if the retired shape is
-// there", so a second run finds nothing and writes nothing. It reads the member's
-// OWN file and rewrites only the keys it names — a project's rules, accept entries,
-// pack config and answers pass through untouched, and key ORDER is preserved for
-// everything it does not move, because this is a file people read.
-export async function applySettingsReshape(migration, { read, write, move, exists }) {
-  if (!migration.reshapeSettings) return [];
+// The block goes with its last key: a `taskScheduler` left holding nothing says less
+// than no block at all, and the reader treats the two identically.
+//
+// Idempotent by construction: every step is "if the retired key is there".
+export async function applyRetiredSchedulerSettings(migration, { read, write }) {
+  if (!migration.dropSchedulerSettings?.length) return [];
   if (migration.appliesTo && !(await migration.appliesTo(read))) return [];
   const file = await declarationFile(read);
   if (file == null) return [];
-  const raw = await read(file);
   let config;
-  try { config = JSON.parse(raw); } catch { return []; }
+  try { config = JSON.parse(await read(file)); } catch { return []; }
   if (config === null || typeof config !== 'object' || Array.isArray(config)) return [];
+  const block = config.taskScheduler;
+  if (block === null || typeof block !== 'object' || Array.isArray(block)) return [];
 
-  const done = [];
-
-  // 1. The name. Moved before anything is written, so the write below lands on the
-  //    renamed file and git records one rename rather than a delete and an add.
-  if (file === LEGACY_SETTINGS_FILE) {
-    if (await exists(SETTINGS_FILE)) return [];     // both names present — a repair no record should guess at
-    await move(LEGACY_SETTINGS_FILE, SETTINGS_FILE);
-    done.push(`${LEGACY_SETTINGS_FILE} -> ${SETTINGS_FILE}`);
-  }
-
-  // 2. The versions, onto the shape that holds them now.
-  let next = config;
-  if (next[LEGACY_STAMP_KEY] !== undefined) {
-    const { engineVersion, packVersions } = installedVersions(next);
-    next = withInstalledVersions(next, { engineVersion, packVersions });
-    delete next[LEGACY_STAMP_KEY];
-    done.push(`${SETTINGS_FILE}: engineVersion and per-pack versions lifted out of "${LEGACY_STAMP_KEY}"`);
-  }
-
-  // 3. The delivery override. Only `review` carries an intent worth keeping; every
-  //    other value said what the absent key now says.
-  if (next.maintenance !== undefined) {
-    const delivery = String(next.maintenance?.delivery ?? '').trim();
-    const { maintenance, ...rest } = next;
-    next = rest;
-    if (delivery === 'review' || delivery === 'pr') {
-      next.dailyClaudiniteUpdatesRequirePrReview = true;
-      done.push(`${SETTINGS_FILE}: maintenance.delivery "${delivery}" -> dailyClaudiniteUpdatesRequirePrReview: true`);
-    } else {
-      done.push(`${SETTINGS_FILE}: dropped the retired "maintenance" block`);
-    }
-  }
-
-  // 4. The endpoint map's name.
-  const scheduler = next.taskScheduler;
-  if (scheduler && typeof scheduler === 'object' && !Array.isArray(scheduler)
-      && scheduler[LEGACY_ENDPOINTS_KEY] !== undefined && scheduler[ENDPOINTS_KEY] === undefined) {
-    const { [LEGACY_ENDPOINTS_KEY]: endpoints, ...restScheduler } = scheduler;
-    next = { ...next, taskScheduler: { [ENDPOINTS_KEY]: endpoints, ...restScheduler } };
-    done.push(`${SETTINGS_FILE}: taskScheduler.${LEGACY_ENDPOINTS_KEY} -> ${ENDPOINTS_KEY}`);
-  }
-
-  if (done.length) await write(SETTINGS_FILE, `${JSON.stringify(next, null, 2)}\n`);
-  return done;
+  const dropped = migration.dropSchedulerSettings.filter((key) => block[key] !== undefined);
+  if (!dropped.length) return [];
+  const next = { ...config, taskScheduler: { ...block } };
+  for (const key of dropped) delete next.taskScheduler[key];
+  if (!Object.keys(next.taskScheduler).length) delete next.taskScheduler;
+  await write(file, `${JSON.stringify(next, null, 2)}\n`);
+  return [`${file}: dropped the retired taskScheduler ${dropped.map((k) => `"${k}"`).join(', ')}: nothing reads the per-repo scheduling anchor`];
 }
 
 // EVERY write op a record can carry, in the order a run applies them, over one
@@ -598,6 +535,33 @@ export async function applyTaskSchedulingFields(migration, io) {
   return updateTaskSchedulingFields(taskDirsWithJson([LOCAL_PACK_ROOT], io), io);
 }
 
+// Write side - "this repo's local packs carry their provenance" (docs/provenance/DESIGN.md
+// §6): every local pack's `references.md` converts into entries on the elements it keyed,
+// every rule and guideline ends with a marker, every skill declares its body, every
+// carrier has its file. A NAMED CODEMOD like the two above it - the record declares
+// `markProvenance: true`, and the code ships with the engine
+// (engine/checks/helpers/provenance.mjs, the grammar every reader of a provenance folder
+// composes) - because which rules are unmarked and which skills are workflows is the
+// repo's own disk. Idempotent: a pack already on the convention is left as it is.
+//
+// Dates an entry by the conversion, not by git: the registry's io reads files, not
+// history, and the entry's title says so. Needs `listDir` like the task-fields op; a
+// caller without it marks nothing rather than half-marking, and `remove` for the doc it
+// retires - an io without that leaves the doc and reports it.
+export async function applyProvenanceMarking(migration, io) {
+  if (!migration.markProvenance) return [];
+  if (typeof io.listDir !== 'function') return [];
+  if (migration.appliesTo && !(await migration.appliesTo(io.read))) return [];
+  const applied = [];
+  for (const pack of (io.listDir(LOCAL_PACK_ROOT) ?? []).sort()) {
+    const dir = `${LOCAL_PACK_ROOT}/${pack}`;
+    if (!io.exists(`${dir}/pack.mjs`)) continue;
+    applied.push(...convertReferences(dir, io));
+    applied.push(...markPack(dir, io));
+  }
+  return applied;
+}
+
 export async function applyMigration(migration, io) {
   const applied = [];
   applied.push(...(await applyFileAliases(migration, io)));
@@ -606,13 +570,12 @@ export async function applyMigration(migration, io) {
   applied.push(...(await applyPackDeclarations(migration, io)));
   applied.push(...(await applyLocalDeclarationNormalization(migration, io)));
   applied.push(...(await applyTaskSchedulingFields(migration, io)));
+  applied.push(...(await applyProvenanceMarking(migration, io)));
   applied.push(...(await applyPackRenames(migration, io)));
   // AFTER the renames: a setting moving onto a pack's entry has to find that entry
   // under the id the pack carries TODAY, which is what the rename above just settled.
   applied.push(...(await applyPackOwnedSettingMoves(migration, io)));
-  // LAST: every op above writes to whichever name the member still carries, and this
-  // is the one that changes which name that is.
-  applied.push(...(await applySettingsReshape(migration, io)));
+  applied.push(...(await applyRetiredSchedulerSettings(migration, io)));
   return applied;
 }
 

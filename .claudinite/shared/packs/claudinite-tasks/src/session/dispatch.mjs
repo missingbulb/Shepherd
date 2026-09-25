@@ -17,20 +17,26 @@ import { NEEDS_HUMAN } from '../../public/task-constants.mjs';
 // converges to (PRINCIPLES.md lifecycle). Kept here as the shared source for the
 // scheduler side; the executor reuses these plus `agent-running`.
 export const READY_LABEL = 'ready-for-agent';
-// A fleet-scoped task (session_scope: 'fleet') dispatches to a DISTINCT ready
-// label so a separate, broader-scoped executor routine runs it — keeping the
-// fleet-wide session grant off every ordinary project's self executor (the
-// per-project-scheduling fleet/self split). Only tasks that reach other repos use
-// this; today just growth-promote.
+// Fleet-scoped work dispatches to a DISTINCT ready label so a separate,
+// broader-scoped executor routine runs it - keeping the fleet-wide session grant
+// off every ordinary project's self executor (the per-project-scheduling fleet/self
+// split).
 export const READY_FLEET_LABEL = 'ready-for-agent-fleet';
 export const AGENT_RUNNING_LABEL = 'agent-running';
 export { NEEDS_HUMAN };
 export const WORKFLOW_FAILURE_LABEL = 'workflow-failure';
 
-// The ready label a task's dispatch is filed under, from its declared
-// session_scope ('self' default → READY_LABEL; 'fleet' → READY_FLEET_LABEL). The
-// one place this mapping lives, so the scheduler (which files) and any reader stay
-// in sync.
+// WHICH EXECUTOR ROUTINE a session is. Not a property of a task - nothing asks a
+// task what its reach is (a task needing more than its own repo names an
+// `invocation_endpoint`) - but of the routine that is running: an ordinary
+// project's executor is `self`, the broader-scoped fleet routine is `fleet`, and
+// each picks up only what is filed under its own ready label.
+export const EXECUTOR_SCOPES = ['self', 'fleet'];
+
+// The ready label a dispatch is filed under, from the scope of the executor meant
+// to run it ('self' default → READY_LABEL; 'fleet' → READY_FLEET_LABEL). The one
+// place this mapping lives, so the scheduler (which files) and any reader stay in
+// sync.
 export const readyLabelForScope = (scope) => (scope === 'fleet' ? READY_FLEET_LABEL : READY_LABEL);
 
 // The full label set the scheduler + executor drive, each with the colour and
@@ -278,7 +284,7 @@ export function staleEscalationComment(issue) {
 // label, add it back — which emits a new event.
 //
 // This is the recovery that used to live in the executor's drain sweep, then in
-// the scheduler's hourly pass, and now runs from the daily task-janitor task —
+// the scheduler's own pass, where it runs again as the repair phase -
 // still deterministic code, still decided by the pure rules here. The sweep had EVERY triggered session also process every
 // OTHER armed issue, so one scheduler run filing N dispatches produced N sessions
 // each racing over the same N issues, and the claim swap could not stop it (every
@@ -306,13 +312,17 @@ export function readyLabelOn(issue) {
 //   - past `graceMs` (default 20m), comfortably beyond session spin-up, so a
 //     session already on its way is never handed a rival.
 // A stale issue is never re-armed: it is on its way to `needs-human`, and re-arming
-// one would loop forever. That backstop is also what bounds this — an executor that
-// stays down is re-armed each janitor run until ~2 periods, then converges to triage.
+// one would loop forever.
+//
+// NOTHING CALLS THIS ANY MORE. The slot scheduler it belonged to is retired (#974)
+// and the sweep that ran these rules went with the janitor task. They are kept pure
+// and tested as the shape a legacy-cleanup rule takes, for the home named in
+// `../schedule/repair.mjs`; a caller would read the items that pass already holds.
 // Dispatch issues left claimed by a session that died mid-run: `agent-running`
 // with no activity for `idleMs` (~3h). Converging these used to be the executor's
 // own step 6, which meant every concurrently-triggered session swept them and
 // commented on the same issue — the duplicate-work bug in miniature. It is code
-// here (run by the janitor) for the same reason the re-arm is.
+// here, beside the re-arm and uncalled for the same reason.
 //
 // Scoped to `[claudinite-task]` dispatch issues deliberately (the title parse is
 // what enforces it): a task may put `agent-running` on an issue IT owns — a
@@ -338,7 +348,7 @@ export function staleClaimedDispatchIssues(openIssues = [], now, { idleMs = 3 * 
   });
 }
 
-// The claims a janitor run must read comments for before it can judge them —
+// The claims a sweep must read comments for before it can judge them -
 // `livenessAt`'s scope. Every open dispatch claim, so a candidate set narrowed by
 // the very clock the rule stopped trusting cannot narrow it wrongly; the count is
 // the health line's `running`, a handful.
