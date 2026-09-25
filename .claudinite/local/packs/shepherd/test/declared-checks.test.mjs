@@ -41,3 +41,23 @@ test("checkout-ref-whole-tree fires on pulling another ref's whole tree onto the
     'node converge-item.mjs --summary \'ships a check blocking git checkout <ref> -- . on the branch in flight\''
   )).length, 0);
 });
+
+const pendingWorkflowRule = rules.find((r) => r.id === 'pending-workflow-delivery-needs-force');
+
+test('pending-workflow-delivery-needs-force fires on a plain git mv out of pending-workflows, stays quiet with -f or cp', () => {
+  assert.ok(pendingWorkflowRule, 'pending-workflow-delivery-needs-force is declared in the pack');
+
+  assert.equal(guardFindings(pendingWorkflowRule,
+    call('git mv .claudinite/pending-workflows/foo.yml .github/workflows/foo.yml')).length, 1);
+  assert.equal(guardFindings(pendingWorkflowRule,
+    call('git status; git mv .claudinite/pending-workflows/foo.yml .github/workflows/foo.yml')).length, 1);
+
+  assert.equal(guardFindings(pendingWorkflowRule,
+    call('git mv -f .claudinite/pending-workflows/foo.yml .github/workflows/foo.yml')).length, 0);
+  assert.equal(guardFindings(pendingWorkflowRule,
+    call('cp -f .claudinite/pending-workflows/foo.yml .github/workflows/foo.yml && rm .claudinite/pending-workflows/foo.yml')).length, 0);
+  assert.equal(guardFindings(pendingWorkflowRule, call('git mv old-name.mjs new-name.mjs')).length, 0);
+  assert.equal(guardFindings(pendingWorkflowRule, call(
+    'node converge-item.mjs --summary \'blocks git mv .claudinite/pending-workflows/x.yml without -f\''
+  )).length, 0);
+});

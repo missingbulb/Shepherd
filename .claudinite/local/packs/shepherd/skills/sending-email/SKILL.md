@@ -51,7 +51,3 @@ the sending path, and the REST endpoint is the one a task's code-work can call d
   the verified destination addresses in its Email Routing configuration, and only *from* a
   routing domain; an ordinary address bounces exactly this way. Check the destination is
   verified before suspecting the message.
-
-- **Adding a second sender to this repo** — take the from and to addresses from repo
-  *variables* rather than writing them into the tree: an address in a public repo is a spam
-  target, and which addresses are sendable is settled in Cloudflare rather than here.

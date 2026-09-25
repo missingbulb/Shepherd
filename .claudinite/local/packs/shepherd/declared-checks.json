@@ -30,5 +30,21 @@
         "fix": "git worktree add /tmp/<name> <ref>, compare or read from there, then git worktree remove it — never git checkout <ref> -- . on the branch you're about to push"
       }
     ]
+  },
+  {
+    "id": "pending-workflow-delivery-needs-force",
+    "severity": "blocking",
+    "since": "2026-09-20",
+    "scope": "action",
+    "failureMessage": "this delivery step only fires once the destination workflow file already exists, so a plain `git mv` out of `.claudinite/pending-workflows/` always fails with \"destination exists\"",
+    "guardToolCalls": [
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/(?:^|[;&|\\n])\\s*git\\s+mv\\s+(?!-f\\b)\\S*pending-workflows\\/\\S+/",
+        "what": "a git mv moving a re-staged pending-workflow file without -f (\"{match}\")",
+        "fix": "cp -f <src> <dst> && rm <src>, or git mv -f <src> <dst>"
+      }
+    ]
   }
 ]
