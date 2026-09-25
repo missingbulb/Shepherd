@@ -42,6 +42,26 @@ test("checkout-ref-whole-tree fires on pulling another ref's whole tree onto the
   )).length, 0);
 });
 
+const nodeTestDirRule = rules.find((r) => r.id === 'node-test-directory-arg');
+
+test('node-test-directory-arg fires on node --test given a bare directory, stays quiet on explicit files or no args', () => {
+  assert.ok(nodeTestDirRule, 'node-test-directory-arg is declared in the pack');
+
+  assert.equal(guardFindings(nodeTestDirRule,
+    call('node --test .claudinite/local/packs/shepherd/test/')).length, 1);
+  assert.equal(guardFindings(nodeTestDirRule,
+    call('cd /home/user/Shepherd && node --test .claudinite/local/packs/shepherd/test/')).length, 1);
+
+  assert.equal(guardFindings(nodeTestDirRule,
+    call("node --test $(git ls-files '.claudinite/local/**/*.test.mjs')")).length, 0);
+  assert.equal(guardFindings(nodeTestDirRule,
+    call('node --test .claudinite/local/packs/shepherd/test/declared-checks.test.mjs')).length, 0);
+  assert.equal(guardFindings(nodeTestDirRule, call('node --test')).length, 0);
+  assert.equal(guardFindings(nodeTestDirRule, call(
+    'node converge-item.mjs --summary \'guards node --test given a bare directory\''
+  )).length, 0);
+});
+
 const pendingWorkflowRule = rules.find((r) => r.id === 'pending-workflow-delivery-needs-force');
 
 test('pending-workflow-delivery-needs-force fires on a plain git mv out of pending-workflows, stays quiet with -f or cp', () => {
