@@ -27,3 +27,11 @@
 - **Mechanism:** a step of the sending-email skill, a workflow
 - **Retire when:** Retire the rule if Cloudflare ever routes an unscoped Email Service call to a
   product-specific code.
+
+## 2026-09-25 · converted · "Adding a second sender to this repo" to the email-service-hardcoded-address check (#697)
+- **Reason:** a literal address in `.claudinite/local/**/*.mjs` is a static signature; the guideline
+  adds nothing the check's failure message doesn't.
+- **Mechanism:** a world-scope `matchLines` check in the skill's `declared-checks.json`.
+- **Actor:** prose-to-checks sweep (#685), merged by @missingbulb (owner).
+- **Model:** claude-opus-5-5
+- **Landed:** #697

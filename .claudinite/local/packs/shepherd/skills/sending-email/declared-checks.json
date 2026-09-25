@@ -55,6 +55,22 @@
     ]
   },
   {
+    "id": "email-service-hardcoded-address",
+    "severity": "blocking",
+    "since": "2026-09-20",
+    "failureMessage": "an email address written into the tree is a spam target in a public repo, and which addresses can send or receive is a Cloudflare account setting, not a constant in code",
+    "scanFiles": "/^\\.claudinite\\/local\\/.*\\.mjs$/",
+    "excludeFileClasses": ["testFiles"],
+    "scanIgnoringComments": true,
+    "matchLines": [
+      {
+        "match": "/[`'\"][A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}[`'\"]/",
+        "what": "writes a literal email address into the tree: {match}",
+        "fix": "read the address from a repo variable or secret instead of hardcoding it"
+      }
+    ]
+  },
+  {
     "id": "email-service-list-unsubscribe-post",
     "severity": "blocking",
     "failureMessage": "List-Unsubscribe-Post is validated against one exact, case-sensitive value, and any other value rejects the send with E_HEADER_VALUE_INVALID",

@@ -76,13 +76,6 @@ canon instead, where every repo gets it.
   envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
   list shape across several failed attempts (#212). (parsing-overflowed-searchissues)
 
-- **Delivering a re-staged file from `.claudinite/pending-workflows/` during the
-  `claudinite-lifecycle/update` task** — go straight to `cp -f <src> <dst> && rm <src>` (or
-  `git mv -f`), never a plain `git mv`: this delivery step only fires when the destination workflow
-  file already exists (a first-time vendor commits directly instead), so a plain `git mv` always
-  fails with `destination exists`. Hit identically in two independent sessions (#233, #248).
-  (delivering-re-staged)
-
 - **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
   grep `.claudinite-settings.json` directly for `dailyClaudiniteUpdatesRequirePrReview`
   (documented in `.claudinite/shared/engine/checks/helpers/repo-context.mjs`); its absence means
