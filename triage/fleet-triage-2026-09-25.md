@@ -4,7 +4,7 @@
 sit in repos where nothing runs at all. The park count is falling anyway — because one person is
 closing them by hand.**
 
-Snapshot: `.claudinite/local/fleet-issues.GENERATED.json`, generated `2026-09-25T09:35:04.071Z`,
+Snapshot: the fleet-issues file `shepherd/fleet-issues-snapshot` writes, generated `2026-09-25T09:35:04.071Z`,
 375 open issues across 15 in-scope repos (5 skipped: 4 archived, 1 excluded).
 
 Tenth run in the series. This one corrects the series' single most-repeated claim.
