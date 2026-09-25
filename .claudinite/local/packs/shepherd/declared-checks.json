@@ -32,6 +32,22 @@
     ]
   },
   {
+    "id": "node-test-directory-arg",
+    "severity": "blocking",
+    "since": "2026-09-25",
+    "scope": "action",
+    "failureMessage": "`node --test <directory>` reports one misleading failing \"test\" instead of discovering the suite inside it, reading as a real regression",
+    "guardToolCalls": [
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/(?:^|[;&|\\n])\\s*node\\s+--test\\s+\\S*\\/(?:\\s|$)/",
+        "what": "a `node --test` call given a bare directory (\"{match}\")",
+        "fix": "pass explicit files instead, e.g. node --test $(git ls-files '<dir>/**/*.test.mjs')"
+      }
+    ]
+  },
+  {
     "id": "pending-workflow-delivery-needs-force",
     "severity": "blocking",
     "since": "2026-09-20",
