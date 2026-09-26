@@ -1,10 +1,71 @@
 {
   "usage-findings": {
-    "value": 0,
-    "previous": null,
-    "note": "2026-08-28 to 2026-09-24"
+    "value": 12,
+    "previous": 0,
+    "note": "2026-08-29 to 2026-09-25"
   },
   "usage-newest": {
-    "rows": []
+    "rows": [
+      {
+        "subject": "changing-pack-elements",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "committing",
+        "rule": "skill-always-loaded",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "committing",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "fetching-from-the-web",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "merge-to-main",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "searching-for-a-tool",
+        "rule": "skill-always-loaded",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "searching-for-a-tool",
+        "rule": "skill-forced-only-small",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "searching-for-a-tool",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "writing-pack-prose",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-26"
+      },
+      {
+        "subject": "writing-repo-scanning-checks",
+        "rule": "skill-forced-only-small",
+        "cause": "known",
+        "since": "2026-09-26"
+      }
+    ]
   }
 }
