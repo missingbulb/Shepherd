@@ -1,7 +1,7 @@
 [
   {
     "id": "branch-from-local-main",
-    "severity": "blocking",
+    "on_fail": "block",
     "since": "2026-09-13",
     "scope": "action",
     "failureMessage": "this checkout's local main can sit pinned at the repo's very first commit, so branching from it silently starts from frozen history",
@@ -17,7 +17,7 @@
   },
   {
     "id": "checkout-ref-whole-tree",
-    "severity": "blocking",
+    "on_fail": "block",
     "since": "2026-09-21",
     "scope": "action",
     "failureMessage": "pulling another ref's whole tree onto the branch in flight overwrites uncommitted delivery work with that ref's files instead of leaving it to compare from",
@@ -33,7 +33,7 @@
   },
   {
     "id": "node-test-directory-arg",
-    "severity": "blocking",
+    "on_fail": "block",
     "since": "2026-09-25",
     "scope": "action",
     "failureMessage": "`node --test <directory>` reports one misleading failing \"test\" instead of discovering the suite inside it, reading as a real regression",
@@ -49,7 +49,7 @@
   },
   {
     "id": "pending-workflow-delivery-needs-force",
-    "severity": "blocking",
+    "on_fail": "block",
     "since": "2026-09-20",
     "scope": "action",
     "failureMessage": "this delivery step only fires once the destination workflow file already exists, so a plain `git mv` out of `.claudinite/pending-workflows/` always fails with \"destination exists\"",
