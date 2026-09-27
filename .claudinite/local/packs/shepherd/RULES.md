@@ -18,23 +18,6 @@ canon instead, where every repo gets it.
   machinery filed and closed is still a true account of how much of the day this fleet spent
   servicing itself. (reading-fleets-activity)
 
-- **Carrying an artifact directory over from a repo being retired** (the Sheepdog → Shepherd
-  fleet-enforcer handoff) — verify the *machinery that produces it* came over too, not just its
-  historical output. `digests/`'s files landed in #23 and read as fully carried; the missing
-  generator (Sheepdog's `sheepdog-local` pack and its `fleet-digest` task) surfaced only later, in
-  #27, once checked separately from the output. A copied output folder visually launders the
-  absence of its live producer — audit for the generator explicitly, in the same pass, rather than
-  inferring it from the presence of past output. (carrying-artifact-directory)
-
-- **Dropping a folded/aggregate `GENERATED` file because "the next run recomputes it"** — check
-  first whether the recompute's own *inputs* retain the same history the current output does. A
-  stateless recompute over inputs each fleet member keeps only for a bounded window starts the
-  series shorter than a file carried over from elsewhere already holds — nearly true of
-  `usage-fleet.GENERATED.json`, first left out of the Sheepdog carryover (#23) on exactly that
-  assumption, then copied over verbatim once the gap was caught (#31). "The generator will refill
-  it" is not sufficient on its own; confirm the generator's inputs cover the same span first.
-  (dropping-folded-aggregate)
-
 - **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 7–15
   seconds (measured directly across #30, #32, #59, #67). Poll `pull_request_read get_check_runs`
   in a short loop instead of a fixed or backgrounded `sleep`. Before stating a PR's status in a
@@ -42,28 +25,10 @@ canon instead, where every repo gets it.
   (#30), and skip grepping `.github/workflows/*.yml` to guess whether a workflow gates the merge —
   the check runs already say so directly (#60). (waiting-repos-pr)
 
-- **Dispatching concurrent subagents that each `git show` a file into the shared scratchpad** (the
-  conversation-extract fan-out, or any similar parallel mining pattern) — give every dispatch a
-  unique output filename. A shared generic name (`log.jsonl`) collides across concurrent downloads
-  and silently hands one agent another agent's bytes; this exact contamination hit a prior
-  growth-extract run in six or more of its own subagents (#73) and recurred in this run's own
-  fan-out before being caught and re-fetched to a uniquely-named path.
-  (dispatching-concurrent-subagents)
-
 - **Fetching a stale `origin/main` in a fresh checkout** — `git fetch origin main` brings it
   current even in a shallow checkout (`git rev-parse --is-shallow-repository` → `true`) — re-tested
   live, a ref six days stale updated correctly with no `--unshallow`. Reach for `--unshallow` only
   if history, not the ref, still comes up short (#470). (fetching-stale-origin)
-
-- **Reading the mount under `.claudinite/shared/` to learn what Claudinite currently declares** —
-  a task's `automerge`, a pack's version, any behaviour you are about to report or judge a member
-  against — read the canon repo's own `packs/<id>/` at `main` instead. The mount is a snapshot at
-  *this* repo's declared version, so it answers what this member runs, never what canon says, and
-  the two diverge precisely when something is behind, which is the moment a force-fleet run exists
-  to investigate. A fleet report quoted this checkout's stale `update` task (`automerge:
-  "anything"`, lifecycle 60907.2) as the fleet's policy while all 14 members already ran 60911.1's
-  granular list including `test-changes`; the same `git fetch origin main` that refreshes the ref
-  refreshes the mount with it (#556). (reading-mount-claudinite)
 
 - **Writing a PR or issue body that cross-references an object you're about to create** — don't
   guess its number. Issue/PR numbers share one counter per repo, and the object you're creating
@@ -100,10 +65,6 @@ canon instead, where every repo gets it.
   content in the same change, since the session's own hook diagnostic reporting the gap ("no
   preferences file for this user") sat unactioned in this session's own tool output for over 20
   minutes before the owner had to point out the missing directory (#2). (declaring-repo-store)
-
-- **Writing a Claudinite task's own delivered PR** — never give its body a closing keyword for
-  the work-item issue itself: merging it auto-closes the issue before `converge-item.mjs` runs,
-  which then refuses it as already converged (#573). (writing-claudinite-tasks)
 
 - **Calling `converge-item.mjs` once this session already merged the PR itself** — omit `--pr`;
   passing it still writes "Waiting on a person: merge or close" onto the very comment that
