@@ -17,7 +17,7 @@
 //                                                      the owner named on a forced run?
 //   tasks/fleet-pack-seeds/check-fleet-pack-seeds.mjs  does a member DECLARE what
 //                                                      this fleet standardizes on?
-//   tasks/fleet-baseline/force-fleet-baseline.mjs      make every member baseline NOW
+//   tasks/fleet-update/force-fleet-update.mjs      make every member update NOW
 //                                                      (no preconditions — the
 //                                                      operator's lever, forced only)
 //
@@ -35,16 +35,17 @@
 import { fleetTokenHandoverStep } from './fleet-token.mjs';
 
 export default {
-  version: '60922.6',
-  minEngineVersion: '60822.1',
+  version: '60927.3',
+  minEngineVersion: '60927.1',
   ruleRoutingGuidance: {
     belongs: 'fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs',
     excludes: 'anything a member does to itself — its comments are basics, lessons are claudinite-growth; the fleet brief is claudinite-dashboard',
   },
+  pitch: 'Turns one repository into the caretaker of every repo under an owner. Scheduled tasks check daily which repos have adopted the system and whether that adoption still means anything, suggest packs each repo\'s shape calls for, seed new members and push updates across the fleet, with the actual changes made and reviewed inside each member. A skill covers configuring the fleet, and about ten rules make sure an unreachable repo reads as unknown rather than as a clean result.',
   // Every sweep here runs as a task on the enforcer's own queue, and each one reads the
   // queue's vocabulary (its published `task-constants.mjs`) to ask whether a member's
   // scheduler is dormant. Declared so the vendor set carries the code this pack imports:
-  // an enforcer that mounted the sweeps without it would fail its own converge on a
+  // an enforcer that mounted the sweeps without it would fail its own update on a
   // dangling import.
   requires: ['claudinite-tasks'],
   // Audits the enforcer's config as it stands, whatever this session touched: a seed

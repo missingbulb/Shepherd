@@ -122,7 +122,7 @@ head commit, one page of issues, one page of Actions runs. All are ETag-revalida
 and a `304` costs no rate-limit budget at all.
 
 **What happened before** is one file: the repo's own
-`.claudinite/local/usage.GENERATED.json`, folded hourly by the
+`.claudinite/usage/sessions-and-elements.json`, folded hourly by the
 [usage-fold task](../claudinite-tasks/tasks/usage-fold/README.md) in the
 claudinite-growth pack. It is content at a sha, so it is read once when the default
 branch moves and **not at all** while it has not. Reaching a month back over the API
@@ -394,7 +394,8 @@ Two signals are visible *only* here, because no single repo's page has the
 comparison:
 
 - **Mount drift** — each member's stamped `engineVersion` and `packVersions` against
-  the canon's live ones (`engine/version.mjs`, each declared pack's `pack.mjs`).
+  the canon's live ones (`engine/version.mjs`, and each declared pack's version off
+  `packs/directory.GENERATED.md`, or its `pack.mjs` where the catalog does not offer it).
   Never judged on the stamp's `ref` or `updated`: the versioned flows stamp versions
   and nothing else, so those two hold the provenance of the last *full* re-vendor and
   read months stale on every healthy member. Needs `canonRepo` in the config; without
@@ -432,7 +433,7 @@ Four kinds — `stat` (a fact true now), `event` (the last time something happen
 named things). There is deliberately no shape a growing cumulative total fits.
 
 Values come from one of three **sources**. `generated` reads the pack's own
-`.claudinite/local/dashboard/<pack>.GENERATED.json`, written by that pack's own task;
+`.claudinite/usage/<pack>-dashboard-values.json`, written by that pack's own task;
 `latest-release` and `repo-stars` are platform facts this page already reads for every
 member, so a pack using one ships a descriptor and no code at all.
 
