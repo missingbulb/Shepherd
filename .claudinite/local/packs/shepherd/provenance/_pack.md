@@ -13,3 +13,9 @@
 - **Model:** Claude, per the commit trailer.
 - **Mechanism:** worldRules discovered from `worldRules/*.mjs`, left unspoken in the manifest.
 - **Landed:** #347 (Refs #332).
+
+## 2026-09-29 · reworded · the manifest states only what the folder cannot
+- **Reason:** the id and prose file repeated the directory, a local pack carries no version, and
+  detect and marker were retired fields nothing read.
+- **Actor:** @missingbulb (owner).
+- **Model:** claude-opus-5-5
