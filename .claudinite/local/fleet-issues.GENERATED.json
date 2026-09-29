@@ -1,12 +1,218 @@
 {
-  "generated": "2026-09-25T09:35:04.071Z",
+  "generated": "2026-09-29T15:19:30.023Z",
   "owner": "missingbulb",
-  "total": 375,
+  "total": 394,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 161,
+      "openIssues": 182,
       "issues": [
+        {
+          "number": 2405,
+          "title": "converge-item plans \"Waiting on a person\" on a done that closes the item",
+          "labels": [],
+          "created_at": "2026-09-29T11:52:26Z",
+          "updated_at": "2026-09-29T11:52:26Z",
+          "comments": 0
+        },
+        {
+          "number": 2402,
+          "title": "claudinite-canon-curation: say what makes a relevanceDetector fingerprint reliable",
+          "labels": [],
+          "created_at": "2026-09-29T11:43:15Z",
+          "updated_at": "2026-09-29T11:43:15Z",
+          "comments": 0
+        },
+        {
+          "number": 2401,
+          "title": "shared-tree-edit-guard blocks read-only Bash that merely mentions the mount path after a \">\"",
+          "labels": [],
+          "created_at": "2026-09-29T11:43:01Z",
+          "updated_at": "2026-09-29T11:43:01Z",
+          "comments": 0
+        },
+        {
+          "number": 2396,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:waiting-for-executor"
+          ],
+          "created_at": "2026-09-29T11:33:18Z",
+          "updated_at": "2026-09-29T11:33:18Z",
+          "comments": 0
+        },
+        {
+          "number": 2395,
+          "title": "Retire the manifest spec's tolerance of the `contributes` and `contributedRules` fields",
+          "labels": [],
+          "created_at": "2026-09-28T13:46:21Z",
+          "updated_at": "2026-09-28T13:46:21Z",
+          "comments": 0
+        },
+        {
+          "number": 2392,
+          "title": "converge-item's done comment tells the reader to merge a PR the run already merged, and to close an item it closes itself",
+          "labels": [],
+          "created_at": "2026-09-28T10:46:49Z",
+          "updated_at": "2026-09-28T10:46:49Z",
+          "comments": 0
+        },
+        {
+          "number": 2391,
+          "title": "deliver-pr.md's --base example invites the bare local main, so a policy verdict is computed over the wrong diff",
+          "labels": [],
+          "created_at": "2026-09-28T10:39:56Z",
+          "updated_at": "2026-09-28T10:39:56Z",
+          "comments": 0
+        },
+        {
+          "number": 2389,
+          "title": "merge-to-main's step 1 tells the session to call ToolSearch, and the guard denies it every time",
+          "labels": [],
+          "created_at": "2026-09-28T10:34:16Z",
+          "updated_at": "2026-09-28T10:34:16Z",
+          "comments": 0
+        },
+        {
+          "number": 2384,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-28T10:20:06Z",
+          "updated_at": "2026-09-28T12:11:25Z",
+          "comments": 4
+        },
+        {
+          "number": 2380,
+          "title": "force-load-on-tool-calls matches a Bash token inside heredoc or quoted data, blocking the call and discarding its write",
+          "labels": [],
+          "created_at": "2026-09-27T20:40:43Z",
+          "updated_at": "2026-09-27T20:40:43Z",
+          "comments": 0
+        },
+        {
+          "number": 2374,
+          "title": "Retire the manifest spec's tolerance of the `detect` and `marker` fields",
+          "labels": [],
+          "created_at": "2026-09-27T16:00:14Z",
+          "updated_at": "2026-09-27T16:00:14Z",
+          "comments": 0
+        },
+        {
+          "number": 2367,
+          "title": "dedup-prune-integrity counts provenance logs as pack prose, so a dedup run cannot record its prunes",
+          "labels": [],
+          "created_at": "2026-09-27T11:22:42Z",
+          "updated_at": "2026-09-27T11:22:42Z",
+          "comments": 0
+        },
+        {
+          "number": 2362,
+          "title": "github-api-via-shell's message says every repo-scoped api.github.com call 403s; an in-scope repo answers 200",
+          "labels": [],
+          "created_at": "2026-09-27T11:11:32Z",
+          "updated_at": "2026-09-27T11:11:32Z",
+          "comments": 0
+        },
+        {
+          "number": 2353,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-failure"
+          ],
+          "created_at": "2026-09-27T10:47:41Z",
+          "updated_at": "2026-09-27T11:23:59Z",
+          "comments": 5
+        },
+        {
+          "number": 2351,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-27T10:47:40Z",
+          "updated_at": "2026-09-27T11:22:27Z",
+          "comments": 4
+        },
+        {
+          "number": 2341,
+          "title": "stop-hook-not-world says check_the_world \"is what CI runs\"; CI runs both sweeps",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-26T10:36:53Z",
+          "updated_at": "2026-09-26T20:20:40Z",
+          "comments": 5
+        },
+        {
+          "number": 2333,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-26T10:13:43Z",
+          "updated_at": "2026-09-26T20:29:58Z",
+          "comments": 4
+        },
+        {
+          "number": 2323,
+          "title": "Retire the pre-flat and pre-usage-directory path tolerances",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:blocked"
+          ],
+          "created_at": "2026-09-25T18:14:04Z",
+          "updated_at": "2026-09-25T20:44:09Z",
+          "comments": 1
+        },
+        {
+          "number": 2319,
+          "title": "Stop reading a check's retired `severity` spelling",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:blocked"
+          ],
+          "created_at": "2026-09-25T17:10:48Z",
+          "updated_at": "2026-09-25T20:44:12Z",
+          "comments": 1
+        },
+        {
+          "number": 2313,
+          "title": "Route the last 11 fixture git spawns through the shared runner",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-25T11:29:26Z",
+          "updated_at": "2026-09-25T21:09:12Z",
+          "comments": 5
+        },
+        {
+          "number": 2312,
+          "title": "deliver-pr.md tells the landing lane to pass a local branch name as --base",
+          "labels": [],
+          "created_at": "2026-09-25T11:16:00Z",
+          "updated_at": "2026-09-25T11:16:00Z",
+          "comments": 0
+        },
+        {
+          "number": 2304,
+          "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-09-25T10:32:21Z",
+          "updated_at": "2026-09-25T21:03:40Z",
+          "comments": 4
+        },
         {
           "number": 2295,
           "title": "Drop the `countWords` shim from token-estimate.mjs once every member's basics pack has converged",
@@ -14,17 +220,6 @@
           "created_at": "2026-09-24T08:31:58Z",
           "updated_at": "2026-09-24T08:40:27Z",
           "comments": 0
-        },
-        {
-          "number": 2287,
-          "title": "Verify in production: a member's vendored rules arrive without provenance markers",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:blocked"
-          ],
-          "created_at": "2026-09-24T08:22:24Z",
-          "updated_at": "2026-09-24T08:31:16Z",
-          "comments": 2
         },
         {
           "number": 2284,
@@ -75,16 +270,16 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-22T10:25:03Z",
-          "updated_at": "2026-09-24T20:45:15Z",
-          "comments": 2
+          "updated_at": "2026-09-29T11:33:05Z",
+          "comments": 4
         },
         {
           "number": 2247,
           "title": "Merge the sibling sweep tasks inside claudinite-growth, claudinite-canon-curation and claudinite-fleet-sheepdog",
           "labels": [],
           "created_at": "2026-09-22T07:18:26Z",
-          "updated_at": "2026-09-22T07:18:26Z",
-          "comments": 0
+          "updated_at": "2026-09-28T10:24:49Z",
+          "comments": 1
         },
         {
           "number": 2246,
@@ -124,8 +319,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-22T06:41:19Z",
-          "updated_at": "2026-09-24T10:29:38Z",
-          "comments": 2
+          "updated_at": "2026-09-28T22:38:04Z",
+          "comments": 4
         },
         {
           "number": 2238,
@@ -173,8 +368,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-20T10:11:54Z",
-          "updated_at": "2026-09-24T20:45:15Z",
-          "comments": 3
+          "updated_at": "2026-09-27T20:22:10Z",
+          "comments": 4
         },
         {
           "number": 2172,
@@ -206,7 +401,7 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-20T10:10:49Z",
-          "updated_at": "2026-09-20T10:43:45Z",
+          "updated_at": "2026-09-25T13:32:01Z",
           "comments": 1
         },
         {
@@ -214,8 +409,8 @@
           "title": "Provenance: a per-element decision log for every pack — tracking issue",
           "labels": [],
           "created_at": "2026-09-20T10:10:07Z",
-          "updated_at": "2026-09-23T06:14:03Z",
-          "comments": 12
+          "updated_at": "2026-09-25T11:30:25Z",
+          "comments": 13
         },
         {
           "number": 2165,
@@ -759,8 +954,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-09-24T20:45:16Z",
-          "comments": 22
+          "updated_at": "2026-09-29T11:33:06Z",
+          "comments": 24
         },
         {
           "number": 1682,
@@ -1072,8 +1267,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-09-24T20:45:17Z",
-          "comments": 38
+          "updated_at": "2026-09-29T11:33:07Z",
+          "comments": 40
         },
         {
           "number": 1341,
@@ -1153,8 +1348,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-09-24T20:45:18Z",
-          "comments": 41
+          "updated_at": "2026-09-29T11:33:07Z",
+          "comments": 43
         },
         {
           "number": 1236,
@@ -1440,51 +1635,18 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 9,
+      "openIssues": 6,
       "issues": [
         {
-          "number": 538,
-          "title": "[claudinite-work] claudinite-tasks/usage-fold",
+          "number": 554,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-approval",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-25T09:34:47Z",
-          "updated_at": "2026-09-25T09:34:47Z",
-          "comments": 0
-        },
-        {
-          "number": 537,
-          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:34:47Z",
-          "updated_at": "2026-09-25T09:34:47Z",
-          "comments": 0
-        },
-        {
-          "number": 536,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:34:47Z",
-          "updated_at": "2026-09-25T09:34:47Z",
-          "comments": 0
-        },
-        {
-          "number": 535,
-          "title": "[claudinite-work] claudinite-dashboard/publish-pages",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:34:46Z",
-          "updated_at": "2026-09-25T09:34:46Z",
-          "comments": 0
+          "created_at": "2026-09-27T09:58:57Z",
+          "updated_at": "2026-09-27T10:09:48Z",
+          "comments": 4
         },
         {
           "number": 510,
@@ -1537,8 +1699,38 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 5,
+      "openIssues": 8,
       "issues": [
+        {
+          "number": 719,
+          "title": "[claudinite-work] claudinite-website/public-installs",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-28T11:04:11Z",
+          "updated_at": "2026-09-28T11:04:57Z",
+          "comments": 2
+        },
+        {
+          "number": 697,
+          "title": "[claudinite-work] claudinite-website/site-stats",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-27T10:04:24Z",
+          "updated_at": "2026-09-27T10:08:01Z",
+          "comments": 2
+        },
+        {
+          "number": 669,
+          "title": "Register the Claudinite Dashboard GitHub App and turn on sign-in",
+          "labels": [],
+          "created_at": "2026-09-25T16:49:44Z",
+          "updated_at": "2026-09-27T13:59:51Z",
+          "comments": 0
+        },
         {
           "number": 624,
           "title": "site-release's unreleased-commits gate is broader than the site it publishes — 82% of week-1 releases shipped no visible change",
@@ -1589,8 +1781,19 @@
     },
     {
       "repo": "missingbulb/CrosswordChat",
-      "openIssues": 12,
+      "openIssues": 13,
       "issues": [
+        {
+          "number": 573,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-27T10:01:58Z",
+          "updated_at": "2026-09-27T10:15:55Z",
+          "comments": 4
+        },
         {
           "number": 512,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
@@ -1706,31 +1909,35 @@
       "openIssues": 9,
       "issues": [
         {
+          "number": 954,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:running-agent",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-29T10:55:56Z",
+          "updated_at": "2026-09-29T14:11:29Z",
+          "comments": 3
+        },
+        {
+          "number": 921,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs",
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-27T10:03:09Z",
+          "updated_at": "2026-09-27T10:19:08Z",
+          "comments": 5
+        },
+        {
           "number": 876,
           "title": "Turn on live flight fares: Travelpayouts account, token and marker",
           "labels": [],
           "created_at": "2026-09-24T18:21:20Z",
           "updated_at": "2026-09-24T18:21:20Z",
           "comments": 0
-        },
-        {
-          "number": 872,
-          "title": "Convert the remaining GitHub Actions workflows to Claudinite tasks",
-          "labels": [],
-          "created_at": "2026-09-24T17:17:37Z",
-          "updated_at": "2026-09-24T17:17:37Z",
-          "comments": 0
-        },
-        {
-          "number": 575,
-          "title": "Backfill the local pack's empty provenance files",
-          "labels": [
-            "task:status:needs-human-decision",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-09-01T15:17:54Z",
-          "updated_at": "2026-09-22T09:33:29Z",
-          "comments": 8
         },
         {
           "number": 314,
@@ -1758,12 +1965,12 @@
           "number": 294,
           "title": "Quote fee-inclusive totals, and fix the recorded `fee` they depend on",
           "labels": [
-            "task:status:blocked",
+            "task:status:needs-human-action",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-09T00:42:46Z",
-          "updated_at": "2026-09-23T09:35:45Z",
-          "comments": 5
+          "updated_at": "2026-09-25T09:55:24Z",
+          "comments": 9
         },
         {
           "number": 237,
@@ -1797,8 +2004,38 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 34,
+      "openIssues": 37,
       "issues": [
+        {
+          "number": 1373,
+          "title": "[claudinite-work] basics/improve-comments",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-28T22:12:24Z",
+          "updated_at": "2026-09-28T22:15:53Z",
+          "comments": 4
+        },
+        {
+          "number": 1361,
+          "title": "dedup-prune-integrity doesn't exempt provenance/ appends from its shrink-only check",
+          "labels": [],
+          "created_at": "2026-09-27T10:22:34Z",
+          "updated_at": "2026-09-27T10:22:34Z",
+          "comments": 0
+        },
+        {
+          "number": 1350,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-27T10:07:05Z",
+          "updated_at": "2026-09-27T10:32:44Z",
+          "comments": 4
+        },
         {
           "number": 1315,
           "title": "PR #1314 self-merged past its automerge ceiling: task.json is a policy source, never coverable",
@@ -2361,8 +2598,19 @@
     },
     {
       "repo": "missingbulb/MissingBulbWebsite",
-      "openIssues": 21,
+      "openIssues": 22,
       "issues": [
+        {
+          "number": 534,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-27T10:04:23Z",
+          "updated_at": "2026-09-27T10:32:09Z",
+          "comments": 4
+        },
         {
           "number": 479,
           "title": "Local pack claims actions_list per_page never shrinks payload — canon now says it does",
@@ -2559,47 +2807,35 @@
     },
     {
       "repo": "missingbulb/NoRFinder",
-      "openIssues": 8,
+      "openIssues": 4,
       "issues": [
         {
-          "number": 148,
-          "title": ".claudinite/temp/ is untracked but not gitignored, tripping skill-loaded-before-editing every session",
+          "number": 245,
+          "title": "Drive setup checklist (#234) doesn't mention clientId and appId, which drive.js requires",
           "labels": [],
-          "created_at": "2026-09-21T20:43:57Z",
-          "updated_at": "2026-09-21T20:43:57Z",
+          "created_at": "2026-09-29T11:03:39Z",
+          "updated_at": "2026-09-29T11:03:39Z",
           "comments": 0
         },
         {
-          "number": 126,
-          "title": "Adopt canon pack: numpy-image-processing",
+          "number": 211,
+          "title": "dedup-prune-integrity's shrink invariant scopes over provenance/ files, which are mandated to grow",
           "labels": [],
-          "created_at": "2026-09-20T09:10:27Z",
-          "updated_at": "2026-09-20T09:10:27Z",
+          "created_at": "2026-09-27T10:18:14Z",
+          "updated_at": "2026-09-27T10:18:14Z",
           "comments": 0
         },
         {
-          "number": 102,
-          "title": "Work-item routine's stored prompt still names the pre-move queue/instructions.md path",
-          "labels": [],
-          "created_at": "2026-09-16T09:41:39Z",
-          "updated_at": "2026-09-16T09:41:39Z",
-          "comments": 0
-        },
-        {
-          "number": 40,
-          "title": "README badge row references packs that are no longer declared or vendored",
-          "labels": [],
-          "created_at": "2026-09-07T07:39:37Z",
-          "updated_at": "2026-09-07T07:39:37Z",
-          "comments": 0
-        },
-        {
-          "number": 32,
-          "title": "Hand-over: three repository settings Claudinite delivery depends on",
-          "labels": [],
-          "created_at": "2026-09-06T12:32:47Z",
-          "updated_at": "2026-09-06T12:32:47Z",
-          "comments": 0
+          "number": 198,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:needs-human-failure",
+            "add-packs"
+          ],
+          "created_at": "2026-09-27T10:03:17Z",
+          "updated_at": "2026-09-28T09:22:59Z",
+          "comments": 6
         },
         {
           "number": 17,
@@ -2608,105 +2844,67 @@
           "created_at": "2026-09-05T17:37:51Z",
           "updated_at": "2026-09-05T17:37:51Z",
           "comments": 0
-        },
-        {
-          "number": 16,
-          "title": "Declare the Python imaging stack as a local-pack env requirement",
-          "labels": [],
-          "created_at": "2026-09-05T17:37:37Z",
-          "updated_at": "2026-09-05T17:37:37Z",
-          "comments": 0
-        },
-        {
-          "number": 4,
-          "title": "[claudinite-schedule] the schedule board",
-          "labels": [],
-          "created_at": "2026-09-04T05:54:00Z",
-          "updated_at": "2026-09-07T06:26:25Z",
-          "comments": 0
         }
       ]
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 19,
+      "openIssues": 13,
       "issues": [
         {
-          "number": 754,
+          "number": 823,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:running-agent",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-29T15:17:30Z",
+          "updated_at": "2026-09-29T15:18:29Z",
+          "comments": 3
+        },
+        {
+          "number": 816,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-25T09:33:23Z",
-          "updated_at": "2026-09-25T09:34:50Z",
-          "comments": 1
+          "created_at": "2026-09-29T10:36:51Z",
+          "updated_at": "2026-09-29T15:19:14Z",
+          "comments": 4
         },
         {
-          "number": 753,
-          "title": "[claudinite-work] claudinite-tasks/usage-fold",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:33:22Z",
-          "updated_at": "2026-09-25T09:33:22Z",
-          "comments": 0
-        },
-        {
-          "number": 752,
-          "title": "[claudinite-work] claudinite-tasks/tasks-usage-fold",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:33:22Z",
-          "updated_at": "2026-09-25T09:33:22Z",
-          "comments": 0
-        },
-        {
-          "number": 748,
-          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-25T09:33:20Z",
-          "updated_at": "2026-09-25T09:33:20Z",
-          "comments": 0
-        },
-        {
-          "number": 746,
+          "number": 801,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:needs-human-failure",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-24T09:15:13Z",
-          "updated_at": "2026-09-24T09:17:21Z",
+          "created_at": "2026-09-28T10:48:58Z",
+          "updated_at": "2026-09-28T10:49:48Z",
           "comments": 2
         },
         {
-          "number": 742,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "number": 788,
+          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
-            "task:status:needs-human-approval",
+            "task:status:needs-human-failure",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-24T09:15:11Z",
-          "updated_at": "2026-09-24T09:21:59Z",
-          "comments": 4
+          "created_at": "2026-09-27T09:58:00Z",
+          "updated_at": "2026-09-27T10:01:20Z",
+          "comments": 2
         },
         {
-          "number": 685,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "number": 771,
+          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
-            "task:status:needs-human-approval",
+            "task:status:needs-human-failure",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-20T09:14:24Z",
-          "updated_at": "2026-09-20T09:27:49Z",
-          "comments": 4
+          "created_at": "2026-09-26T09:18:14Z",
+          "updated_at": "2026-09-26T09:18:56Z",
+          "comments": 2
         },
         {
           "number": 617,
@@ -2766,49 +2964,6 @@
           "created_at": "2026-08-30T16:12:09Z",
           "updated_at": "2026-09-10T19:07:02Z",
           "comments": 1
-        },
-        {
-          "number": 333,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:15:57Z",
-          "updated_at": "2026-08-30T09:28:10Z",
-          "comments": 4
-        },
-        {
-          "number": 332,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:15:57Z",
-          "updated_at": "2026-08-30T09:33:11Z",
-          "comments": 4
-        },
-        {
-          "number": 212,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "needs-human",
-            "task:needs-human-approval"
-          ],
-          "created_at": "2026-08-23T04:52:14Z",
-          "updated_at": "2026-08-23T12:06:25Z",
-          "comments": 6
-        },
-        {
-          "number": 169,
-          "title": "Claudinite mount has fallen behind on missingbulb/vascularcoloring",
-          "labels": [
-            "fleet-drift"
-          ],
-          "created_at": "2026-08-22T04:48:10Z",
-          "updated_at": "2026-09-07T06:28:17Z",
-          "comments": 8
         },
         {
           "number": 137,
@@ -3019,8 +3174,27 @@
     },
     {
       "repo": "missingbulb/TLDR",
-      "openIssues": 22,
+      "openIssues": 24,
       "issues": [
+        {
+          "number": 634,
+          "title": "dedup-prune-integrity blocks a legitimate strip once it carries its required provenance entry",
+          "labels": [],
+          "created_at": "2026-09-27T10:26:17Z",
+          "updated_at": "2026-09-27T10:26:17Z",
+          "comments": 0
+        },
+        {
+          "number": 625,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-27T10:14:29Z",
+          "updated_at": "2026-09-27T10:23:41Z",
+          "comments": 4
+        },
         {
           "number": 608,
           "title": ".gitignore is missing .claudinite/temp/, causing false-positive Stop-hook blocks",
@@ -3223,8 +3397,28 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 13,
+      "openIssues": 14,
       "issues": [
+        {
+          "number": 535,
+          "title": "dedup-prune-integrity's shrink invariant fires on the provenance entry growth-dedup itself requires",
+          "labels": [],
+          "created_at": "2026-09-27T10:16:15Z",
+          "updated_at": "2026-09-27T10:16:15Z",
+          "comments": 0
+        },
+        {
+          "number": 533,
+          "title": "Add packs: suspected from this repo’s shape",
+          "labels": [
+            "add-packs",
+            "task:status:needs-human-action",
+            "task:origin:ad-hoc"
+          ],
+          "created_at": "2026-09-27T10:03:21Z",
+          "updated_at": "2026-09-27T10:12:08Z",
+          "comments": 6
+        },
         {
           "number": 463,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
@@ -3281,17 +3475,6 @@
           "created_at": "2026-09-07T19:57:32Z",
           "updated_at": "2026-09-07T20:08:14Z",
           "comments": 4
-        },
-        {
-          "number": 369,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-07T19:57:32Z",
-          "updated_at": "2026-09-07T20:07:49Z",
-          "comments": 5
         },
         {
           "number": 361,
