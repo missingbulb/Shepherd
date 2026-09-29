@@ -67,3 +67,9 @@
 - **Actor:** claudinite-lifecycle/update run.
 - **Mechanism:** `schedule:at-most-daily`.
 - **Landed:** commit 2e21a60.
+
+## 2026-09-29 · policy-changed · worker delivers on the executor's target branch (#816)
+- **Reason:** the canon update to engine v60928.1 dropped `deliverGenerated`'s own branch-minting,
+  so the worker's `branchPrefix`/`stamp` call threw and parked #816.
+- **Actor:** @missingbulb (owner).
+- **Mechanism:** the worker reads `CLAUDINITE_TARGET_BRANCH`/`CLAUDINITE_TARGET_PR`.
