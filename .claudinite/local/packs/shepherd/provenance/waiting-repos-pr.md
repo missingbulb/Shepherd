@@ -12,3 +12,12 @@
   git-github-advanced ("An auto-merge refusal is not a verdict"); the repo's CI timing stays.
 - **Actor:** growth-dedup run, merged by @missingbulb (owner).
 - **Landed:** #586.
+
+## 2026-09-29 · reworded · Claudinite growth: extract lessons (#825)
+- **Source:** captured conversation of pr-821 (#821).
+- **Reason:** the rule covered blind sleep/guessing but not subscribe-and-idle; that session's
+  `subscribe_pr_activity` call landed around when CI finished (12s) and the event never woke it,
+  costing ~10 minutes idle before a human prompt resumed it.
+- **Actor:** growth-extract run, merged by @missingbulb (owner).
+- **Model:** Claude, per the commit trailer.
+- **Landed:** #825 (Refs #823).
