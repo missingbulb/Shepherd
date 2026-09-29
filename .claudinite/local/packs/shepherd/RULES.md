@@ -23,7 +23,11 @@ canon instead, where every repo gets it.
   in a short loop instead of a fixed or backgrounded `sleep`. Before stating a PR's status in a
   closing callout, read `get_check_runs` rather than asserting "CI running" as an unread guess
   (#30), and skip grepping `.github/workflows/*.yml` to guess whether a workflow gates the merge —
-  the check runs already say so directly (#60). (waiting-repos-pr)
+  the check runs already say so directly (#60). `subscribe_pr_activity` and then going idle isn't
+  safe either at this cadence — a run can start and finish before the subscribe call lands, with
+  no event left to wake on; poll `get_check_runs` a couple more times right after subscribing
+  instead of trusting the event alone (#821: a 12s CI finish sat unnoticed for ~10 minutes).
+  (waiting-repos-pr)
 
 - **Fetching a stale `origin/main` in a fresh checkout** — `git fetch origin main` brings it
   current even in a shallow checkout (`git rev-parse --is-shallow-repository` → `true`) — re-tested
