@@ -29,11 +29,16 @@ import task from './task.json' with { type: 'json' };
 import { inScope, skipReason, shapeIssue, renderSnapshot, withoutStamp } from './snapshot.mjs';
 
 export const SNAPSHOT_PATH = '.claudinite/local/fleet-issues.GENERATED.json';
-const PR_BRANCH_PREFIX = 'claudinite/fleet-issues-snapshot';
 const SWEEP = 'fleet-issues-snapshot';
 
 const item = process.env.CLAUDINITE_ITEM || '';
 const log = (s) => console.log(`${SWEEP}${item ? ` [#${item}]` : ''}: ${s}`);
+
+// The branch and pull request the executor resolved for this run.
+export const deliveryTarget = (env) => ({
+  branch: env.CLAUDINITE_TARGET_BRANCH || null,
+  pr: env.CLAUDINITE_TARGET_PR ? Number(env.CLAUDINITE_TARGET_PR) : null,
+});
 
 export async function main() {
   const root = process.env.CLAUDINITE_REPO_ROOT || process.cwd();
@@ -78,8 +83,7 @@ export async function main() {
   }
 
   const pr = await deliverGenerated({
-    root, repo: home, base, token: actionToken, stamp: new Date().toISOString().slice(0, 10),
-    branchPrefix: PR_BRANCH_PREFIX, log,
+    root, repo: home, base, token: actionToken, ...deliveryTarget(process.env), log,
     files: { [SNAPSHOT_PATH]: text },
     message: `Claudinite: snapshot the fleet's open issues\n\n${AUTOMERGE_TRAILER}: ${policyExpression(task.automerge)}`,
     title: 'Claudinite: fleet issues snapshot',
