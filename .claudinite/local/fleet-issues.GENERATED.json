@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-29T15:19:30.023Z",
+  "generated": "2026-09-30T10:28:30.024Z",
   "owner": "missingbulb",
-  "total": 394,
+  "total": 392,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 182,
+      "openIssues": 181,
       "issues": [
         {
           "number": 2405,
@@ -36,11 +36,11 @@
           "title": "[claudinite-work] claudinite-canon-curation/growth-promote",
           "labels": [
             "task:origin:planned",
-            "task:status:waiting-for-executor"
+            "task:status:needs-human-approval"
           ],
           "created_at": "2026-09-29T11:33:18Z",
-          "updated_at": "2026-09-29T11:33:18Z",
-          "comments": 0
+          "updated_at": "2026-09-29T21:36:54Z",
+          "comments": 4
         },
         {
           "number": 2395,
@@ -116,17 +116,6 @@
           "created_at": "2026-09-27T11:11:32Z",
           "updated_at": "2026-09-27T11:11:32Z",
           "comments": 0
-        },
-        {
-          "number": 2353,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-09-27T10:47:41Z",
-          "updated_at": "2026-09-27T11:23:59Z",
-          "comments": 5
         },
         {
           "number": 2351,
@@ -368,8 +357,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-20T10:11:54Z",
-          "updated_at": "2026-09-27T20:22:10Z",
-          "comments": 4
+          "updated_at": "2026-09-29T21:31:54Z",
+          "comments": 5
         },
         {
           "number": 2172,
@@ -1635,8 +1624,30 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 6,
+      "openIssues": 8,
       "issues": [
+        {
+          "number": 585,
+          "title": "[claudinite-work] claudinite-tasks/usage-fold",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-30T10:27:12Z",
+          "updated_at": "2026-09-30T10:28:04Z",
+          "comments": 1
+        },
+        {
+          "number": 584,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:running-agent",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-30T10:27:11Z",
+          "updated_at": "2026-09-30T10:28:01Z",
+          "comments": 3
+        },
         {
           "number": 554,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
@@ -1699,19 +1710,8 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 8,
+      "openIssues": 7,
       "issues": [
-        {
-          "number": 719,
-          "title": "[claudinite-work] claudinite-website/public-installs",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-28T11:04:11Z",
-          "updated_at": "2026-09-28T11:04:57Z",
-          "comments": 2
-        },
         {
           "number": 697,
           "title": "[claudinite-work] claudinite-website/site-stats",
@@ -1912,12 +1912,12 @@
           "number": 954,
           "title": "[claudinite-work] claudinite-growth/growth-extract",
           "labels": [
-            "task:status:running-agent",
+            "task:status:needs-human-failure",
             "task:origin:planned"
           ],
           "created_at": "2026-09-29T10:55:56Z",
-          "updated_at": "2026-09-29T14:11:29Z",
-          "comments": 3
+          "updated_at": "2026-09-29T21:05:10Z",
+          "comments": 4
         },
         {
           "number": 921,
@@ -2807,16 +2807,8 @@
     },
     {
       "repo": "missingbulb/NoRFinder",
-      "openIssues": 4,
+      "openIssues": 3,
       "issues": [
-        {
-          "number": 245,
-          "title": "Drive setup checklist (#234) doesn't mention clientId and appId, which drive.js requires",
-          "labels": [],
-          "created_at": "2026-09-29T11:03:39Z",
-          "updated_at": "2026-09-29T11:03:39Z",
-          "comments": 0
-        },
         {
           "number": 211,
           "title": "dedup-prune-integrity's shrink invariant scopes over provenance/ files, which are mandated to grow",
@@ -2830,12 +2822,12 @@
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
             "task:origin:ad-hoc",
-            "task:status:needs-human-failure",
+            "task:status:needs-human-approval",
             "add-packs"
           ],
           "created_at": "2026-09-27T10:03:17Z",
-          "updated_at": "2026-09-28T09:22:59Z",
-          "comments": 6
+          "updated_at": "2026-09-29T21:05:32Z",
+          "comments": 12
         },
         {
           "number": 17,
@@ -2849,62 +2841,29 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 13,
+      "openIssues": 10,
       "issues": [
         {
-          "number": 823,
-          "title": "[claudinite-work] claudinite-growth/growth-extract",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-29T15:17:30Z",
-          "updated_at": "2026-09-29T15:18:29Z",
-          "comments": 3
-        },
-        {
-          "number": 816,
+          "number": 830,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-29T10:36:51Z",
-          "updated_at": "2026-09-29T15:19:14Z",
-          "comments": 4
+          "created_at": "2026-09-30T10:26:00Z",
+          "updated_at": "2026-09-30T10:28:13Z",
+          "comments": 1
         },
         {
-          "number": 801,
-          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
+          "number": 828,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
-            "task:status:needs-human-failure",
+            "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-09-28T10:48:58Z",
-          "updated_at": "2026-09-28T10:49:48Z",
-          "comments": 2
-        },
-        {
-          "number": 788,
-          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-27T09:58:00Z",
-          "updated_at": "2026-09-27T10:01:20Z",
-          "comments": 2
-        },
-        {
-          "number": 771,
-          "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-26T09:18:14Z",
-          "updated_at": "2026-09-26T09:18:56Z",
-          "comments": 2
+          "created_at": "2026-09-30T10:25:59Z",
+          "updated_at": "2026-09-30T10:25:59Z",
+          "comments": 0
         },
         {
           "number": 617,
@@ -3397,8 +3356,30 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 14,
+      "openIssues": 16,
       "issues": [
+        {
+          "number": 559,
+          "title": "[claudinite-work] claudinite-tasks/usage-fold",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-30T10:27:40Z",
+          "updated_at": "2026-09-30T10:28:16Z",
+          "comments": 1
+        },
+        {
+          "number": 558,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-09-30T10:27:40Z",
+          "updated_at": "2026-09-30T10:27:40Z",
+          "comments": 0
+        },
         {
           "number": 535,
           "title": "dedup-prune-integrity's shrink invariant fires on the provenance entry growth-dedup itself requires",
