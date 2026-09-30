@@ -1,11 +1,35 @@
 {
   "usage-findings": {
-    "value": 11,
+    "value": 15,
     "previous": 11,
-    "note": "2026-09-01 to 2026-09-28"
+    "note": "2026-09-02 to 2026-09-29"
   },
   "usage-newest": {
     "rows": [
+      {
+        "subject": "committing",
+        "rule": "skill-forced-only-small",
+        "cause": "known",
+        "since": "2026-09-30"
+      },
+      {
+        "subject": "issue-labels-overwrite",
+        "rule": "guard-overruled",
+        "cause": "probable",
+        "since": "2026-09-30"
+      },
+      {
+        "subject": "pipe-tail-hides-exit",
+        "rule": "guard-overruled",
+        "cause": "probable",
+        "since": "2026-09-30"
+      },
+      {
+        "subject": "writing-tasks",
+        "rule": "skill-triggered-missing-moments",
+        "cause": "known",
+        "since": "2026-09-30"
+      },
       {
         "subject": "changing-pack-elements",
         "rule": "skill-triggered-missing-moments",
@@ -39,30 +63,6 @@
       {
         "subject": "searching-for-a-tool",
         "rule": "skill-always-loaded",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "searching-for-a-tool",
-        "rule": "skill-forced-only-small",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "searching-for-a-tool",
-        "rule": "skill-triggered-missing-moments",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "writing-pack-prose",
-        "rule": "skill-triggered-missing-moments",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "writing-repo-scanning-checks",
-        "rule": "skill-triggered-missing-moments",
         "cause": "known",
         "since": "2026-09-26"
       }
