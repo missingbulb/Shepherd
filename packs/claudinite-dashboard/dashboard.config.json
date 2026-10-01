@@ -1,0 +1,15 @@
+{
+  "mode": "fleet",
+  "clientId": "Iv23liAq2kEOXakr5DDX",
+  "exchangeUrl": "https://claudinite-oauth-exchange.arielra.workers.dev",
+  "redirectUri": null,
+  "canonRepo": "missingbulb/Claudinite",
+  "owner": "missingbulb",
+  "exclude": [
+    "missingbulb/empty"
+  ],
+  "rosterUrl": null,
+  "repos": [],
+  "defaultRepo": null,
+  "rates": null
+}
