@@ -18,3 +18,9 @@
 - **Retire when:** this sandbox's checkout keeps local `main` synced with `origin/main` by
   construction.
 - **Landed:** #588 (Refs #575).
+
+## 2026-10-04 · reworded · anchor the match to a command boundary (#880)
+- **Reason:** unanchored, it also fired on the pattern merely quoted in an argument; now satisfies
+  `anchored-bash-guards`.
+- **Actor:** prose-to-checks run (#880).
+- **Model:** Claude, per the commit trailer.
