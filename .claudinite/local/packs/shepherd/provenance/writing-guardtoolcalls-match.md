@@ -10,3 +10,10 @@
   vocabulary cannot select into that array shape, and a custom rule module is unreviewed logic an
   unattended run should not ship.
 - **Landed:** #728 (Refs #718).
+
+## 2026-10-04 · retired · Delete the anchoring prose its world rule now covers (#880)
+- **Reason:** `anchored-bash-guards` enforces the anchoring and its message and header carry the
+  why, so the deletion test found the prose fully covered and deleted it whole.
+- **Actor:** prose-to-checks run (#880).
+- **Model:** Claude, per the commit trailer.
+- **Mechanism:** the world rule `anchored-bash-guards`.

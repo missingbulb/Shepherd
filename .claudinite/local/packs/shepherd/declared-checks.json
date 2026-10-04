@@ -9,7 +9,7 @@
       {
         "tool": "Bash",
         "inputField": "command",
-        "match": "/git\\s+(?:checkout\\s+-b|branch)\\s+\\S+\\s+main\\b/",
+        "match": "/(?:^|[;&|\\n])\\s*git\\s+(?:checkout\\s+-b|branch)\\s+\\S+\\s+main\\b/",
         "what": "a git branch created from bare \"main\" (\"{match}\")",
         "fix": "git fetch origin main, then branch from origin/main explicitly"
       }
