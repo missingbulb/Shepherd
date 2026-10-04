@@ -9,10 +9,10 @@
 // The two never mix: FLEET_GITHUB_TOKEN reads other people's repos, GITHUB_TOKEN writes
 // this one.
 //
-// The five imports below reach into two other packs on purpose, and `file-placement`
-// says so at distance 8. Each is that pack's one declared entry for exactly this job:
-// fleet-api.mjs is "the ONE place a Claudinite process talks GitHub over raw REST", and
-// deliver-generated.mjs exists so tasks that land a regenerated file "must not each grow
+// The imports below reach into other packs on purpose, and `file-placement` flags the
+// distance. Each is that pack's one declared entry for exactly this job: the fleet API
+// module is "the ONE place a Claudinite process talks GitHub over raw REST", and the
+// delivery module exists so tasks that land a regenerated file "must not each grow
 // their own copy". A local copy of either would be the third copy the basics rules
 // forbid; a nearer home for this task would take it out of the pack that owns it.
 
