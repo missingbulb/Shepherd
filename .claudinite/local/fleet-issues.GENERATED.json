@@ -1,12 +1,104 @@
 {
-  "generated": "2026-10-04T10:35:26.057Z",
+  "generated": "2026-10-05T11:24:09.312Z",
   "owner": "missingbulb",
-  "total": 455,
+  "total": 446,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
-      "openIssues": 183,
+      "openIssues": 192,
       "issues": [
+        {
+          "number": 2451,
+          "title": "Provenance: the Model field is free text in 15+ spellings, so per-model attribution can't be measured",
+          "labels": [],
+          "created_at": "2026-10-04T11:35:35Z",
+          "updated_at": "2026-10-04T11:35:35Z",
+          "comments": 0
+        },
+        {
+          "number": 2450,
+          "title": "provenance-change-recorded: a task's README defeats the comment-only exemption",
+          "labels": [],
+          "created_at": "2026-10-04T11:35:28Z",
+          "updated_at": "2026-10-04T11:35:28Z",
+          "comments": 0
+        },
+        {
+          "number": 2449,
+          "title": "Provenance: a sweep writes a multi-line entry per element, not the one-liner the design sizes it at",
+          "labels": [],
+          "created_at": "2026-10-04T11:35:21Z",
+          "updated_at": "2026-10-04T11:35:21Z",
+          "comments": 0
+        },
+        {
+          "number": 2448,
+          "title": "Provenance design: renaming a carrier's own id has no rule, and the work check blocks it from 2026-10-04",
+          "labels": [],
+          "created_at": "2026-10-04T11:35:13Z",
+          "updated_at": "2026-10-04T11:35:13Z",
+          "comments": 0
+        },
+        {
+          "number": 2447,
+          "title": "Provenance: a plain top-level RULES.md bullet is no element — 10 rules carry no marker and no file",
+          "labels": [],
+          "created_at": "2026-10-04T11:35:00Z",
+          "updated_at": "2026-10-04T11:35:00Z",
+          "comments": 0
+        },
+        {
+          "number": 2443,
+          "title": "migration-record-paths-resolve blocks main: sheepdog-fleet-baseline names a template path that no longer exists",
+          "labels": [],
+          "created_at": "2026-10-04T11:27:27Z",
+          "updated_at": "2026-10-04T11:27:27Z",
+          "comments": 0
+        },
+        {
+          "number": 2438,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-10-04T11:17:34Z",
+          "updated_at": "2026-10-04T11:37:02Z",
+          "comments": 4
+        },
+        {
+          "number": 2437,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-10-04T11:17:33Z",
+          "updated_at": "2026-10-04T11:29:48Z",
+          "comments": 4
+        },
+        {
+          "number": 2436,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-10-04T11:17:33Z",
+          "updated_at": "2026-10-04T11:30:42Z",
+          "comments": 5
+        },
+        {
+          "number": 2434,
+          "title": "[claudinite-work] basics/improve-comments",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-approval"
+          ],
+          "created_at": "2026-10-04T11:17:32Z",
+          "updated_at": "2026-10-04T11:34:50Z",
+          "comments": 4
+        },
         {
           "number": 2417,
           "title": "[claudinite-work] claudinite-canon-curation/revalidate-from-source",
@@ -379,19 +471,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-20T10:11:54Z",
-          "updated_at": "2026-10-01T21:59:27Z",
-          "comments": 6
-        },
-        {
-          "number": 2172,
-          "title": "Retrospective: provenance, a week after the marking pass",
-          "labels": [
-            "task:origin:ad-hoc",
-            "task:status:blocked"
-          ],
-          "created_at": "2026-09-20T10:11:18Z",
-          "updated_at": "2026-09-20T10:43:42Z",
-          "comments": 1
+          "updated_at": "2026-10-04T11:17:21Z",
+          "comments": 7
         },
         {
           "number": 2171,
@@ -420,8 +501,8 @@
           "title": "Provenance: a per-element decision log for every pack — tracking issue",
           "labels": [],
           "created_at": "2026-09-20T10:10:07Z",
-          "updated_at": "2026-09-25T11:30:25Z",
-          "comments": 13
+          "updated_at": "2026-10-04T11:36:12Z",
+          "comments": 14
         },
         {
           "number": 2165,
@@ -1646,41 +1727,8 @@
     },
     {
       "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 8,
+      "openIssues": 5,
       "issues": [
-        {
-          "number": 616,
-          "title": "[claudinite-work] claudinite-tasks/usage-fold",
-          "labels": [
-            "task:status:running-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:04Z",
-          "updated_at": "2026-10-04T10:34:57Z",
-          "comments": 1
-        },
-        {
-          "number": 611,
-          "title": "[claudinite-work] basics/improve-comments",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:02Z",
-          "updated_at": "2026-10-04T10:33:44Z",
-          "comments": 3
-        },
-        {
-          "number": 610,
-          "title": "[claudinite-work] basics/ci-performance",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:01Z",
-          "updated_at": "2026-10-04T10:34:44Z",
-          "comments": 3
-        },
         {
           "number": 510,
           "title": "Claudinite scheduler run failed",
@@ -1742,16 +1790,8 @@
     },
     {
       "repo": "missingbulb/ClaudiniteEngine",
-      "openIssues": 22,
+      "openIssues": 12,
       "issues": [
-        {
-          "number": 82,
-          "title": "Replace NPM_DEPRECATE_TOKEN with a token npm accepts under 2FA (before Oct 6)",
-          "labels": [],
-          "created_at": "2026-10-03T22:59:40Z",
-          "updated_at": "2026-10-04T05:03:54Z",
-          "comments": 0
-        },
         {
           "number": 68,
           "title": "Chunk 17: Phase 7 — packs publish, engine side: the canon-curation fold (#24), the last eight packs’ checks ported, the live-packs gate against the real shelf, the three-part floor (#18), and what waits on #5",
@@ -1809,54 +1849,6 @@
           "comments": 0
         },
         {
-          "number": 43,
-          "title": "Chunk 10: Phase 6, slice 5 — the task runner and queue (the task contract, precondition and merge-policy grammars in Go; the work-item queue on issues; cn schedule run and cn execute loop with the Node runner and embedded @claudinite/sdk for workers; the landing lane; the Actions key and item grants in the executor; the eight deferred task checks as pack-owned built-ins; the flat declarations; the scheduler and executor workflows; chunk 9's review notes folded in)",
-          "labels": [],
-          "created_at": "2026-10-02T12:28:00Z",
-          "updated_at": "2026-10-02T12:28:00Z",
-          "comments": 0
-        },
-        {
-          "number": 37,
-          "title": "Chunk 7: Phase 6, slice 3 — guards and hook judges in Go (the per-call hook contract, the session transcript reader, action scope at PreToolUse and Stop, the four force-load skill triggers, coded judges through the checks binary, hook latency measured); #35, #36 and #19 folded in",
-          "labels": [],
-          "created_at": "2026-10-01T23:31:15Z",
-          "updated_at": "2026-10-01T23:31:15Z",
-          "comments": 0
-        },
-        {
-          "number": 33,
-          "title": "Chunk 6: Phase 6, slices 1–2 — the two-engine parity harness, session context and skill mounting to parity, the descriptor parsers and the settings checks block, declarative checks in Go (world and work scope); #29 and #32 folded in",
-          "labels": [],
-          "created_at": "2026-10-01T20:31:41Z",
-          "updated_at": "2026-10-01T20:31:41Z",
-          "comments": 0
-        },
-        {
-          "number": 30,
-          "title": "Chunk 5: Phase 4, engine side — licensing in the binary (the three key requests, the session state file and the 10-second cut, verification and the plan check, the per-state gate, cn login, release states from the Actions key; #26 items 3–4)",
-          "labels": [],
-          "created_at": "2026-10-01T19:02:53Z",
-          "updated_at": "2026-10-01T20:13:30Z",
-          "comments": 1
-        },
-        {
-          "number": 25,
-          "title": "Chunk 4: Phase 3 — the pack chassis (cn update packs, cn init from the vendored branch, session context and skills from committed packs, the hello pack's Go check built and run as a child)",
-          "labels": [],
-          "created_at": "2026-10-01T17:39:04Z",
-          "updated_at": "2026-10-01T17:39:04Z",
-          "comments": 0
-        },
-        {
-          "number": 24,
-          "title": "Later: decide where canon curation lives",
-          "labels": [],
-          "created_at": "2026-10-01T17:00:33Z",
-          "updated_at": "2026-10-03T11:42:06Z",
-          "comments": 1
-        },
-        {
           "number": 23,
           "title": "Later, phases 9–10 (Ariel): member moves and the end-of-build repo settings",
           "labels": [],
@@ -1881,27 +1873,11 @@
           "comments": 1
         },
         {
-          "number": 17,
-          "title": "Hop test needs a signing path the candidate trusts once the ceremony lands",
-          "labels": [],
-          "created_at": "2026-10-01T16:37:17Z",
-          "updated_at": "2026-10-01T16:37:17Z",
-          "comments": 0
-        },
-        {
           "number": 16,
           "title": "Key ceremony: check deployment branches are exactly main",
           "labels": [],
           "created_at": "2026-10-01T16:33:02Z",
           "updated_at": "2026-10-01T16:33:02Z",
-          "comments": 0
-        },
-        {
-          "number": 13,
-          "title": "Chunk 3: Phase 2 — the update chassis (cn update engine, verify, the update PR and its CI, the hop test, held and revoked, #10 and #11)",
-          "labels": [],
-          "created_at": "2026-10-01T15:29:26Z",
-          "updated_at": "2026-10-01T15:31:57Z",
           "comments": 0
         },
         {
@@ -1911,20 +1887,12 @@
           "created_at": "2026-10-01T14:14:50Z",
           "updated_at": "2026-10-01T16:16:20Z",
           "comments": 2
-        },
-        {
-          "number": 6,
-          "title": "Chunk 1: Phase 0 tooling and Phase 1 part 1 — the cn release chassis (binary, signing, launcher, crash reporting, CI)",
-          "labels": [],
-          "created_at": "2026-10-01T13:28:58Z",
-          "updated_at": "2026-10-01T19:29:13Z",
-          "comments": 1
         }
       ]
     },
     {
       "repo": "missingbulb/ClaudiniteLicenses",
-      "openIssues": 11,
+      "openIssues": 5,
       "issues": [
         {
           "number": 36,
@@ -1951,22 +1919,6 @@
           "comments": 0
         },
         {
-          "number": 22,
-          "title": "Phase 4 chunk 7: the writes queue proven live by every deploy, the sync Worker's cron and queue versions stamped and read back, its secrets travelling with its version, the paid web path's first real keys, and #21 answered",
-          "labels": [],
-          "created_at": "2026-10-02T02:09:42Z",
-          "updated_at": "2026-10-02T03:08:12Z",
-          "comments": 1
-        },
-        {
-          "number": 18,
-          "title": "Phase 4 chunk 6: the security review rerun, every public route and abuse-limits row pinned by a test, per-IP caps before D1 and GitHub, body caps, secrets kept out of answers and logs, the fail-open override, and chunk 5's review notes",
-          "labels": [],
-          "created_at": "2026-10-01T23:29:35Z",
-          "updated_at": "2026-10-01T23:29:35Z",
-          "comments": 0
-        },
-        {
           "number": 15,
           "title": "Phase 4 chunk 5: staged deploys with a canary probe by version, promotion and rollback, the D1 restore point rehearsed, `notice` in the signed key, refusal summaries the binary reads, and the pinned-workflow decision",
           "labels": [],
@@ -1975,50 +1927,18 @@
           "comments": 2
         },
         {
-          "number": 10,
-          "title": "Phase 4 chunk 3: seats, usage and overuse through the queue, subscriptions from the Polar sandbox, checkout links in keys, and item grants",
-          "labels": [],
-          "created_at": "2026-10-01T18:49:20Z",
-          "updated_at": "2026-10-01T18:49:20Z",
-          "comments": 0
-        },
-        {
-          "number": 8,
-          "title": "Phase 4 chunk 2: D1 deployed, the sync Worker as the only writer, the paid key Worker's three key paths for the Public plan, and the web work notes run",
-          "labels": [],
-          "created_at": "2026-10-01T17:37:07Z",
-          "updated_at": "2026-10-01T17:37:07Z",
-          "comments": 0
-        },
-        {
           "number": 7,
           "title": "Phase 4 (Ariel): uptime monitor and paid-plan prerequisites for the license server",
           "labels": [],
           "created_at": "2026-10-01T16:56:11Z",
-          "updated_at": "2026-10-03T05:08:53Z",
+          "updated_at": "2026-10-05T09:47:23Z",
           "comments": 3
-        },
-        {
-          "number": 5,
-          "title": "Chunk 1b: secret names, review follow-ups, then first deploy and the web key spike",
-          "labels": [],
-          "created_at": "2026-10-01T14:05:09Z",
-          "updated_at": "2026-10-01T14:05:09Z",
-          "comments": 0
-        },
-        {
-          "number": 4,
-          "title": "Phase 4 chunk 1: scaffolding, signing library, webhook router, public key Worker, D1 schema, deploy dry-run and the web key spike tooling",
-          "labels": [],
-          "created_at": "2026-10-01T13:31:53Z",
-          "updated_at": "2026-10-01T13:32:28Z",
-          "comments": 1
         }
       ]
     },
     {
       "repo": "missingbulb/ClaudinitePacks",
-      "openIssues": 8,
+      "openIssues": 7,
       "issues": [
         {
           "number": 38,
@@ -2075,14 +1995,6 @@
           "created_at": "2026-10-01T14:42:25Z",
           "updated_at": "2026-10-01T17:26:37Z",
           "comments": 1
-        },
-        {
-          "number": 2,
-          "title": "Phase 5a: import Claudinite's packs/ with full history, rerunnable until the freeze, plus the vendored-set rule",
-          "labels": [],
-          "created_at": "2026-10-01T13:30:19Z",
-          "updated_at": "2026-10-01T13:30:19Z",
-          "comments": 0
         }
       ]
     },
@@ -2093,26 +2005,60 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 10,
+      "openIssues": 13,
       "issues": [
+        {
+          "number": 834,
+          "title": "Gate 0 brand steps: name check, free handles, domain renewal",
+          "labels": [],
+          "created_at": "2026-10-05T10:32:47Z",
+          "updated_at": "2026-10-05T10:32:47Z",
+          "comments": 0
+        },
+        {
+          "number": 815,
+          "title": "[claudinite-work] claudinite-website/site-stats",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:35:53Z",
+          "updated_at": "2026-10-04T10:36:36Z",
+          "comments": 2
+        },
+        {
+          "number": 811,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-decision",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:35:51Z",
+          "updated_at": "2026-10-04T10:40:47Z",
+          "comments": 4
+        },
+        {
+          "number": 807,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:35:50Z",
+          "updated_at": "2026-10-04T10:42:08Z",
+          "comments": 4
+        },
         {
           "number": 802,
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
             "add-packs",
+            "task:status:needs-human-approval",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-10-04T10:34:27Z",
-          "updated_at": "2026-10-04T10:34:27Z",
-          "comments": 0
-        },
-        {
-          "number": 789,
-          "title": "Owner console: give the Worker a read-only UptimeRobot key",
-          "labels": [],
-          "created_at": "2026-10-03T04:53:07Z",
-          "updated_at": "2026-10-03T04:53:16Z",
-          "comments": 0
+          "updated_at": "2026-10-04T10:41:52Z",
+          "comments": 5
         },
         {
           "number": 768,
@@ -2191,18 +2137,30 @@
     },
     {
       "repo": "missingbulb/CrosswordChat",
-      "openIssues": 14,
+      "openIssues": 15,
       "issues": [
+        {
+          "number": 622,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:35:33Z",
+          "updated_at": "2026-10-04T10:38:04Z",
+          "comments": 4
+        },
         {
           "number": 620,
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
+            "task:status:needs-human-approval",
             "task:origin:ad-hoc",
             "add-packs"
           ],
           "created_at": "2026-10-04T10:34:29Z",
-          "updated_at": "2026-10-04T10:34:29Z",
-          "comments": 0
+          "updated_at": "2026-10-04T10:38:12Z",
+          "comments": 6
         },
         {
           "number": 573,
@@ -2327,18 +2285,63 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 8,
+      "openIssues": 12,
       "issues": [
+        {
+          "number": 1019,
+          "title": "[claudinite-work] product-wiki/wiki-growth",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:36:07Z",
+          "updated_at": "2026-10-04T10:39:40Z",
+          "comments": 4
+        },
+        {
+          "number": 1015,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:36:05Z",
+          "updated_at": "2026-10-04T10:40:01Z",
+          "comments": 4
+        },
+        {
+          "number": 1014,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:36:05Z",
+          "updated_at": "2026-10-04T10:43:18Z",
+          "comments": 5
+        },
+        {
+          "number": 1013,
+          "title": "[claudinite-work] basics/improve-comments",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:36:04Z",
+          "updated_at": "2026-10-04T10:42:15Z",
+          "comments": 4
+        },
         {
           "number": 921,
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
             "add-packs",
+            "task:status:needs-human-action",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-27T10:03:09Z",
-          "updated_at": "2026-10-04T10:34:32Z",
-          "comments": 5
+          "updated_at": "2026-10-04T10:38:29Z",
+          "comments": 10
         },
         {
           "number": 876,
@@ -2413,8 +2416,19 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 37,
+      "openIssues": 38,
       "issues": [
+        {
+          "number": 1411,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-04T10:40:34Z",
+          "updated_at": "2026-10-04T10:45:11Z",
+          "comments": 4
+        },
         {
           "number": 1373,
           "title": "[claudinite-work] basics/improve-comments",
@@ -3007,19 +3021,8 @@
     },
     {
       "repo": "missingbulb/MissingBulbWebsite",
-      "openIssues": 23,
+      "openIssues": 22,
       "issues": [
-        {
-          "number": 589,
-          "title": "Add packs: suspected from this repo’s shape",
-          "labels": [
-            "add-packs",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-10-04T10:34:37Z",
-          "updated_at": "2026-10-04T10:34:37Z",
-          "comments": 0
-        },
         {
           "number": 534,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
@@ -3234,11 +3237,12 @@
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
             "task:origin:ad-hoc",
+            "task:status:needs-human-approval",
             "add-packs"
           ],
           "created_at": "2026-10-04T10:34:39Z",
-          "updated_at": "2026-10-04T10:34:39Z",
-          "comments": 0
+          "updated_at": "2026-10-04T10:43:34Z",
+          "comments": 6
         }
       ]
     },
@@ -3247,70 +3251,70 @@
       "openIssues": 21,
       "issues": [
         {
-          "number": 884,
+          "number": 895,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-04T10:32:10Z",
-          "updated_at": "2026-10-04T10:35:12Z",
+          "created_at": "2026-10-05T11:23:17Z",
+          "updated_at": "2026-10-05T11:23:51Z",
           "comments": 1
         },
         {
-          "number": 881,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "number": 894,
+          "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-04T10:32:09Z",
-          "updated_at": "2026-10-04T10:32:09Z",
+          "created_at": "2026-10-05T11:23:16Z",
+          "updated_at": "2026-10-05T11:23:16Z",
+          "comments": 0
+        },
+        {
+          "number": 893,
+          "title": "[claudinite-work] claudinite-lifecycle/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-05T11:23:16Z",
+          "updated_at": "2026-10-05T11:23:16Z",
+          "comments": 0
+        },
+        {
+          "number": 892,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-05T11:23:16Z",
+          "updated_at": "2026-10-05T11:23:16Z",
+          "comments": 0
+        },
+        {
+          "number": 891,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-05T11:23:15Z",
+          "updated_at": "2026-10-05T11:23:15Z",
           "comments": 0
         },
         {
           "number": 880,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
           "labels": [
-            "task:status:running-agent",
+            "task:status:needs-human-approval",
             "task:origin:planned"
           ],
           "created_at": "2026-10-04T10:32:09Z",
-          "updated_at": "2026-10-04T10:33:13Z",
-          "comments": 3
-        },
-        {
-          "number": 879,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:32:09Z",
-          "updated_at": "2026-10-04T10:32:09Z",
-          "comments": 0
-        },
-        {
-          "number": 878,
-          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:32:08Z",
-          "updated_at": "2026-10-04T10:32:08Z",
-          "comments": 0
-        },
-        {
-          "number": 875,
-          "title": "[claudinite-work] basics/improve-comments",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:32:07Z",
-          "updated_at": "2026-10-04T10:32:07Z",
-          "comments": 0
+          "updated_at": "2026-10-04T10:36:01Z",
+          "comments": 4
         },
         {
           "number": 862,
@@ -3874,84 +3878,18 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 23,
+      "openIssues": 17,
       "issues": [
-        {
-          "number": 597,
-          "title": "[claudinite-work] claudinite-tasks/usage-fold",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:51Z",
-          "updated_at": "2026-10-04T10:33:51Z",
-          "comments": 0
-        },
-        {
-          "number": 596,
-          "title": "[claudinite-work] claudinite-lifecycle/update",
-          "labels": [
-            "task:status:done",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:51Z",
-          "updated_at": "2026-10-04T10:35:22Z",
-          "comments": 2
-        },
-        {
-          "number": 595,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:status:running-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:51Z",
-          "updated_at": "2026-10-04T10:35:24Z",
-          "comments": 0
-        },
         {
           "number": 594,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-approval",
             "task:origin:planned"
           ],
           "created_at": "2026-10-04T10:33:50Z",
-          "updated_at": "2026-10-04T10:33:50Z",
-          "comments": 0
-        },
-        {
-          "number": 593,
-          "title": "[claudinite-work] claudinite-growth/growth-dedup",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:50Z",
-          "updated_at": "2026-10-04T10:34:50Z",
+          "updated_at": "2026-10-04T10:39:19Z",
           "comments": 4
-        },
-        {
-          "number": 592,
-          "title": "[claudinite-work] basics/improve-comments",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:50Z",
-          "updated_at": "2026-10-04T10:33:50Z",
-          "comments": 0
-        },
-        {
-          "number": 591,
-          "title": "[claudinite-work] basics/ci-performance",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:33:49Z",
-          "updated_at": "2026-10-04T10:35:09Z",
-          "comments": 3
         },
         {
           "number": 579,
@@ -3985,11 +3923,12 @@
           "title": "Add packs: suspected from this repo’s shape",
           "labels": [
             "add-packs",
+            "task:status:needs-human-approval",
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-09-27T10:03:21Z",
-          "updated_at": "2026-10-04T10:34:43Z",
-          "comments": 6
+          "updated_at": "2026-10-04T10:38:27Z",
+          "comments": 11
         },
         {
           "number": 463,
