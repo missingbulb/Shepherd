@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-05T11:24:09.312Z",
+  "generated": "2026-10-06T11:13:49.064Z",
   "owner": "missingbulb",
-  "total": 446,
+  "total": 433,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -373,8 +373,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-22T10:25:03Z",
-          "updated_at": "2026-10-03T20:10:44Z",
-          "comments": 6
+          "updated_at": "2026-10-05T23:21:11Z",
+          "comments": 7
         },
         {
           "number": 2247,
@@ -422,8 +422,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-22T06:41:19Z",
-          "updated_at": "2026-10-03T20:10:45Z",
-          "comments": 6
+          "updated_at": "2026-10-05T23:21:12Z",
+          "comments": 7
         },
         {
           "number": 2238,
@@ -1046,8 +1046,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-04T06:23:52Z",
-          "updated_at": "2026-10-03T20:10:46Z",
-          "comments": 26
+          "updated_at": "2026-10-05T23:21:12Z",
+          "comments": 27
         },
         {
           "number": 1682,
@@ -1359,8 +1359,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-24T19:02:32Z",
-          "updated_at": "2026-10-03T20:10:46Z",
-          "comments": 42
+          "updated_at": "2026-10-05T23:21:13Z",
+          "comments": 43
         },
         {
           "number": 1341,
@@ -1440,8 +1440,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-08-22T15:11:49Z",
-          "updated_at": "2026-10-03T20:10:47Z",
-          "comments": 45
+          "updated_at": "2026-10-05T23:21:13Z",
+          "comments": 46
         },
         {
           "number": 1236,
@@ -1726,59 +1726,6 @@
       ]
     },
     {
-      "repo": "missingbulb/ClaudiniteCanary",
-      "openIssues": 5,
-      "issues": [
-        {
-          "number": 510,
-          "title": "Claudinite scheduler run failed",
-          "labels": [
-            "workflow-failure",
-            "task:status:needs-human-failure",
-            "task:origin:github"
-          ],
-          "created_at": "2026-09-22T15:20:44Z",
-          "updated_at": "2026-09-22T15:20:44Z",
-          "comments": 0
-        },
-        {
-          "number": 448,
-          "title": "Repoint the executor routine's stored prompt at public/instructions.md",
-          "labels": [],
-          "created_at": "2026-09-16T09:24:56Z",
-          "updated_at": "2026-09-16T09:24:56Z",
-          "comments": 0
-        },
-        {
-          "number": 373,
-          "title": "Issue #322 stuck: closed by its own PR's `Closes #N` before queue convergence, still wearing task:status:running-agent",
-          "labels": [],
-          "created_at": "2026-09-07T20:08:54Z",
-          "updated_at": "2026-09-07T20:08:54Z",
-          "comments": 0
-        },
-        {
-          "number": 283,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:18:35Z",
-          "updated_at": "2026-08-30T09:32:57Z",
-          "comments": 4
-        },
-        {
-          "number": 239,
-          "title": "converge-item.mjs has no MCP-compatible agent-lane path — a session cannot perform queue instructions.md step 6",
-          "labels": [],
-          "created_at": "2026-08-23T12:08:21Z",
-          "updated_at": "2026-08-23T12:08:21Z",
-          "comments": 0
-        }
-      ]
-    },
-    {
       "repo": "missingbulb/ClaudiniteCanaryFresh",
       "openIssues": 0,
       "issues": []
@@ -1790,22 +1737,86 @@
     },
     {
       "repo": "missingbulb/ClaudiniteEngine",
-      "openIssues": 12,
+      "openIssues": 19,
       "issues": [
+        {
+          "number": 108,
+          "title": "Refuse a vendored pack whose minEngineVersion names a Node engine",
+          "labels": [],
+          "created_at": "2026-10-05T20:50:21Z",
+          "updated_at": "2026-10-05T20:50:21Z",
+          "comments": 0
+        },
+        {
+          "number": 107,
+          "title": "From 2026-10-13: unpublish the six @claudinite/cli-rc packages",
+          "labels": [],
+          "created_at": "2026-10-05T20:50:10Z",
+          "updated_at": "2026-10-05T20:50:10Z",
+          "comments": 0
+        },
+        {
+          "number": 105,
+          "title": "Later: run the canary repos as part of the full check before a stable release",
+          "labels": [],
+          "created_at": "2026-10-05T18:28:21Z",
+          "updated_at": "2026-10-05T18:28:21Z",
+          "comments": 0
+        },
+        {
+          "number": 97,
+          "title": "Retire reading engine.package \"@claudinite/cli-rc\"",
+          "labels": [],
+          "created_at": "2026-10-05T17:10:38Z",
+          "updated_at": "2026-10-05T17:55:39Z",
+          "comments": 0
+        },
+        {
+          "number": 94,
+          "title": "Retire the tolerance for generated files under .claudinite/flat/",
+          "labels": [],
+          "created_at": "2026-10-05T16:46:47Z",
+          "updated_at": "2026-10-05T17:12:44Z",
+          "comments": 0
+        },
+        {
+          "number": 88,
+          "title": "Update landing policy: allow landing on red CI when freshness matters more",
+          "labels": [],
+          "created_at": "2026-10-05T15:04:17Z",
+          "updated_at": "2026-10-05T15:04:17Z",
+          "comments": 0
+        },
+        {
+          "number": 87,
+          "title": "Private fleet managers: members can't read their manager's packs",
+          "labels": [],
+          "created_at": "2026-10-05T15:04:10Z",
+          "updated_at": "2026-10-05T15:04:10Z",
+          "comments": 0
+        },
+        {
+          "number": 85,
+          "title": "Read held and revoked releases from a signed source, not npm deprecations alone",
+          "labels": [],
+          "created_at": "2026-10-05T13:01:30Z",
+          "updated_at": "2026-10-05T13:01:30Z",
+          "comments": 0
+        },
+        {
+          "number": 83,
+          "title": "Retire the tolerance for the old license settings block",
+          "labels": [],
+          "created_at": "2026-10-05T12:03:31Z",
+          "updated_at": "2026-10-05T12:03:31Z",
+          "comments": 0
+        },
         {
           "number": 68,
           "title": "Chunk 17: Phase 7 — packs publish, engine side: the canon-curation fold (#24), the last eight packs’ checks ported, the live-packs gate against the real shelf, the three-part floor (#18), and what waits on #5",
           "labels": [],
           "created_at": "2026-10-03T11:41:48Z",
           "updated_at": "2026-10-03T11:41:48Z",
-          "comments": 0
-        },
-        {
-          "number": 60,
-          "title": "Retire the adopted-term tolerance for log-past-retention",
-          "labels": [],
-          "created_at": "2026-10-03T02:30:35Z",
-          "updated_at": "2026-10-03T02:30:35Z",
           "comments": 0
         },
         {
@@ -1861,15 +1872,7 @@
           "title": "Later, phase 2–3 (Ariel): register the canary release App",
           "labels": [],
           "created_at": "2026-10-01T16:55:59Z",
-          "updated_at": "2026-10-01T16:55:59Z",
-          "comments": 0
-        },
-        {
-          "number": 18,
-          "title": "Retire the two-part minEngineVersion tolerance",
-          "labels": [],
-          "created_at": "2026-10-01T16:37:20Z",
-          "updated_at": "2026-10-03T11:42:07Z",
+          "updated_at": "2026-10-05T18:28:25Z",
           "comments": 1
         },
         {
@@ -1892,7 +1895,7 @@
     },
     {
       "repo": "missingbulb/ClaudiniteLicenses",
-      "openIssues": 5,
+      "openIssues": 2,
       "issues": [
         {
           "number": 36,
@@ -1903,57 +1906,25 @@
           "comments": 0
         },
         {
-          "number": 28,
-          "title": "Phase 4 chunk 8: the key Worker reads from the nearest D1 replica, read replication enabled by the deploy after the restore rehearsal proves it, where each read was served and how long it took in health and the probe",
-          "labels": [],
-          "created_at": "2026-10-02T04:24:48Z",
-          "updated_at": "2026-10-02T04:45:25Z",
-          "comments": 1
-        },
-        {
-          "number": 26,
-          "title": "The paid key Worker's private-repo web path is still unrun: ClaudiniteLicenses is public, not private",
-          "labels": [],
-          "created_at": "2026-10-02T03:07:58Z",
-          "updated_at": "2026-10-02T03:07:58Z",
-          "comments": 0
-        },
-        {
           "number": 15,
           "title": "Phase 4 chunk 5: staged deploys with a canary probe by version, promotion and rollback, the D1 restore point rehearsed, `notice` in the signed key, refusal summaries the binary reads, and the pinned-workflow decision",
           "labels": [],
           "created_at": "2026-10-01T20:32:38Z",
-          "updated_at": "2026-10-01T21:19:58Z",
-          "comments": 2
-        },
-        {
-          "number": 7,
-          "title": "Phase 4 (Ariel): uptime monitor and paid-plan prerequisites for the license server",
-          "labels": [],
-          "created_at": "2026-10-01T16:56:11Z",
-          "updated_at": "2026-10-05T09:47:23Z",
-          "comments": 3
+          "updated_at": "2026-10-05T20:54:30Z",
+          "comments": 4
         }
       ]
     },
     {
       "repo": "missingbulb/ClaudinitePacks",
-      "openIssues": 7,
+      "openIssues": 5,
       "issues": [
         {
-          "number": 38,
-          "title": "tools/checks/test.sh leaks a /tmp fixture cache per run",
+          "number": 45,
+          "title": "Retire the dashboard's fallback to .claudinite/flat/",
           "labels": [],
-          "created_at": "2026-10-03T19:44:48Z",
-          "updated_at": "2026-10-03T19:44:48Z",
-          "comments": 0
-        },
-        {
-          "number": 36,
-          "title": "Drop keys/retired-dev-roots and --previous-roots from release-packs.yml once vendored is re-signed",
-          "labels": [],
-          "created_at": "2026-10-03T19:15:23Z",
-          "updated_at": "2026-10-03T19:15:23Z",
+          "created_at": "2026-10-05T17:19:28Z",
+          "updated_at": "2026-10-05T17:19:28Z",
           "comments": 0
         },
         {
@@ -1961,8 +1932,8 @@
           "title": "Phase 7 (Ariel): what ClaudinitePacks needs from you to run cn and the curation tasks",
           "labels": [],
           "created_at": "2026-10-03T11:41:37Z",
-          "updated_at": "2026-10-03T11:41:37Z",
-          "comments": 0
+          "updated_at": "2026-10-05T18:18:46Z",
+          "comments": 1
         },
         {
           "number": 30,
@@ -1970,14 +1941,6 @@
           "labels": [],
           "created_at": "2026-10-03T11:41:25Z",
           "updated_at": "2026-10-03T11:42:00Z",
-          "comments": 0
-        },
-        {
-          "number": 19,
-          "title": "Add a LICENSE file",
-          "labels": [],
-          "created_at": "2026-10-02T16:35:12Z",
-          "updated_at": "2026-10-02T16:35:12Z",
           "comments": 0
         },
         {
@@ -2005,78 +1968,14 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 13,
+      "openIssues": 4,
       "issues": [
-        {
-          "number": 834,
-          "title": "Gate 0 brand steps: name check, free handles, domain renewal",
-          "labels": [],
-          "created_at": "2026-10-05T10:32:47Z",
-          "updated_at": "2026-10-05T10:32:47Z",
-          "comments": 0
-        },
-        {
-          "number": 815,
-          "title": "[claudinite-work] claudinite-website/site-stats",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:35:53Z",
-          "updated_at": "2026-10-04T10:36:36Z",
-          "comments": 2
-        },
-        {
-          "number": 811,
-          "title": "[claudinite-work] product-wiki/wiki-growth",
-          "labels": [
-            "task:status:needs-human-decision",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:35:51Z",
-          "updated_at": "2026-10-04T10:40:47Z",
-          "comments": 4
-        },
-        {
-          "number": 807,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-04T10:35:50Z",
-          "updated_at": "2026-10-04T10:42:08Z",
-          "comments": 4
-        },
-        {
-          "number": 802,
-          "title": "Add packs: suspected from this repo’s shape",
-          "labels": [
-            "add-packs",
-            "task:status:needs-human-approval",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-10-04T10:34:27Z",
-          "updated_at": "2026-10-04T10:41:52Z",
-          "comments": 5
-        },
         {
           "number": 768,
           "title": "Later, phase 8 (Ariel): legal review before paid launch",
           "labels": [],
           "created_at": "2026-10-01T16:56:20Z",
-          "updated_at": "2026-10-02T16:35:10Z",
-          "comments": 1
-        },
-        {
-          "number": 697,
-          "title": "[claudinite-work] claudinite-website/site-stats",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-27T10:04:24Z",
-          "updated_at": "2026-09-27T10:08:01Z",
+          "updated_at": "2026-10-05T13:00:42Z",
           "comments": 2
         },
         {
@@ -2102,36 +2001,6 @@
           "created_at": "2026-09-16T09:29:34Z",
           "updated_at": "2026-09-16T09:29:34Z",
           "comments": 0
-        },
-        {
-          "number": 533,
-          "title": "git-github-advanced gap: `git rebase --continue`'s default cleanup silently drops commit-message lines starting with `#`",
-          "labels": [],
-          "created_at": "2026-09-13T18:30:01Z",
-          "updated_at": "2026-09-13T18:30:01Z",
-          "comments": 0
-        },
-        {
-          "number": 316,
-          "title": "Canon patch (blocked on push scope): dedup-prune-integrity flags the VERSIONS.md row growth-dedup's own task doc mandates",
-          "labels": [
-            "blocked"
-          ],
-          "created_at": "2026-08-25T05:16:19Z",
-          "updated_at": "2026-09-07T09:26:08Z",
-          "comments": 1
-        },
-        {
-          "number": 285,
-          "title": "Verify in production: the redesigned site with the compounding chart",
-          "labels": [
-            "needs-human",
-            "task:needs-human-decision",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-08-23T15:00:34Z",
-          "updated_at": "2026-08-26T05:02:35Z",
-          "comments": 6
         }
       ]
     },
@@ -2416,8 +2285,18 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 38,
+      "openIssues": 37,
       "issues": [
+        {
+          "number": 1441,
+          "title": "Claudinite engine 1.61005.8 needs a workflow change",
+          "labels": [
+            "claudinite-update"
+          ],
+          "created_at": "2026-10-05T22:06:47Z",
+          "updated_at": "2026-10-05T22:06:47Z",
+          "comments": 0
+        },
         {
           "number": 1411,
           "title": "[claudinite-work] claudinite-growth/rule-revalidation",
@@ -2427,17 +2306,6 @@
           ],
           "created_at": "2026-10-04T10:40:34Z",
           "updated_at": "2026-10-04T10:45:11Z",
-          "comments": 4
-        },
-        {
-          "number": 1373,
-          "title": "[claudinite-work] basics/improve-comments",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-28T22:12:24Z",
-          "updated_at": "2026-09-28T22:15:53Z",
           "comments": 4
         },
         {
@@ -2496,17 +2364,6 @@
           "created_at": "2026-09-07T20:04:24Z",
           "updated_at": "2026-09-07T20:21:42Z",
           "comments": 4
-        },
-        {
-          "number": 1133,
-          "title": "Align local pack rules and skills to the writing-pack-prose references convention",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:ad-hoc"
-          ],
-          "created_at": "2026-09-01T15:17:59Z",
-          "updated_at": "2026-09-02T08:57:48Z",
-          "comments": 5
         },
         {
           "number": 1129,
@@ -3251,58 +3108,47 @@
       "openIssues": 21,
       "issues": [
         {
-          "number": 895,
+          "number": 904,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-05T11:23:17Z",
-          "updated_at": "2026-10-05T11:23:51Z",
+          "created_at": "2026-10-06T11:12:33Z",
+          "updated_at": "2026-10-06T11:13:32Z",
           "comments": 1
         },
         {
-          "number": 894,
+          "number": 903,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-05T11:23:16Z",
-          "updated_at": "2026-10-05T11:23:16Z",
+          "created_at": "2026-10-06T11:12:33Z",
+          "updated_at": "2026-10-06T11:12:33Z",
           "comments": 0
         },
         {
-          "number": 893,
+          "number": 902,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-05T11:23:16Z",
-          "updated_at": "2026-10-05T11:23:16Z",
+          "created_at": "2026-10-06T11:12:33Z",
+          "updated_at": "2026-10-06T11:12:33Z",
           "comments": 0
         },
         {
-          "number": 892,
-          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-05T11:23:16Z",
-          "updated_at": "2026-10-05T11:23:16Z",
-          "comments": 0
-        },
-        {
-          "number": 891,
+          "number": 900,
           "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-05T11:23:15Z",
-          "updated_at": "2026-10-05T11:23:15Z",
+          "created_at": "2026-10-06T11:12:32Z",
+          "updated_at": "2026-10-06T11:12:32Z",
           "comments": 0
         },
         {
@@ -3445,6 +3291,16 @@
           "created_at": "2026-08-30T16:12:09Z",
           "updated_at": "2026-09-10T19:07:02Z",
           "comments": 1
+        },
+        {
+          "number": 220,
+          "title": "Adopt missingbulb/googlecalendareventcreator into the Claudinite fleet",
+          "labels": [
+            "fleet-adoption"
+          ],
+          "created_at": "2026-08-23T04:53:36Z",
+          "updated_at": "2026-10-06T11:13:27Z",
+          "comments": 2
         },
         {
           "number": 137,
@@ -3907,8 +3763,8 @@
             "task:origin:ad-hoc"
           ],
           "created_at": "2026-10-02T20:55:54Z",
-          "updated_at": "2026-10-02T21:07:01Z",
-          "comments": 1
+          "updated_at": "2026-10-05T11:25:05Z",
+          "comments": 2
         },
         {
           "number": 535,
@@ -4214,6 +4070,10 @@
     }
   ],
   "skipped": [
+    {
+      "repo": "missingbulb/ClaudiniteCanary",
+      "why": "archived"
+    },
     {
       "repo": "missingbulb/EdFringeAllocator",
       "why": "archived"
