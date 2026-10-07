@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-06T11:13:49.064Z",
+  "generated": "2026-10-07T11:01:19.023Z",
   "owner": "missingbulb",
-  "total": 433,
+  "total": 456,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -433,8 +433,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-22T06:40:45Z",
-          "updated_at": "2026-09-22T10:18:14Z",
-          "comments": 1
+          "updated_at": "2026-10-06T21:53:01Z",
+          "comments": 5
         },
         {
           "number": 2193,
@@ -471,8 +471,8 @@
             "task:status:blocked"
           ],
           "created_at": "2026-09-20T10:11:54Z",
-          "updated_at": "2026-10-04T11:17:21Z",
-          "comments": 7
+          "updated_at": "2026-10-06T12:12:40Z",
+          "comments": 8
         },
         {
           "number": 2171,
@@ -1737,8 +1737,16 @@
     },
     {
       "repo": "missingbulb/ClaudiniteEngine",
-      "openIssues": 19,
+      "openIssues": 20,
       "issues": [
+        {
+          "number": 116,
+          "title": "Staging releases reach members without waiting on npm",
+          "labels": [],
+          "created_at": "2026-10-06T13:39:53Z",
+          "updated_at": "2026-10-06T14:09:17Z",
+          "comments": 1
+        },
         {
           "number": 108,
           "title": "Refuse a vendored pack whose minEngineVersion names a Node engine",
@@ -1968,8 +1976,19 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 4,
+      "openIssues": 5,
       "issues": [
+        {
+          "number": 852,
+          "title": "[claudinite-work] claudinite-website/public-installs",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-06T11:23:21Z",
+          "updated_at": "2026-10-06T11:27:24Z",
+          "comments": 2
+        },
         {
           "number": 768,
           "title": "Later, phase 8 (Ariel): legal review before paid launch",
@@ -2154,8 +2173,128 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 12,
+      "openIssues": 24,
       "issues": [
+        {
+          "number": 1052,
+          "title": "Usage: skill-triggered-missing-moments - writing-tests",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:47Z",
+          "updated_at": "2026-10-06T21:19:47Z",
+          "comments": 0
+        },
+        {
+          "number": 1051,
+          "title": "Usage: skill-triggered-missing-moments - writing-tasks",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:47Z",
+          "updated_at": "2026-10-06T21:19:47Z",
+          "comments": 0
+        },
+        {
+          "number": 1050,
+          "title": "Usage: skill-triggered-missing-moments - writing-repo-scanning-checks",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:47Z",
+          "updated_at": "2026-10-06T21:19:47Z",
+          "comments": 0
+        },
+        {
+          "number": 1049,
+          "title": "Usage: skill-triggered-missing-moments - writing-pack-prose",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:46Z",
+          "updated_at": "2026-10-06T21:19:46Z",
+          "comments": 0
+        },
+        {
+          "number": 1048,
+          "title": "Usage: skill-triggered-missing-moments - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:46Z",
+          "updated_at": "2026-10-06T21:19:46Z",
+          "comments": 0
+        },
+        {
+          "number": 1047,
+          "title": "Usage: skill-triggered-missing-moments - releasing-a-cloudflare-site",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:45Z",
+          "updated_at": "2026-10-06T21:19:45Z",
+          "comments": 0
+        },
+        {
+          "number": 1046,
+          "title": "Usage: skill-triggered-missing-moments - fetching-from-the-web",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:45Z",
+          "updated_at": "2026-10-06T21:19:45Z",
+          "comments": 0
+        },
+        {
+          "number": 1045,
+          "title": "Usage: skill-triggered-missing-moments - committing",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:44Z",
+          "updated_at": "2026-10-06T21:19:44Z",
+          "comments": 0
+        },
+        {
+          "number": 1044,
+          "title": "Usage: skill-triggered-missing-moments - changing-pack-elements",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:44Z",
+          "updated_at": "2026-10-06T21:19:44Z",
+          "comments": 0
+        },
+        {
+          "number": 1043,
+          "title": "Usage: skill-forced-only-small - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:43Z",
+          "updated_at": "2026-10-06T21:19:43Z",
+          "comments": 0
+        },
+        {
+          "number": 1042,
+          "title": "Usage: skill-forced-only-small - fetching-from-the-web",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:43Z",
+          "updated_at": "2026-10-06T21:19:43Z",
+          "comments": 0
+        },
+        {
+          "number": 1041,
+          "title": "Usage: skill-always-loaded - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T21:19:42Z",
+          "updated_at": "2026-10-06T21:19:42Z",
+          "comments": 0
+        },
         {
           "number": 1019,
           "title": "[claudinite-work] product-wiki/wiki-growth",
@@ -2288,6 +2427,17 @@
       "openIssues": 37,
       "issues": [
         {
+          "number": 1457,
+          "title": "[claudinite-work] gcec/create-extractor",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-06T14:07:54Z",
+          "updated_at": "2026-10-06T14:11:54Z",
+          "comments": 4
+        },
+        {
           "number": 1441,
           "title": "Claudinite engine 1.61005.8 needs a workflow change",
           "labels": [
@@ -2366,26 +2516,15 @@
           "comments": 4
         },
         {
-          "number": 1129,
-          "title": "[claudinite-work] gcec/create-extractor",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-01T09:31:23Z",
-          "updated_at": "2026-09-01T09:49:10Z",
-          "comments": 4
-        },
-        {
           "number": 1118,
           "title": "Event source request - www.tzavta.co.il",
           "labels": [
             "extractor-request",
-            "agent-running"
+            "needs-human"
           ],
           "created_at": "2026-08-31T11:43:01Z",
-          "updated_at": "2026-09-01T09:48:18Z",
-          "comments": 1
+          "updated_at": "2026-10-06T14:12:52Z",
+          "comments": 2
         },
         {
           "number": 1103,
@@ -3087,8 +3226,27 @@
     },
     {
       "repo": "missingbulb/NoRFinder",
-      "openIssues": 1,
+      "openIssues": 3,
       "issues": [
+        {
+          "number": 381,
+          "title": "Website memory - Move python to sidecar process, keep main page pure JS",
+          "labels": [],
+          "created_at": "2026-10-07T10:23:18Z",
+          "updated_at": "2026-10-07T10:23:18Z",
+          "comments": 0
+        },
+        {
+          "number": 347,
+          "title": "Verify in production: the page shows finder precision and recall",
+          "labels": [
+            "task:origin:ad-hoc",
+            "task:status:blocked"
+          ],
+          "created_at": "2026-10-07T07:09:19Z",
+          "updated_at": "2026-10-07T07:13:29Z",
+          "comments": 2
+        },
         {
           "number": 311,
           "title": "Add packs: suspected from this repo’s shape",
@@ -3105,50 +3263,72 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 21,
+      "openIssues": 23,
       "issues": [
         {
-          "number": 904,
+          "number": 915,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-06T11:12:33Z",
-          "updated_at": "2026-10-06T11:13:32Z",
+          "created_at": "2026-10-07T11:00:26Z",
+          "updated_at": "2026-10-07T11:01:00Z",
           "comments": 1
         },
         {
-          "number": 903,
+          "number": 914,
           "title": "[claudinite-work] claudinite-tasks/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-06T11:12:33Z",
-          "updated_at": "2026-10-06T11:12:33Z",
+          "created_at": "2026-10-07T11:00:25Z",
+          "updated_at": "2026-10-07T11:00:25Z",
           "comments": 0
         },
         {
-          "number": 902,
+          "number": 913,
           "title": "[claudinite-work] claudinite-lifecycle/update",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-06T11:12:33Z",
-          "updated_at": "2026-10-06T11:12:33Z",
+          "created_at": "2026-10-07T11:00:25Z",
+          "updated_at": "2026-10-07T11:00:25Z",
           "comments": 0
         },
         {
-          "number": 900,
+          "number": 912,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-07T11:00:25Z",
+          "updated_at": "2026-10-07T11:00:25Z",
+          "comments": 0
+        },
+        {
+          "number": 911,
+          "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-roster",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-07T11:00:24Z",
+          "updated_at": "2026-10-07T11:00:24Z",
+          "comments": 0
+        },
+        {
+          "number": 910,
           "title": "[claudinite-work] claudinite-fleet-sheepdog/fleet-pack-seeds",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-06T11:12:32Z",
-          "updated_at": "2026-10-06T11:12:32Z",
+          "created_at": "2026-10-07T11:00:23Z",
+          "updated_at": "2026-10-07T11:00:23Z",
           "comments": 0
         },
         {
@@ -3734,8 +3914,58 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 17,
+      "openIssues": 22,
       "issues": [
+        {
+          "number": 619,
+          "title": "Usage: skill-triggered-missing-moments - writing-tests",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T20:59:10Z",
+          "updated_at": "2026-10-06T20:59:10Z",
+          "comments": 0
+        },
+        {
+          "number": 618,
+          "title": "Usage: skill-triggered-missing-moments - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T20:59:10Z",
+          "updated_at": "2026-10-06T20:59:10Z",
+          "comments": 0
+        },
+        {
+          "number": 617,
+          "title": "Usage: skill-triggered-missing-moments - committing",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T20:59:09Z",
+          "updated_at": "2026-10-06T20:59:09Z",
+          "comments": 0
+        },
+        {
+          "number": 616,
+          "title": "Usage: skill-triggered-missing-moments - changing-pack-elements",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T20:59:09Z",
+          "updated_at": "2026-10-06T20:59:09Z",
+          "comments": 0
+        },
+        {
+          "number": 615,
+          "title": "Usage: skill-forced-only-small - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-06T20:59:08Z",
+          "updated_at": "2026-10-06T20:59:08Z",
+          "comments": 0
+        },
         {
           "number": 594,
           "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
