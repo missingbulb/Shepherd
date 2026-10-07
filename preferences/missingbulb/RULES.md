@@ -40,3 +40,6 @@
 - **Wanting to know a PR's state after this turn** - never schedule a self check-in to poll it, no
   recurring wake-up, routine or `send_later` re-arm that re-reads its state, CI or mergeability on
   a timer; act on PR events when they arrive, and end the turn when none has. (no-pr-polling)
+
+- **Stating a time in conversation with the owner** - give it in Israel time (`Asia/Jerusalem`,
+  IST/IDT as the date falls), not UTC. (israel-time)
