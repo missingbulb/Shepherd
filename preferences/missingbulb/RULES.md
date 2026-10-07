@@ -44,3 +44,6 @@
 
 - **Stating a time in conversation with the owner** - give it in Israel time (`Asia/Jerusalem`,
   IST/IDT as the date falls), not UTC. (israel-time)
+
+- **A thread in a Claude project having delivered its work, with nothing left to do** - archive it
+  (`archive_session`). (archive-finished-threads)
