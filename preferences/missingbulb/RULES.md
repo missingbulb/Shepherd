@@ -47,3 +47,6 @@
 
 - **A thread in a Claude project having delivered its work, with nothing left to do** - archive it
   (`archive_session`). (archive-finished-threads)
+
+- **Sending work to a thread in a Claude project that is archived** - never send it there as is:
+  unarchive the thread first (`unarchive_session`), or create a new one. (no-work-to-archived)
