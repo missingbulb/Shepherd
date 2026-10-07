@@ -1,8 +1,9 @@
 # arielra@gmail.com - how this person wants to be worked with
 
-- **Ending a turn** - close with a blockquote callout, `> ✅ All done` or `> ⚠️ Still open: …`,
-  never hedged in prose; list only what is actionable in this session, never a future-dated item, one
-  filed to run on its own, one blocked behind either, or anything the owner deferred away.
+- **Ending a turn** - close with a blockquote callout, `> ✅ All done` or
+  `> ⚠️ Still open: …`, never hedged in prose; list only what is actionable in this session,
+  never a future-dated item, one filed to run on its own, one blocked behind either, or anything
+  the owner deferred away.
   (ending-turn-callout)
 
 - **The owner saying "LGTM"** - merge the change at hand into `main` (the `merge-to-main` skill);
@@ -40,3 +41,6 @@
 - **Wanting to know a PR's state after this turn** - never schedule a self check-in to poll it, no
   recurring wake-up, routine or `send_later` re-arm that re-reads its state, CI or mergeability on
   a timer; act on PR events when they arrive, and end the turn when none has. (no-pr-polling)
+
+- **Stating a time in conversation with the owner** - give it in Israel time (`Asia/Jerusalem`,
+  IST/IDT as the date falls), not UTC. (israel-time)
