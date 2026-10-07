@@ -1,8 +1,9 @@
 # arielra@gmail.com - how this person wants to be worked with
 
-- **Ending a turn** - close with a blockquote callout, `> ✅ All done` or `> ⚠️ Still open: …`,
-  never hedged in prose; list only what is actionable in this session, never a future-dated item, one
-  filed to run on its own, one blocked behind either, or anything the owner deferred away.
+- **Ending a turn** - close with a blockquote callout, `> ✅ All done` or
+  `> ⚠️ Still open: …`, never hedged in prose; list only what is actionable in this session,
+  never a future-dated item, one filed to run on its own, one blocked behind either, or anything
+  the owner deferred away.
   (ending-turn-callout)
 
 - **The owner saying "LGTM"** - merge the change at hand into `main` (the `merge-to-main` skill);
