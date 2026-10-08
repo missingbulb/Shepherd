@@ -1,11 +1,23 @@
 {
   "usage-findings": {
-    "value": 13,
-    "previous": 15,
-    "note": "2026-09-09 to 2026-10-06"
+    "value": 15,
+    "previous": 13,
+    "note": "2026-09-10 to 2026-10-07"
   },
   "usage-newest": {
     "rows": [
+      {
+        "subject": "issue-labels-overwrite",
+        "rule": "guard-overruled",
+        "cause": "probable",
+        "since": "2026-10-08"
+      },
+      {
+        "subject": "pipe-tail-hides-exit",
+        "rule": "guard-overruled",
+        "cause": "probable",
+        "since": "2026-10-08"
+      },
       {
         "subject": "committing",
         "rule": "skill-forced-only-small",
@@ -51,18 +63,6 @@
       {
         "subject": "searching-for-a-tool",
         "rule": "skill-always-loaded",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "searching-for-a-tool",
-        "rule": "skill-forced-only-small",
-        "cause": "known",
-        "since": "2026-09-26"
-      },
-      {
-        "subject": "searching-for-a-tool",
-        "rule": "skill-triggered-missing-moments",
         "cause": "known",
         "since": "2026-09-26"
       }
