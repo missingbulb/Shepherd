@@ -1,5 +1,5 @@
-// The fleet-triage skill's classifier: reads `.claudinite/local/fleet-issues.GENERATED.json`
-// (the fleet-issues-snapshot task's output) and prints the report's standard cuts, plus the
+// The fleet-triage skill's classifier: reads `.claudinite/fleet/issues.GENERATED.json`
+// (the fleet pack's fleet-issues task's output) and prints the report's standard cuts, plus the
 // per-repo evidence markdown on `--evidence <path>`.
 //
 //   node .claudinite/local/packs/shepherd/skills/fleet-triage/classify.mjs [snapshot.json] [--evidence out.md]
@@ -142,7 +142,7 @@ export function main(argv) {
   const ev = args.indexOf('--evidence');
   const evidencePath = ev >= 0 ? args[ev + 1] : null;
   const positional = args.filter((a, i) => a !== '--evidence' && i !== ev + 1);
-  const file = positional[0] ?? '.claudinite/local/fleet-issues.GENERATED.json';
+  const file = positional[0] ?? '.claudinite/fleet/issues.GENERATED.json';
   const snapshot = JSON.parse(readFileSync(file, 'utf8'));
   const rows = flatten(snapshot);
   const c = cuts(rows);

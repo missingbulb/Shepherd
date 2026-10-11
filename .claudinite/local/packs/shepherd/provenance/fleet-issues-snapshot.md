@@ -73,3 +73,10 @@
   so the worker's `branchPrefix`/`stamp` call threw and parked #816.
 - **Actor:** @missingbulb (owner).
 - **Mechanism:** the worker reads `CLAUDINITE_TARGET_BRANCH`/`CLAUDINITE_TARGET_PR`.
+
+## 2026-10-11 · retired · moved into cn fleet as the fleet pack's fleet-issues task
+- **Reason:** the Node task could not survive Shepherd's move off the Node engine; Ariel chose to
+  move the snapshot into `cn fleet` rather than keep or drop it.
+- **Actor:** @missingbulb (owner).
+- **Mechanism:** `cn fleet issues` and the embedded fleet pack's `fleet-issues` task, writing
+  `.claudinite/fleet/issues.GENERATED.json` (ClaudiniteEngine#212).

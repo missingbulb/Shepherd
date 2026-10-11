@@ -1,10 +1,5 @@
-# The repo's test/CI flow. Today it holds one step: the Claudinite WORLD-SCOPE
-# sweep (bootstrap.md Part 8) — a whole-repo invariant assertion, the same shape as
-# a test suite, so a red sweep fails this flow exactly like a failing test would.
-# The WORK scope is not here: it judges a session's own change and runs at that
-# session's Stop hook.
-#
-# The repo's own unit tests are the second step. They live in the local pack, under
+# The repo's own unit tests. Claudinite's checks run in claudinite-ci.yml. The tests live in
+# the local pack, under
 # `.claudinite/`, which Node's default test discovery skips as a dot-directory — hence
 # the explicit `find`. Further suites go in as further steps of this job, not as a
 # second workflow.
@@ -24,18 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          # The sweep's default scope compares against origin/main, so the
-          # history it measures from has to be here.
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      # The engine's always-vendored Node CLI, invoked as the standalone command.
-      - name: Claudinite world sweep
-        run: node .claudinite/shared/engine/checks/check_the_world.mjs
+      # The guard-check tests feed calls to the pinned engine's hook.
+      - name: Install the pinned engine
+        run: sh .claudinite/launch version
 
       - name: Unit tests
         run: node --test $(find .claudinite/local -name '*.test.mjs')

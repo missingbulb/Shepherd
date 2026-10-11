@@ -40,3 +40,8 @@
 - **Actor:** claudinite-lifecycle/update run.
 - **Model:** Claude Sonnet 5, per the commit trailer.
 - **Landed:** commit 18e2a90 (Refs #742).
+
+## 2026-10-11 · reworded · Read the fleet pack's issues snapshot
+- **Reason:** the snapshot moved into `cn fleet` (ClaudiniteEngine#212); the skill and
+  `classify.mjs` read `.claudinite/fleet/issues.GENERATED.json` and force `fleet/fleet-issues`.
+- **Actor:** @missingbulb (owner).
