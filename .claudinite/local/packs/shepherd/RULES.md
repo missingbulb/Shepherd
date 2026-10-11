@@ -34,12 +34,6 @@ canon instead, where every repo gets it.
   live, a ref six days stale updated correctly with no `--unshallow`. Reach for `--unshallow` only
   if history, not the ref, still comes up short (#470). (fetching-stale-origin)
 
-- **Writing a PR or issue body that cross-references an object you're about to create** — don't
-  guess its number. Issue/PR numbers share one counter per repo, and the object you're creating
-  consumes one too; a PR body written before its companion issue exists can end up citing the wrong
-  number once the issue actually lands. Create the referenced object first, or leave a placeholder
-  and patch the body once the number is known (#24). (writing-pr-issue)
-
 - **Parsing an overflowed `search_issues`/`search_code` result from its saved `tool-results/*.txt`
   file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
   envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
