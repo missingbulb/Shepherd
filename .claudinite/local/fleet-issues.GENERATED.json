@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-10T10:34:41.694Z",
+  "generated": "2026-10-11T10:49:53.883Z",
   "owner": "missingbulb",
-  "total": 333,
+  "total": 356,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -1602,8 +1602,16 @@
     },
     {
       "repo": "missingbulb/ClaudiniteEngine",
-      "openIssues": 20,
+      "openIssues": 21,
       "issues": [
+        {
+          "number": 179,
+          "title": "Forced skills: let each PreToolUse trigger declare block vs. inject",
+          "labels": [],
+          "created_at": "2026-10-11T08:56:42Z",
+          "updated_at": "2026-10-11T08:56:42Z",
+          "comments": 0
+        },
         {
           "number": 174,
           "title": "Move members' guard hooks to the $CLAUDE_PROJECT_DIR form, then retire the relative form",
@@ -1657,8 +1665,8 @@
           "title": "Engine CI p75 is over 60s",
           "labels": [],
           "created_at": "2026-10-07T11:50:42Z",
-          "updated_at": "2026-10-09T22:19:12Z",
-          "comments": 4
+          "updated_at": "2026-10-10T11:14:05Z",
+          "comments": 5
         },
         {
           "number": 116,
@@ -1854,8 +1862,19 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 3,
+      "openIssues": 4,
       "issues": [
+        {
+          "number": 899,
+          "title": "[claudinite-work] claudinite-website/public-installs",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-10T10:42:21Z",
+          "updated_at": "2026-10-10T10:49:23Z",
+          "comments": 2
+        },
         {
           "number": 768,
           "title": "Later, phase 8 (Ariel): legal review before paid launch",
@@ -1983,19 +2002,8 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 36,
+      "openIssues": 35,
       "issues": [
-        {
-          "number": 1506,
-          "title": "[claudinite-work] claudinite-growth/growth-extract",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-09T22:22:24Z",
-          "updated_at": "2026-10-09T22:22:24Z",
-          "comments": 0
-        },
         {
           "number": 1411,
           "title": "[claudinite-work] claudinite-growth/rule-revalidation",
@@ -2395,13 +2403,41 @@
     },
     {
       "repo": "missingbulb/MissingBulbWebsite",
-      "openIssues": 0,
-      "issues": []
+      "openIssues": 1,
+      "issues": [
+        {
+          "number": 666,
+          "title": "[claudinite-work] claudinite-growth/growth-extract",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-10T10:48:24Z",
+          "updated_at": "2026-10-10T10:48:24Z",
+          "comments": 0
+        }
+      ]
     },
     {
       "repo": "missingbulb/NoRFinder",
-      "openIssues": 1,
+      "openIssues": 3,
       "issues": [
+        {
+          "number": 436,
+          "title": "Run only the touched studies' tests in CI, once a second study exists",
+          "labels": [],
+          "created_at": "2026-10-11T08:44:35Z",
+          "updated_at": "2026-10-11T08:44:35Z",
+          "comments": 0
+        },
+        {
+          "number": 434,
+          "title": "web/style.css lines 345-349: corrupted rule block around #busy.peek / .spin.big",
+          "labels": [],
+          "created_at": "2026-10-11T08:09:00Z",
+          "updated_at": "2026-10-11T08:09:00Z",
+          "comments": 0
+        },
         {
           "number": 381,
           "title": "Website memory - Move python to sidecar process, keep main page pure JS",
@@ -2414,28 +2450,160 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 32,
+      "openIssues": 45,
       "issues": [
         {
-          "number": 952,
+          "number": 979,
           "title": "[claudinite-work] shepherd/fleet-issues-snapshot",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-10T10:33:11Z",
-          "updated_at": "2026-10-10T10:34:28Z",
+          "created_at": "2026-10-11T10:45:55Z",
+          "updated_at": "2026-10-11T10:49:38Z",
           "comments": 1
         },
         {
-          "number": 951,
-          "title": "[claudinite-work] claudinite-tasks/usage-fold",
+          "number": 975,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-10T10:33:11Z",
-          "updated_at": "2026-10-10T10:33:11Z",
+          "created_at": "2026-10-11T10:45:54Z",
+          "updated_at": "2026-10-11T10:45:54Z",
+          "comments": 0
+        },
+        {
+          "number": 973,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:running-agent",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:45:53Z",
+          "updated_at": "2026-10-11T10:48:00Z",
+          "comments": 4
+        },
+        {
+          "number": 968,
+          "title": "[claudinite-work] basics/ci-performance",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:45:51Z",
+          "updated_at": "2026-10-11T10:45:51Z",
+          "comments": 0
+        },
+        {
+          "number": 967,
+          "title": "Usage: skill-triggered-missing-moments - writing-tests",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:35Z",
+          "updated_at": "2026-10-10T20:01:35Z",
+          "comments": 0
+        },
+        {
+          "number": 966,
+          "title": "Usage: skill-triggered-missing-moments - writing-repo-scanning-checks",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:35Z",
+          "updated_at": "2026-10-10T20:01:35Z",
+          "comments": 0
+        },
+        {
+          "number": 965,
+          "title": "Usage: skill-triggered-missing-moments - writing-pack-prose",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:35Z",
+          "updated_at": "2026-10-10T20:01:35Z",
+          "comments": 0
+        },
+        {
+          "number": 964,
+          "title": "Usage: skill-triggered-missing-moments - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:34Z",
+          "updated_at": "2026-10-10T20:01:34Z",
+          "comments": 0
+        },
+        {
+          "number": 963,
+          "title": "Usage: skill-triggered-missing-moments - merge-to-main",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:34Z",
+          "updated_at": "2026-10-10T20:01:34Z",
+          "comments": 0
+        },
+        {
+          "number": 962,
+          "title": "Usage: skill-triggered-missing-moments - fetching-from-the-web",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:34Z",
+          "updated_at": "2026-10-10T20:01:34Z",
+          "comments": 0
+        },
+        {
+          "number": 961,
+          "title": "Usage: skill-triggered-missing-moments - committing",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:33Z",
+          "updated_at": "2026-10-10T20:01:33Z",
+          "comments": 0
+        },
+        {
+          "number": 960,
+          "title": "Usage: skill-triggered-missing-moments - changing-pack-elements",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:33Z",
+          "updated_at": "2026-10-10T20:01:33Z",
+          "comments": 0
+        },
+        {
+          "number": 959,
+          "title": "Usage: skill-forced-only-small - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:33Z",
+          "updated_at": "2026-10-10T20:01:33Z",
+          "comments": 0
+        },
+        {
+          "number": 958,
+          "title": "Usage: skill-always-loaded - searching-for-a-tool",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:32Z",
+          "updated_at": "2026-10-10T20:01:32Z",
+          "comments": 0
+        },
+        {
+          "number": 957,
+          "title": "Usage: skill-always-loaded - committing",
+          "labels": [
+            "usage-finding"
+          ],
+          "created_at": "2026-10-10T20:01:32Z",
+          "updated_at": "2026-10-10T20:01:32Z",
           "comments": 0
         },
         {
@@ -2909,8 +3077,74 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 1,
+      "openIssues": 7,
       "issues": [
+        {
+          "number": 657,
+          "title": "[claudinite-work] engine/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:54Z",
+          "updated_at": "2026-10-11T10:47:54Z",
+          "comments": 0
+        },
+        {
+          "number": 656,
+          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:54Z",
+          "updated_at": "2026-10-11T10:47:54Z",
+          "comments": 0
+        },
+        {
+          "number": 655,
+          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:53Z",
+          "updated_at": "2026-10-11T10:47:53Z",
+          "comments": 0
+        },
+        {
+          "number": 654,
+          "title": "[claudinite-work] claudinite-growth/growth-dedup",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:53Z",
+          "updated_at": "2026-10-11T10:47:53Z",
+          "comments": 0
+        },
+        {
+          "number": 653,
+          "title": "[claudinite-work] basics/improve-comments",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:53Z",
+          "updated_at": "2026-10-11T10:47:53Z",
+          "comments": 0
+        },
+        {
+          "number": 652,
+          "title": "[claudinite-work] basics/ci-performance",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-11T10:47:52Z",
+          "updated_at": "2026-10-11T10:49:46Z",
+          "comments": 1
+        },
         {
           "number": 578,
           "title": "Read the single-channel CD31 trimmed stacks in the 3D viewer export and the graph tracer",
