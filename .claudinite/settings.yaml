@@ -1,0 +1,33 @@
+engine:
+  channel: "staging"
+  version: "1.61011.3"
+  manifest: "sha512-BjyUTrLDRffXIPKlTn9mPtbkHj4rDs2Fh8wmL9foW7Ks4egXQO1FiH7OgwJLdVmagqMCrStDHWTpOU82Ol6D0w=="
+packs:
+  channel: "canary"
+  declared:
+    - "local/shepherd"
+    - "basics"
+    - "claudinite-lifecycle"
+    - "git-github"
+    - id: "claude-code-web-users-support"
+      answers:
+        store: "missingbulb/Shepherd"
+      config:
+        repo: "missingbulb/Shepherd"
+    - "claudinite-growth"
+tasks:
+  routines:
+    default:
+      url: "https://api.anthropic.com/v1/claude_code/routines/trig_01Xc43XQwqjUgTaFQhXvAJdk/fire"
+      tokenSecret: "CCR_ROUTINE_TOKEN"
+fleet:
+  owner: "missingbulb"
+  kind: "user"
+  exclude:
+    - "missingbulb/empty"
+    - "missingbulb/Sheepdog"
+  staleDays: 14
+  packSeeds:
+    - id: "claude-code-web-users-support"
+      config:
+        repo: "missingbulb/Shepherd"

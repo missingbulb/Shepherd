@@ -1,33 +1,18 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
-import { loadDeclaredChecks } from
-  '../../../../../../shared/engine/checks/helpers/pattern-rules.mjs';
+import { readFileSync } from 'node:fs';
 
-const skillDir = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'skills', 'sending-email');
-const rules = loadDeclaredChecks(skillDir);
-const rule = rules.find((r) => r.id === 'email-service-hardcoded-address');
-
-const ctxFor = (path, text) => ({
-  files: [path],
-  tracked: [path],
-  allFiles: [path],
-  read: (p) => (p === path ? text : null),
-});
+const checks = JSON.parse(readFileSync(new URL('../../../skills/sending-email/declared-checks.json', import.meta.url), 'utf8'));
+const rule = checks.find((c) => c.id === 'email-service-hardcoded-address');
+const pattern = (s) => {
+  const m = /^\/(.*)\/([a-z]*)$/s.exec(s);
+  return new RegExp(m[1], m[2]);
+};
+const fires = (line) => rule.matchLines.some((l) => pattern(l.match).test(line));
 
 test('email-service-hardcoded-address fires on a literal address in a task file, stays quiet on a repo-variable read', () => {
   assert.ok(rule, 'email-service-hardcoded-address is declared in the skill');
-
-  const dirty = ctxFor(
-    '.claudinite/local/packs/shepherd/tasks/example-task/worker.mjs',
-    "const message = { from: sender, to: 'owner@example.com', subject, html, text };\n",
-  );
-  assert.equal(rule.run(dirty).length, 1);
-
-  const clean = ctxFor(
-    '.claudinite/local/packs/shepherd/tasks/example-task/worker.mjs',
-    "const message = { from: sender, to: process.env.DIGEST_RECIPIENT, subject, html, text };\n",
-  );
-  assert.equal(rule.run(clean).length, 0);
+  assert.ok(pattern(rule.scanFiles).test('.claudinite/local/packs/shepherd/tasks/example-task/worker.mjs'));
+  assert.equal(fires("const message = { from: sender, to: 'owner@example.com', subject, html, text };"), true);
+  assert.equal(fires('const message = { from: sender, to: process.env.DIGEST_RECIPIENT, subject, html, text };'), false);
 });

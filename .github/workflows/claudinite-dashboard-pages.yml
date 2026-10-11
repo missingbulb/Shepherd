@@ -32,6 +32,7 @@ jobs:
         with:
           ref: gh-pages
       - uses: actions/configure-pages@v5
+      - run: rm -rf .claude .claudinite
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

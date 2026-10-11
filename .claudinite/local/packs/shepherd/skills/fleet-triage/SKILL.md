@@ -31,15 +31,14 @@ prescribe. One sampled comment thread overturned it. Sample every cohort you int
 
 ## 1. Collect
 
-The fleet's open issues are already on disk: `.claudinite/local/fleet-issues.GENERATED.json`,
-written by this pack's `fleet-issues-snapshot` task ([its README](../../tasks/fleet-issues-snapshot/README.md))
-from an Actions-side walk over the fleet PAT. Read its `generated` stamp first; if it is older
-than the run should tolerate, force the task and wait for its PR to land before classifying:
+The fleet's open issues are already on disk: `.claudinite/fleet/issues.GENERATED.json`,
+written by the fleet pack's `fleet-issues` task (`cn fleet issues`) from an Actions-side walk over
+the fleet PAT. Read its `generated` stamp first; if it is older than the run should tolerate,
+force the task and wait for its PR to land before classifying:
 
 ```
-node .claudinite/shared/packs/claudinite-tasks/src/schedule/create-work-item.mjs shepherd/fleet-issues-snapshot
+.claudinite/bin/cn work create fleet/fleet-issues
 ```
-
 Then classify — the script is the collection **and** the standard cuts, reproducible and free to
 re-cut:
 
