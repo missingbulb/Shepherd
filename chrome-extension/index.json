@@ -1,0 +1,95 @@
+{
+  "v": 1,
+  "pack": "chrome-extension",
+  "serial": 15,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "e8e674b16e79ac32c1120f60cbe757b6c63eb3aacdf89814351cdce2a99eabdb",
+      "size": 47668,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "6c48fb166a61261e5d6f2ac9fd80c8e3f3d7952262886412072fc8cfaec1a84c",
+      "size": 47661,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T21:08:50Z",
+      "sourceCommit": "be046455426cab06c677ba22b22eef19e722360f"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "8522d1a7fddaa58dd3d275d9fdf270d3c005a131168627f7873fcff78f323bcc",
+      "size": 45401,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "03871a79569203fdc09c34afa2ce568f58288424b042fe01e7ddc0d68a410d4c",
+      "size": 45399,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "5408d0dc250b6e0b0dbd1e2cde045223d75d394580765cf4eec579ec82529c49",
+      "size": 43488,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    },
+    {
+      "version": "1.61008.1",
+      "sha256": "a06254a75998a90d239f5df6af7a64997467949fb392146480725d3092f9238b",
+      "size": 43372,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:31:03Z",
+      "sourceCommit": "fa62da2053a9fc8074948c2f8083d8f0e43d5b21"
+    },
+    {
+      "version": "1.61009.1",
+      "sha256": "5feb64a1a15882bfcf700e8505c2c9f1d5747be31c569ef6c1562d38d750753f",
+      "size": 43973,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T06:38:49Z",
+      "sourceCommit": "77f3a25fd5b0d5b74eccf7db9608b68faea453d6"
+    },
+    {
+      "version": "1.61013.1",
+      "sha256": "e803c813bb31d4453e0be75b46512d906d2f98c03a1874b33b6eccb7820c4b89",
+      "size": 41295,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-13T08:48:25Z",
+      "sourceCommit": "4da674066bd36b221a9d773d029bbdfddf050a51"
+    }
+  ]
+}

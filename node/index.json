@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "node",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "e0c652775062ec00c76cc48c47d8bfa0e3c5a1640b33d2e8c75f567fcda5bb54",
+      "size": 7703,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "6228cb285a72c54ae59b644a28cd46ec15dc8308882912229bfc2917ed2a9193",
+      "size": 7434,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "19d2b5d04f24e3afd7c86050bbdf0f722016e04b84b631616df5ed9ee61cd6c8",
+      "size": 7433,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

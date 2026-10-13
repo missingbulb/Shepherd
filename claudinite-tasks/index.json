@@ -1,0 +1,128 @@
+{
+  "v": 1,
+  "pack": "claudinite-tasks",
+  "serial": 22,
+  "versions": [
+    {
+      "version": "60928.2",
+      "sha256": "4c6a57b2d1f9e1f46f17d57ffe66861f0602d9a0960230109d379b888833a87d",
+      "size": 325419,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "7781859cfdd2df5af304971f017ccb0903519de2f6df2f91fdf7a81fbaf21545",
+      "size": 325528,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T17:50:47Z",
+      "sourceCommit": "48b86d9c69366e9da8d866033d15d05a6c04653c"
+    },
+    {
+      "version": "61002.3",
+      "sha256": "d55f627dd5a69762d5c8ccf83843bfef6f396505d1b7784cca0355ad7912e516",
+      "size": 108299,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T21:08:50Z",
+      "sourceCommit": "be046455426cab06c677ba22b22eef19e722360f"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "32ebbeb9b6302658a5019feeaff6ac1f6f91c825c7e156c5b506842842994d38",
+      "size": 108267,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T02:52:07Z",
+      "sourceCommit": "4a406641f96d29915a2c2705261b22bdac245a86"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "c7e932c4e27f57398ba6a6e44c6251643cf4ab72abf7d18fdb99eb391bf00a19",
+      "size": 108263,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "5068c9b348930800c505f3ab6d1b2d5bfa2f806ad018ca28f1c2d11aa2aa99ff",
+      "size": 100137,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    },
+    {
+      "version": "1.61005.2",
+      "sha256": "01d2632aeebc9d57d1b49d69212dcc9853d1eea7bccd00df480ead1f3af44cbc",
+      "size": 103439,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T17:15:07Z",
+      "sourceCommit": "998200ac2dd80d8841f3b5da9eab95e2dc27d737"
+    },
+    {
+      "version": "1.61006.1",
+      "sha256": "3783cca560365b55e43bbd7382156550ce97858dd395520e9bd15b3aecb02b0a",
+      "size": 103649,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-07T13:43:16Z",
+      "sourceCommit": "6a2ba67d7b3c6910f14bad34e97550280cc13ac8"
+    },
+    {
+      "version": "1.61007.1",
+      "sha256": "ad7b7cdf726bac72ebe3571dd8feb7a477fe4b9454d1bd21a06f6ecf34232d10",
+      "size": 103612,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-07T15:53:53Z",
+      "sourceCommit": "4473f5fe0f1edccf35120b0c4d7967498171cdc3"
+    },
+    {
+      "version": "1.61007.2",
+      "sha256": "a33864f5cf99add06dd4c3f0ce2a78f47780e67ba0bc0dc4ee392524a0a32c18",
+      "size": 103616,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:26:25Z",
+      "sourceCommit": "40abd85bab8707c7a4ed37dcc0ba9e51ad7d752a"
+    },
+    {
+      "version": "1.61008.1",
+      "sha256": "46960c93c42b0360b4f35e7a330c940c6ea8b36825786ba407617c40bc56b5d1",
+      "size": 86147,
+      "minEngineVersion": "1.61008.2",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T05:25:42Z",
+      "sourceCommit": "7cf6c0b1ebb793f9aa4fc57d21e4cc9c80313993"
+    }
+  ]
+}

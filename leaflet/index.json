@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "leaflet",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "69bda7cf8bcfb0aa223fd0f64b90ec819c0c161f02b4ba74874bff000c2de9db",
+      "size": 7176,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "3154062594f52bd6007bdecdd4ca42cfa2e0934a0d09c318e075d526e83647b8",
+      "size": 5953,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "1d5c78d62749a22b8105d7873ca9ffe1c07775c5cce40465e8f2c24810e8303f",
+      "size": 5952,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

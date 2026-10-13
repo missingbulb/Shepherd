@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "research-project",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "4b4c0b8be851761c9bd980e8ad9549e140538ca0dc0f21acfbb7d7657161965a",
+      "size": 11779,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "ce0bb0ca9356d5ba2071e7b9f72dc62b2fac05dbaceed7fa074bcf7a7e050d90",
+      "size": 11786,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "7d85931c0c6ee67381acca83651be170a62bb875ccf54bb13f1262d34c95c792",
+      "size": 11782,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

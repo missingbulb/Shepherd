@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "google-identity",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "5f9e7d8f2c1fe74a0cfc6791c42ec2bfd17ac0d0e8a91f8e6ddf297fa15204fb",
+      "size": 3668,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "69f2f4cf72069b142dd3eab29a59e065ea226bebf5a4fee684255d65dd23eb26",
+      "size": 3494,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "c1f4fbfcf79592256ec7e07d9dd20291af3679892c5f06dd63c47ae176f1da11",
+      "size": 3488,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "html",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "18491c2143045b28cbf8035996897748ab2bd8f0014086355b87dc29724dff9f",
+      "size": 2435,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "e157a9c437ab57e849a3e37d0545c7ed2715a94523063e9f7e402b16304a8318",
+      "size": 2437,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "b05d735662e29e20933d47441ca7c553d8b9df2cbd46f0a02026daff77c9d710",
+      "size": 2437,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

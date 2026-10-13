@@ -1,0 +1,59 @@
+{
+  "v": 1,
+  "pack": "public-website",
+  "serial": 8,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "5eac5427144665c9c1fe5556e9b24920617053349f9a0c183143d51bb889db57",
+      "size": 6773,
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "html"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "5eba1b6255e76bcab9aa2c5f5903f83826ab2725f5c6e028c31be3b8975ccbf8",
+      "size": 7024,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "html"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "0d17546ebf362fb9f3cfcd7d2789bde4c4ddc1bfd1a437a52ca85381c47881fb",
+      "size": 7024,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "html"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "f4b83836f9e8cc599a2d492f6dde64175af932d176f61cbe192242cb1f5190fa",
+      "size": 6465,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "html"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "v": 1,
+  "pack": "claude-code-web-users-support",
+  "serial": 13,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "44ccc22085badf2237e85f0e46b044828136ebb183f7e4d50b6f802af0fa4ae6",
+      "size": 18331,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "2b3ed3ba3bfefae53d1d00151e48bcc22b1868019f9071e063ceab1457ac29f5",
+      "size": 11517,
+      "minEngineVersion": "61003.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "f4eb92233753d91cc1f116750a1666a286a1e902661d8fdf3ced72a7d33a32c8",
+      "size": 11519,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "cdac41c8df6825d97e3263159ce6e6f60482af6d4b95351d4a32f99c98a2253a",
+      "size": 10410,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    },
+    {
+      "version": "1.61009.1",
+      "sha256": "8ce712f0269f5f56ea0bfc1480682fddfdbd2a06da1effdcf4d4b33792fa6e51",
+      "size": 10325,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T11:57:43Z",
+      "sourceCommit": "e896a8d17c315892800447835848886772fda876"
+    },
+    {
+      "version": "1.61009.2",
+      "sha256": "462a5c2c316cae0b5fee5a171841fdfd2f4e29c0c562cb710c6727ded0130b59",
+      "size": 10138,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T17:29:20Z",
+      "sourceCommit": "536104a04221e6ecfd979396170bd7e76afb4117"
+    },
+    {
+      "version": "1.61011.1",
+      "sha256": "49637b85b3f79fae1e245174d02a04f4c004377466df42afa5eb59b6355aab04",
+      "size": 10640,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-11T23:39:13Z",
+      "sourceCommit": "48a6d9984a695764744e5a7bca30408f77166465"
+    },
+    {
+      "version": "1.61012.1",
+      "sha256": "2241f242ed5046dcb428cd2274e476b86668ba324af2e40105ef68ecbbad626b",
+      "size": 10654,
+      "minEngineVersion": "1.61003.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-12T17:18:24Z",
+      "sourceCommit": "f8acb1c4109021aa672567f988e5d9183ef09d41"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "v": 1,
+  "pack": "firebase",
+  "serial": 8,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "5194059f140f9bfe4f72a3f198ec5eef965de065c05d9126ff35faa17d85a559",
+      "size": 8941,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "23e34234c88573f010999c6210ddec646ce025101dd58367ae599a67c0c36848",
+      "size": 8939,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "cf147596ebdcd4c1b7120fb230d86bd04a663d60a8c01d379d0bc03657b5dfef",
+      "size": 8939,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "9a4d347120d6d15173944122be5d94e1ba54333b98bcb0bd70467757240c60a1",
+      "size": 8319,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    }
+  ]
+}

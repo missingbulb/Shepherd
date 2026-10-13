@@ -1,0 +1,183 @@
+{
+  "v": 1,
+  "pack": "claudinite-lifecycle",
+  "serial": 30,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "4925341d0f5b8cdd67b0c41242eb40b58d6d62b52651fc04cca84fe42dc2584f",
+      "size": 73585,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "8a47e5dc05166c1ab49b3958c23e1c39a766a319c80ff70108575c318ac67cca",
+      "size": 56625,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "61002.2",
+      "sha256": "d0ada304b3748c58d726c0343ac4371e69056767e7ce0384fea9903639b6419b",
+      "size": 56634,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T17:50:47Z",
+      "sourceCommit": "48b86d9c69366e9da8d866033d15d05a6c04653c"
+    },
+    {
+      "version": "61002.3",
+      "sha256": "cb9d6dbd59c65ca41d51854d3dd7aeef13b3062cb02e1751046d234b5b5511e4",
+      "size": 20277,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T21:08:50Z",
+      "sourceCommit": "be046455426cab06c677ba22b22eef19e722360f"
+    },
+    {
+      "version": "61002.4",
+      "sha256": "5224e45057475e83f258bf2c4e39a857929eec72bb9888d808e85ca5a678a146",
+      "size": 20357,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T23:04:48Z",
+      "sourceCommit": "2f0347620881494f3959f545eb618ea19d965c0f"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "a5d5ba88302be426b8eade320021399e7b7206190d230708f36a41ad3aee1d98",
+      "size": 16658,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T01:05:08Z",
+      "sourceCommit": "c136d7e05a71c4c6f8d805bce66666928b62f78e"
+    },
+    {
+      "version": "61003.2",
+      "sha256": "63673091bb381cb86ec873e4abedeea27461aa0c295cd89f2ba88405307d6764",
+      "size": 16682,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T06:17:33Z",
+      "sourceCommit": "fcd717e41bd7661bcf9ac01fee3c3bce9893d930"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "d3f497f00351216eb649e4b533e40cf2fe2395fb443a5c522c023c1ee0119af0",
+      "size": 16679,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "e508056e4641245105ba6cfe25fba849abfb3d658012dfeb7643c39de886a43b",
+      "size": 16687,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:41:30Z",
+      "sourceCommit": "88a42da19eb002065ba19fa36917612b59a6935d"
+    },
+    {
+      "version": "1.61005.2",
+      "sha256": "ded4a977d96d38b3f3a23b07652bd9365ff1f17ceecf594b9352c688e7ccbd0a",
+      "size": 16689,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T17:58:07Z",
+      "sourceCommit": "84ab23fbdf16210f8587ef1b0c0c424ccd620bab"
+    },
+    {
+      "version": "1.61005.3",
+      "sha256": "b9f5364b08a89c4395247d6d7e5c019fd4a5a9780033ae166bae32f7fee3580f",
+      "size": 16684,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T18:56:22Z",
+      "sourceCommit": "ac68025f465b0b8be9483b980995e5cca77aa82e"
+    },
+    {
+      "version": "1.61007.1",
+      "sha256": "24bb8c22f8eb3c57800977fc57ee4470a727c61362e448d83234bd268838ef62",
+      "size": 16676,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:26:25Z",
+      "sourceCommit": "40abd85bab8707c7a4ed37dcc0ba9e51ad7d752a"
+    },
+    {
+      "version": "1.61008.1",
+      "sha256": "514a2d4e3782ebfa1004302b379a4e1517bc50aa02fed850e56cd0158ae79475",
+      "size": 16623,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:31:03Z",
+      "sourceCommit": "fa62da2053a9fc8074948c2f8083d8f0e43d5b21"
+    },
+    {
+      "version": "1.61009.1",
+      "sha256": "c19b12d9011dc085453b6e3b3b150df4f9a39542f31cbb124cc27c5b53e62afc",
+      "size": 16619,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T18:13:35Z",
+      "sourceCommit": "71f20e11b815604fcc2688d63c7707e88a9289be"
+    },
+    {
+      "version": "1.61009.2",
+      "sha256": "5de6a80ab37f39a447ae2ba893516fa1fd9ec9fb1225af5d393f72a3bbaf30c6",
+      "size": 16557,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T21:42:15Z",
+      "sourceCommit": "8f8b7f07ec441da21c4e18db5ca3604dbb29cdb1"
+    },
+    {
+      "version": "1.61011.1",
+      "sha256": "7adcfce4e9103338a9ec11a19ead0a66cd8fcd18e4503c482b17a0ce611d472a",
+      "size": 16547,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-11T21:23:14Z",
+      "sourceCommit": "a98945c6eb54ede19ad0ed0c940adc719a94efa8"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "v": 1,
+  "pack": "claudinite-dashboard",
+  "serial": 12,
+  "versions": [
+    {
+      "version": "60928.2",
+      "sha256": "8c9dc0248a856c90fcc3b9afe83c62f5a765720991a1bc96831a3ffbba713779",
+      "size": 249256,
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "8c303f91b9f5b746078712fd080d1c24ead3f177ee17bfa5ed0ef0519a42a200",
+      "size": 260253,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T21:08:50Z",
+      "sourceCommit": "be046455426cab06c677ba22b22eef19e722360f"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "78aef22781d8f451c6bd7ab2d51f18aeb1bdd839375ab531598148561c1e57a7",
+      "size": 258000,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T11:23:31Z",
+      "sourceCommit": "efe50194dbbc0a2c2fd5b5503500592ef5676fcf"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "cfdf66c6b679a6a90cd45c5366f0a38d793884e67958bf8e12483f3bde2223d0",
+      "size": 257996,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "0d9a7ecc6f1f846204644f2d7dd43ca637b0e09e86ad207d36c7b7a815d002bc",
+      "size": 258433,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T17:58:07Z",
+      "sourceCommit": "84ab23fbdf16210f8587ef1b0c0c424ccd620bab"
+    },
+    {
+      "version": "1.61007.1",
+      "sha256": "1fcab0a3f071b0dc6d2df603b705c8b846bcc6394f28fa12defc8816a3bdb59b",
+      "size": 258237,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-07T15:53:53Z",
+      "sourceCommit": "4473f5fe0f1edccf35120b0c4d7967498171cdc3"
+    }
+  ]
+}

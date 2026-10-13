@@ -1,0 +1,51 @@
+{
+  "v": 1,
+  "pack": "macos",
+  "serial": 8,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "eb57a6ab9b5ce43ac83e5c4451089246dd6e838d8408d0c0a3c0e903b728491d",
+      "size": 14231,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "9353739898fdba96107551bcc0f24ec5a43adbeb19f6e407c0f75106b08f3f63",
+      "size": 12774,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "1bbab25065c3a5bc67566367c536d8d6fba8397668f4635c63ef0a4fd94d438f",
+      "size": 12771,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "c9dcadc6891d4d477363839fcaaa1a51425344cd798c0ea0cf8b0a9a879cde57",
+      "size": 12734,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    }
+  ]
+}

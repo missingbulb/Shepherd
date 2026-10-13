@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "headless-browser",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "3d80946e3d9ba08a031dde53c7989d865ae5bb6a86ef01e48cdb1d585828bbe3",
+      "size": 7500,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "a152610d60dc469286e0db6f31f009f66e5aeaf7c449285f2a40381b46d203cc",
+      "size": 7506,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "711611cb824a8b5d0b39d36786319be92c24e23af6cc63dd9448c1ff5b070381",
+      "size": 7504,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

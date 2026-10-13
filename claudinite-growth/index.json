@@ -1,0 +1,267 @@
+{
+  "v": 1,
+  "pack": "claudinite-growth",
+  "serial": 38,
+  "versions": [
+    {
+      "version": "60930.1",
+      "sha256": "cf04019fac9f891a6b6e73fca7815cfd2a548a4a45bd55bb723c354eb266b6c9",
+      "size": 174446,
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "cfab578ea061731acb92be604c3c3bc90eea392e023828e9eb019018cd15ac92",
+      "size": 158686,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "61002.2",
+      "sha256": "5d107d8ae34d7dc7a2608b53ee1ea8d5edf37cc2a855eb7dd53d3a00adda966f",
+      "size": 158694,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T17:50:47Z",
+      "sourceCommit": "48b86d9c69366e9da8d866033d15d05a6c04653c"
+    },
+    {
+      "version": "61002.3",
+      "sha256": "b6806d283050001ec764323281b713bc68f8942ff38cf3bd5d8839f068c702d2",
+      "size": 160789,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T21:08:50Z",
+      "sourceCommit": "be046455426cab06c677ba22b22eef19e722360f"
+    },
+    {
+      "version": "61002.4",
+      "sha256": "08d9c782284848ce2c6b928215ca6e0913037007be564d8c84ad33e1be45b07a",
+      "size": 160797,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T23:04:48Z",
+      "sourceCommit": "2f0347620881494f3959f545eb618ea19d965c0f"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "c92aa0e13c768f3ee7937362dead02cd13f8f90a69ebd84fd7d5c3cc6fb943de",
+      "size": 126069,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T02:52:07Z",
+      "sourceCommit": "4a406641f96d29915a2c2705261b22bdac245a86"
+    },
+    {
+      "version": "61003.2",
+      "sha256": "df174a601d72ef9513abb2e654f5e0ab2788539f59cc1b02de734ae08fa1fc2b",
+      "size": 126038,
+      "minEngineVersion": "61001.1.0",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T19:59:29Z",
+      "sourceCommit": "94192609794e02b62be499483c73c3b208998737"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "f3a1d947632ccef88a3082895e7fb7412216a515bf402f887f831ac549dc9ba9",
+      "size": 126037,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61005.1",
+      "sha256": "2fa14496010ea92d87dfac575c87d8b0c0e17af8aeebccead97b94e0aa2a4d60",
+      "size": 124381,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T14:14:02Z",
+      "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"
+    },
+    {
+      "version": "1.61005.2",
+      "sha256": "86ac5b034c616fa6b02afcb843c9b9dbd6a08781af73a8f19f6768d4cb7ca572",
+      "size": 127054,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T15:46:38Z",
+      "sourceCommit": "4c2111952b26eaa0410245db18f0b9738e4be6fb"
+    },
+    {
+      "version": "1.61005.3",
+      "sha256": "72975e80609f56e91fbed4ccd9d52e9ec394fcaa0f80d3f23471b782558e8022",
+      "size": 127049,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-05T18:56:22Z",
+      "sourceCommit": "ac68025f465b0b8be9483b980995e5cca77aa82e"
+    },
+    {
+      "version": "1.61007.1",
+      "sha256": "8c322aca7e3ccdd17ffb001dcf77884034268d1a3b6ce3106ad73b261e28cecd",
+      "size": 127044,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-07T15:53:53Z",
+      "sourceCommit": "4473f5fe0f1edccf35120b0c4d7967498171cdc3"
+    },
+    {
+      "version": "1.61007.2",
+      "sha256": "5a5029ee6c714330e4de84d0a183af5dcb673436f93b10d7553cbe09c36e4cd8",
+      "size": 127042,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:26:25Z",
+      "sourceCommit": "40abd85bab8707c7a4ed37dcc0ba9e51ad7d752a"
+    },
+    {
+      "version": "1.61008.1",
+      "sha256": "dca7c4eaaa043477ff21faf31d1f7ce20a73ae6fe39e926fd7420d095907e6ec",
+      "size": 124890,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-08T13:31:03Z",
+      "sourceCommit": "fa62da2053a9fc8074948c2f8083d8f0e43d5b21"
+    },
+    {
+      "version": "1.61008.2",
+      "sha256": "62fb2f1df598daa1f8810e343e14c3a64ffaa9acf9335f4fb9b8def07eb95359",
+      "size": 124828,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T05:25:42Z",
+      "sourceCommit": "7cf6c0b1ebb793f9aa4fc57d21e4cc9c80313993"
+    },
+    {
+      "version": "1.61009.1",
+      "sha256": "b107ffe1b05103c7018bd236543efc877742a8d68bb694a1e1b7771c75f1aefb",
+      "size": 124832,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T06:00:10Z",
+      "sourceCommit": "a9ec10c9fbaf9704d320da317de550bdffe2de53"
+    },
+    {
+      "version": "1.61009.2",
+      "sha256": "32fc53fde66b662ab19680d9a3c1ac4fe4d6d37a7ffa51335467a5a55a4fe0f1",
+      "size": 125248,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T06:59:07Z",
+      "sourceCommit": "cecc193374be3dcf385b10318df7759026036b2b"
+    },
+    {
+      "version": "1.61009.3",
+      "sha256": "23bd8c198e00fc7cffb99fa95a60f5906ac2625b38b231ee33ea611b4633b6dd",
+      "size": 125243,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T18:13:35Z",
+      "sourceCommit": "71f20e11b815604fcc2688d63c7707e88a9289be"
+    },
+    {
+      "version": "1.61009.4",
+      "sha256": "18fc8347c96918a8a98f2e6cc4ff9175620c3cea2a0f3af08e51bc318bb592bd",
+      "size": 125177,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T21:42:15Z",
+      "sourceCommit": "8f8b7f07ec441da21c4e18db5ca3604dbb29cdb1"
+    },
+    {
+      "version": "1.61011.1",
+      "sha256": "300afdcb9b16774159f28fa2a764c0a7345811c155e72dc97594855da2c407f1",
+      "size": 125174,
+      "minEngineVersion": "1.61001.1",
+      "requires": [
+        "claudinite-lifecycle"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-11T21:23:14Z",
+      "sourceCommit": "a98945c6eb54ede19ad0ed0c940adc719a94efa8"
+    }
+  ]
+}

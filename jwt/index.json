@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "jwt",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "7e4373529dc4a94de24951a8ac551d192e6dd7d4f7b0204a914661f77677faf9",
+      "size": 5274,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61003.1",
+      "sha256": "c909eaa5f9845dd33ae9506bdb71278e0f9be1be9071c681f1e3e9e09416c061",
+      "size": 5281,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-03T14:45:23Z",
+      "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "385c292429e1f5e0ad29f24ae98e2e63017797f1b389b5d544dafb54a2f1d855",
+      "size": 5281,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "v": 1,
+  "pack": "executable-requirements",
+  "serial": 6,
+  "versions": [
+    {
+      "version": "60928.1",
+      "sha256": "84a285de640f199cfb89e47486ce3afb01f2fdb88d16a3df5a75a201ef8b1dc6",
+      "size": 8090,
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-01T14:32:10Z",
+      "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"
+    },
+    {
+      "version": "61002.1",
+      "sha256": "8748c1cbe953f688f753af5e7f76ff5985993547f9a44d20da4a01715affafd2",
+      "size": 8266,
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-02T15:05:19Z",
+      "sourceCommit": "ae81567128631041f6e7faa2e865a9f7124628af"
+    },
+    {
+      "version": "1.61004.1",
+      "sha256": "543cd60e25d69ed4935bedbd25d3526d7b81980e1fffe7deceb3bec0274a197a",
+      "size": 8263,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-04T05:56:12Z",
+      "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    }
+  ]
+}
