@@ -1,0 +1,73 @@
+{
+  "v": 1,
+  "pack": "task-flow",
+  "serial": 7,
+  "versions": [
+    {
+      "version": "1.61008.1",
+      "sha256": "a98ba5e5de13f02408d0dcca2cdddc3a3092a62671beb6c92077eb825f2e4508",
+      "size": 28696,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics",
+        "claudinite-tasks"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T05:25:42Z",
+      "sourceCommit": "7cf6c0b1ebb793f9aa4fc57d21e4cc9c80313993"
+    },
+    {
+      "version": "1.61009.1",
+      "sha256": "d8eabfe19945ff25e59c48c6d86e00e2de6b12bf1357a825faa1266de7fba991",
+      "size": 28694,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics"
+      ],
+      "channel": "stable",
+      "revoked": false,
+      "publishedAt": "2026-10-09T06:00:10Z",
+      "sourceCommit": "a9ec10c9fbaf9704d320da317de550bdffe2de53"
+    },
+    {
+      "version": "1.61009.2",
+      "sha256": "5bca2f6a7ab47c6c1421cc99a872be587368b6bfe4d953d201be1131ab8af247",
+      "size": 28688,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-09T21:42:15Z",
+      "sourceCommit": "8f8b7f07ec441da21c4e18db5ca3604dbb29cdb1"
+    },
+    {
+      "version": "1.61011.1",
+      "sha256": "06de18ba6c69b77f39b0edc1f0de1c8eb3adb096f663967bb31ac624292dec76",
+      "size": 28686,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-11T22:02:02Z",
+      "sourceCommit": "dd42415cf0c35d8be4b46f1cd794e918e7376845"
+    },
+    {
+      "version": "1.61012.1",
+      "sha256": "6936ec0035a9f5b168b371538a8e9c24bc40e5a62a1c8bc12be30b372b9f4da8",
+      "size": 28639,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-13T08:48:25Z",
+      "sourceCommit": "4da674066bd36b221a9d773d029bbdfddf050a51"
+    }
+  ]
+}
