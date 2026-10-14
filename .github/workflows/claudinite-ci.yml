@@ -70,7 +70,7 @@ jobs:
       - name: download the engine main pins
         id: main-pins
         if: hashFiles('.claudinite/setup-cn.sh') != ''
-        run: sh .claudinite/launch version
+        run: sh .claudinite/setup-cn.sh
       - name: keep main's engine outside the tree
         if: steps.main-pins.outcome == 'success'
         run: install "$(readlink -f .claudinite/bin/cn)" "$RUNNER_TEMP/cn-base"
@@ -82,7 +82,7 @@ jobs:
           persist-credentials: false
       - name: download the engine the adoption pins
         if: steps.main-pins.outcome == 'skipped'
-        run: sh .claudinite/launch version
+        run: sh .claudinite/setup-cn.sh
       - name: judge the adoption by the engine it pins
         if: steps.main-pins.outcome == 'skipped'
         run: install "$(readlink -f .claudinite/bin/cn)" "$RUNNER_TEMP/cn-base"
@@ -107,7 +107,7 @@ jobs:
           "$RUNNER_TEMP/cn-base" check world --pr-author "$AUTHOR" --base-ref "$BASE" --pin-output "$GITHUB_OUTPUT"
       - name: download the engine the update pins
         if: steps.world.outputs.pin == 'moved'
-        run: sh .claudinite/launch version
+        run: sh .claudinite/setup-cn.sh
       - name: cn check world, from the new engine
         if: steps.world.outputs.pin == 'moved'
         env:
@@ -131,7 +131,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: download the pinned engine
-        run: sh .claudinite/launch version
+        run: sh .claudinite/setup-cn.sh
       - name: cn update land
         env:
           GITHUB_TOKEN: ${{ github.token }}
