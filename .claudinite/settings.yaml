@@ -36,3 +36,13 @@ fleet:
     - id: "claude-code-web-users-support"
       config:
         repo: "missingbulb/Shepherd"
+  packApprovalReview:
+    approvers: ["@missingbulb"]
+    requiredApprovals: 1
+  globalPackVersionApproval:
+    approvalRequiredPacks: []
+    unlistedGlobalPackRequested: allowFromGlobalShelf
+  packUsageInfractions:
+    revokedPackUsage: reportOnly
+    frozenVersionExceeded: reportOnly
+  memberUpdateFrequency: daily
