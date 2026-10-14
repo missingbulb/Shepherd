@@ -40,11 +40,10 @@ canon instead, where every repo gets it.
   list shape across several failed attempts (#212). (parsing-overflowed-searchissues)
 
 - **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
-  read the `delivery:` and `merges:` lines `cn work validate` prints for the session, and
-  `.claudinite/settings.yaml` for the repo's own settings. The `.claudinite-settings.json` file, its
-  `repo-context.mjs` helper and the key `dailyClaudiniteUpdatesRequirePrReview` are all retired, and
-  so are the `"maintenance"` and `"delivery"` names the task's own instructions may still carry;
-  don't grep for them (#242, #248). (checking-whether-claudinite)
+  read the `delivery:` and `merges:` lines `cn work validate` prints and `.claudinite/settings.yaml`;
+  `.claudinite-settings.json`, `repo-context.mjs` and the `dailyClaudiniteUpdatesRequirePrReview`,
+  `"maintenance"` and `"delivery"` names are retired, so grepping for them wastes calls (#242, #248).
+  (checking-whether-claudinite)
 
 - **Confirming whether a file landed in a PR from Claude Code Web** — verify with
   `git ls-files`/`git diff --stat` against the branch, never a rendered PR-diff view: the web diff
