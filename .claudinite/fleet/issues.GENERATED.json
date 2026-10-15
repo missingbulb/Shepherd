@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generated": "2026-10-14T23:10:42Z",
+  "generated": "2026-10-15T09:07:47Z",
   "owner": "missingbulb",
-  "total": 476,
+  "total": 480,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -1607,8 +1607,8 @@
             "release-blocker"
           ],
           "created_at": "2026-10-14T23:06:45Z",
-          "updated_at": "2026-10-14T23:06:45Z",
-          "comments": 0
+          "updated_at": "2026-10-15T04:56:02Z",
+          "comments": 1
         }
       ]
     },
@@ -2414,18 +2414,8 @@
     },
     {
       "repo": "missingbulb/ClaudiniteLicenses",
-      "openIssues": 4,
+      "openIssues": 3,
       "issues": [
-        {
-          "number": 52,
-          "title": "License server probe",
-          "labels": [
-            "probe"
-          ],
-          "created_at": "2026-10-14T17:33:33Z",
-          "updated_at": "2026-10-14T20:56:27Z",
-          "comments": 1
-        },
         {
           "number": 48,
           "title": "Set up the production environment and move the secrets into it",
@@ -3486,29 +3476,81 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 51,
+      "openIssues": 54,
       "issues": [
         {
-          "number": 1020,
-          "title": "[claudinite-work] engine/update",
+          "number": 1031,
+          "title": "[claudinite-work] engine/usage-fold",
           "labels": [
             "task:status:waiting-for-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-14T23:09:13Z",
-          "updated_at": "2026-10-14T23:09:13Z",
+          "created_at": "2026-10-15T09:06:28Z",
+          "updated_at": "2026-10-15T09:06:28Z",
           "comments": 0
         },
         {
-          "number": 1019,
+          "number": 1030,
+          "title": "[claudinite-work] fleet/fleet-roster",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-15T09:06:27Z",
+          "updated_at": "2026-10-15T09:06:27Z",
+          "comments": 0
+        },
+        {
+          "number": 1029,
+          "title": "[claudinite-work] fleet/fleet-pack-seeds",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-15T09:06:26Z",
+          "updated_at": "2026-10-15T09:06:26Z",
+          "comments": 0
+        },
+        {
+          "number": 1028,
           "title": "[claudinite-work] fleet/fleet-issues",
           "labels": [
             "task:status:running-executor",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-14T23:09:00Z",
-          "updated_at": "2026-10-14T23:10:24Z",
+          "created_at": "2026-10-15T09:06:26Z",
+          "updated_at": "2026-10-15T09:07:22Z",
           "comments": 1
+        },
+        {
+          "number": 1027,
+          "title": "[claudinite-work] fleet/fleet-directory",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-15T09:06:25Z",
+          "updated_at": "2026-10-15T09:07:18Z",
+          "comments": 2
+        },
+        {
+          "number": 1025,
+          "title": "[claudinite-work] fleet/fleet-key-create",
+          "labels": [
+            "task:status:blocked",
+            "task:origin:manual"
+          ],
+          "created_at": "2026-10-14T23:16:02Z",
+          "updated_at": "2026-10-14T23:16:02Z",
+          "comments": 0
+        },
+        {
+          "number": 1024,
+          "title": "Finish making missingbulb/shepherd a fleet manager",
+          "labels": [],
+          "created_at": "2026-10-14T23:15:40Z",
+          "updated_at": "2026-10-14T23:15:40Z",
+          "comments": 0
         },
         {
           "number": 1018,
@@ -3525,34 +3567,12 @@
           "number": 1017,
           "title": "[claudinite-work] claudinite/rule-revalidation",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-approval",
             "task:origin:planned"
           ],
           "created_at": "2026-10-14T23:08:59Z",
-          "updated_at": "2026-10-14T23:08:59Z",
-          "comments": 0
-        },
-        {
-          "number": 1016,
-          "title": "[claudinite-work] claudinite/prose-to-checks-sweep",
-          "labels": [
-            "task:status:running-agent",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-14T23:08:59Z",
-          "updated_at": "2026-10-14T23:10:09Z",
-          "comments": 3
-        },
-        {
-          "number": 1015,
-          "title": "[claudinite-work] claudinite/growth-dedup",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-14T23:08:58Z",
-          "updated_at": "2026-10-14T23:08:58Z",
-          "comments": 0
+          "updated_at": "2026-10-14T23:14:03Z",
+          "comments": 4
         },
         {
           "number": 1013,
@@ -4173,8 +4193,30 @@
     },
     {
       "repo": "missingbulb/VascularColoring",
-      "openIssues": 5,
+      "openIssues": 7,
       "issues": [
+        {
+          "number": 676,
+          "title": "[claudinite-work] engine/usage-fold",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-15T09:07:10Z",
+          "updated_at": "2026-10-15T09:07:10Z",
+          "comments": 0
+        },
+        {
+          "number": 675,
+          "title": "[claudinite-work] engine/update",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-15T09:07:09Z",
+          "updated_at": "2026-10-15T09:07:09Z",
+          "comments": 0
+        },
         {
           "number": 671,
           "title": "[claudinite-work] engine/update",
