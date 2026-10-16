@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-10-15T09:12:36Z",
+  "generated": "2026-10-16T09:02:10Z",
   "owner": "missingbulb",
   "members": [
     {
@@ -108,7 +108,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61009.3",
+      "pin": "1.61014.3",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61012.1",
@@ -124,7 +124,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61009.3 → 1.61014.3, git-github 1.61011.1 → 1.61013.1"
+        "detail": "behind the published versions by git-github 1.61011.1 → 1.61013.1"
       }
     },
     {
@@ -304,7 +304,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61011.2",
+      "pin": "1.61014.3",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61009.2",
@@ -319,7 +319,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61011.2 → 1.61014.3, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
