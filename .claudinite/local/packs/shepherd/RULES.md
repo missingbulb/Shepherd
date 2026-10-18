@@ -40,11 +40,10 @@ canon instead, where every repo gets it.
   list shape across several failed attempts (#212). (parsing-overflowed-searchissues)
 
 - **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
-  grep `.claudinite-settings.json` directly for `dailyClaudiniteUpdatesRequirePrReview`
-  (documented in `.claudinite/shared/engine/checks/helpers/repo-context.mjs`); its absence means
-  auto-merge. Don't guess `"maintenance"` or `"delivery"` as the key name — the task's own
-  instructions still name that retired key, which no longer exists in the schema, and two
-  independent sessions burned tool calls chasing it (#242, #248). (checking-whether-claudinite)
+  read the `delivery:` and `merges:` lines `cn work validate` prints and `.claudinite/settings.yaml`;
+  `.claudinite-settings.json`, `repo-context.mjs` and the `dailyClaudiniteUpdatesRequirePrReview`,
+  `"maintenance"` and `"delivery"` names are retired, so grepping for them wastes calls (#242, #248).
+  (checking-whether-claudinite)
 
 - **Confirming whether a file landed in a PR from Claude Code Web** — verify with
   `git ls-files`/`git diff --stat` against the branch, never a rendered PR-diff view: the web diff
@@ -64,7 +63,7 @@ canon instead, where every repo gets it.
   preferences file for this user") sat unactioned in this session's own tool output for over 20
   minutes before the owner had to point out the missing directory (#2). (declaring-repo-store)
 
-- **Calling `converge-item.mjs` once this session already merged the PR itself** — omit `--pr`;
+- **Calling `cn work converge` once this session already merged the PR itself** — omit `--pr`;
   passing it still writes "Waiting on a person: merge or close" onto the very comment that
   closes the item (#591, #596). (calling-converge-item)
 
