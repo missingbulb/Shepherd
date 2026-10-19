@@ -16,6 +16,7 @@ packs:
       config:
         repo: "missingbulb/Shepherd"
     - "claudinite-growth"
+    - "fleet-github"
 tasks:
   routines:
     default:
