@@ -1,0 +1,19 @@
+{
+  "v": 1,
+  "serial": 1,
+  "issued": "2026-10-20T05:37:10Z",
+  "private": true,
+  "memberUpdateFrequency": "daily",
+  "shelfCatalogSerial": 433,
+  "globalPackVersionApproval": {
+    "approvalRequiredPacks": [],
+    "unlistedGlobalPackRequested": "allowFromGlobalShelf"
+  },
+  "packUsageInfractions": {
+    "revokedPackUsage": "reportOnly",
+    "frozenVersionExceeded": "reportOnly"
+  },
+  "global": {},
+  "fleet": {},
+  "blocked": []
+}
