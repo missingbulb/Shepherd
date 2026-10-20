@@ -1,0 +1,10 @@
+# The fleet directory's source. cn fleet directory signs and publishes it,
+# filling each approved version's sha256 from the shelf's signed index.
+#
+# approved: the global pack versions members may take, for the packs
+#   fleet.globalPackVersionApproval.approvalRequiredPacks names, e.g.
+#     basics: ["1.61008.2"]
+# blocked: versions no member takes, e.g.
+#   - {pack: basics, version: "1.61007.1", reason: breaks our CI hooks}
+approved: {}
+blocked: []
