@@ -34,22 +34,11 @@ canon instead, where every repo gets it.
   live, a ref six days stale updated correctly with no `--unshallow`. Reach for `--unshallow` only
   if history, not the ref, still comes up short (#470). (fetching-stale-origin)
 
-- **Parsing an overflowed `search_issues`/`search_code` result from its saved `tool-results/*.txt`
-  file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
-  envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
-  list shape across several failed attempts (#212). (parsing-overflowed-searchissues)
-
 - **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
   read the `delivery:` and `merges:` lines `cn work validate` prints and `.claudinite/settings.yaml`;
   `.claudinite-settings.json`, `repo-context.mjs` and the `dailyClaudiniteUpdatesRequirePrReview`,
   `"maintenance"` and `"delivery"` names are retired, so grepping for them wastes calls (#242, #248).
   (checking-whether-claudinite)
-
-- **Confirming whether a file landed in a PR from Claude Code Web** — verify with
-  `git ls-files`/`git diff --stat` against the branch, never a rendered PR-diff view: the web diff
-  view has been observed to silently drop new root-level file/directory additions from its
-  rendering while the file was genuinely present in the commit, costing a round-trip and a false
-  self-correction before the git-based check settled it (#2). (confirming-whether-file)
 
 - **Prompting a background subagent that needs a growing reference file's content** — point it at
   the file's *path* to read itself rather than pasting the content inline: cheaper, and immune to
