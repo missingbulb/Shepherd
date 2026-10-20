@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-10-19T09:54:30Z",
+  "generated": "2026-10-20T05:26:01Z",
   "owner": "missingbulb",
   "members": [
     {
@@ -39,7 +39,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": true,
-      "pin": "1.61014.2",
+      "pin": "1.61019.1",
       "held": {
         "basics": "1.61009.1",
         "git-github": "1.61013.1"
@@ -61,7 +61,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61013.2 → 1.61014.3"
+        "detail": "behind the published versions by engine 1.61013.2 → 1.61019.1"
       }
     },
     {
@@ -89,8 +89,16 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61014.2 → 1.61014.3"
+        "detail": "behind the published versions by engine 1.61014.2 → 1.61019.1"
       }
+    },
+    {
+      "repo": "missingbulb/ClaudiniteSetup",
+      "defaultBranch": "main",
+      "scope": "in",
+      "shape": "none",
+      "covered": false,
+      "dormant": false
     },
     {
       "repo": "missingbulb/ClaudiniteStagingDistro",
@@ -124,7 +132,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by git-github 1.61011.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61014.3 → 1.61019.1, git-github 1.61011.1 → 1.61013.1"
       }
     },
     {
@@ -150,7 +158,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61014.3 → 1.61019.1, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -183,7 +191,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61012.1 → 1.61014.3, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61012.1 → 1.61019.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -216,7 +224,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61012.1 → 1.61014.3, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61012.1 → 1.61019.1, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -293,7 +301,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61014.3 → 1.61019.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -319,7 +327,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61014.3 → 1.61019.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -381,7 +389,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61009.2 → 1.61014.3, basics 1.61008.1 → 1.61009.1, chrome-extension 1.61008.1 → 1.61013.1, claude-code-web-users-support 1.61005.1 → 1.61012.1, git-github 1.61008.2 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61009.2 → 1.61019.1, basics 1.61008.1 → 1.61009.1, chrome-extension 1.61008.1 → 1.61013.1, claude-code-web-users-support 1.61005.1 → 1.61012.1, git-github 1.61008.2 → 1.61013.1"
       }
     },
     {
@@ -407,7 +415,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61014.3 → 1.61019.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
