@@ -34,23 +34,11 @@ canon instead, where every repo gets it.
   live, a ref six days stale updated correctly with no `--unshallow`. Reach for `--unshallow` only
   if history, not the ref, still comes up short (#470). (fetching-stale-origin)
 
-- **Parsing an overflowed `search_issues`/`search_code` result from its saved `tool-results/*.txt`
-  file** — the shape is always GitHub's own `{total_count, incomplete_results, items: [...]}`
-  envelope. Index `['items']` on the first parse; don't iterate the dict directly or guess a bare
-  list shape across several failed attempts (#212). (parsing-overflowed-searchissues)
-
 - **Checking whether a `claudinite-lifecycle/update` PR should auto-merge or wait for review** —
-  grep `.claudinite-settings.json` directly for `dailyClaudiniteUpdatesRequirePrReview`
-  (documented in `.claudinite/shared/engine/checks/helpers/repo-context.mjs`); its absence means
-  auto-merge. Don't guess `"maintenance"` or `"delivery"` as the key name — the task's own
-  instructions still name that retired key, which no longer exists in the schema, and two
-  independent sessions burned tool calls chasing it (#242, #248). (checking-whether-claudinite)
-
-- **Confirming whether a file landed in a PR from Claude Code Web** — verify with
-  `git ls-files`/`git diff --stat` against the branch, never a rendered PR-diff view: the web diff
-  view has been observed to silently drop new root-level file/directory additions from its
-  rendering while the file was genuinely present in the commit, costing a round-trip and a false
-  self-correction before the git-based check settled it (#2). (confirming-whether-file)
+  read the `delivery:` and `merges:` lines `cn work validate` prints and `.claudinite/settings.yaml`;
+  `.claudinite-settings.json`, `repo-context.mjs` and the `dailyClaudiniteUpdatesRequirePrReview`,
+  `"maintenance"` and `"delivery"` names are retired, so grepping for them wastes calls (#242, #248).
+  (checking-whether-claudinite)
 
 - **Prompting a background subagent that needs a growing reference file's content** — point it at
   the file's *path* to read itself rather than pasting the content inline: cheaper, and immune to
@@ -64,7 +52,7 @@ canon instead, where every repo gets it.
   preferences file for this user") sat unactioned in this session's own tool output for over 20
   minutes before the owner had to point out the missing directory (#2). (declaring-repo-store)
 
-- **Calling `converge-item.mjs` once this session already merged the PR itself** — omit `--pr`;
+- **Calling `cn work converge` once this session already merged the PR itself** — omit `--pr`;
   passing it still writes "Waiting on a person: merge or close" onto the very comment that
   closes the item (#591, #596). (calling-converge-item)
 

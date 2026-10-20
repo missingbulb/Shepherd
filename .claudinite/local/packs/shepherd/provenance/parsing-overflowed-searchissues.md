@@ -6,3 +6,10 @@
 - **Mechanism:** a RULES.md rule, triggered on "Parsing an overflowed search_issues/search_code
   result from its saved tool-results file".
 - **Landed:** #236 (Refs #201).
+
+## 2026-10-18 · retired · covered by git-github-advanced's search-overflow envelope line (#1069)
+- **Reason:** the canon states "The spilled overflow file for a search call is GitHub's own response
+  envelope - `{ total_count, incomplete_results, items: [...] }` - not a bare list. Index
+  `['items']` on the first parse"; the local rule said nothing more.
+- **Actor:** growth-dedup run (#1069).
+- **Landed:** #1069
