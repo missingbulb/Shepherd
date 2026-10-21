@@ -45,3 +45,10 @@
 - **Reason:** the snapshot moved into `cn fleet` (ClaudiniteEngine#212); the skill and
   `classify.mjs` read `.claudinite/fleet/issues.GENERATED.json` and force `fleet/fleet-issues`.
 - **Actor:** @missingbulb (owner).
+
+## 2026-10-21 · retired · moved the fleet-triage skill into the engine's fleet pack (Engine #416)
+- **Reason:** it holds for any fleet manager, not this repo alone, so every manager now receives
+  it from the engine instead of from this local pack.
+- **Actor:** @missingbulb (owner), who chose the engine's built-in fleet pack.
+- **Mechanism:** the fleet pack's `fleet-triage` skill, rewritten against cn's queue; `classify.mjs` was not carried.
+- **Landed:** Engine #416, released in 1.61021.3.
