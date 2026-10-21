@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 433,
+  "serial": 452,
   "packs": [
     {
       "id": "android",
@@ -55,32 +55,8 @@
     },
     {
       "id": "chrome-extension",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "an MV3 manifest.json (at the repo root or one directory down) declaring \"manifest_version\": 3",
-        "paths": {
-          "source": "^([^/]+/)?manifest\\.json$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\"manifest_version\"\\s*:\\s*3\\b",
-            "flags": ""
-          }
-        ],
-        "search": [
-          "manifest_version"
-        ]
-      },
-      "belongs": "writing and shipping a Chrome extension: MV3 service-worker, permission, content-script and auth gotchas, plus Web Store release, versioning and privacy"
-    },
-    {
-      "id": "chrome-extension",
       "version": "1.61013.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {
@@ -100,26 +76,11 @@
         ]
       },
       "belongs": "writing and shipping a Chrome extension: MV3 service-worker, permission, content-script and auth gotchas, plus Web Store release, versioning and privacy"
-    },
-    {
-      "id": "claude-code-web-users-support",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61003.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "what a project offers people working from Claude Code on the web, where the session knows who they are",
-      "questions": [
-        {
-          "id": "store",
-          "prompt": "Where do this project's people keep the pack that travels with them - the repository holding one `<login>/` directory per person, named by GitHub login? Give an `owner/name` (a fleet usually has one repo for this), or say \"n/a - none\" if this project has no such store."
-        }
-      ]
     },
     {
       "id": "claude-code-web-users-support",
       "version": "1.61012.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61003.1",
       "requires": [],
       "relevanceDetector": null,
@@ -142,17 +103,8 @@
     },
     {
       "id": "claudinite-canon-curation",
-      "version": "1.61008.3",
-      "channel": "stable",
-      "minEngineVersion": "1.61003.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "curating a canon's packs/ shelf — promoting member lessons, sweeping members for unhomed technologies, authoring and policing its packs"
-    },
-    {
-      "id": "claudinite-canon-curation",
       "version": "1.61009.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61003.1",
       "requires": [],
       "relevanceDetector": null,
@@ -177,7 +129,7 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "1.61009.1",
+      "version": "1.61009.2",
       "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
@@ -185,27 +137,9 @@
       "belongs": "fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs"
     },
     {
-      "id": "claudinite-fleet-sheepdog",
-      "version": "1.61009.2",
-      "channel": "canary",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs"
-    },
-    {
       "id": "claudinite-single-repo-dashboard",
-      "version": "1.61009.1",
+      "version": "1.61009.2",
       "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "the browser dashboard over one repo's Claudinite scheduler state and the site that publishes it"
-    },
-    {
-      "id": "claudinite-single-repo-dashboard",
-      "version": "1.61009.2",
-      "channel": "canary",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,
@@ -224,6 +158,30 @@
       "id": "cloudflare-site",
       "version": "1.61009.1",
       "channel": "stable",
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a near-root wrangler.json/.jsonc declaring assets.directory",
+        "paths": {
+          "source": "^([^/]+/)?wrangler\\.jsonc?$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\"assets\"\\s*:\\s*\\{[^}]*\"directory\"\\s*:\\s*\"[^\"\\s]",
+            "flags": ""
+          }
+        ],
+        "search": [
+          "assets"
+        ]
+      },
+      "belongs": "serving a static site from Cloudflare: the published tree, custom domains, the nightly release that uploads it"
+    },
+    {
+      "id": "cloudflare-site",
+      "version": "1.61020.2",
+      "channel": "canary",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {
@@ -295,7 +253,7 @@
     },
     {
       "id": "fleet-github",
-      "version": "1.61019.1",
+      "version": "1.61019.2",
       "channel": "canary",
       "minEngineVersion": "1.61008.2",
       "requires": [],
@@ -319,17 +277,8 @@
     },
     {
       "id": "git-github",
-      "version": "1.61011.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "git and GitHub procedure and platform: commit layering, branch and merge mechanics, workflow YAML, triggers, secrets, scheduling"
-    },
-    {
-      "id": "git-github",
       "version": "1.61013.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,
@@ -625,19 +574,8 @@
     },
     {
       "id": "task-flow",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61008.2",
-      "requires": [
-        "basics"
-      ],
-      "relevanceDetector": null,
-      "belongs": "the workflow of filing, deferring, sequencing and proving work through the queue — deferred changes, marked requests and their implementer, migration plans and their chains, legacy tolerances, production verifications"
-    },
-    {
-      "id": "task-flow",
       "version": "1.61012.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61008.2",
       "requires": [
         "basics"
