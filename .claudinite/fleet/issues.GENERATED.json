@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generated": "2026-10-20T05:22:14Z",
+  "generated": "2026-10-21T06:50:48Z",
   "owner": "missingbulb",
-  "total": 510,
+  "total": 496,
   "repos": [
     {
       "repo": "missingbulb/Claudinite",
@@ -1592,19 +1592,39 @@
       ]
     },
     {
-      "repo": "missingbulb/ClaudiniteCanaryFresh",
-      "openIssues": 0,
-      "issues": []
-    },
-    {
-      "repo": "missingbulb/ClaudiniteCanaryLagging",
-      "openIssues": 0,
-      "issues": []
-    },
-    {
       "repo": "missingbulb/ClaudiniteEngine",
-      "openIssues": 108,
+      "openIssues": 104,
       "issues": [
+        {
+          "number": 408,
+          "title": "[claudinite-work] claudinite/growth-extract",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-10-21T06:18:16Z",
+          "updated_at": "2026-10-21T06:22:19Z",
+          "comments": 3
+        },
+        {
+          "number": 397,
+          "title": "Decide the future of a pack's seededByDefault",
+          "labels": [],
+          "created_at": "2026-10-20T13:17:36Z",
+          "updated_at": "2026-10-20T13:17:36Z",
+          "comments": 0
+        },
+        {
+          "number": 395,
+          "title": "[claudinite-work] claudinite/growth-extract",
+          "labels": [
+            "task:origin:planned",
+            "task:status:needs-human-action"
+          ],
+          "created_at": "2026-10-20T12:02:49Z",
+          "updated_at": "2026-10-20T12:03:44Z",
+          "comments": 3
+        },
         {
           "number": 388,
           "title": "Retire the setup-script tolerance once members moved to @claudinite/setup",
@@ -1612,17 +1632,6 @@
           "created_at": "2026-10-19T19:06:59Z",
           "updated_at": "2026-10-19T19:06:59Z",
           "comments": 0
-        },
-        {
-          "number": 383,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-19T13:52:17Z",
-          "updated_at": "2026-10-19T13:53:55Z",
-          "comments": 2
         },
         {
           "number": 382,
@@ -1655,17 +1664,6 @@
           "comments": 0
         },
         {
-          "number": 370,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-18T11:39:08Z",
-          "updated_at": "2026-10-18T11:41:24Z",
-          "comments": 2
-        },
-        {
           "number": 369,
           "title": "[claudinite-work] engine/update",
           "labels": [
@@ -1673,8 +1671,8 @@
             "task:status:needs-human-failure"
           ],
           "created_at": "2026-10-18T11:39:08Z",
-          "updated_at": "2026-10-18T11:40:13Z",
-          "comments": 2
+          "updated_at": "2026-10-21T06:45:13Z",
+          "comments": 15
         },
         {
           "number": 368,
@@ -1710,39 +1708,6 @@
           "comments": 3
         },
         {
-          "number": 365,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-17T11:07:40Z",
-          "updated_at": "2026-10-17T11:08:48Z",
-          "comments": 2
-        },
-        {
-          "number": 364,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-16T11:51:21Z",
-          "updated_at": "2026-10-16T11:52:24Z",
-          "comments": 2
-        },
-        {
-          "number": 363,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-15T12:00:54Z",
-          "updated_at": "2026-10-15T12:02:00Z",
-          "comments": 2
-        },
-        {
           "number": 362,
           "title": "[claudinite-work] claudinite/growth-extract",
           "labels": [
@@ -1752,17 +1717,6 @@
           "created_at": "2026-10-15T12:00:54Z",
           "updated_at": "2026-10-15T12:02:21Z",
           "comments": 3
-        },
-        {
-          "number": 347,
-          "title": "[claudinite-work] engine/usage-fold",
-          "labels": [
-            "task:origin:planned",
-            "task:status:needs-human-failure"
-          ],
-          "created_at": "2026-10-14T21:57:54Z",
-          "updated_at": "2026-10-14T22:00:21Z",
-          "comments": 2
         },
         {
           "number": 346,
@@ -2412,20 +2366,12 @@
           "comments": 0
         },
         {
-          "number": 131,
-          "title": "Retire the cleanup of the stale flat dashboard file",
-          "labels": [],
-          "created_at": "2026-10-07T16:32:50Z",
-          "updated_at": "2026-10-07T16:32:50Z",
-          "comments": 0
-        },
-        {
           "number": 122,
           "title": "Engine CI p75 is over 60s",
           "labels": [],
           "created_at": "2026-10-07T11:50:42Z",
-          "updated_at": "2026-10-19T10:53:46Z",
-          "comments": 14
+          "updated_at": "2026-10-20T10:09:24Z",
+          "comments": 15
         },
         {
           "number": 116,
@@ -2535,16 +2481,8 @@
     },
     {
       "repo": "missingbulb/ClaudiniteLicenses",
-      "openIssues": 5,
+      "openIssues": 4,
       "issues": [
-        {
-          "number": 59,
-          "title": "Owner steps for the license server without a database (#58)",
-          "labels": [],
-          "created_at": "2026-10-19T16:49:42Z",
-          "updated_at": "2026-10-20T05:21:49Z",
-          "comments": 0
-        },
         {
           "number": 55,
           "title": "One free trial per GitHub account or organization",
@@ -2581,8 +2519,41 @@
     },
     {
       "repo": "missingbulb/ClaudinitePacks",
-      "openIssues": 31,
+      "openIssues": 34,
       "issues": [
+        {
+          "number": 133,
+          "title": "[claudinite-work] claudinite/growth-extract",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:41:35Z",
+          "updated_at": "2026-10-21T06:45:41Z",
+          "comments": 3
+        },
+        {
+          "number": 131,
+          "title": "[claudinite-work] engine/update",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T16:26:43Z",
+          "updated_at": "2026-10-21T06:45:27Z",
+          "comments": 10
+        },
+        {
+          "number": 130,
+          "title": "[claudinite-work] claudinite/growth-extract",
+          "labels": [
+            "task:status:needs-human-action",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T16:26:33Z",
+          "updated_at": "2026-10-20T16:37:42Z",
+          "comments": 3
+        },
         {
           "number": 124,
           "title": "[claudinite-work] claudinite/growth-extract",
@@ -2875,8 +2846,63 @@
     },
     {
       "repo": "missingbulb/ClaudiniteWebsite",
-      "openIssues": 15,
+      "openIssues": 20,
       "issues": [
+        {
+          "number": 1030,
+          "title": "[claudinite-work] claudinite/growth-extract",
+          "labels": [
+            "task:status:waiting-for-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:41:56Z",
+          "updated_at": "2026-10-21T06:41:56Z",
+          "comments": 0
+        },
+        {
+          "number": 1029,
+          "title": "[claudinite-work] claudinite-website/release-state",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:41:55Z",
+          "updated_at": "2026-10-21T06:45:47Z",
+          "comments": 2
+        },
+        {
+          "number": 1028,
+          "title": "[claudinite-work] claudinite-website/public-installs",
+          "labels": [
+            "task:status:blocked",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:41:55Z",
+          "updated_at": "2026-10-21T06:44:52Z",
+          "comments": 1
+        },
+        {
+          "number": 1018,
+          "title": "[claudinite-work] claudinite-website/release-state",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T13:22:49Z",
+          "updated_at": "2026-10-20T13:24:32Z",
+          "comments": 2
+        },
+        {
+          "number": 1009,
+          "title": "[claudinite-work] claudinite-website/public-installs",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T09:00:27Z",
+          "updated_at": "2026-10-20T13:23:43Z",
+          "comments": 4
+        },
         {
           "number": 1006,
           "title": "[claudinite-work] claudinite-website/public-installs",
@@ -2892,12 +2918,12 @@
           "number": 991,
           "title": "[claudinite-work] engine/update",
           "labels": [
-            "task:status:needs-human-failure",
+            "task:status:needs-human-decision",
             "task:origin:planned"
           ],
           "created_at": "2026-10-18T08:57:08Z",
-          "updated_at": "2026-10-18T09:04:24Z",
-          "comments": 2
+          "updated_at": "2026-10-21T06:49:07Z",
+          "comments": 17
         },
         {
           "number": 986,
@@ -3075,18 +3101,29 @@
     },
     {
       "repo": "missingbulb/EdFringeNow",
-      "openIssues": 12,
+      "openIssues": 11,
       "issues": [
         {
-          "number": 1136,
+          "number": 1154,
           "title": "[claudinite-work] engine/update",
           "labels": [
-            "task:status:needs-human-failure",
+            "task:status:running-agent",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-18T09:10:10Z",
-          "updated_at": "2026-10-18T19:03:10Z",
-          "comments": 6
+          "created_at": "2026-10-21T06:42:35Z",
+          "updated_at": "2026-10-21T06:43:43Z",
+          "comments": 3
+        },
+        {
+          "number": 1151,
+          "title": "[claudinite-work] claudinite/prose-to-checks-sweep",
+          "labels": [
+            "task:status:running-agent",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:42:23Z",
+          "updated_at": "2026-10-21T06:44:09Z",
+          "comments": 3
         },
         {
           "number": 1135,
@@ -3097,17 +3134,6 @@
           ],
           "created_at": "2026-10-18T09:10:09Z",
           "updated_at": "2026-10-18T09:12:29Z",
-          "comments": 4
-        },
-        {
-          "number": 1133,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-18T09:10:08Z",
-          "updated_at": "2026-10-18T09:12:41Z",
           "comments": 4
         },
         {
@@ -3128,17 +3154,6 @@
           "created_at": "2026-10-14T14:13:08Z",
           "updated_at": "2026-10-14T14:14:16Z",
           "comments": 1
-        },
-        {
-          "number": 1099,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-11T11:03:17Z",
-          "updated_at": "2026-10-11T11:11:05Z",
-          "comments": 4
         },
         {
           "number": 1088,
@@ -3199,39 +3214,28 @@
     },
     {
       "repo": "missingbulb/GoogleCalendarEventCreator",
-      "openIssues": 40,
+      "openIssues": 31,
       "issues": [
         {
-          "number": 1542,
-          "title": "[claudinite-work] engine/update",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-18T08:56:45Z",
-          "updated_at": "2026-10-19T10:04:13Z",
-          "comments": 4
-        },
-        {
-          "number": 1540,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
+          "number": 1556,
+          "title": "[claudinite-work] claudinite/rule-revalidation",
           "labels": [
             "task:status:needs-human-approval",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-18T08:56:44Z",
-          "updated_at": "2026-10-18T08:59:45Z",
+          "created_at": "2026-10-21T06:43:03Z",
+          "updated_at": "2026-10-21T06:48:48Z",
           "comments": 4
         },
         {
-          "number": 1539,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
+          "number": 1555,
+          "title": "[claudinite-work] claudinite/prose-to-checks-sweep",
           "labels": [
             "task:status:needs-human-approval",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-18T08:56:43Z",
-          "updated_at": "2026-10-18T09:01:50Z",
+          "created_at": "2026-10-21T06:43:03Z",
+          "updated_at": "2026-10-21T06:48:12Z",
           "comments": 4
         },
         {
@@ -3243,17 +3247,6 @@
           ],
           "created_at": "2026-10-11T10:55:02Z",
           "updated_at": "2026-10-11T10:58:10Z",
-          "comments": 4
-        },
-        {
-          "number": 1514,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-11T10:55:01Z",
-          "updated_at": "2026-10-11T11:00:34Z",
           "comments": 4
         },
         {
@@ -3276,17 +3269,6 @@
           "comments": 0
         },
         {
-          "number": 1350,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-27T10:07:05Z",
-          "updated_at": "2026-09-27T10:32:44Z",
-          "comments": 4
-        },
-        {
           "number": 1315,
           "title": "PR #1314 self-merged past its automerge ceiling: task.json is a policy source, never coverable",
           "labels": [],
@@ -3301,28 +3283,6 @@
           "created_at": "2026-09-16T09:32:26Z",
           "updated_at": "2026-09-16T09:32:26Z",
           "comments": 0
-        },
-        {
-          "number": 1219,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-13T09:39:28Z",
-          "updated_at": "2026-09-13T09:55:59Z",
-          "comments": 4
-        },
-        {
-          "number": 1188,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-09-07T20:04:24Z",
-          "updated_at": "2026-09-07T20:21:42Z",
-          "comments": 4
         },
         {
           "number": 1118,
@@ -3355,28 +3315,6 @@
           "comments": 4
         },
         {
-          "number": 1089,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "task:status:needs-human-approval",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:18:49Z",
-          "updated_at": "2026-08-30T09:29:19Z",
-          "comments": 4
-        },
-        {
-          "number": 1088,
-          "title": "[claudinite-work] claudinite-growth/prose-to-checks-sweep",
-          "labels": [
-            "task:status:needs-human-decision",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-08-30T09:18:48Z",
-          "updated_at": "2026-08-30T16:00:19Z",
-          "comments": 4
-        },
-        {
           "number": 1085,
           "title": "[claudinite-work] basics/ci-performance",
           "labels": [
@@ -3388,33 +3326,11 @@
           "comments": 4
         },
         {
-          "number": 1066,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "needs-human",
-            "task:needs-human-decision"
-          ],
-          "created_at": "2026-08-25T05:02:19Z",
-          "updated_at": "2026-08-26T05:05:35Z",
-          "comments": 5
-        },
-        {
           "number": 1041,
           "title": "prose-to-checks conversion backlog: gcec pack",
           "labels": [],
           "created_at": "2026-08-23T05:06:36Z",
           "updated_at": "2026-09-20T09:19:21Z",
-          "comments": 5
-        },
-        {
-          "number": 980,
-          "title": "[claudinite-work] claudinite-growth/rule-revalidation",
-          "labels": [
-            "needs-human",
-            "task:needs-human-decision"
-          ],
-          "created_at": "2026-08-21T19:03:05Z",
-          "updated_at": "2026-08-24T22:09:15Z",
           "comments": 5
         },
         {
@@ -3686,15 +3602,15 @@
       "openIssues": 4,
       "issues": [
         {
-          "number": 485,
+          "number": 502,
           "title": "[claudinite-work] engine/update",
           "labels": [
             "task:origin:planned",
-            "task:status:needs-human-failure"
+            "task:status:needs-human-decision"
           ],
-          "created_at": "2026-10-18T09:06:14Z",
-          "updated_at": "2026-10-18T18:59:13Z",
-          "comments": 4
+          "created_at": "2026-10-21T06:28:09Z",
+          "updated_at": "2026-10-21T06:44:21Z",
+          "comments": 7
         },
         {
           "number": 436,
@@ -3724,95 +3640,70 @@
     },
     {
       "repo": "missingbulb/Shepherd",
-      "openIssues": 62,
+      "openIssues": 53,
       "issues": [
         {
-          "number": 1094,
-          "title": "[claudinite-work] engine/usage-fold",
+          "number": 1117,
+          "title": "[claudinite-work] engine/update",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-decision",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-20T05:19:22Z",
-          "updated_at": "2026-10-20T05:19:22Z",
-          "comments": 0
+          "created_at": "2026-10-21T06:42:50Z",
+          "updated_at": "2026-10-21T06:47:59Z",
+          "comments": 4
         },
         {
-          "number": 1093,
-          "title": "[claudinite-work] fleet/pack-version-history",
+          "number": 1115,
+          "title": "[claudinite-work] fleet/growth-promote",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-action",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-20T05:19:22Z",
-          "updated_at": "2026-10-20T05:19:22Z",
+          "created_at": "2026-10-21T06:42:37Z",
+          "updated_at": "2026-10-21T06:46:57Z",
+          "comments": 3
+        },
+        {
+          "number": 1112,
+          "title": "[claudinite-work] fleet/fleet-issues",
+          "labels": [
+            "task:status:running-executor",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-21T06:42:35Z",
+          "updated_at": "2026-10-21T06:50:24Z",
+          "comments": 1
+        },
+        {
+          "number": 1109,
+          "title": "[claudinite-work] fleet/fleet-update",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:manual"
+          ],
+          "created_at": "2026-10-20T19:01:43Z",
+          "updated_at": "2026-10-20T19:32:32Z",
+          "comments": 4
+        },
+        {
+          "number": 1108,
+          "title": "[claudinite] Actions storage will run out this month",
+          "labels": [],
+          "created_at": "2026-10-20T17:30:51Z",
+          "updated_at": "2026-10-21T06:50:17Z",
           "comments": 0
         },
         {
           "number": 1092,
           "title": "[claudinite-work] fleet/growth-promote",
           "labels": [
-            "task:status:waiting-for-executor",
+            "task:status:needs-human-action",
             "task:origin:planned"
           ],
           "created_at": "2026-10-20T05:19:22Z",
-          "updated_at": "2026-10-20T05:19:22Z",
-          "comments": 0
-        },
-        {
-          "number": 1091,
-          "title": "[claudinite-work] fleet/fleet-roster",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-20T05:19:21Z",
-          "updated_at": "2026-10-20T05:19:21Z",
-          "comments": 0
-        },
-        {
-          "number": 1089,
-          "title": "[claudinite-work] fleet/fleet-issues",
-          "labels": [
-            "task:status:running-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-20T05:19:20Z",
-          "updated_at": "2026-10-20T05:21:53Z",
-          "comments": 1
-        },
-        {
-          "number": 1088,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-20T05:19:20Z",
-          "updated_at": "2026-10-20T05:21:50Z",
-          "comments": 2
-        },
-        {
-          "number": 1087,
-          "title": "[claudinite-work] claudinite/growth-extract",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-20T05:19:19Z",
-          "updated_at": "2026-10-20T05:19:19Z",
-          "comments": 0
-        },
-        {
-          "number": 1085,
-          "title": "[claudinite-work] fleet-github/actions-storage-forecast",
-          "labels": [
-            "task:status:needs-human-failure",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-19T18:49:15Z",
-          "updated_at": "2026-10-19T18:50:04Z",
-          "comments": 2
+          "updated_at": "2026-10-20T05:27:39Z",
+          "comments": 3
         },
         {
           "number": 1077,
@@ -3824,17 +3715,6 @@
           "created_at": "2026-10-19T09:49:31Z",
           "updated_at": "2026-10-19T09:53:51Z",
           "comments": 3
-        },
-        {
-          "number": 1073,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-19T09:49:29Z",
-          "updated_at": "2026-10-19T09:55:24Z",
-          "comments": 2
         },
         {
           "number": 1072,
@@ -3865,72 +3745,6 @@
           "created_at": "2026-10-18T08:49:08Z",
           "updated_at": "2026-10-18T08:56:14Z",
           "comments": 3
-        },
-        {
-          "number": 1057,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-18T08:49:07Z",
-          "updated_at": "2026-10-18T08:53:45Z",
-          "comments": 2
-        },
-        {
-          "number": 1043,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-17T08:30:37Z",
-          "updated_at": "2026-10-17T08:32:24Z",
-          "comments": 2
-        },
-        {
-          "number": 1035,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-16T08:58:44Z",
-          "updated_at": "2026-10-16T09:04:26Z",
-          "comments": 2
-        },
-        {
-          "number": 1027,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-15T09:06:25Z",
-          "updated_at": "2026-10-15T09:07:18Z",
-          "comments": 2
-        },
-        {
-          "number": 1025,
-          "title": "[claudinite-work] fleet/fleet-key-create",
-          "labels": [
-            "task:status:waiting-for-executor",
-            "task:origin:manual"
-          ],
-          "created_at": "2026-10-14T23:16:02Z",
-          "updated_at": "2026-10-20T05:19:24Z",
-          "comments": 2
-        },
-        {
-          "number": 1018,
-          "title": "[claudinite-work] fleet/fleet-directory",
-          "labels": [
-            "task:status:needs-human-action",
-            "task:origin:planned"
-          ],
-          "created_at": "2026-10-14T23:09:00Z",
-          "updated_at": "2026-10-14T23:10:20Z",
-          "comments": 2
         },
         {
           "number": 1013,
@@ -4491,8 +4305,30 @@
     },
     {
       "repo": "missingbulb/TLDR",
-      "openIssues": 4,
+      "openIssues": 6,
       "issues": [
+        {
+          "number": 676,
+          "title": "[claudinite-work] chrome-extension/store-release",
+          "labels": [
+            "task:status:needs-human-failure",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T16:27:28Z",
+          "updated_at": "2026-10-20T16:28:26Z",
+          "comments": 2
+        },
+        {
+          "number": 675,
+          "title": "[claudinite-work] basics/improve-comments",
+          "labels": [
+            "task:status:needs-human-approval",
+            "task:origin:planned"
+          ],
+          "created_at": "2026-10-20T16:27:28Z",
+          "updated_at": "2026-10-20T16:32:37Z",
+          "comments": 4
+        },
         {
           "number": 50,
           "title": "Server integration testing via an in-process fake API Gateway (the server's `fake-chrome`)",
@@ -4532,15 +4368,15 @@
       "openIssues": 5,
       "issues": [
         {
-          "number": 693,
+          "number": 709,
           "title": "[claudinite-work] engine/update",
           "labels": [
-            "task:status:needs-human-failure",
+            "task:status:needs-human-decision",
             "task:origin:planned"
           ],
-          "created_at": "2026-10-18T08:49:23Z",
-          "updated_at": "2026-10-18T08:52:38Z",
-          "comments": 2
+          "created_at": "2026-10-21T06:42:19Z",
+          "updated_at": "2026-10-21T06:47:41Z",
+          "comments": 4
         },
         {
           "number": 691,
@@ -4697,10 +4533,6 @@
     }
   ],
   "skipped": [
-    {
-      "repo": "missingbulb/ClaudiniteCanary",
-      "why": "archived"
-    },
     {
       "repo": "missingbulb/EdFringeAllocator",
       "why": "archived"
