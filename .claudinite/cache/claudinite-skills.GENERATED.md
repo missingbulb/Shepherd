@@ -36,7 +36,6 @@ and an edit made another way is caught at Stop.
 | `extract-packs-from-a-project` | fleet | Decompose a project into its pack facets and author the canon packs they earn. Use from a canon when a project shows a facet its shelf does not yet home. |
 | `fetching-from-the-web` | basics | Reading a page or file from the web: exact bytes over a summary, and what a 403 or egress block means. Use before any WebFetch or curl. |
 | `file-placement` | basics | Where a file should live: the reference-distance metric and its exemptions. Use before placing, moving or renaming a file, or when reviewing where one lives. |
-| `fleet-triage` | shepherd | Survey every open issue across the whole missingbulb fleet, split the queue items from the plain ones, and attribute each parked task to the cause that actually parked it. Use when asked for a triage run, a fleet overview, a stuck-tasks analysis, or "all open issues across the fleet". |
 | `git-github-advanced` | git-github | Git/GitHub procedures beyond the basics task lifecycle. Use for commit layering, recovering a branch after a squash-merge, CI-trigger rules, GitHub Actions gotchas, or merge-relocation traps. |
 | `github-actions-scheduling` | git-github | What a GitHub Actions `schedule:` trigger actually guarantees. Use when adding, changing, explaining or debugging anything that runs on a cron in GitHub Actions. |
 | `growth-dedup` | claudinite | Prune a repo's local packs of items the mounted canon now covers. Use when asked to reconcile or dedup local packs against the canon. |
