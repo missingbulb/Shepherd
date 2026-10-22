@@ -1,111 +1,8 @@
 {
   "version": 1,
-  "generated": "2026-10-21T06:44:31Z",
+  "generated": "2026-10-22T09:25:43Z",
   "owner": "missingbulb",
   "members": [
-    {
-      "repo": "missingbulb/Claudinite",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "node",
-      "settings": ".claudinite-settings.json",
-      "covered": true,
-      "dormant": false,
-      "freshness": {
-        "state": "node",
-        "detail": "runs the Node engine; moves with phase 9"
-      }
-    },
-    {
-      "repo": "missingbulb/ClaudiniteEngine",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "cn",
-      "settings": ".claudinite/settings.yaml",
-      "covered": true,
-      "dormant": false,
-      "pin": "1.61013.2",
-      "held": {
-        "basics": "1.61009.1",
-        "git-github": "1.61013.1"
-      },
-      "hasScheduler": true,
-      "freshness": {
-        "state": "behind",
-        "detail": "behind the published versions by engine 1.61013.2 → 1.61021.1"
-      }
-    },
-    {
-      "repo": "missingbulb/ClaudiniteLicenses",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "none",
-      "covered": false,
-      "dormant": false
-    },
-    {
-      "repo": "missingbulb/ClaudinitePacks",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "cn",
-      "settings": ".claudinite/settings.yaml",
-      "covered": true,
-      "dormant": false,
-      "pin": "1.61020.7",
-      "held": {
-        "basics": "1.61009.1",
-        "git-github": "1.61013.1",
-        "node": "1.61004.1"
-      },
-      "hasScheduler": true,
-      "freshness": {
-        "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1"
-      }
-    },
-    {
-      "repo": "missingbulb/ClaudiniteSetup",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "none",
-      "covered": false,
-      "dormant": false
-    },
-    {
-      "repo": "missingbulb/ClaudiniteStagingDistro",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "none",
-      "covered": false,
-      "dormant": false
-    },
-    {
-      "repo": "missingbulb/ClaudiniteWebsite",
-      "defaultBranch": "main",
-      "scope": "in",
-      "shape": "cn",
-      "settings": ".claudinite/settings.yaml",
-      "covered": true,
-      "dormant": false,
-      "pin": "1.61020.7",
-      "held": {
-        "basics": "1.61009.1",
-        "claude-code-web-users-support": "1.61012.1",
-        "cloudflare-site": "1.61009.1",
-        "cloudflare-workers": "1.61004.1",
-        "git-github": "1.61011.1",
-        "headless-browser": "1.61004.1",
-        "html": "1.61004.1",
-        "node": "1.61004.1",
-        "product-wiki": "1.61008.1",
-        "public-website": "1.61005.1"
-      },
-      "hasScheduler": true,
-      "freshness": {
-        "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, cloudflare-site 1.61009.1 → 1.61020.2, git-github 1.61011.1 → 1.61013.1"
-      }
-    },
     {
       "repo": "missingbulb/CrosswordChat",
       "defaultBranch": "main",
@@ -114,7 +11,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "chrome-extension": "1.61009.1",
@@ -129,7 +26,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -147,7 +44,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61009.2",
@@ -162,7 +59,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, cloudflare-site 1.61009.1 → 1.61020.2, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, claude-code-web-users-support 1.61009.2 → 1.61012.1, cloudflare-site 1.61009.1 → 1.61020.2, git-github 1.61009.1 → 1.61013.1, product-wiki 1.61008.1 → 1.61021.1"
       }
     },
     {
@@ -180,7 +77,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "chrome-extension": "1.61009.1",
@@ -195,7 +92,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, chrome-extension 1.61009.1 → 1.61013.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1, product-wiki 1.61008.1 → 1.61021.1"
       }
     },
     {
@@ -258,7 +155,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.6",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61009.2",
@@ -272,7 +169,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.6 → 1.61021.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, cloudflare-site 1.61009.1 → 1.61020.2, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, claude-code-web-users-support 1.61009.2 → 1.61012.1, cloudflare-site 1.61009.1 → 1.61020.2, git-github 1.61009.1 → 1.61013.1, product-wiki 1.61008.1 → 1.61021.1"
       }
     },
     {
@@ -283,7 +180,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61009.2",
@@ -298,7 +195,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
@@ -345,7 +242,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "aws-sam": "1.61004.1",
         "basics": "1.61008.1",
@@ -360,7 +257,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, basics 1.61008.1 → 1.61009.1, chrome-extension 1.61008.1 → 1.61013.1, claude-code-web-users-support 1.61005.1 → 1.61012.1, git-github 1.61008.2 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, basics 1.61008.1 → 1.61009.1, chrome-extension 1.61008.1 → 1.61013.1, claude-code-web-users-support 1.61005.1 → 1.61012.1, git-github 1.61008.2 → 1.61013.1"
       }
     },
     {
@@ -371,7 +268,7 @@
       "settings": ".claudinite/settings.yaml",
       "covered": true,
       "dormant": false,
-      "pin": "1.61020.7",
+      "pin": "1.61021.1",
       "held": {
         "basics": "1.61009.1",
         "claude-code-web-users-support": "1.61009.2",
@@ -386,7 +283,7 @@
       "hasScheduler": true,
       "freshness": {
         "state": "behind",
-        "detail": "behind the published versions by engine 1.61020.7 → 1.61021.1, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
+        "detail": "behind the published versions by engine 1.61021.1 → 1.61021.4, claude-code-web-users-support 1.61009.2 → 1.61012.1, git-github 1.61009.1 → 1.61013.1"
       }
     },
     {
