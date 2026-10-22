@@ -18,3 +18,11 @@
 - **Retire when:** this sandbox's checkout keeps local `main` synced with `origin/main` by
   construction.
 - **Landed:** #588 (Refs #575).
+
+## 2026-10-22 · scope-changed · Anchor branch-from-local-main's match at a command start
+- **Source:** closing #886, whose world rule for this anchoring cannot load on cn.
+- **Reason:** a mention is not an invocation; the sibling `checkout-ref-whole-tree` was anchored
+  the same way in #714.
+- **Actor:** interactive session, for @missingbulb (owner).
+- **Model:** Claude, per the commit trailer.
+- **Mechanism:** the match anchored at a command-start boundary.
