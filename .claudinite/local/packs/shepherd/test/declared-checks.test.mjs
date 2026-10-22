@@ -12,6 +12,9 @@ test('branch-from-local-main fires on a bare local-main branch, stays quiet on o
   assert.equal(guardFindings('branch-from-local-main', call('git fetch origin main && git checkout -b claude/foo origin/main')).length, 0);
   assert.equal(guardFindings('branch-from-local-main', call('git checkout main')).length, 0);
   assert.equal(guardFindings('branch-from-local-main', call('git status')).length, 0);
+  assert.equal(guardFindings('branch-from-local-main', call('git fetch origin main; git checkout -b claude/foo main')).length, 1);
+  // Mentioning the pattern in an argument (e.g. a --summary string) must not read as an invocation.
+  assert.equal(guardFindings('branch-from-local-main', call('cn work converge --summary "never git checkout -b x main"')).length, 0);
 });
 
 const checkoutRule = 'checkout-ref-whole-tree';
