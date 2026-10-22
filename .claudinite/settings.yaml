@@ -18,8 +18,6 @@ packs:
     - "claudinite-growth"
     - "fleet-github"
 tasks:
-  disabled:
-    - "fleet/fleet-issues"
   routines:
     default:
       url: "https://api.anthropic.com/v1/claude_code/routines/trig_01Xc43XQwqjUgTaFQhXvAJdk/fire"
