@@ -268,26 +268,6 @@
         ]
       }
     },
-    "fleet/fleet-issues": {
-      "path": ".claudinite/temp/packs/fleet/tasks/fleet-issues/task.json",
-      "declaration": {
-        "id": "fleet-issues",
-        "description": "Reads every open issue in every repository under the owner over the fleet token, never a body or a pull request, and lands them as one file, .claudinite/fleet/issues.GENERATED.json, on one accumulating pull request, so a session can triage the fleet from a single local read.",
-        "trigger": "schedule",
-        "preconditions": [
-          "schedule:at-most-daily"
-        ],
-        "expected_outcome": "amend_existing_or_create_new_pr",
-        "automerge": [
-          "fleet-issues-artifact"
-        ],
-        "code_work": "cn fleet issues",
-        "code_work_timeout": 600,
-        "code_work_required_secrets": [
-          "FLEET_GITHUB_TOKEN"
-        ]
-      }
-    },
     "fleet/fleet-key-create": {
       "path": ".claudinite/temp/packs/fleet/tasks/fleet-key-create/task.json",
       "declaration": {
@@ -337,15 +317,12 @@
       "path": ".claudinite/temp/packs/fleet/tasks/fleet-roster/task.json",
       "declaration": {
         "id": "fleet-roster",
-        "description": "Walks every repository under the owner over the fleet token, builds the roster of members and non-members, reports the repositories outside the fleet, and lands the roster artifact .claudinite/fleet/roster.GENERATED.json, one verdict per repository, on one accumulating pull request.",
+        "description": "Walks every repository under the owner over the fleet token and reports, in the run summary, which are members, how fresh each member is against the published versions, and which stray from the fleet's published directory; it writes no file, and fails while any repository cannot be classified.",
         "trigger": "schedule",
         "preconditions": [
           "schedule:at-most-daily"
         ],
-        "expected_outcome": "amend_existing_or_create_new_pr",
-        "automerge": [
-          "fleet-roster-artifact"
-        ],
+        "expected_outcome": "no_code_changes",
         "code_work": "cn fleet roster",
         "code_work_timeout": 900,
         "code_work_required_secrets": [
