@@ -1,8 +1,8 @@
 {
   "v": 1,
-  "serial": 4,
-  "issued": "2026-10-21T11:24:37Z",
-  "private": true,
+  "serial": 5,
+  "issued": "2026-10-22T09:24:13Z",
+  "private": false,
   "memberUpdateFrequency": "daily",
   "shelfCatalogSerial": 454,
   "globalPackVersionApproval": {
