@@ -47,3 +47,5 @@ fleet:
     revokedPackUsage: reportOnly
     frozenVersionExceeded: reportOnly
   memberUpdateFrequency: daily
+growth:
+  sessionHistory: "localPlaintext"
