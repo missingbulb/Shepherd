@@ -1,10 +1,10 @@
 {
   "v": 1,
-  "serial": 11,
-  "issued": "2026-10-30T19:27:40Z",
+  "serial": 12,
+  "issued": "2026-10-30T20:42:42Z",
   "private": false,
   "memberUpdateFrequency": "daily",
-  "shelfCatalogSerial": 463,
+  "shelfCatalogSerial": 464,
   "globalPackVersionApproval": {
     "approvalRequiredPacks": [],
     "unlistedGlobalPackRequested": "allowFromGlobalShelf"
