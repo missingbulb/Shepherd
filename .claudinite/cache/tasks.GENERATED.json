@@ -91,12 +91,14 @@
         "trigger": "schedule",
         "preconditions": [
           "schedule:at-most-daily",
-          "substantive-change"
+          "substantive-change || session-captured"
         ],
         "expected_outcome": "amend_existing_or_create_new_pr",
         "automerge": [
           "under:.claudinite/local"
         ],
+        "code_work": "in-process: growth extract",
+        "code_work_timeout": 600,
         "agent_model": "opus",
         "agent_instructions": "task.md",
         "agent_execution_timeout": 2700
@@ -138,26 +140,6 @@
         "agent_model": "opus",
         "agent_instructions": "task.md",
         "agent_execution_timeout": 2700
-      }
-    },
-    "claudinite/usage-review": {
-      "path": ".claudinite/temp/packs/claudinite/tasks/usage-review/task.json",
-      "declaration": {
-        "id": "usage-review",
-        "description": "Compares what each skill declares about its own usage against what the record shows, by a file of readable rule declarations, and writes the findings with their causes and recommendations. Changes nothing it reviews.",
-        "schedule_after": [
-          "engine/usage-fold"
-        ],
-        "trigger": "schedule",
-        "preconditions": [
-          "schedule:at-most-daily",
-          "fold-moved-since-review",
-          "window-has-sessions:10"
-        ],
-        "expected_outcome": "amend_existing_or_create_new_pr",
-        "automerge": "nothing",
-        "code_worker_mjs": "worker.mjs",
-        "code_work_timeout": 900
       }
     },
     "claudinite/usage-triage": {
@@ -250,6 +232,20 @@
         ]
       }
     },
+    "fleet/fleet-archive-key-create": {
+      "path": ".claudinite/temp/packs/fleet/tasks/fleet-archive-key-create/task.json",
+      "declaration": {
+        "id": "fleet-archive-key-create",
+        "description": "Creates the fleet archive's key: its private half sealed into the SESSION_ARCHIVE_KEY secret of the claudinite environment, limited to the default branch, its public half proposed as an archive recipient in a pull request.",
+        "trigger": "request",
+        "expected_outcome": "no_code_changes",
+        "code_work": "cn fleet archive-key create",
+        "code_work_timeout": 300,
+        "code_work_required_secrets": [
+          "FLEET_GITHUB_TOKEN"
+        ]
+      }
+    },
     "fleet/fleet-directory": {
       "path": ".claudinite/temp/packs/fleet/tasks/fleet-directory/task.json",
       "declaration": {
@@ -265,6 +261,38 @@
         "code_work_required_secrets": [
           "FLEET_GITHUB_TOKEN",
           "FLEET_SIGNING_KEY"
+        ]
+      }
+    },
+    "fleet/fleet-history-keys": {
+      "path": ".claudinite/temp/packs/fleet/tasks/fleet-history-keys/task.json",
+      "declaration": {
+        "id": "fleet-history-keys",
+        "description": "Gives every member on the encrypted session store its history key for the month: the key and last month's written as secrets of the member's claudinite environment, this month's public half proposed in a pull request on the member, and a month's key deleted once its captures are past retention.",
+        "trigger": "schedule",
+        "preconditions": [
+          "schedule:at-most-monthly"
+        ],
+        "expected_outcome": "no_code_changes",
+        "code_work": "cn fleet history-keys",
+        "code_work_timeout": 1800,
+        "code_work_required_secrets": [
+          "FLEET_GITHUB_TOKEN",
+          "SESSION_HISTORY_FLEET_SECRET"
+        ]
+      }
+    },
+    "fleet/fleet-history-secret-create": {
+      "path": ".claudinite/temp/packs/fleet/tasks/fleet-history-secret-create/task.json",
+      "declaration": {
+        "id": "fleet-history-secret-create",
+        "description": "Creates the fleet secret every member's monthly session-history key derives from, sealed into the SESSION_HISTORY_FLEET_SECRET secret of the manager's claudinite environment, limited to the default branch.",
+        "trigger": "request",
+        "expected_outcome": "no_code_changes",
+        "code_work": "cn fleet history-secret create",
+        "code_work_timeout": 300,
+        "code_work_required_secrets": [
+          "FLEET_GITHUB_TOKEN"
         ]
       }
     },
@@ -327,6 +355,30 @@
         "code_work_timeout": 900,
         "code_work_required_secrets": [
           "FLEET_GITHUB_TOKEN"
+        ]
+      }
+    },
+    "fleet/fleet-session-archive": {
+      "path": ".claudinite/temp/packs/fleet/tasks/fleet-session-archive/task.json",
+      "declaration": {
+        "id": "fleet-session-archive",
+        "description": "Copies every member's session history into the fleet archive, one encrypted batch per member per day, and deletes each member's legacy conversation-logs branch once the archive on the default branch is verified to hold every capture the branch ever held.",
+        "trigger": "schedule",
+        "preconditions": [
+          "schedule:at-most-daily"
+        ],
+        "expected_outcome": "amend_existing_or_create_new_pr",
+        "automerge": [
+          "under:.claudinite/session-archive"
+        ],
+        "code_work": "cn fleet session-archive",
+        "code_work_timeout": 3000,
+        "code_work_required_secrets": [
+          "FLEET_GITHUB_TOKEN",
+          "SESSION_ARCHIVE_KEY"
+        ],
+        "code_work_optional_secrets": [
+          "SESSION_HISTORY_FLEET_SECRET"
         ]
       }
     },
