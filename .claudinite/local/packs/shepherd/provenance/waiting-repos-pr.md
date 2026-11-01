@@ -21,3 +21,9 @@
 - **Actor:** growth-extract run, merged by @missingbulb (owner).
 - **Model:** Claude, per the commit trailer.
 - **Landed:** #825 (Refs #823).
+
+## 2026-10-25 · reworded · Claudinite growth: rule revalidation (#1162)
+- **Source:** #1162.
+- **Reason:** the `checks` job's started-to-completed time read 21s, 21s and 28s on #1142, #1148 and
+  #1155, outside the recorded 7-15s; the poll-don't-sleep guidance is unchanged.
+- **Actor:** rule-revalidation run.

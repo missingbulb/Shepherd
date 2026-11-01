@@ -7,8 +7,8 @@ description of how something works.
 A lesson that would hold in another repo does not belong here — propose it to the Claudinite
 canon instead, where every repo gets it.
 
-- **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 7–15
-  seconds (measured directly across #30, #32, #59, #67). Poll `pull_request_read get_check_runs`
+- **Waiting on this repo's PR CI** — it's a single `checks` job that completes in roughly 20–30
+  seconds (measured directly on #1142, #1148, #1155: 21s, 21s, 28s). Poll `pull_request_read get_check_runs`
   in a short loop instead of a fixed or backgrounded `sleep`. Before stating a PR's status in a
   closing callout, read `get_check_runs` rather than asserting "CI running" as an unread guess
   (#30), and skip grepping `.github/workflows/*.yml` to guess whether a workflow gates the merge —
