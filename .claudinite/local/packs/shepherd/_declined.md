@@ -15,3 +15,12 @@ coded module an unattended run should not ship unreviewed. Stays prose.
 The other rules in `RULES.md` govern in-flight judgment or runtime knowledge and leave no static
 signature (waiting on CI, subagent prompting, fleet-activity filtering, store declaration,
 confirming a PR diff, fetching refs, parsing saved tool results, reading a settings key).
+
+## 2026-11-15 · writing-guardtoolcalls-match
+Re-derived against the engine's parsed-document vocabulary (`checkParsedFiles` with
+`forEachEntryAtField` + `whereEntryFieldEquals` + `requireFieldMatching`). The declaration loads, but
+the root of `declared-checks.json` is an array of checks and the `guardToolCalls` array sits one level
+below it: with an unanchored Bash `match` planted in the tree, none of the selectors tried
+(`guardToolCalls`, `*.guardToolCalls`, `[].guardToolCalls`, `$[*].guardToolCalls`, `0.guardToolCalls`)
+produced a finding. A check that cannot be made to fail stays prose. Revisit if the vocabulary gains a
+way to address entries of a nested array under a root array.
